@@ -14,6 +14,34 @@
     "source_urls": ["https://truemechanical.com"]
   },
   {
+    "company_name": "True Mechanical",
+    "slug": "true-mechanical-kelowna",
+    "website": "https://truemechanical.com",
+    "phone": "6042252460",
+    "city": "Kelowna",
+    "region": "Interior",
+    "province": "BC",
+    "services": ["air_to_water", "boilers", "hybrid"],
+    "emergency_service": "unknown",
+    "brands_supported": ["Vitocrossal", "Renewaire"],
+    "notes": "Commercial and high-end residential specialist. Expertise in hydronic heating systems and air-to-water heat pump installations for larger homes. BC-wide operations.",
+    "source_urls": ["https://truemechanical.com"]
+  },
+  {
+    "company_name": "True Mechanical",
+    "slug": "true-mechanical-cranbrook",
+    "website": "https://truemechanical.com",
+    "phone": "6042252460",
+    "city": "Cranbrook",
+    "region": "Interior",
+    "province": "BC",
+    "services": ["air_to_water", "boilers", "hybrid"],
+    "emergency_service": "unknown",
+    "brands_supported": ["Vitocrossal", "Renewaire"],
+    "notes": "Commercial and high-end residential specialist. Expertise in hydronic heating systems and air-to-water heat pump installations for larger homes. BC-wide operations.",
+    "source_urls": ["https://truemechanical.com"]
+  },
+  {
     "company_name": "Uncle Bill's Hillcrest Plumbing & Heating",
     "slug": "uncle-bills-hillcrest-plumbing-heating",
     "website": "https://hillcrestplumbing.com",
