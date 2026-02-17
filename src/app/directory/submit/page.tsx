@@ -18,6 +18,7 @@ export default function DirectorySubmitPage() {
     brands_supported: '',
     fsr_license: '',
     gas_fitter_license: '',
+    electrical_license: '',
     hpcn_certified: '',
     years_experience: '',
     service_areas: '',
@@ -93,6 +94,7 @@ export default function DirectorySubmitPage() {
           brands_supported: '',
           fsr_license: '',
           gas_fitter_license: '',
+          electrical_license: '',
           hpcn_certified: '',
           years_experience: '',
           service_areas: '',
@@ -138,6 +140,10 @@ export default function DirectorySubmitPage() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-success-600 mt-1">✓</span>
+            <span><strong>TSBC Verified Badge</strong> - Show your active licenses and clean safety record</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-success-600 mt-1">✓</span>
             <span><strong>Quality leads</strong> - Homeowners actively researching heat pumps</span>
           </li>
           <li className="flex items-start gap-2">
@@ -146,7 +152,7 @@ export default function DirectorySubmitPage() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-success-600 mt-1">✓</span>
-            <span><strong>Verified credentials</strong> - We check licensing to build trust</span>
+            <span><strong>Stand out from competitors</strong> - Only directory with TSBC verification</span>
           </li>
         </ul>
       </div>
@@ -156,11 +162,20 @@ export default function DirectorySubmitPage() {
         <div className="bg-success-50 border-2 border-success-500 rounded-xl p-8 text-center">
           <div className="text-6xl mb-4">✅</div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Submission Received!</h2>
-          <p className="text-gray-700 mb-6">
-            Thank you for submitting your company. We'll verify your licensing with Technical Safety BC and add you to the directory within 2-3 business days.
+          <p className="text-gray-700 mb-4">
+            Thank you for submitting your company. We'll verify your TSBC licensing and add you to the directory within 2-3 business days.
           </p>
+          <div className="bg-white border border-success-200 rounded-lg p-4 mb-6 max-w-md mx-auto">
+            <p className="font-bold text-gray-900 mb-2">Your listing will include:</p>
+            <ul className="text-sm text-gray-700 text-left space-y-1">
+              <li>✓ TSBC Verified badge</li>
+              <li>✓ Active license status display</li>
+              <li>✓ Clean safety record indicator</li>
+              <li>✓ All your certifications shown</li>
+            </ul>
+          </div>
           <p className="text-sm text-gray-600 mb-6">
-            You'll receive a confirmation email at <strong>{formData.email}</strong> once your listing is live.
+            You'll receive a confirmation email at <strong>{formData.email}</strong> once your listing is live with your TSBC Verified badge.
           </p>
           <button
             onClick={() => setStatus('idle')}
@@ -371,9 +386,31 @@ export default function DirectorySubmitPage() {
           {/* Licensing & Certifications */}
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Licensing & Certifications</h2>
-            <p className="text-sm text-gray-600 mb-6">
+            <p className="text-sm text-gray-600 mb-4">
               We verify all licenses with Technical Safety BC before adding to directory
             </p>
+
+            {/* TSBC Verification Benefit */}
+            <div className="bg-gradient-to-br from-success-50 to-emerald-50 border border-success-200 rounded-lg p-4 mb-6">
+              <div className="flex items-start gap-3">
+                <span className="text-2xl">✓</span>
+                <div>
+                  <p className="font-bold text-gray-900 mb-1">Get Your TSBC Verified Badge</p>
+                  <p className="text-sm text-gray-700">
+                    Your listing will display a "TSBC Verified" badge showing your active licenses and clean safety record.
+                    This builds trust with homeowners and sets you apart from unverified competitors.
+                  </p>
+                  <a
+                    href="https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-primary-600 hover:text-primary-700 font-medium mt-2 inline-block"
+                  >
+                    Find your license numbers on TSBC →
+                  </a>
+                </div>
+              </div>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -386,7 +423,7 @@ export default function DirectorySubmitPage() {
                   value={formData.fsr_license}
                   onChange={(e) => updateField('fsr_license', e.target.value)}
                   className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none"
-                  placeholder="FSR-XXXXX"
+                  placeholder="FSR-A-12345"
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   Required for heat pump installation
@@ -402,10 +439,26 @@ export default function DirectorySubmitPage() {
                   value={formData.gas_fitter_license}
                   onChange={(e) => updateField('gas_fitter_license', e.target.value)}
                   className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none"
-                  placeholder="GF-XXXXX"
+                  placeholder="GA-67890"
                 />
                 <p className="text-xs text-gray-500 mt-1">
-                  Required for boiler work
+                  Required for boiler and gas work
+                </p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Electrical License # (if applicable)
+                </label>
+                <input
+                  type="text"
+                  value={formData.electrical_license}
+                  onChange={(e) => updateField('electrical_license', e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none"
+                  placeholder="EL-45678"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  For electrical work (optional)
                 </p>
               </div>
 
