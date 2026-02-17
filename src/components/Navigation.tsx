@@ -19,6 +19,10 @@ export default function Navigation() {
               Guides
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all"></span>
             </Link>
+            <Link href="/brands" className="text-gray-700 hover:text-purple-600 font-medium transition-colors relative group">
+              Brands
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 group-hover:w-full transition-all"></span>
+            </Link>
             <Link href="/rebates" className="text-gray-700 hover:text-accent-600 font-medium transition-colors relative group">
               Rebates
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-600 group-hover:w-full transition-all"></span>
