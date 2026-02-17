@@ -17,6 +17,9 @@ export default function Navigation() {
             <Link href="/guides" className="text-gray-700 hover:text-primary-600 font-medium">
               Guides
             </Link>
+            <Link href="/faq" className="text-gray-700 hover:text-primary-600 font-medium">
+              FAQ
+            </Link>
             <Link href="/bc" className="text-gray-700 hover:text-primary-600 font-medium">
               BC Cities
             </Link>
