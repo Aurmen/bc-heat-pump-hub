@@ -15,6 +15,30 @@ const guides = [
   'understanding-heat-pump-ratings',
 ];
 
+// Function to import guide content based on slug
+async function importGuideContent(slug: string) {
+  switch (slug) {
+    case 'heat-pump-vs-boiler-bc':
+      return (await import('@/content/guides/heat-pump-vs-boiler-bc.mdx')).default;
+    case 'air-to-water-heat-pumps-bc':
+      return (await import('@/content/guides/air-to-water-heat-pumps-bc.mdx')).default;
+    case 'hybrid-heat-pump-boiler-systems':
+      return (await import('@/content/guides/hybrid-heat-pump-boiler-systems.mdx')).default;
+    case 'cost-heat-pump-installation-bc':
+      return (await import('@/content/guides/cost-heat-pump-installation-bc.mdx')).default;
+    case 'boiler-replacement-cost-bc':
+      return (await import('@/content/guides/boiler-replacement-cost-bc.mdx')).default;
+    case 'heat-pump-sizing-guide-bc':
+      return (await import('@/content/guides/heat-pump-sizing-guide-bc.mdx')).default;
+    case 'ductless-vs-central-heat-pumps-bc':
+      return (await import('@/content/guides/ductless-vs-central-heat-pumps-bc.mdx')).default;
+    case 'understanding-heat-pump-ratings':
+      return (await import('@/content/guides/understanding-heat-pump-ratings.mdx')).default;
+    default:
+      return null;
+  }
+}
+
 export async function generateStaticParams() {
   return guides.map(slug => ({ slug }));
 }
@@ -46,11 +70,10 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     notFound();
   }
 
-  // Dynamic import of MDX content
-  let Content;
-  try {
-    Content = (await import(`@/content/guides/${slug}.mdx`)).default;
-  } catch {
+  // Import the guide content using switch statement
+  const Content = await importGuideContent(slug);
+
+  if (!Content) {
     notFound();
   }
 
