@@ -67,7 +67,7 @@ export default function DirectorySubmitPage() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_ACCESS_KEY', // Replace with actual key
+          access_key: 'd1abd195-1ee8-47a8-a5a8-75d0089e4c4a',
           subject: `New Directory Submission: ${formData.company_name}`,
           from_name: formData.company_name,
           ...formData,
