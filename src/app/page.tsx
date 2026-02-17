@@ -82,6 +82,26 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* ROI Calculator CTA */}
+      <div className="mb-16 bg-gradient-to-r from-success-500 to-emerald-600 text-white rounded-2xl p-12 shadow-2xl">
+        <div className="text-center max-w-3xl mx-auto">
+          <div className="text-6xl mb-4">🧮</div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Calculate Your Heat Pump ROI
+          </h2>
+          <p className="text-xl text-green-50 mb-8">
+            Get personalized payback period, annual savings, and 15-year ROI analysis based on your home, climate zone, and current heating costs.
+          </p>
+          <Link
+            href="/calculator"
+            className="inline-block bg-white hover:bg-gray-100 text-success-700 px-10 py-5 rounded-xl font-bold text-xl shadow-lg transition-all transform hover:scale-105"
+          >
+            Try the Calculator →
+          </Link>
+          <p className="text-sm text-green-100 mt-4">Free • Takes 2 minutes • No email required</p>
+        </div>
+      </div>
+
       {/* Regions Overview */}
       <div className="mb-16 bg-gradient-to-br from-primary-50 to-blue-50 rounded-2xl p-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-2">Browse by BC Region</h2>

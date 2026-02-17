@@ -23,6 +23,10 @@ export default function Navigation() {
               Rebates
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-600 group-hover:w-full transition-all"></span>
             </Link>
+            <Link href="/calculator" className="text-gray-700 hover:text-success-600 font-medium transition-colors relative group">
+              Calculator
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-success-600 group-hover:w-full transition-all"></span>
+            </Link>
             <Link href="/faq" className="text-gray-700 hover:text-primary-600 font-medium transition-colors relative group">
               FAQ
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all"></span>
