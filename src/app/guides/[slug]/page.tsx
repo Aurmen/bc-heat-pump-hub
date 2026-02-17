@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { BreadcrumbJsonLd } from '@/components/JsonLd';
+import { BreadcrumbJsonLd, ArticleJsonLd } from '@/components/JsonLd';
 import ArticleMeta from '@/components/ArticleMeta';
 
 const guides = [
@@ -105,9 +105,27 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'understanding-heat-pump-ratings': '13 min read',
   };
 
+  const descriptions: Record<string, string> = {
+    'heat-pump-vs-boiler-bc': 'Compare heat pumps and boilers for BC homes. Learn about costs, efficiency, climate suitability, and which system is right for your situation.',
+    'air-to-water-heat-pumps-bc': 'Complete guide to air-to-water heat pumps in BC. Understand how they work with hydronic systems, costs, efficiency, and installation requirements.',
+    'hybrid-heat-pump-boiler-systems': 'Learn about hybrid heat pump and boiler systems. Discover how combining both technologies maximizes efficiency and comfort in BC climate.',
+    'cost-heat-pump-installation-bc': 'Comprehensive breakdown of heat pump installation costs in BC. Includes equipment, labor, rebates, and total cost by system type.',
+    'boiler-replacement-cost-bc': 'Guide to boiler replacement costs in BC. Compare gas, electric, and combi boilers, plus installation costs and available rebates.',
+    'heat-pump-sizing-guide-bc': 'Learn how to properly size a heat pump for BC homes. Manual J calculations, design temperatures, and avoiding over/undersizing.',
+    'ductless-vs-central-heat-pumps-bc': 'Compare ductless mini-split and central ducted heat pumps. Costs, efficiency, installation, and which is best for your BC home.',
+    'understanding-heat-pump-ratings': 'Understand SEER, HSPF, and COP ratings for heat pumps. Learn what these efficiency metrics mean for BC climate performance.',
+  };
+
   return (
     <>
       <BreadcrumbJsonLd items={breadcrumbItems} />
+      <ArticleJsonLd
+        title={titles[slug] || 'Guide'}
+        description={descriptions[slug] || `Comprehensive guide on ${titles[slug]?.toLowerCase() || 'heating systems'} for BC homeowners.`}
+        slug={slug}
+        datePublished="2026-01-15"
+        dateModified="2026-02-16"
+      />
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <nav className="text-sm text-gray-500 mb-6">
           <Link href="/" className="hover:text-primary-600">Home</Link>

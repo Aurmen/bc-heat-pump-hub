@@ -70,3 +70,42 @@ export function LocalBusinessJsonLd({
 
   return <JsonLd data={data} />;
 }
+
+export function ArticleJsonLd({
+  title,
+  description,
+  slug,
+  datePublished,
+  dateModified,
+}: {
+  title: string;
+  description: string;
+  slug: string;
+  datePublished: string;
+  dateModified: string;
+}) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    author: {
+      '@type': 'Organization',
+      name: 'Canadian Heat Pump Hub',
+      url: 'https://canadianheatpumphub.ca',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Canadian Heat Pump Hub',
+      url: 'https://canadianheatpumphub.ca',
+    },
+    datePublished: datePublished,
+    dateModified: dateModified,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://canadianheatpumphub.ca/guides/${slug}`,
+    },
+  };
+
+  return <JsonLd data={data} />;
+}

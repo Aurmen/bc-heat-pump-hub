@@ -4,7 +4,7 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Heat Pump & Boiler Guides',
-  description: 'Educational guides on heat pumps, air-to-water systems, boiler replacement, and hybrid heating solutions for BC homeowners.',
+  description: 'Complete guides on heat pump costs, ROI, efficiency ratings (SEER/HSPF), air-to-water systems, boiler replacement, and hybrid heating for BC homes. Compare ductless vs central systems.',
 };
 
 const guides = [

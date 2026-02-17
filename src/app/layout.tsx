@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: 'Canadian Heat Pump Hub | Heat Pump & Boiler Replacement Guide',
     template: '%s | Canadian Heat Pump Hub',
   },
-  description: 'Educational resource for Canadian homeowners considering heat pump installation, air-to-water heat pumps, boiler replacement, and hybrid heating systems. Honest ROI analysis.',
+  description: 'Find BC heat pump installers, compare costs, and calculate ROI. Complete guides on air-to-water heat pumps, boiler replacement, hybrid systems, and 2026 rebates. Climate-specific advice for Vancouver, Victoria, Kelowna, and all BC cities.',
   openGraph: {
     type: 'website',
     locale: 'en_CA',
