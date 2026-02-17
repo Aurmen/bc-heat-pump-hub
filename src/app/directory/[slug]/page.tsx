@@ -146,8 +146,8 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
         <div className="bg-blue-50 border-l-4 border-primary-500 p-6 mb-8">
           <p className="text-sm text-gray-700">
             <strong>Suggest an update?</strong> Email us at{' '}
-            <a href="mailto:updates@example.com" className="text-primary-600 hover:text-primary-700">
-              updates@example.com
+            <a href="mailto:contact@canadianheatpumphub.ca" className="text-primary-600 hover:text-primary-700">
+              contact@canadianheatpumphub.ca
             </a>
           </p>
         </div>
