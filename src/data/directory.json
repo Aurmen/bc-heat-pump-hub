@@ -9,7 +9,7 @@
     "province": "BC",
     "services": ["air_to_water", "boilers", "hybrid"],
     "emergency_service": "unknown",
-    "brands_supported": ["Vitocrossal", "Renewaire"],
+    "brands_supported": ["Vitocrossal", "Renewaire", "Navien", "IBC"],
     "notes": "Commercial and high-end residential specialist. Expertise in hydronic heating systems and air-to-water heat pump installations for larger homes.",
     "source_urls": ["https://truemechanical.com"]
   },
@@ -23,7 +23,7 @@
     "province": "BC",
     "services": ["air_to_water", "boilers", "hybrid"],
     "emergency_service": "unknown",
-    "brands_supported": ["Vitocrossal", "Renewaire"],
+    "brands_supported": ["Vitocrossal", "Renewaire", "Navien", "IBC"],
     "notes": "Commercial and high-end residential specialist. Expertise in hydronic heating systems and air-to-water heat pump installations for larger homes. BC-wide operations.",
     "source_urls": ["https://truemechanical.com"]
   },
@@ -37,7 +37,7 @@
     "province": "BC",
     "services": ["air_to_water", "boilers", "hybrid"],
     "emergency_service": "unknown",
-    "brands_supported": ["Vitocrossal", "Renewaire"],
+    "brands_supported": ["Vitocrossal", "Renewaire", "Navien", "IBC"],
     "notes": "Commercial and high-end residential specialist. Expertise in hydronic heating systems and air-to-water heat pump installations for larger homes. BC-wide operations.",
     "source_urls": ["https://truemechanical.com"]
   },
