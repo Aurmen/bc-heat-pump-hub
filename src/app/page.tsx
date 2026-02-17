@@ -3,67 +3,101 @@ import { regions } from '@/data/regions';
 
 export default function HomePage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Hero Section */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Canadian Heat Pump & Boiler Replacement Guide
-        </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Honest ROI analysis for heat pump installation, air-to-water systems, boiler replacement,
-          and hybrid heating solutions. Currently serving British Columbia.
-        </p>
+    <div>
+      {/* Hero Section with Gradient */}
+      <div className="bg-gradient-hero text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">
+              Canadian Heat Pump & Boiler Guide
+            </h1>
+            <p className="text-xl md:text-2xl text-blue-50 max-w-3xl mx-auto mb-8">
+              Honest ROI analysis for heat pump installation, air-to-water systems, boiler replacement,
+              and hybrid heating solutions in British Columbia.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/rebates"
+                className="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all transform hover:scale-105"
+              >
+                2026 Rebates Guide →
+              </Link>
+              <Link
+                href="/directory"
+                className="bg-white hover:bg-gray-100 text-primary-700 px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all transform hover:scale-105"
+              >
+                Find Installers
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
       {/* Value Props */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">Educational Guides</h3>
-          <p className="text-gray-600 mb-4">
+        <div className="bg-white border-2 border-primary-100 rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow group">
+          <div className="w-14 h-14 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <span className="text-3xl">📚</span>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">Educational Guides</h3>
+          <p className="text-gray-600 mb-4 leading-relaxed">
             Technically accurate, homeowner-friendly explanations of heat pump and boiler systems,
             costs, and climate considerations.
           </p>
-          <Link href="/guides" className="text-primary-600 hover:text-primary-700 font-medium">
-            Explore Guides →
+          <Link href="/guides" className="text-primary-600 hover:text-primary-700 font-semibold inline-flex items-center group">
+            Explore Guides
+            <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">City-Specific Information</h3>
-          <p className="text-gray-600 mb-4">
+        <div className="bg-white border-2 border-accent-100 rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow group">
+          <div className="w-14 h-14 bg-gradient-accent rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <span className="text-3xl">🏙️</span>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">City-Specific Information</h3>
+          <p className="text-gray-600 mb-4 leading-relaxed">
             Climate notes and installer listings tailored to your BC region—from coastal Vancouver Island
             to the Interior.
           </p>
-          <Link href="/bc" className="text-primary-600 hover:text-primary-700 font-medium">
-            Browse Cities →
+          <Link href="/bc" className="text-accent-600 hover:text-accent-700 font-semibold inline-flex items-center group">
+            Browse Cities
+            <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">Installer Directory</h3>
-          <p className="text-gray-600 mb-4">
+        <div className="bg-white border-2 border-success-100 rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow group">
+          <div className="w-14 h-14 bg-gradient-to-br from-success-400 to-success-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <span className="text-3xl">🔧</span>
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">Installer Directory</h3>
+          <p className="text-gray-600 mb-4 leading-relaxed">
             Find heat pump and boiler installers serving your area. Filter by city and service type.
           </p>
-          <Link href="/directory" className="text-primary-600 hover:text-primary-700 font-medium">
-            View Directory →
+          <Link href="/directory" className="text-success-600 hover:text-success-700 font-semibold inline-flex items-center group">
+            View Directory
+            <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>
       </div>
 
       {/* Regions Overview */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">Browse by BC Region</h2>
+      <div className="mb-16 bg-gradient-to-br from-primary-50 to-blue-50 rounded-2xl p-8">
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">Browse by BC Region</h2>
+        <p className="text-gray-600 mb-8 text-lg">Climate-specific guidance for your area</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {regions.map(region => (
             <Link
               key={region.slug}
               href={`/bc/${region.slug}`}
-              className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+              className="bg-white border border-primary-200 rounded-xl p-6 hover:shadow-xl hover:border-primary-400 transition-all transform hover:-translate-y-1"
             >
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">{region.name}</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{region.name}</h3>
               <p className="text-gray-600 text-sm mb-4 line-clamp-3">{region.description}</p>
-              <span className="text-primary-600 font-medium text-sm">
-                View Cities →
+              <span className="text-primary-600 font-semibold text-sm inline-flex items-center">
+                View Cities
+                <span className="ml-1">→</span>
               </span>
             </Link>
           ))}
@@ -72,66 +106,101 @@ export default function HomePage() {
 
       {/* Featured Guides */}
       <div className="mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">Featured Guides</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">Featured Guides</h2>
+        <p className="text-gray-600 mb-8 text-lg">Deep dives into heat pump technology and costs</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Link
             href="/guides/heat-pump-vs-boiler-bc"
-            className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+            className="bg-white border-l-4 border-primary-500 rounded-lg p-6 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1"
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Heat Pumps vs. Boilers in BC
-            </h3>
-            <p className="text-gray-600 text-sm">
-              Compare efficiency, costs, and climate suitability for BC's varied regions.
-            </p>
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl">⚖️</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  Heat Pumps vs. Boilers in BC
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Compare efficiency, costs, and climate suitability for BC's varied regions.
+                </p>
+              </div>
+            </div>
           </Link>
 
           <Link
             href="/guides/air-to-water-heat-pumps-bc"
-            className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+            className="bg-white border-l-4 border-accent-500 rounded-lg p-6 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1"
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Air-to-Water Heat Pumps in BC
-            </h3>
-            <p className="text-gray-600 text-sm">
-              Understand how air-to-water systems work with hydronic heating and radiant floors.
-            </p>
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl">💧</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  Air-to-Water Heat Pumps in BC
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Understand how air-to-water systems work with hydronic heating and radiant floors.
+                </p>
+              </div>
+            </div>
           </Link>
 
           <Link
             href="/guides/hybrid-heat-pump-boiler-systems"
-            className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+            className="bg-white border-l-4 border-success-500 rounded-lg p-6 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1"
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Hybrid Heat Pump + Boiler Systems
-            </h3>
-            <p className="text-gray-600 text-sm">
-              Learn when and why to combine a heat pump with a backup boiler.
-            </p>
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl">🔄</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  Hybrid Heat Pump + Boiler Systems
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Learn when and why to combine a heat pump with a backup boiler.
+                </p>
+              </div>
+            </div>
           </Link>
 
           <Link
             href="/guides/cost-heat-pump-installation-bc"
-            className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+            className="bg-white border-l-4 border-yellow-500 rounded-lg p-6 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1"
           >
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Heat Pump Installation Costs in BC
-            </h3>
-            <p className="text-gray-600 text-sm">
-              Typical cost ranges, factors that affect pricing, and available rebates.
-            </p>
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl">💰</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  Heat Pump Installation Costs in BC
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Typical cost ranges, factors that affect pricing, and available rebates.
+                </p>
+              </div>
+            </div>
           </Link>
         </div>
       </div>
 
       {/* Disclaimer */}
-      <div className="disclaimer">
-        <p className="font-semibold mb-2">Disclaimer</p>
-        <p>
-          This website provides educational information only. It is not engineering advice, product endorsement,
-          or a contractor recommendation. Always verify contractor licensing, insurance, and suitability for
-          your specific needs. Consult qualified HVAC professionals for system design and installation.
-        </p>
+      <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-yellow-400 rounded-lg p-6 shadow-sm">
+        <div className="flex items-start gap-3">
+          <span className="text-2xl">⚠️</span>
+          <div>
+            <p className="font-bold text-gray-900 mb-2">Disclaimer</p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              This website provides educational information only. It is not engineering advice, product endorsement,
+              or a contractor recommendation. Always verify contractor licensing, insurance, and suitability for
+              your specific needs. Consult qualified HVAC professionals for system design and installation.
+            </p>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import ArticleMeta from '@/components/ArticleMeta';
 
 export const metadata: Metadata = {
   title: 'BC Heat Pump Rebates 2026 - Complete Guide | Canadian Heat Pump Hub',
@@ -21,6 +22,11 @@ export default function RebatesPage() {
       <p className="text-xl text-gray-600 mb-8">
         Complete guide to heat pump rebates, grants, and financing available to British Columbia homeowners. Updated for 2026.
       </p>
+
+      <ArticleMeta
+        lastUpdated="2026-02-16"
+        readTime="15 min read"
+      />
 
       <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8">
         <p className="text-sm text-gray-800">

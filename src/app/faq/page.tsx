@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import ArticleMeta from '@/components/ArticleMeta';
 
 export const metadata: Metadata = {
   title: 'Heat Pump & Boiler FAQ - British Columbia',
@@ -123,6 +124,11 @@ export default function FAQPage() {
         <p className="text-xl text-gray-600 mb-8">
           Get honest answers about heat pumps, boilers, costs, and ROI in British Columbia.
         </p>
+
+        <ArticleMeta
+          lastUpdated="2026-02-16"
+          readTime="12 min read"
+        />
 
         <div className="space-y-8">
           {faqs.map((faq, index) => (
