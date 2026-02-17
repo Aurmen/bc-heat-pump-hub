@@ -10,6 +10,24 @@ export const cities: City[] = [
     province: 'BC',
     climateNotes: 'Vancouver\'s mild coastal climate (average winter lows around 1°C / 34°F) makes it ideal for heat pump systems. Air-to-water heat pumps work efficiently year-round, and many homeowners are replacing gas boilers with heat pump systems.',
     population: '~675,000',
+    designTemp: -5,
+    avgWinterLow: 1,
+    heatingDegreeDays: 2925,
+    installCosts: {
+      ductless: '$9,000-$15,000',
+      ducted: '$12,000-$18,000',
+      airToWater: '$15,000-$25,000',
+    },
+    operatingCosts: {
+      heatPump: '$900-$1,200',
+      gasBoiler: '$1,100-$1,500',
+      electricBaseboard: '$2,800-$3,500',
+    },
+    recommendedSystems: [
+      'Air-source heat pump (standard or cold-climate rated)',
+      'Air-to-water heat pump for hydronic systems',
+      'Ductless mini-split (2-4 zones for whole-home coverage)',
+    ],
   },
   {
     name: 'Surrey',
@@ -75,6 +93,24 @@ export const cities: City[] = [
     province: 'BC',
     climateNotes: 'Victoria has Canada\'s mildest climate, with winter lows rarely below 0°C (32°F). Heat pumps are extremely efficient here and are increasingly replacing older oil and electric heating systems.',
     population: '~92,000',
+    designTemp: -3,
+    avgWinterLow: 2,
+    heatingDegreeDays: 2650,
+    installCosts: {
+      ductless: '$8,000-$14,000',
+      ducted: '$11,000-$17,000',
+      airToWater: '$14,000-$24,000',
+    },
+    operatingCosts: {
+      heatPump: '$800-$1,100',
+      gasBoiler: '$1,000-$1,400',
+      electricBaseboard: '$2,600-$3,300',
+    },
+    recommendedSystems: [
+      'Standard air-source heat pump (cold-climate rating optional)',
+      'Air-to-water heat pump (excellent for radiant floor heating)',
+      'Ductless mini-split (ideal for mild climate, low operating costs)',
+    ],
   },
   {
     name: 'Nanaimo',
@@ -113,6 +149,24 @@ export const cities: City[] = [
     province: 'BC',
     climateNotes: 'Kelowna experiences colder winters (average lows around -5°C / 23°F) and hot, dry summers. Cold-climate heat pumps rated for -25°C (-13°F) are essential, and hybrid systems with gas or propane backup are common.',
     population: '~145,000',
+    designTemp: -15,
+    avgWinterLow: -5,
+    heatingDegreeDays: 3600,
+    installCosts: {
+      ductless: '$10,000-$16,000',
+      ducted: '$13,000-$20,000',
+      airToWater: '$16,000-$26,000',
+    },
+    operatingCosts: {
+      heatPump: '$1,200-$1,600',
+      gasBoiler: '$1,400-$1,900',
+      electricBaseboard: '$3,500-$4,500',
+    },
+    recommendedSystems: [
+      'Cold-climate heat pump rated to -25°C (-13°F)',
+      'Hybrid system (heat pump + gas/propane boiler backup)',
+      'Air-to-water heat pump with backup for existing hydronic systems',
+    ],
   },
   {
     name: 'Vernon',
@@ -140,6 +194,24 @@ export const cities: City[] = [
     province: 'BC',
     climateNotes: 'Kamloops has a semi-arid climate with temperatures ranging from -15°C (5°F) in winter to 35°C (95°F) in summer. Cold-climate heat pumps are necessary, and hybrid systems are popular for larger homes.',
     population: '~98,000',
+    designTemp: -20,
+    avgWinterLow: -7,
+    heatingDegreeDays: 3850,
+    installCosts: {
+      ductless: '$11,000-$17,000',
+      ducted: '$14,000-$21,000',
+      airToWater: '$17,000-$27,000',
+    },
+    operatingCosts: {
+      heatPump: '$1,400-$1,900',
+      gasBoiler: '$1,500-$2,100',
+      electricBaseboard: '$4,000-$5,200',
+    },
+    recommendedSystems: [
+      'Cold-climate heat pump rated to -30°C (-22°F)',
+      'Hybrid system (heat pump primary, gas backup for extreme cold)',
+      'Air-to-water heat pump + backup for high-efficiency whole-home heating',
+    ],
   },
   {
     name: 'Prince George',
@@ -149,6 +221,24 @@ export const cities: City[] = [
     province: 'BC',
     climateNotes: 'Prince George experiences cold winters (average lows around -15°C / 5°F) and requires cold-climate heat pumps rated to -30°C (-22°F) or lower. Hybrid systems are common to ensure reliable heating during extreme cold.',
     population: '~78,000',
+    designTemp: -30,
+    avgWinterLow: -12,
+    heatingDegreeDays: 4950,
+    installCosts: {
+      ductless: '$12,000-$18,000',
+      ducted: '$15,000-$22,000',
+      airToWater: '$18,000-$28,000',
+    },
+    operatingCosts: {
+      heatPump: '$1,800-$2,400',
+      gasBoiler: '$1,900-$2,600',
+      electricBaseboard: '$5,000-$6,500',
+    },
+    recommendedSystems: [
+      'Hybrid system (cold-climate heat pump + gas boiler backup) - STRONGLY RECOMMENDED',
+      'Cold-climate heat pump rated to -35°C (-31°F) with electric backup',
+      'Dual-fuel system with smart controls for cost optimization',
+    ],
   },
 ];
 

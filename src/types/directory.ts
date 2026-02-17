@@ -23,6 +23,24 @@ export interface City {
   province: 'BC';
   climateNotes: string;
   population?: string;
+  // Climate data
+  designTemp?: number; // Design temperature for heating calculations (°C)
+  avgWinterLow?: number; // Average winter low temperature (°C)
+  heatingDegreeDays?: number; // Annual heating degree days (base 18°C)
+  // Cost data (2,000 sq ft home)
+  installCosts?: {
+    ductless: string;
+    ducted: string;
+    airToWater: string;
+  };
+  // Operating costs (annual, 2,000 sq ft home)
+  operatingCosts?: {
+    heatPump: string;
+    gasBoiler: string;
+    electricBaseboard: string;
+  };
+  // Recommended systems
+  recommendedSystems?: string[];
 }
 
 export interface Region {
