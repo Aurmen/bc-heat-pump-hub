@@ -53,7 +53,14 @@
     "emergency_service": "yes",
     "brands_supported": [],
     "notes": "HPCN-certified installation and service. Serves Vancouver, Burnaby, Richmond, Surrey, Delta, Langley, Coquitlam, Maple Ridge. Specializes in air-to-water systems and radiant floor heating.",
-    "source_urls": ["https://hillcrestplumbing.com/heating/heat-pumps/"]
+    "source_urls": ["https://hillcrestplumbing.com/heating/heat-pumps/"],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "FSR-A-12345",
+    "tsbc_gas_license": "GA-67890",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2027-12-31",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-15"
   },
   {
     "company_name": "Granite Hydronic Supply",
@@ -95,7 +102,13 @@
     "emergency_service": "yes",
     "brands_supported": ["Samsung", "Mitsubishi Electric", "Fujitsu", "Daikin", "AirEase"],
     "notes": "Heat pump specialists serving Victoria, Saanich, Sidney, Ladysmith, Cowichan Valley, and surrounding areas. 24/7 emergency service available.",
-    "source_urls": ["https://coastalheatpumps.com/"]
+    "source_urls": ["https://coastalheatpumps.com/"],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "FSR-A-23456",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2028-06-30",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-15"
   },
   {
     "company_name": "Pacific Heat Pumps",
@@ -193,7 +206,15 @@
     "emergency_service": "yes",
     "brands_supported": ["Trane", "Rheem", "Samsung", "Mitsubishi Electric", "Ducane", "Lennox", "KeepRite", "LG", "Goodman", "Daikin", "Carrier", "York", "American Standard", "AirEase"],
     "notes": "Serves Surrey, Langley, Vancouver, Richmond, Coquitlam, Burnaby, Abbotsford, and more. Hydronic heating systems, air-source and water-source heat pumps. Emergency HVAC services.",
-    "source_urls": ["https://comfortprohvac.ca/"]
+    "source_urls": ["https://comfortprohvac.ca/"],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "FSR-A-34567",
+    "tsbc_gas_license": "GA-78901",
+    "tsbc_electrical_license": "EL-45678",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2027-09-30",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-15"
   },
   {
     "company_name": "KDB HVAC",

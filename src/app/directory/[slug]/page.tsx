@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getAllListings, getListingBySlug, formatServiceName, formatPhoneNumber } from '@/lib/utils';
 import { BreadcrumbJsonLd, LocalBusinessJsonLd } from '@/components/JsonLd';
+import TSBCBadge from '@/components/TSBCBadge';
 
 export async function generateStaticParams() {
   const listings = getAllListings();
@@ -60,6 +61,13 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
         <p className="text-xl text-gray-600 mb-8">
           {listing.city}, {listing.region}, BC
         </p>
+
+        {/* TSBC Verification Badge */}
+        {listing.tsbc_verified && (
+          <div className="mb-8">
+            <TSBCBadge listing={listing} variant="full" />
+          </div>
+        )}
 
         <div className="bg-white border border-gray-200 rounded-lg p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>

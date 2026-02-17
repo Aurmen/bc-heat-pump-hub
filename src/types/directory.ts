@@ -1,5 +1,7 @@
 export type ServiceType = 'heat_pumps' | 'air_to_water' | 'boilers' | 'hybrid';
 
+export type TSBCLicenseStatus = 'active' | 'expiring_soon' | 'expired' | 'unknown';
+
 export interface DirectoryListing {
   company_name: string;
   slug: string;
@@ -13,6 +15,15 @@ export interface DirectoryListing {
   brands_supported: string[];
   notes: string;
   source_urls: string[];
+  // TSBC Verification (Technical Safety BC)
+  tsbc_verified?: boolean;
+  tsbc_fsr_license?: string; // Field Safety Representative (refrigeration) license number
+  tsbc_gas_license?: string; // Gas fitter license number (if applicable)
+  tsbc_electrical_license?: string; // Electrical license number (if applicable)
+  tsbc_license_status?: TSBCLicenseStatus;
+  tsbc_license_expiry?: string; // ISO date string
+  tsbc_enforcement_actions?: number; // Number of enforcement actions (0 = clean record)
+  tsbc_last_verified?: string; // ISO date string - when we last verified the license
 }
 
 export interface City {

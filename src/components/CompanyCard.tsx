@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { DirectoryListing } from '@/types/directory';
 import { formatServiceName, formatPhoneNumber } from '@/lib/utils';
+import TSBCBadge from './TSBCBadge';
 
 interface CompanyCardProps {
   listing: DirectoryListing;
@@ -14,6 +15,13 @@ export default function CompanyCard({ listing }: CompanyCardProps) {
           {listing.company_name}
         </Link>
       </h3>
+
+      {/* TSBC Verification Badge */}
+      {listing.tsbc_verified && (
+        <div className="mb-3">
+          <TSBCBadge listing={listing} variant="compact" />
+        </div>
+      )}
 
       <div className="text-sm text-gray-600 space-y-1 mb-3">
         <p>{listing.city}, {listing.region}</p>
