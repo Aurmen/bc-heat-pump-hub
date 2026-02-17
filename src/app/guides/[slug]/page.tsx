@@ -10,6 +10,9 @@ const guides = [
   'hybrid-heat-pump-boiler-systems',
   'cost-heat-pump-installation-bc',
   'boiler-replacement-cost-bc',
+  'heat-pump-sizing-guide-bc',
+  'ductless-vs-central-heat-pumps-bc',
+  'understanding-heat-pump-ratings',
 ];
 
 export async function generateStaticParams() {
@@ -25,6 +28,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     'hybrid-heat-pump-boiler-systems': 'Hybrid Heat Pump + Boiler Systems',
     'cost-heat-pump-installation-bc': 'Heat Pump Installation Costs in BC',
     'boiler-replacement-cost-bc': 'Boiler Replacement Costs in BC',
+    'heat-pump-sizing-guide-bc': 'Heat Pump Sizing Guide for BC',
+    'ductless-vs-central-heat-pumps-bc': 'Ductless vs. Central Heat Pumps',
+    'understanding-heat-pump-ratings': 'Understanding SEER, HSPF & COP Ratings',
   };
 
   return {
@@ -60,6 +66,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'hybrid-heat-pump-boiler-systems': 'Hybrid Heat Pump + Boiler Systems',
     'cost-heat-pump-installation-bc': 'Heat Pump Installation Costs in BC',
     'boiler-replacement-cost-bc': 'Boiler Replacement Costs in BC',
+    'heat-pump-sizing-guide-bc': 'Heat Pump Sizing Guide for BC',
+    'ductless-vs-central-heat-pumps-bc': 'Ductless vs. Central Heat Pumps',
+    'understanding-heat-pump-ratings': 'Understanding SEER, HSPF & COP Ratings',
   };
 
   const readTimes: Record<string, string> = {
@@ -68,6 +77,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'hybrid-heat-pump-boiler-systems': '11 min read',
     'cost-heat-pump-installation-bc': '14 min read',
     'boiler-replacement-cost-bc': '13 min read',
+    'heat-pump-sizing-guide-bc': '16 min read',
+    'ductless-vs-central-heat-pumps-bc': '15 min read',
+    'understanding-heat-pump-ratings': '13 min read',
   };
 
   return (
