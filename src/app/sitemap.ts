@@ -19,6 +19,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/guides`, priority: 0.9 },
     { url: `${baseUrl}/bc`, priority: 0.9 },
     { url: `${baseUrl}/directory`, priority: 0.8 },
+    { url: `${baseUrl}/rebates`, priority: 0.9 },
+    { url: `${baseUrl}/calculator`, priority: 0.8 },
+    { url: `${baseUrl}/faq`, priority: 0.7 },
+    { url: `${baseUrl}/contact`, priority: 0.7 },
+    { url: `${baseUrl}/directory/submit`, priority: 0.7 },
   ];
 
   const guidePages = guides.map(slug => ({
