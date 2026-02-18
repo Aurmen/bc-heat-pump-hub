@@ -40,7 +40,7 @@ async function verifyLicense(licenseNumber, browser = null) {
     });
 
     // Wait for page to fully load
-    await page.waitForTimeout(2000);
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     // Try to find and interact with the search interface
     // Note: We need to inspect the actual page structure
@@ -81,7 +81,7 @@ async function verifyLicense(licenseNumber, browser = null) {
 
     // Type the license number
     await searchInput.type(licenseNumber);
-    await page.waitForTimeout(500);
+    await new Promise(resolve => setTimeout(resolve, 500));
 
     // Look for search/submit button
     const buttonSelectors = [
@@ -112,7 +112,7 @@ async function verifyLicense(licenseNumber, browser = null) {
     } else {
       // Try submitting via Enter key
       await searchInput.press('Enter');
-      await page.waitForTimeout(3000);
+      await new Promise(resolve => setTimeout(resolve, 3000));
     }
 
     // Extract results
