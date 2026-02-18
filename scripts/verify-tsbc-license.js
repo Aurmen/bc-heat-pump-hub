@@ -23,7 +23,7 @@ async function verifyLicense(licenseNumber, browser = null) {
   const shouldCloseBrowser = !browser;
   if (!browser) {
     browser = await puppeteer.launch({
-      headless: true,
+      headless: false, // Set to false to see the browser
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
   }
@@ -46,13 +46,17 @@ async function verifyLicense(licenseNumber, browser = null) {
     // Note: We need to inspect the actual page structure
     // This is a template - selectors need to be updated based on actual TSBC site
 
-    // Look for search input (common patterns)
+    // Look for license number input field specifically
+    // Based on TSBC website structure
     const searchInputSelectors = [
-      'input[name*="license"]',
-      'input[name*="number"]',
-      'input[id*="search"]',
-      'input[type="search"]',
-      'input[type="text"]'
+      'input[placeholder*="license" i]',
+      'input[placeholder*="licence" i]',
+      'input[name*="license" i]',
+      'input[name*="licence" i]',
+      'input[id*="license" i]',
+      'input[id*="licence" i]',
+      'input[aria-label*="license" i]',
+      'input[aria-label*="licence" i]'
     ];
 
     let searchInput = null;
@@ -83,12 +87,13 @@ async function verifyLicense(licenseNumber, browser = null) {
     await searchInput.type(licenseNumber);
     await new Promise(resolve => setTimeout(resolve, 500));
 
-    // Look for search/submit button
+    // Look for "Find a contractor" submit button
     const buttonSelectors = [
+      'button:has-text("Find a contractor")',
+      'button:has-text("Find")',
       'button[type="submit"]',
       'input[type="submit"]',
-      'button:has-text("Search")',
-      'button:has-text("Find")'
+      'button:has-text("Search")'
     ];
 
     let submitButton = null;
@@ -105,15 +110,25 @@ async function verifyLicense(licenseNumber, browser = null) {
     }
 
     if (submitButton) {
+      console.log('Clicking submit button...');
       await Promise.all([
-        page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 10000 }).catch(() => {}),
+        page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 15000 }).catch(() => {}),
         submitButton.click()
       ]);
-    } else {
-      // Try submitting via Enter key
-      await searchInput.press('Enter');
+      // Extra wait for results to render
       await new Promise(resolve => setTimeout(resolve, 3000));
+    } else {
+      console.log('No submit button found, trying Enter key...');
+      await searchInput.press('Enter');
+      await new Promise(resolve => setTimeout(resolve, 5000));
     }
+
+    // Take screenshot of results for debugging
+    await page.screenshot({
+      path: `scripts/tsbc-result-${licenseNumber}.png`,
+      fullPage: true
+    });
+    console.log(`Screenshot saved: tsbc-result-${licenseNumber}.png`);
 
     // Extract results
     const results = await extractLicenseData(page, licenseNumber);
@@ -136,7 +151,8 @@ async function verifyLicense(licenseNumber, browser = null) {
 }
 
 /**
- * Extract license data from results page
+ * Extract license data from TSBC results page
+ * Based on actual TSBC contractor page structure
  */
 async function extractLicenseData(page, licenseNumber) {
   try {
@@ -144,7 +160,8 @@ async function extractLicenseData(page, licenseNumber) {
     const pageText = await page.evaluate(() => document.body.innerText);
 
     if (pageText.toLowerCase().includes('no results') ||
-        pageText.toLowerCase().includes('not found')) {
+        pageText.toLowerCase().includes('not found') ||
+        pageText.toLowerCase().includes('no contractors match')) {
       return {
         license_number: licenseNumber,
         verified: false,
@@ -153,53 +170,99 @@ async function extractLicenseData(page, licenseNumber) {
       };
     }
 
-    // Try to extract license information
-    // This will need to be customized based on actual TSBC page structure
+    // Extract structured data from TSBC results page
     const data = await page.evaluate(() => {
       const result = {
         contractor_name: '',
-        license_type: '',
-        license_status: 'unknown',
-        expiry_date: null,
-        specializations: [],
-        enforcement_actions: 0
+        city: '',
+        email: '',
+        phone: '',
+        licenses: [],
+        enforcement_actions: 0,
+        overdue_non_compliances: 0
       };
 
-      // Look for common patterns (to be refined)
-      const text = document.body.innerText;
-
-      // Try to extract status
-      if (text.match(/active|valid|current/i)) {
-        result.license_status = 'active';
-      } else if (text.match(/expired|inactive/i)) {
-        result.license_status = 'expired';
-      } else if (text.match(/suspended|revoked/i)) {
-        result.license_status = 'suspended';
+      // Extract contractor name (first h1 or main heading)
+      const nameElement = document.querySelector('h1, h2');
+      if (nameElement) {
+        result.contractor_name = nameElement.innerText.trim();
       }
 
-      // Try to extract contractor name
-      const nameMatch = text.match(/(?:contractor|company|business)[\s:]+([^\n]+)/i);
-      if (nameMatch) {
-        result.contractor_name = nameMatch[1].trim();
+      // Extract city
+      const cityMatch = document.body.innerText.match(/City:\s*([^\n]+)/i);
+      if (cityMatch) {
+        result.city = cityMatch[1].trim();
       }
 
-      // Try to extract expiry date
-      const dateMatch = text.match(/(?:expir(?:y|es?)|valid until)[\s:]+(\d{4}-\d{2}-\d{2}|\d{1,2}\/\d{1,2}\/\d{4})/i);
-      if (dateMatch) {
-        result.expiry_date = dateMatch[1];
+      // Extract email
+      const emailMatch = document.body.innerText.match(/Email:\s*([^\s]+)/i);
+      if (emailMatch) {
+        result.email = emailMatch[1].trim();
+      }
+
+      // Extract phone
+      const phoneMatch = document.body.innerText.match(/Office:\s*([^\n]+)/i);
+      if (phoneMatch) {
+        result.phone = phoneMatch[1].trim();
+      }
+
+      // Extract enforcement actions
+      const enforcementMatch = document.body.innerText.match(/Enforcement Actions:\s*(\d+)/i);
+      if (enforcementMatch) {
+        result.enforcement_actions = parseInt(enforcementMatch[1]);
+      }
+
+      // Extract overdue non-compliances
+      const nonComplianceMatch = document.body.innerText.match(/Overdue Non-Compliances:\s*(\d+)/i);
+      if (nonComplianceMatch) {
+        result.overdue_non_compliances = parseInt(nonComplianceMatch[1]);
+      }
+
+      // Extract all licenses (looking for patterns like "Gas - LGA0105692")
+      const licensePattern = /([A-Za-z, ]+)\s*-\s*([A-Z]{2,4}\d+)/g;
+      let match;
+      while ((match = licensePattern.exec(document.body.innerText)) !== null) {
+        const licenseType = match[1].trim();
+        const licenseNum = match[2].trim();
+
+        // Try to find expiry date nearby
+        const licenseIndex = match.index;
+        const contextText = document.body.innerText.substring(licenseIndex, licenseIndex + 500);
+        const expiryMatch = contextText.match(/Expiry Date:\s*(\d{4}-\d{2}-\d{2})/i);
+        const statusMatch = contextText.match(/Licence Status:\s*(Active|Expired|Suspended)/i);
+
+        result.licenses.push({
+          type: licenseType,
+          number: licenseNum,
+          expiry_date: expiryMatch ? expiryMatch[1] : null,
+          status: statusMatch ? statusMatch[1].toLowerCase() : 'unknown'
+        });
       }
 
       return result;
     });
 
+    // Find the specific license we searched for
+    const searchedLicense = data.licenses.find(l => l.number === licenseNumber);
+
     return {
       license_number: licenseNumber,
       verified: true,
-      ...data,
+      contractor_name: data.contractor_name,
+      city: data.city,
+      email: data.email,
+      phone: data.phone,
+      license_type: searchedLicense?.type || '',
+      license_status: searchedLicense?.status || 'active',
+      expiry_date: searchedLicense?.expiry_date || null,
+      all_licenses: data.licenses,
+      enforcement_actions: data.enforcement_actions,
+      overdue_non_compliances: data.overdue_non_compliances,
       timestamp: new Date().toISOString()
     };
 
   } catch (error) {
+    console.error('Error extracting data:', error);
     return {
       license_number: licenseNumber,
       verified: false,
