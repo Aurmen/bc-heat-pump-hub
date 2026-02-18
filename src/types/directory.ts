@@ -1,5 +1,7 @@
 export type ServiceType = 'heat_pumps' | 'air_to_water' | 'boilers' | 'hybrid';
 
+export type AudienceType = 'residential' | 'commercial' | 'both' | 'unknown';
+
 export type TSBCLicenseStatus = 'active' | 'expiring_soon' | 'expired' | 'unknown';
 
 export interface DirectoryListing {

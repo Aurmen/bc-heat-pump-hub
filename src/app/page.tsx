@@ -4,7 +4,7 @@ import { regions } from '@/data/regions';
 export default function HomePage() {
   return (
     <div>
-      {/* Hero Section with Gradient */}
+      {/* Hero Section with Audience Selection */}
       <div className="bg-gradient-hero text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
@@ -15,18 +15,43 @@ export default function HomePage() {
               Honest ROI analysis for heat pump installation, air-to-water systems, boiler replacement,
               and hybrid heating solutions in British Columbia.
             </p>
+
+            {/* Audience Selection */}
+            <div className="mb-8">
+              <p className="text-lg text-blue-100 mb-4">I'm looking for information as a:</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                <Link
+                  href="/directory?audience=residential"
+                  className="bg-white hover:bg-gray-100 text-primary-700 px-8 py-6 rounded-lg font-semibold text-lg shadow-lg transition-all transform hover:scale-105 border-2 border-transparent hover:border-primary-300"
+                >
+                  <div className="text-3xl mb-2">🏠</div>
+                  <div className="font-bold mb-1">Homeowner</div>
+                  <div className="text-sm text-gray-600">Find installers for your home</div>
+                </Link>
+                <Link
+                  href="/directory?audience=commercial"
+                  className="bg-white hover:bg-gray-100 text-primary-700 px-8 py-6 rounded-lg font-semibold text-lg shadow-lg transition-all transform hover:scale-105 border-2 border-transparent hover:border-primary-300"
+                >
+                  <div className="text-3xl mb-2">🏢</div>
+                  <div className="font-bold mb-1">Facilities Manager</div>
+                  <div className="text-sm text-gray-600">Find contractors for commercial projects</div>
+                </Link>
+              </div>
+            </div>
+
+            {/* Secondary CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/rebates"
-                className="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all transform hover:scale-105"
+                className="bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all transform hover:scale-105"
               >
                 2026 Rebates Guide →
               </Link>
               <Link
                 href="/directory"
-                className="bg-white hover:bg-gray-100 text-primary-700 px-8 py-4 rounded-lg font-semibold text-lg shadow-lg transition-all transform hover:scale-105"
+                className="bg-transparent hover:bg-white/10 text-white border-2 border-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all"
               >
-                Find Installers
+                View All Installers
               </Link>
             </div>
           </div>

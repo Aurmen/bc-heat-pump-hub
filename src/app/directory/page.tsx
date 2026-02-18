@@ -4,13 +4,43 @@ import { getAllListings } from '@/lib/utils';
 import DirectoryFilters from '@/components/DirectoryFilters';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
-export const metadata: Metadata = {
-  title: 'BC Heat Pump & Boiler Installer Directory',
-  description: 'Browse heat pump and boiler replacement installers across British Columbia. Filter by city and service type.',
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ audience?: string }>;
+}): Promise<Metadata> {
+  const params = await searchParams;
+  const audience = params.audience;
 
-export default function DirectoryPage() {
+  if (audience === 'residential') {
+    return {
+      title: 'Residential Heat Pump Installers in BC',
+      description: 'Find qualified heat pump and boiler installers for your home in British Columbia. Browse contractors serving homeowners with emergency service, verified licenses, and local expertise.',
+    };
+  }
+
+  if (audience === 'commercial') {
+    return {
+      title: 'Commercial Heat Pump Contractors in BC',
+      description: 'Find qualified commercial HVAC contractors in British Columbia. Browse licensed professionals with commercial capacity, TSBC verification, and expertise in large-scale heat pump and boiler systems.',
+    };
+  }
+
+  // Default metadata
+  return {
+    title: 'BC Heat Pump & Boiler Installer Directory',
+    description: 'Browse heat pump and boiler replacement installers across British Columbia. Filter by city and service type.',
+  };
+}
+
+export default async function DirectoryPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ audience?: string }>;
+}) {
+  const params = await searchParams;
   const listings = getAllListings();
+  const selectedAudience = params.audience;
 
   const breadcrumbItems = [
     { name: 'Home', url: 'https://canadianheatpumphub.ca' },
@@ -44,7 +74,7 @@ export default function DirectoryPage() {
           </Link>
         </div>
 
-        <DirectoryFilters listings={listings} />
+        <DirectoryFilters listings={listings} initialAudience={selectedAudience} />
 
         {/* CTA for Contractors */}
         <div className="mt-12 bg-gradient-to-br from-primary-50 to-blue-50 border-2 border-primary-200 rounded-xl p-8">

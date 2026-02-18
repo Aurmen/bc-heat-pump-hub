@@ -1,13 +1,20 @@
 import Link from 'next/link';
-import { DirectoryListing } from '@/types/directory';
-import { formatServiceName, formatPhoneNumber } from '@/lib/utils';
+import { DirectoryListing, AudienceType } from '@/types/directory';
+import { formatServiceName, formatPhoneNumber, inferAudience } from '@/lib/utils';
 import TSBCBadge from './TSBCBadge';
 
 interface CompanyCardProps {
   listing: DirectoryListing;
+  audienceContext?: AudienceType;
 }
 
-export default function CompanyCard({ listing }: CompanyCardProps) {
+export default function CompanyCard({ listing, audienceContext }: CompanyCardProps) {
+  const listingAudience = inferAudience(listing);
+
+  // Determine what to emphasize based on audience context
+  const emphasizeEmergency = audienceContext === 'residential';
+  const emphasizeLicenses = audienceContext === 'commercial';
+
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
       <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -16,10 +23,36 @@ export default function CompanyCard({ listing }: CompanyCardProps) {
         </Link>
       </h3>
 
-      {/* TSBC Verification Badge */}
-      {listing.tsbc_verified && (
+      {/* Audience Badge - Show what they serve */}
+      {listingAudience !== 'unknown' && (
         <div className="mb-3">
+          {listingAudience === 'both' && (
+            <span className="inline-block bg-purple-50 text-purple-700 text-xs px-2 py-1 rounded font-medium">
+              Residential & Commercial
+            </span>
+          )}
+          {listingAudience === 'residential' && (
+            <span className="inline-block bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded font-medium">
+              🏠 Residential
+            </span>
+          )}
+          {listingAudience === 'commercial' && (
+            <span className="inline-block bg-orange-50 text-orange-700 text-xs px-2 py-1 rounded font-medium">
+              🏢 Commercial
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* TSBC Verification Badge - emphasized for commercial */}
+      {listing.tsbc_verified && (
+        <div className={`mb-3 ${emphasizeLicenses ? 'ring-2 ring-primary-200 rounded-lg p-2 bg-primary-50' : ''}`}>
           <TSBCBadge listing={listing} variant="compact" />
+          {emphasizeLicenses && (
+            <p className="text-xs text-primary-700 mt-1 font-medium">
+              Professional licenses verified
+            </p>
+          )}
         </div>
       )}
 
@@ -31,6 +64,16 @@ export default function CompanyCard({ listing }: CompanyCardProps) {
           </p>
         )}
       </div>
+
+      {/* Emergency Service - emphasized for residential */}
+      {emphasizeEmergency && listing.emergency_service === 'yes' && (
+        <div className="mb-3 bg-red-50 border border-red-200 rounded-lg p-2">
+          <p className="text-xs text-red-700 font-bold flex items-center gap-1">
+            <span>🚨</span>
+            24/7 Emergency Service Available
+          </p>
+        </div>
+      )}
 
       <div className="mb-3">
         <p className="text-xs font-medium text-gray-700 mb-1">Services:</p>
@@ -54,7 +97,7 @@ export default function CompanyCard({ listing }: CompanyCardProps) {
       )}
 
       {listing.notes && (
-        <p className="text-sm text-gray-600 italic mb-3">{listing.notes}</p>
+        <p className="text-sm text-gray-600 italic mb-3 line-clamp-2">{listing.notes}</p>
       )}
 
       <Link
