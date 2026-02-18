@@ -1,6 +1,6 @@
-# TSBC Verification Scripts
+# TSBC Scripts
 
-Tools for verifying contractor licenses against Technical Safety BC database.
+Tools for discovering and verifying contractors against Technical Safety BC database.
 
 ## Prerequisites
 
@@ -8,7 +8,41 @@ Tools for verifying contractor licenses against Technical Safety BC database.
 npm install puppeteer
 ```
 
-## Usage
+## Scripts Overview
+
+- **discover-tsbc-contractors.js** - Discover new contractors by city
+- **verify-tsbc-license.js** - Verify existing contractor licenses
+
+---
+
+## Discovery - Find New Contractors
+
+### Discover Contractors in a City
+
+```bash
+npm run discover-contractors Vancouver
+npm run discover-contractors "North Vancouver"
+```
+
+This will:
+1. Search TSBC for all contractors in the specified city
+2. Extract full details for each contractor
+3. Format data for directory.json
+4. Save to `scripts/discovered-contractors.json`
+
+### Discover Contractors in All Major BC Cities
+
+```bash
+npm run discover-contractors --all
+```
+
+Searches 20 major BC cities and compiles a comprehensive contractor list.
+
+⚠️ **Note:** This takes 15-30 minutes and makes many requests to TSBC. Use sparingly.
+
+---
+
+## Verification - Check Existing Licenses
 
 ### Verify Single License
 

@@ -23,7 +23,7 @@ async function verifyLicense(licenseNumber, browser = null) {
   const shouldCloseBrowser = !browser;
   if (!browser) {
     browser = await puppeteer.launch({
-      headless: false, // Set to false to see the browser
+      headless: true, // Set to false to debug
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
   }

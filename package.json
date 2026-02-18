@@ -9,6 +9,7 @@
     "lint": "next lint",
     "verify-license": "node scripts/verify-tsbc-license.js",
     "verify-directory": "node scripts/verify-tsbc-license.js --directory",
+    "discover-contractors": "node scripts/discover-tsbc-contractors.js",
     "scrape-tsbc": "node scripts/scrape-tsbc.js"
   },
   "dependencies": {
