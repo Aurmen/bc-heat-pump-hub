@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "verify-license": "node scripts/verify-tsbc-license.js",
+    "verify-directory": "node scripts/verify-tsbc-license.js --directory",
+    "scrape-tsbc": "node scripts/scrape-tsbc.js"
   },
   "dependencies": {
     "next": "^15.1.6",
