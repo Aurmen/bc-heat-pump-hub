@@ -3,6 +3,7 @@ import './globals.css';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { OrganizationJsonLd } from '@/components/JsonLd';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://canadianheatpumphub.ca'),
@@ -30,6 +31,7 @@ export default function RootLayout({
         <OrganizationJsonLd />
       </head>
       <body>
+        <GoogleAnalytics />
         <Navigation />
         <main className="min-h-screen">
           {children}

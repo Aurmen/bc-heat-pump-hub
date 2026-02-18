@@ -49,26 +49,58 @@ async function discoverContractorsByCity(city, browser = null) {
 
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // Find city input field (typically labeled "City 1", "City 2", etc.)
-    const cityInputSelectors = [
-      'input[placeholder*="City" i]',
-      'input[name*="city" i]',
-      'input[id*="city" i]',
-      'input[aria-label*="city" i]'
-    ];
+    // First, select technology checkboxes (REQUIRED by TSBC)
+    // The technology buttons are MUI Chip components
+    console.log('Selecting technology: Boiler, Pressure Vessel, Refrigeration...');
 
-    let cityInput = null;
-    for (const selector of cityInputSelectors) {
-      try {
-        const inputs = await page.$$(selector);
-        if (inputs.length > 0) {
-          cityInput = inputs[0]; // Use first city input
-          console.log(`Found city input: ${selector}`);
-          break;
-        }
-      } catch (e) {
-        continue;
+    try {
+      // Click the refrigeration chip by its ID
+      const refrigerationChip = await page.$('#technical-system-boiler\\,-pressure-vessel\\,-refrigeration');
+      if (refrigerationChip) {
+        await refrigerationChip.click();
+        console.log('✅ Selected BOILER, PRESSURE VESSEL, REFRIGERATION');
+      } else {
+        console.log('⚠️  Could not find refrigeration chip by ID, trying CSS class...');
+        // Fallback: try clicking by class and text content
+        await page.evaluate(() => {
+          const chips = document.querySelectorAll('.MuiChip-root');
+          const refrigerationChip = Array.from(chips).find(chip =>
+            chip.textContent.toUpperCase().includes('REFRIGERATION')
+          );
+          if (refrigerationChip) refrigerationChip.click();
+        });
       }
+    } catch (error) {
+      console.log('⚠️  Error selecting technology:', error.message);
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    // Find city input field (City 1 has ID "city-0")
+    let cityInput = await page.$('#city-0');
+
+    if (!cityInput) {
+      console.log('⚠️  Could not find city-0, trying alternative selectors...');
+      const cityInputSelectors = [
+        'input[placeholder*="Vancouver" i]',
+        'input[id^="city-"]',
+        'label:has-text("City 1") + input'
+      ];
+
+      for (const selector of cityInputSelectors) {
+        try {
+          const inputs = await page.$$(selector);
+          if (inputs.length > 0) {
+            cityInput = inputs[0];
+            console.log(`Found city input: ${selector}`);
+            break;
+          }
+        } catch (e) {
+          continue;
+        }
+      }
+    } else {
+      console.log('✅ Found City 1 input field');
     }
 
     if (!cityInput) {
@@ -155,7 +187,7 @@ async function discoverContractorsByCity(city, browser = null) {
 }
 
 /**
- * Extract list of contractors from search results page
+ * Extract list of contractors from search results page (with pagination)
  */
 async function extractContractorsList(page, city) {
   try {
@@ -168,53 +200,117 @@ async function extractContractorsList(page, city) {
       return [];
     }
 
-    // Extract contractor links and basic info from results list
-    const contractors = await page.evaluate(() => {
-      const results = [];
+    let allContractors = [];
+    let currentPage = 1;
+    let hasMorePages = true;
 
-      // Look for contractor links (typically in a results list)
-      // This will need to be adjusted based on actual TSBC results page structure
-      const links = document.querySelectorAll('a[href*="contractor"], a[href*="license"], h3 a, h4 a');
+    // Check how many pages exist
+    const totalPages = await page.evaluate(() => {
+      // Look for pagination buttons (MUI Pagination)
+      const paginationButtons = document.querySelectorAll('.MuiPaginationItem-root');
+      let maxPage = 1;
 
-      links.forEach(link => {
-        const text = link.innerText.trim();
-        const href = link.href;
-
-        // Skip navigation links, just get contractor profile links
-        if (text && href && !href.includes('#') && text.length > 3) {
-          results.push({
-            name: text,
-            detailUrl: href
-          });
+      paginationButtons.forEach(btn => {
+        const pageNum = parseInt(btn.textContent);
+        if (!isNaN(pageNum) && pageNum > maxPage) {
+          maxPage = pageNum;
         }
       });
 
-      // If no links found, try to extract from text content
-      if (results.length === 0) {
-        // Parse contractor names from list format
-        const bodyText = document.body.innerText;
-        const namePattern = /^([A-Z][A-Za-z0-9\s&.,'-]+(?:Ltd|Inc|Corp|Company|Solutions|Services|Mechanical|Plumbing|Heating|HVAC|Contractors?))/gm;
-        let match;
+      return maxPage;
+    });
 
-        while ((match = namePattern.exec(bodyText)) !== null) {
-          const name = match[1].trim();
-          if (name.length > 5 && !name.includes('\n')) {
+    console.log(`Found ${totalPages} pages of results`);
+
+    while (hasMorePages && currentPage <= totalPages) {
+      console.log(`  📄 Extracting page ${currentPage}/${totalPages}...`);
+
+      // Extract contractors from current page
+      const contractors = await page.evaluate(() => {
+        const results = [];
+
+        // Look for contractor links
+        const links = document.querySelectorAll('a[href*="contractor"], a[href*="license"], h3 a, h4 a');
+
+        // Common navigation text to exclude
+        const excludePatterns = [
+          'find a', 'find contractor', 'search', 'back', 'next', 'previous',
+          'home', 'contact', 'about', 'help', 'faq', 'login', 'register',
+          'technical safety', 'tsbc', 'licensed contractor', 'resources'
+        ];
+
+        links.forEach(link => {
+          const text = link.innerText.trim();
+          const href = link.href;
+
+          // Skip if no text or href
+          if (!text || !href || href.includes('#')) return;
+
+          // Skip navigation and button text
+          const lowerText = text.toLowerCase();
+          const isNavigation = excludePatterns.some(pattern => lowerText.includes(pattern));
+          if (isNavigation) return;
+
+          // Skip very short text (likely not company names)
+          if (text.length < 5) return;
+
+          // Only include if it looks like a company name
+          const hasUpperCase = /[A-Z]/.test(text);
+          const hasMultipleWords = text.split(/\s+/).length > 1;
+          const hasBusinessSuffix = /\b(Ltd|Inc|Corp|Company|Solutions|Services|Mechanical|Plumbing|Heating|HVAC|Contractors?|Refrigeration)\b/i.test(text);
+
+          if (hasUpperCase || hasMultipleWords || hasBusinessSuffix) {
             results.push({
-              name: name,
-              detailUrl: null
+              name: text,
+              detailUrl: href
             });
           }
-        }
-      }
+        });
 
-      return results;
-    });
+        return results;
+      });
+
+      console.log(`  ✓ Found ${contractors.length} contractors on page ${currentPage}`);
+      allContractors.push(...contractors);
+
+      // Move to next page
+      if (currentPage < totalPages) {
+        try {
+          // Click next page button
+          const nextPageClicked = await page.evaluate((pageNum) => {
+            const nextPage = pageNum + 1;
+            const paginationButtons = document.querySelectorAll('.MuiPaginationItem-root');
+
+            for (const btn of paginationButtons) {
+              if (btn.textContent === nextPage.toString()) {
+                btn.click();
+                return true;
+              }
+            }
+            return false;
+          }, currentPage);
+
+          if (nextPageClicked) {
+            // Wait for page to load
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            currentPage++;
+          } else {
+            hasMorePages = false;
+          }
+        } catch (error) {
+          console.log(`  ⚠️  Error navigating to page ${currentPage + 1}:`, error.message);
+          hasMorePages = false;
+        }
+      } else {
+        hasMorePages = false;
+      }
+    }
 
     // Remove duplicates
     const unique = [];
     const seen = new Set();
 
-    contractors.forEach(c => {
+    allContractors.forEach(c => {
       const key = c.name.toLowerCase();
       if (!seen.has(key)) {
         seen.add(key);
@@ -328,16 +424,25 @@ async function getContractorDetails(page, url, basicInfo) {
  * Format contractor data for directory.json
  */
 function formatForDirectory(contractor, region) {
+  // Defensive checks - skip contractors with missing critical data
+  if (!contractor.contractor_name || contractor.contractor_name.trim() === '') {
+    console.log('⚠️  Skipping contractor with missing name');
+    return null;
+  }
+
   // Generate slug from company name
   const slug = contractor.contractor_name
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 
+  // Ensure licenses array exists
+  const licenses = contractor.licenses || [];
+
   // Determine services based on licenses
   const services = [];
-  contractor.licenses.forEach(license => {
-    const type = license.type.toLowerCase();
+  licenses.forEach(license => {
+    const type = (license.type || '').toLowerCase();
     if (type.includes('gas')) services.push('boilers');
     if (type.includes('refrigeration') || type.includes('hvac')) {
       services.push('heat_pumps');
@@ -346,14 +451,14 @@ function formatForDirectory(contractor, region) {
   });
 
   // Find FSR license (refrigeration - typically for heat pumps)
-  const fsrLicense = contractor.licenses.find(l =>
-    l.type.toLowerCase().includes('refrigeration') ||
-    l.type.toLowerCase().includes('boiler, pressure vessel')
+  const fsrLicense = licenses.find(l =>
+    (l.type || '').toLowerCase().includes('refrigeration') ||
+    (l.type || '').toLowerCase().includes('boiler, pressure vessel')
   );
 
   // Find Gas license
-  const gasLicense = contractor.licenses.find(l =>
-    l.type.toLowerCase().includes('gas')
+  const gasLicense = licenses.find(l =>
+    (l.type || '').toLowerCase().includes('gas')
   );
 
   return {
@@ -463,10 +568,12 @@ async function main() {
     }
 
     // Format for directory
-    const formatted = allContractors.map(c => {
-      const region = getRegionForCity(c.city || args[0]);
-      return formatForDirectory(c, region);
-    });
+    const formatted = allContractors
+      .map(c => {
+        const region = getRegionForCity(c.city || args[0]);
+        return formatForDirectory(c, region);
+      })
+      .filter(c => c !== null); // Remove entries that failed formatting
 
     // Remove duplicates by company name
     const uniqueFormatted = [];
