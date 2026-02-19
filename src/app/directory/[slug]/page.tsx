@@ -19,6 +19,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${listing.company_name} - ${listing.city}, BC`,
     description: `${listing.company_name} provides ${listing.services.map(s => formatServiceName(s)).join(', ')} services in ${listing.city}, ${listing.region}.`,
+    robots: {
+      index: false,
+      follow: true,
+    },
   };
 }
 

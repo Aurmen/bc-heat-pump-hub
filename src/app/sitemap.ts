@@ -24,6 +24,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/faq`, priority: 0.7 },
     { url: `${baseUrl}/contact`, priority: 0.7 },
     { url: `${baseUrl}/directory/submit`, priority: 0.7 },
+    { url: `${baseUrl}/bc-heat-pump-installers`, priority: 0.95 },
+    { url: `${baseUrl}/heat-pump-cost-bc`, priority: 0.95 },
+    { url: `${baseUrl}/cold-climate-heat-pump-bc`, priority: 0.90 },
   ];
 
   const guidePages = guides.map(slug => ({
