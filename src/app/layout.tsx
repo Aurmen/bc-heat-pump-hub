@@ -8,10 +8,13 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 export const metadata: Metadata = {
   metadataBase: new URL('https://canadianheatpumphub.ca'),
   title: {
-    default: 'Canadian Heat Pump Hub | Heat Pump & Boiler Replacement Guide',
+    default: 'BC Heat Pump Installers & Directory | Canadian Heat Pump Hub',
     template: '%s | Canadian Heat Pump Hub',
   },
   description: 'Find BC heat pump installers, compare costs, and calculate ROI. Complete guides on air-to-water heat pumps, boiler replacement, hybrid systems, and 2026 rebates. Climate-specific advice for Vancouver, Victoria, Kelowna, and all BC cities.',
+  alternates: {
+    canonical: 'https://canadianheatpumphub.ca',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_CA',

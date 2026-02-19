@@ -23,6 +23,14 @@ export async function generateMetadata({ params }: { params: Promise<{ region: s
   return {
     title: `${city.name} Heat Pump Installers`,
     description: `Find heat pump and boiler replacement installers in ${city.name}, ${city.region}, BC. ${city.climateNotes}`,
+    alternates: {
+      canonical: `https://canadianheatpumphub.ca/bc/${city.regionSlug}/${city.slug}`,
+    },
+    openGraph: {
+      title: `${city.name} Heat Pump Installers`,
+      description: `Find heat pump and boiler replacement installers in ${city.name}, ${city.region}, BC.`,
+      url: `https://canadianheatpumphub.ca/bc/${city.regionSlug}/${city.slug}`,
+    },
   };
 }
 

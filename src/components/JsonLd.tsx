@@ -25,6 +25,45 @@ export function OrganizationJsonLd() {
   return <JsonLd data={data} />;
 }
 
+export function HomepageJsonLd() {
+  const schemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Canadian Heat Pump Hub',
+      url: 'https://canadianheatpumphub.ca',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: 'https://canadianheatpumphub.ca/directory?q={search_term_string}',
+        },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: 'Canadian Heat Pump Hub',
+      description: 'BC heat pump installer directory and educational resource',
+      url: 'https://canadianheatpumphub.ca',
+      areaServed: {
+        '@type': 'State',
+        name: 'British Columbia',
+      },
+      serviceType: 'Heat Pump Installer Directory',
+    },
+  ];
+
+  return (
+    <>
+      {schemas.map((schema, index) => (
+        <JsonLd key={index} data={schema} />
+      ))}
+    </>
+  );
+}
+
 export function BreadcrumbJsonLd({ items }: { items: { name: string; url: string }[] }) {
   const data = {
     '@context': 'https://schema.org',
