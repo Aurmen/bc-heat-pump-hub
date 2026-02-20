@@ -9,6 +9,21 @@ export const metadata: Metadata = {
 
 const guides = [
   {
+    slug: 'types-of-heat-pumps-bc',
+    title: 'Types of Heat Pumps in BC',
+    description: 'Complete overview of ductless, ducted, air-to-water, geothermal, and cold climate heat pumps. Compare costs, efficiency, and ideal applications.',
+  },
+  {
+    slug: 'how-heat-pumps-work',
+    title: 'How Heat Pumps Work',
+    description: 'Technical explanation of heat pump operation, refrigeration cycles, and why they're 200-400% efficient. Accessible to homeowners, detailed for the curious.',
+  },
+  {
+    slug: 'heat-pump-installation-process-bc',
+    title: 'Heat Pump Installation Process in BC',
+    description: 'Step-by-step guide from quote to commissioning. Timelines, inspections, permits, and what to expect during your heat pump installation.',
+  },
+  {
     slug: 'heat-pump-vs-boiler-bc',
     title: 'Heat Pumps vs. Boilers in BC',
     description: 'Compare efficiency, operating costs, and climate suitability for different BC regions.',

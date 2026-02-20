@@ -7,11 +7,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://canadianheatpumphub.ca';
 
   const guides = [
+    'types-of-heat-pumps-bc',
+    'how-heat-pumps-work',
+    'heat-pump-installation-process-bc',
     'heat-pump-vs-boiler-bc',
     'air-to-water-heat-pumps-bc',
     'hybrid-heat-pump-boiler-systems',
     'cost-heat-pump-installation-bc',
     'boiler-replacement-cost-bc',
+    'heat-pump-sizing-guide-bc',
+    'ductless-vs-central-heat-pumps-bc',
+    'understanding-heat-pump-ratings',
   ];
 
   const staticPages = [

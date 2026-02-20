@@ -5,6 +5,9 @@ import { BreadcrumbJsonLd, ArticleJsonLd } from '@/components/JsonLd';
 import ArticleMeta from '@/components/ArticleMeta';
 
 const guides = [
+  'types-of-heat-pumps-bc',
+  'how-heat-pumps-work',
+  'heat-pump-installation-process-bc',
   'heat-pump-vs-boiler-bc',
   'air-to-water-heat-pumps-bc',
   'hybrid-heat-pump-boiler-systems',
@@ -18,6 +21,12 @@ const guides = [
 // Function to import guide content based on slug
 async function importGuideContent(slug: string) {
   switch (slug) {
+    case 'types-of-heat-pumps-bc':
+      return (await import('@/content/guides/types-of-heat-pumps-bc.mdx')).default;
+    case 'how-heat-pumps-work':
+      return (await import('@/content/guides/how-heat-pumps-work.mdx')).default;
+    case 'heat-pump-installation-process-bc':
+      return (await import('@/content/guides/heat-pump-installation-process-bc.mdx')).default;
     case 'heat-pump-vs-boiler-bc':
       return (await import('@/content/guides/heat-pump-vs-boiler-bc.mdx')).default;
     case 'air-to-water-heat-pumps-bc':
@@ -47,6 +56,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
 
   const titles: Record<string, string> = {
+    'types-of-heat-pumps-bc': 'Types of Heat Pumps in BC',
+    'how-heat-pumps-work': 'How Heat Pumps Work',
+    'heat-pump-installation-process-bc': 'Heat Pump Installation Process in BC',
     'heat-pump-vs-boiler-bc': 'Heat Pumps vs. Boilers in BC',
     'air-to-water-heat-pumps-bc': 'Air-to-Water Heat Pumps in BC',
     'hybrid-heat-pump-boiler-systems': 'Hybrid Heat Pump + Boiler Systems',
@@ -84,6 +96,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   ];
 
   const titles: Record<string, string> = {
+    'types-of-heat-pumps-bc': 'Types of Heat Pumps in BC',
+    'how-heat-pumps-work': 'How Heat Pumps Work',
+    'heat-pump-installation-process-bc': 'Heat Pump Installation Process in BC',
     'heat-pump-vs-boiler-bc': 'Heat Pumps vs. Boilers in BC',
     'air-to-water-heat-pumps-bc': 'Air-to-Water Heat Pumps in BC',
     'hybrid-heat-pump-boiler-systems': 'Hybrid Heat Pump + Boiler Systems',
@@ -95,6 +110,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   };
 
   const readTimes: Record<string, string> = {
+    'types-of-heat-pumps-bc': '18 min read',
+    'how-heat-pumps-work': '16 min read',
+    'heat-pump-installation-process-bc': '20 min read',
     'heat-pump-vs-boiler-bc': '10 min read',
     'air-to-water-heat-pumps-bc': '12 min read',
     'hybrid-heat-pump-boiler-systems': '11 min read',
@@ -106,6 +124,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   };
 
   const descriptions: Record<string, string> = {
+    'types-of-heat-pumps-bc': 'Complete guide to heat pump types in British Columbia. Learn about ductless, ducted, air-to-water, geothermal, and cold climate heat pumps. Compare costs, efficiency, and ideal applications for BC homes.',
+    'how-heat-pumps-work': 'Technical explanation of heat pump operation made accessible. Learn about refrigeration cycles, compressors, COP ratings, and why heat pumps are 200-400% efficient even in cold weather.',
+    'heat-pump-installation-process-bc': 'Step-by-step guide to heat pump installation in BC. Learn about load calculations, permits, inspections, timelines, and what to expect from quote to commissioning.',
     'heat-pump-vs-boiler-bc': 'Compare heat pumps and boilers for BC homes. Learn about costs, efficiency, climate suitability, and which system is right for your situation.',
     'air-to-water-heat-pumps-bc': 'Complete guide to air-to-water heat pumps in BC. Understand how they work with hydronic systems, costs, efficiency, and installation requirements.',
     'hybrid-heat-pump-boiler-systems': 'Learn about hybrid heat pump and boiler systems. Discover how combining both technologies maximizes efficiency and comfort in BC climate.',
