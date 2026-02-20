@@ -16,7 +16,7 @@ const guides = [
   {
     slug: 'how-heat-pumps-work',
     title: 'How Heat Pumps Work',
-    description: 'Technical explanation of heat pump operation, refrigeration cycles, and why they're 200-400% efficient. Accessible to homeowners, detailed for the curious.',
+    description: 'Technical explanation of heat pump operation, refrigeration cycles, and why they\'re 200-400% efficient. Accessible to homeowners, detailed for the curious.',
   },
   {
     slug: 'heat-pump-installation-process-bc',

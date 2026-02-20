@@ -1,0 +1,1392 @@
+[
+  {
+    "company_name": "1369161 B.C LTD",
+    "slug": "1369161-b-c-ltd",
+    "website": "",
+    "phone": "(604) 722-7011",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=F1DCA62A-D213-F011-998A-000D3AF3A9D7"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0213507",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-04-07",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "2G MECHANICAL AND CONSTRUCTION LTD",
+    "slug": "2g-mechanical-and-construction-ltd",
+    "website": "",
+    "phone": "(778) 668-2653",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=E560C98A-3516-F011-998A-000D3AFF08A5"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0213534",
+    "tsbc_gas_license": "LGA0210546",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-03-20",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "3D Heating & Air Conditioning Co. Ltd",
+    "slug": "3d-heating-air-conditioning-co-ltd",
+    "website": "",
+    "phone": "(778) 883-1897",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=1CE63216-9A78-F011-B4CC-000D3AE86A1F"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0210028",
+    "tsbc_gas_license": "LGA0210027",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-08-20",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "ADVANTECH MECHANICAL LTD.",
+    "slug": "advantech-mechanical-ltd",
+    "website": "",
+    "phone": "(778) 536-3333",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=36774DBD-BCC2-F011-BBD3-7C1E528CCF14"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0213163",
+    "tsbc_gas_license": "LGA0209799",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-11-22",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Airsys Cooling and Heating Ltd.",
+    "slug": "airsys-cooling-and-heating-ltd",
+    "website": "",
+    "phone": "(604) 715-2896",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=C3A34D73-860E-F011-9989-002248B02CBA"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "unknown",
+    "tsbc_license_expiry": null,
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Allstar Mechanical Ltd",
+    "slug": "allstar-mechanical-ltd",
+    "website": "",
+    "phone": "(604) 689-8778",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=33ACACD7-A161-F011-BEC2-000D3AE86A1F"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0000113",
+    "tsbc_gas_license": "LGA0003778",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-08-02",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Alma Plumbing & Heating Ltd.",
+    "slug": "alma-plumbing-heating-ltd",
+    "website": "",
+    "phone": "(604) 612-6642",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=8755BC22-15B9-F011-BBD3-7CED8D359A5F"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0208674",
+    "tsbc_gas_license": "LGA0203481",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-11-06",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Atlanta Refrigeration & Air Conditioning Ltd.",
+    "slug": "atlanta-refrigeration-air-conditioning-ltd",
+    "website": "",
+    "phone": "(604) 618-7936",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=3DB64523-4D24-F011-8C4E-000D3AFF08A5"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0001511",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-05-04",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Big Air HVAC Services Ltd.",
+    "slug": "big-air-hvac-services-ltd",
+    "website": "",
+    "phone": "(604) 842-1500",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=2C659B5B-74B6-F011-BBD3-7CED8D359FD9"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0211648",
+    "tsbc_gas_license": "LGA0203705",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-09-08",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "BMS Plumbing & Mechanical Systems Ltd.",
+    "slug": "bms-plumbing-mechanical-systems-ltd",
+    "website": "",
+    "phone": "(604) 253-9330",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=81FEB60E-5DEA-F011-8406-6045BD5F64FD"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0209736",
+    "tsbc_gas_license": "LGA0005134",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2027-01-09",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Bawn Plumbing Ltd.",
+    "slug": "bawn-plumbing-ltd",
+    "website": "",
+    "phone": "(604) 828-7194",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=B547AEBB-0EB8-F011-BBD3-6045BD5D9F11"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0208747",
+    "tsbc_gas_license": "LGA0201822",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-11-20",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Black & McDonald Limited",
+    "slug": "black-mcdonald-limited",
+    "website": "",
+    "phone": "(604) 301-2415",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=E703BAC7-2466-EF11-A670-6045BD5BB600"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0001043",
+    "tsbc_gas_license": "LGA0002083",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2027-02-03",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Cambie Plumbing & Heating Ltd.",
+    "slug": "cambie-plumbing-heating-ltd",
+    "website": "",
+    "phone": "(604) 873-1874",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=86309924-7CC8-EF11-A72E-6045BD5E3B0D"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0000549",
+    "tsbc_gas_license": "LGA0000104",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-02-03",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Coast Olympic Mechanical Ltd.",
+    "slug": "coast-olympic-mechanical-ltd",
+    "website": "",
+    "phone": "(604) 880-5515",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=5DC1C74E-2046-F011-8779-000D3AF3A391"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0001141",
+    "tsbc_gas_license": "LGA0004198",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2027-03-04",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Colliers Macaulay Nicolls Inc.",
+    "slug": "colliers-macaulay-nicolls-inc",
+    "website": "",
+    "phone": "(604) 681-4111",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=AE10F50E-EF6E-F011-B4CB-6045BD607763"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0046394",
+    "tsbc_gas_license": "LGA0092267",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-08-02",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Cool Air Rentals Ltd",
+    "slug": "cool-air-rentals-ltd",
+    "website": "",
+    "phone": "(604) 253-4171",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=47D48770-E5AD-F011-BBD3-7CED8D359FD9"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0210340",
+    "tsbc_gas_license": "LGA0211513",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-10-22",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Cool King Refrigeration Ltd",
+    "slug": "cool-king-refrigeration-ltd",
+    "website": "",
+    "phone": "(604) 874-5464",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=36FB4A8C-C44A-EF11-ACCD-002248B2AFD2"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0200116",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2027-01-25",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Creative Energy Vancouver Platforms Inc.",
+    "slug": "creative-energy-vancouver-platforms-inc",
+    "website": "",
+    "phone": "(604) 688-9584",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=E4D1DE5A-D45D-F011-877B-000D3AF3A9D7"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0001261",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-12-03",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Crystal Refrigeration and Air Conditioning Ltd",
+    "slug": "crystal-refrigeration-and-air-conditioning-ltd",
+    "website": "",
+    "phone": "(604) 432-7575",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=A7CCC5FC-D7CB-F011-8544-6045BD5D905C"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0001459",
+    "tsbc_gas_license": "LGA0005038",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-12-03",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "DARBYS WELDING LTD.",
+    "slug": "darbys-welding-ltd",
+    "website": "",
+    "phone": "(778) 862-9587",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=C349257B-59ED-EF11-BE21-6045BD600679"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0213438",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-02-28",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Barry Chan DBA Doall Industries",
+    "slug": "barry-chan-dba-doall-industries",
+    "website": "",
+    "phone": "(604) 435-2629",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=B4D44326-80E2-EF11-BE21-6045BD5F142D"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0001207",
+    "tsbc_gas_license": "LGA0004337",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-02-03",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Drips & Drains Plumbing and Heating Ltd.",
+    "slug": "drips-drains-plumbing-and-heating-ltd",
+    "website": "",
+    "phone": "(604) 355-7322",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=E441D78A-3958-F011-BEC1-002248B0A3F0"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0204153",
+    "tsbc_gas_license": "LGA0202523",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-12-21",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Eco-Climate Mechanical Ltd",
+    "slug": "eco-climate-mechanical-ltd",
+    "website": "",
+    "phone": "(604) 834-7070",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=E01E2CD6-BF03-F011-BAE3-000D3AE86A1F"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "",
+    "tsbc_gas_license": "LGA0211353",
+    "tsbc_license_status": "unknown",
+    "tsbc_license_expiry": null,
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Elafon Mechanical Ltd.",
+    "slug": "elafon-mechanical-ltd",
+    "website": "",
+    "phone": "(604) 688-0001",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=D53AD9EF-F1E7-EF11-BE21-6045BD5F8347"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0046568",
+    "tsbc_gas_license": "LGA0097891",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2027-07-05",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "HTEC Hydrogen Technology & Energy Corporation",
+    "slug": "htec-hydrogen-technology-energy-corporation",
+    "website": "",
+    "phone": "(604) 904-0412",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=9CE98674-D898-F011-B41B-7CED8D359146"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "",
+    "tsbc_gas_license": "LGA0208411",
+    "tsbc_license_status": "unknown",
+    "tsbc_license_expiry": null,
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Hardy Mechanical Services Ltd",
+    "slug": "hardy-mechanical-services-ltd",
+    "website": "",
+    "phone": "(778) 245-3381",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=67222D91-21E3-EF11-BE1F-6045BD5EA788"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0209728",
+    "tsbc_gas_license": "LGA0208671",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-02-04",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Hillcrest Plumbing and Heating (1991) Ltd",
+    "slug": "hillcrest-plumbing-and-heating-1991-ltd",
+    "website": "",
+    "phone": "(604) 879-5301",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=DEA7F87B-0DE0-EF11-A730-6045BD5E3B0D"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0001081",
+    "tsbc_gas_license": "LGA0004075",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2027-02-03",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Hing Air Ltd.",
+    "slug": "hing-air-ltd",
+    "website": "",
+    "phone": "(604) 283-3683",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=D3B4CCEC-9A5C-F011-877B-000D3AF3A9D7"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "unknown",
+    "tsbc_license_expiry": null,
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Ledcor Projects Inc.",
+    "slug": "ledcor-projects-inc",
+    "website": "",
+    "phone": "(780) 395-5400",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=95449161-F8B0-EF11-A72D-6045BD5E3B0D"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0000929",
+    "tsbc_gas_license": "LGA0003782",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2027-02-03",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Linde Canada Inc",
+    "slug": "linde-canada-inc",
+    "website": "",
+    "phone": "(604) 527-1757",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=3D966857-3025-F011-8C4E-002248AF8D33"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0046463",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-05-03",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "MICRON MECHANICAL INC.",
+    "slug": "micron-mechanical-inc",
+    "website": "",
+    "phone": "(778) 614-3030",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=0E43069E-6B53-F011-BEC1-6045BD60ABBE"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "unknown",
+    "tsbc_license_expiry": null,
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Mec Mechanical Inc",
+    "slug": "mec-mechanical-inc",
+    "website": "",
+    "phone": "(604) 298-8383",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=5DD22630-4BCC-EF11-A72E-002248AE4A02"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0000919",
+    "tsbc_gas_license": "LGA0004089",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-07-04",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "PEAK NA ENERGY LTD.",
+    "slug": "peak-na-energy-ltd",
+    "website": "",
+    "phone": "(604) 315-1307",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=C5E7FE84-5403-F011-BAE2-002248B328AB"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "unknown",
+    "tsbc_license_expiry": null,
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "PM Plumbing and Heating Ltd.",
+    "slug": "pm-plumbing-and-heating-ltd",
+    "website": "",
+    "phone": "(604) 785-2150",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=C34DECE5-8FA3-F011-BBD2-6045BD5D979E"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0205040",
+    "tsbc_gas_license": "LGA0095195",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-10-14",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Pacific West Mechanical Ltd.",
+    "slug": "pacific-west-mechanical-ltd",
+    "website": "",
+    "phone": "(604) 294-6800",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=B6038FA2-F0A5-F011-BBD2-6045BD5D905C"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0046791",
+    "tsbc_gas_license": "LGA0088147",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-09-23",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Pioneer Plumbing & Heating Inc.",
+    "slug": "pioneer-plumbing-heating-inc",
+    "website": "",
+    "phone": "(604) 872-4946",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=35BBA67D-DC29-F011-8C4E-002248AF8D33"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0208002",
+    "tsbc_gas_license": "LGA0001939",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-05-20",
+    "tsbc_enforcement_actions": 1,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "R & E Gas Co.",
+    "slug": "r-e-gas-co",
+    "website": "",
+    "phone": "(604) 306-3399",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=5C2F1675-F88B-F011-B4CB-002248AE768F"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0002187",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-10-02",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Reid Brothers Plumbing & Heating Limited",
+    "slug": "reid-brothers-plumbing-heating-limited",
+    "website": "",
+    "phone": "(604) 263-0323",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=9694F800-B19F-F011-BBD2-7CED8D359D03"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0001157",
+    "tsbc_gas_license": "LGA0002561",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-10-02",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Resilient Plumbing & Heating, Inc.",
+    "slug": "resilient-plumbing-heating-inc",
+    "website": "",
+    "phone": "(604) 628-6863",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=AFB99F4F-202D-F011-8C4E-002248AE768F"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0209129",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-05-05",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Riverside Refrigeration Ltd",
+    "slug": "riverside-refrigeration-ltd",
+    "website": "",
+    "phone": "(604) 255-5050",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=819DC138-1A38-F011-8C4D-6045BD6194A6"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0002340",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-04-04",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Rosa Mechanical Ltd",
+    "slug": "rosa-mechanical-ltd",
+    "website": "",
+    "phone": "(604) 879-8383",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=977E32B9-DB29-F011-8C4D-6045BD5E429E"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0000310",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-02-03",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "S K Refrigeration & Air Conditioning Ltd",
+    "slug": "s-k-refrigeration-air-conditioning-ltd",
+    "website": "",
+    "phone": "(604) 961-7870",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=C812A15C-5964-F011-BEC3-000D3AFF08A5"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0206695",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-08-18",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Somatic HVAC Solutions Ltd",
+    "slug": "somatic-hvac-solutions-ltd",
+    "website": "",
+    "phone": "(604) 451-0064",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=CA94A99F-4D50-F011-877A-000D3A841B70"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0200455",
+    "tsbc_gas_license": "LGA0105692",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-06-23",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Sundawn Integrated Services Inc.",
+    "slug": "sundawn-integrated-services-inc",
+    "website": "",
+    "phone": "(604) 739-3801",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=7C1F2E16-A8BD-F011-BBD3-7CED8D359D03"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0206825",
+    "tsbc_gas_license": "LGA0045785",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-11-15",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Tally, Frank E",
+    "slug": "tally-frank-e",
+    "website": "",
+    "phone": "(604) 732-9212",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=1BBE3EE8-8057-F011-BEC2-002248B02CBA"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0046286",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-03-13",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Tempsys Enterprises Inc.",
+    "slug": "tempsys-enterprises-inc",
+    "website": "",
+    "phone": "(604) 484-7036",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=B855EDD6-5229-F011-8C4D-6045BD5E429E"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0205643",
+    "tsbc_gas_license": "LGA0204454",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2027-04-13",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Trifecta Plumbing & HVAC Ltd",
+    "slug": "trifecta-plumbing-hvac-ltd",
+    "website": "",
+    "phone": "(604) 313-5570",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=D5516D3C-0CE8-EF11-BE21-000D3AF3A9D7"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0212188",
+    "tsbc_gas_license": "LGA0211953",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-02-07",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Trinity Plumbing Heating & Gas Incorporated",
+    "slug": "trinity-plumbing-heating-gas-incorporated",
+    "website": "",
+    "phone": "(778) 885-8341",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=8E850471-65E2-EF11-BE21-002248AE41A7"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0201955",
+    "tsbc_gas_license": "LGA0106486",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-02-08",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "UBC Building Operations",
+    "slug": "ubc-building-operations",
+    "website": "",
+    "phone": "(604) 830-2880",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=1F2FE7B4-AB7E-F011-B4CB-000D3A843ED5"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0210171",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-09-21",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Vancouver School Board",
+    "slug": "vancouver-school-board",
+    "website": "",
+    "phone": "(604) 713-5630",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=97B29D4A-95F7-EF11-BAE1-6045BD5E429E"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0000059",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-09-02",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Ventresca Plumbing Ltd.",
+    "slug": "ventresca-plumbing-ltd",
+    "website": "",
+    "phone": "(604) 725-2403",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=19541649-6B4C-F011-877B-002248AF8D33"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0046733",
+    "tsbc_gas_license": "LGA0005865",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2027-07-04",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Vertical Pipeworks Ltd.",
+    "slug": "vertical-pipeworks-ltd",
+    "website": "",
+    "phone": "(778) 828-8385",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=6BD5BA68-5E9D-F011-BBD2-7CED8D359FD9"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0208198",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-10-04",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "WATT HVAC LTD.",
+    "slug": "watt-hvac-ltd",
+    "website": "",
+    "phone": "(236) 868-9288",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "heat_pumps",
+      "boilers"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=732980DA-B405-F011-BAE2-000D3AE86A1F"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0211580",
+    "tsbc_gas_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-09-19",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  },
+  {
+    "company_name": "Wah Fai Plumbing & Heating Inc.",
+    "slug": "wah-fai-plumbing-heating-inc",
+    "website": "",
+    "phone": "(604) 253-2823",
+    "city": "Vancouver",
+    "region": "Lower Mainland",
+    "province": "BC",
+    "services": [
+      "boilers",
+      "heat_pumps"
+    ],
+    "emergency_service": "unknown",
+    "brands_supported": [],
+    "notes": "",
+    "source_urls": [
+      "https://www.technicalsafetybc.ca/regulatory-resources/find-a-licensed-contractor/contractor?id=FB3BBEE7-62B0-F011-BBD3-7CED8D359D03"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "LBP0207524",
+    "tsbc_gas_license": "LGA0003020",
+    "tsbc_license_status": "active",
+    "tsbc_license_expiry": "2026-11-07",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-02-18"
+  }
+]

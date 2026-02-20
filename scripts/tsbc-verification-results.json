@@ -1,0 +1,35 @@
+[
+  {
+    "license_number": "FSR-A-12345",
+    "verified": true,
+    "contractor_name": "in BC",
+    "license_type": "",
+    "license_status": "active",
+    "expiry_date": null,
+    "specializations": [],
+    "enforcement_actions": 0,
+    "timestamp": "2026-02-18T02:52:46.041Z"
+  },
+  {
+    "license_number": "FSR-A-23456",
+    "verified": true,
+    "contractor_name": "in BC",
+    "license_type": "",
+    "license_status": "active",
+    "expiry_date": null,
+    "specializations": [],
+    "enforcement_actions": 0,
+    "timestamp": "2026-02-18T02:53:02.132Z"
+  },
+  {
+    "license_number": "FSR-A-34567",
+    "verified": true,
+    "contractor_name": "in BC",
+    "license_type": "",
+    "license_status": "active",
+    "expiry_date": null,
+    "specializations": [],
+    "enforcement_actions": 0,
+    "timestamp": "2026-02-18T02:53:18.171Z"
+  }
+]
