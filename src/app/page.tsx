@@ -14,7 +14,7 @@ export default function HomePage() {
               Find BC Heat Pump Installers — TSBC Verified Contractors
             </h1>
             <p className="text-xl md:text-2xl text-blue-50 max-w-3xl mx-auto mb-8">
-              Honest ROI analysis for heat pump installation, air-to-water systems, boiler replacement,
+              ROI analysis for heat pump installation, air-to-water systems,
               and hybrid heating solutions in British Columbia.
             </p>
 

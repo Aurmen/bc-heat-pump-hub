@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Heat Pump & Boiler Guides',
-  description: 'Complete guides on heat pump costs, ROI, efficiency ratings (SEER/HSPF), air-to-water systems, boiler replacement, and hybrid heating for BC homes. Compare ductless vs central systems.',
+  title: 'Heat Pump Guides',
+  description: 'Complete guides on heat pump costs, ROI, efficiency ratings (SEER/HSPF), air-to-water systems, and hybrid heating for BC homes. Compare ductless vs central systems.',
 };
 
 const guides = [
@@ -67,7 +67,7 @@ export default function GuidesPage() {
         </nav>
 
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Heat Pump & Boiler Educational Guides
+          Heat Pump Educational Guides
         </h1>
         <p className="text-xl text-gray-600 mb-8">
           Technically accurate, homeowner-friendly information to help you make informed heating system decisions.
