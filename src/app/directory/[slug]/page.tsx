@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { getAllListings, getListingBySlug, formatServiceName, formatPhoneNumber } from '@/lib/utils';
 import { BreadcrumbJsonLd, LocalBusinessJsonLd } from '@/components/JsonLd';
 import TSBCBadge from '@/components/TSBCBadge';
+import OutboundLink from '@/components/OutboundLink';
 
 export async function generateStaticParams() {
   const listings = getAllListings();
@@ -80,9 +81,15 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
             {listing.phone ? (
               <div>
                 <span className="font-semibold text-gray-900">Phone:</span>{' '}
-                <a href={`tel:${listing.phone}`} className="text-primary-600 hover:text-primary-700">
+                <OutboundLink
+                  href={`tel:${listing.phone}`}
+                  company={listing.company_name}
+                  city={listing.city}
+                  eventName="phone_click"
+                  className="text-primary-600 hover:text-primary-700"
+                >
                   {formatPhoneNumber(listing.phone)}
-                </a>
+                </OutboundLink>
               </div>
             ) : (
               <div>
@@ -94,14 +101,14 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
             {listing.website ? (
               <div>
                 <span className="font-semibold text-gray-900">Website:</span>{' '}
-                <a
+                <OutboundLink
                   href={listing.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  company={listing.company_name}
+                  city={listing.city}
                   className="text-primary-600 hover:text-primary-700 underline"
                 >
                   {listing.website}
-                </a>
+                </OutboundLink>
               </div>
             ) : (
               <div>
