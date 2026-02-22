@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { regions } from '@/data/regions';
 import { getCitiesByRegion } from '@/data/cities';
+import { getListingsByCity } from '@/lib/utils';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export async function generateStaticParams() {
@@ -58,21 +59,27 @@ export default async function RegionPage({ params }: { params: Promise<{ region:
 
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Cities in {region.name}</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
-          {regionCities.map(city => (
-            <Link
-              key={city.slug}
-              href={`/bc/${region.slug}/${city.slug}`}
-              className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
-            >
-              <h3 className="font-semibold text-gray-900 text-lg">{city.name}</h3>
-              {city.population && (
-                <p className="text-sm text-gray-500 mt-1">Population: {city.population}</p>
-              )}
-              <span className="inline-block mt-3 text-primary-600 text-sm font-medium">
-                View Details →
-              </span>
-            </Link>
-          ))}
+          {regionCities.map(city => {
+            const count = getListingsByCity(city.name).length;
+            return (
+              <Link
+                key={city.slug}
+                href={`/bc/${region.slug}/${city.slug}`}
+                className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+              >
+                <h3 className="font-semibold text-gray-900 text-lg">{city.name}</h3>
+                {city.population && (
+                  <p className="text-sm text-gray-500 mt-1">Pop. {city.population}</p>
+                )}
+                <p className="text-sm text-primary-600 font-medium mt-1">
+                  {count} installer{count !== 1 ? 's' : ''}
+                </p>
+                <span className="inline-block mt-2 text-primary-600 text-sm font-medium">
+                  View Details →
+                </span>
+              </Link>
+            );
+          })}
         </div>
 
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Guides</h2>

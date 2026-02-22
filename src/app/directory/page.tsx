@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getAllListings } from '@/lib/utils';
+import { getAllListings, getListingsByCity } from '@/lib/utils';
+import { regions } from '@/data/regions';
+import { getCitiesByRegion } from '@/data/cities';
 import DirectoryFilters from '@/components/DirectoryFilters';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
@@ -42,6 +44,17 @@ export default async function DirectoryPage({
   const listings = getAllListings();
   const selectedAudience = params.audience;
 
+  // Pre-compute city counts for the regional hub (server-rendered)
+  const regionData = regions.map(region => {
+    const regionCities = getCitiesByRegion(region.slug);
+    const citiesWithCounts = regionCities
+      .map(city => ({ city, count: getListingsByCity(city.name).length }))
+      .filter(c => c.count > 0)
+      .sort((a, b) => b.count - a.count);
+    const totalCount = citiesWithCounts.reduce((sum, c) => sum + c.count, 0);
+    return { region, citiesWithCounts, totalCount };
+  });
+
   const breadcrumbItems = [
     { name: 'Home', url: 'https://canadianheatpumphub.ca' },
     { name: 'Directory', url: 'https://canadianheatpumphub.ca/directory' },
@@ -72,6 +85,42 @@ export default async function DirectoryPage({
           >
             Add Your Company →
           </Link>
+        </div>
+
+        {/* Regional Hub Navigation */}
+        <div className="mb-10">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Browse by Region</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {regionData.map(({ region, citiesWithCounts, totalCount }) => (
+              <div
+                key={region.slug}
+                className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col"
+              >
+                <div className="mb-3">
+                  <h3 className="text-lg font-bold text-gray-900">{region.name}</h3>
+                  <p className="text-sm text-primary-600 font-medium">{totalCount} installers</p>
+                </div>
+                <div className="flex flex-wrap gap-x-3 gap-y-1 mb-4 flex-1">
+                  {citiesWithCounts.map(({ city, count }) => (
+                    <Link
+                      key={city.slug}
+                      href={`/bc/${region.slug}/${city.slug}`}
+                      className="text-sm text-gray-700 hover:text-primary-600 hover:underline"
+                    >
+                      {city.name}
+                      <span className="text-gray-400 ml-0.5">({count})</span>
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href={`/bc/${region.slug}`}
+                  className="text-sm font-semibold text-primary-600 hover:text-primary-700 mt-auto"
+                >
+                  View all {region.name} installers →
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
 
         <DirectoryFilters listings={listings} initialAudience={selectedAudience} />
