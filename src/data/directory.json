@@ -960,7 +960,7 @@
     ],
     "emergency_service": "unknown",
     "brands_supported": [
-      "Carrier (likely — Energy Star Cold Climate certified)"
+      "Carrier"
     ],
     "notes": "Service area: Richmond, Vancouver, North Vancouver, Lower Mainland, BC-wide. VC-backed startup (US$50M raised 2024); single-day installation model; instant online quotes; all-in pricing 30-50% below traditional installs; handles rebate paperwork; EV charger + heat pump water heater also available",
     "source_urls": [],
@@ -984,9 +984,7 @@
       "heat_pumps"
     ],
     "emergency_service": "unknown",
-    "brands_supported": [
-      "(Commercial — multi-brand)"
-    ],
+    "brands_supported": [],
     "notes": "Service area: Richmond, Vancouver, Surrey, Lower Mainland. Commercial and industrial focus since 1978; BBB Accredited; serves Richmond Steveston + Sea Island (YVR) logistics facilities; refrigeration + HVAC + VRF; 24/7 emergency; permit-ready documentation",
     "source_urls": [],
     "tsbc_verified": false,
@@ -2653,7 +2651,7 @@
     ],
     "emergency_service": "unknown",
     "brands_supported": [
-      "YORK",
+      "York",
       "KeepRite",
       "Continental"
     ],

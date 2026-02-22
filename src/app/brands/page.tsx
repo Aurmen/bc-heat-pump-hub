@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import ArticleMeta from '@/components/ArticleMeta';
+import { brands as allBrands, DEALER_NETWORK_LABEL } from '@/data/brands';
+import { getAllListings } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Heat Pump Brand Comparison - BC 2026 | Canadian Heat Pump Hub',
@@ -147,6 +149,19 @@ const productSchemas = brands.map(brand => ({
 }));
 
 export default function BrandsPage() {
+  // Compute dealer counts for each brand from live data
+  const listings = getAllListings();
+  const dealerCounts: Record<string, number> = {};
+  for (const brand of allBrands) {
+    dealerCounts[brand.slug] = listings.filter(l =>
+      l.brands_supported.some(b => b.toLowerCase() === brand.name.toLowerCase())
+    ).length;
+  }
+
+  // Separate into major (3+ dealers) and specialist/small (1-2 or 0)
+  const majorBrands = allBrands.filter(b => dealerCounts[b.slug] >= 3);
+  const smallBrands = allBrands.filter(b => dealerCounts[b.slug] < 3);
+
   return (
     <>
       <script
@@ -338,6 +353,55 @@ export default function BrandsPage() {
                 12-year warranties (Mitsubishi, Daikin) provide better long-term value than 10-year warranties, especially for compressor replacement ($2,000-$3,500 cost).
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* Find Dealers by Brand — major brands */}
+        <div className="mb-10">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">Find Dealers by Brand in BC</h2>
+          <p className="text-gray-600 mb-6">
+            Browse BC contractors confirmed to install each brand, grouped by region.
+          </p>
+
+          <h3 className="text-lg font-semibold text-gray-700 mb-4">Major brands</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+            {majorBrands.map(brand => (
+              <Link
+                key={brand.slug}
+                href={`/brands/${brand.slug}`}
+                className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md hover:border-primary-300 transition-all"
+              >
+                <div className="font-semibold text-gray-900">{brand.name}</div>
+                <div className="text-xs text-gray-500 mt-1">{brand.type}</div>
+                <div className="text-sm text-primary-600 font-medium mt-2">
+                  {dealerCounts[brand.slug]} dealer{dealerCounts[brand.slug] !== 1 ? 's' : ''} in BC →
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <h3 className="text-lg font-semibold text-gray-700 mb-3">Specialist & emerging brands</h3>
+          <p className="text-sm text-gray-500 mb-4">
+            These brands have fewer BC dealers but may be the right fit for specific applications
+            (hydronic systems, geothermal, commercial VRF, or budget installs).
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {smallBrands.map(brand => (
+              <Link
+                key={brand.slug}
+                href={`/brands/${brand.slug}`}
+                className="bg-gray-50 border border-gray-200 rounded-lg p-3 hover:shadow-sm hover:border-primary-200 transition-all"
+              >
+                <div className="font-medium text-gray-800 text-sm">{brand.name}</div>
+                <div className="text-xs text-gray-400 mt-0.5">{brand.type}</div>
+                <div className="text-xs text-gray-500 mt-1">
+                  {dealerCounts[brand.slug] > 0
+                    ? `${dealerCounts[brand.slug]} dealer${dealerCounts[brand.slug] !== 1 ? 's' : ''} in BC`
+                    : DEALER_NETWORK_LABEL[brand.dealerNetwork]}
+                  {' '}→
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
 
