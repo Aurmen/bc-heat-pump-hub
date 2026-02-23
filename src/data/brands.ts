@@ -389,6 +389,27 @@ export const brands: BrandData[] = [
 
   // ── Lennox / Allied Air family ─────────────────────────────────────────
   {
+    slug: 'ducane',
+    name: 'Ducane',
+    type: 'Central Ducted',
+    origin: 'USA',
+    bcNotes: 'Ducane is part of Allied Air Enterprises (Lennox International). Value-tier residential ducted heat pumps sharing manufacturing with AirEase and Armstrong Air. Distributed in BC through Lennox/Allied supply channels including RSL.',
+    dealerNetwork: 'limited',
+    coldClimateRated: true,
+    website: 'https://www.ducane.com',
+  },
+  {
+    slug: 'allied-commercial',
+    name: 'Allied Commercial',
+    type: 'Commercial Ducted / Rooftop',
+    origin: 'USA',
+    bcNotes: 'Allied Commercial is the commercial division of Lennox International. Offers packaged rooftop heat pumps and applied commercial systems. Distributed in BC through RSL and select commercial HVAC contractors.',
+    dealerNetwork: 'limited',
+    coldClimateRated: true,
+    specialty: 'Commercial Packaged / Rooftop',
+    website: 'https://www.alliedcommercial.com',
+  },
+  {
     slug: 'airease',
     name: 'AirEase',
     type: 'Central Ducted',
@@ -491,6 +512,39 @@ export const brands: BrandData[] = [
     coldClimateRated: false,
     specialty: 'Monoblock / Portable',
     website: 'https://www.olimpiasplendid.com',
+  },
+
+  // ── Commercial applied / air-to-water specialty ───────────────────────
+  {
+    slug: 'aermec',
+    name: 'Aermec',
+    type: 'Air-to-Water & Water-to-Water',
+    origin: 'Italy',
+    bcNotes: 'Italian manufacturer of commercial air-to-water and water-to-water heat pump chillers. Specified for high-performance institutional and commercial buildings in BC. Distributed through Olympic International. Very limited BC contractor base — primarily mechanical engineering-specified projects.',
+    dealerNetwork: 'rare',
+    coldClimateRated: true,
+    specialty: 'Commercial Air-to-Water / Chiller',
+    website: 'https://www.aermec.com',
+  },
+  {
+    slug: 'coleman',
+    name: 'Coleman',
+    type: 'Central Ducted',
+    origin: 'USA',
+    bcNotes: "Coleman HVAC (a Johnson Controls brand in the York family) produces packaged and split-system heat pumps primarily for the US and Western Canadian market. Distributed in BC through Johnstone Supply. Shares engineering with York at a value price point.",
+    dealerNetwork: 'limited',
+    coldClimateRated: true,
+    website: 'https://www.colemanac.com',
+  },
+  {
+    slug: 'maytag',
+    name: 'Maytag',
+    type: 'Central Ducted',
+    origin: 'USA',
+    bcNotes: "Maytag HVAC (not the appliance brand — licensed to Nortek/Weil-McLain) produces residential ducted heat pumps sold in BC exclusively through Surrey HVAC Supply as the authorized BC distributor. Shares engineering with ICP/Carrier equipment lines.",
+    dealerNetwork: 'rare',
+    coldClimateRated: true,
+    website: 'https://www.maytag.com/content/maytag/en_us/hvac.html',
   },
 
   // ── Geothermal / Ground-Source specialty ──────────────────────────────

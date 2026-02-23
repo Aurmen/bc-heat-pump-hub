@@ -1,10 +1,18 @@
 export interface SupplyHouseLocation {
   city: string;
-  address: string;
-  phone: string;
+  address?: string;
+  phone?: string;
   region: 'Lower Mainland' | 'Vancouver Island' | 'Interior' | 'Northern BC';
   label?: string; // e.g. "Burnaby South", "Surrey DC"
 }
+
+/**
+ * wholesale     – Counter walk-in; sells to licensed contractors
+ * direct        – Manufacturer-owned distribution center (no middleman)
+ * commercial_rep – Commercial/applied equipment rep; no counter walk-in
+ * limited       – Primarily other products; limited HP equipment stock
+ */
+export type DistributorType = 'wholesale' | 'direct' | 'commercial_rep' | 'limited';
 
 export interface SupplyHouseData {
   slug: string;
@@ -12,27 +20,44 @@ export interface SupplyHouseData {
   shortName?: string;
   website: string;
   description: string;
+  distributorType: DistributorType;
+  /** Optional clarifying note shown on detail page */
+  typeNote?: string;
   /** Brand names carried — must match brands.ts name values for cross-linking */
   brands: string[];
   locations: SupplyHouseLocation[];
 }
 
+export const DISTRIBUTOR_TYPE_LABEL: Record<DistributorType, string> = {
+  wholesale: 'Wholesale Counter',
+  direct: 'Direct to Contractor',
+  commercial_rep: 'Commercial Rep',
+  limited: 'Limited HP Stock',
+};
+
 export const supplyHouses: SupplyHouseData[] = [
+
+  // ── Full-service wholesale counters ──────────────────────────────────
+
   {
     slug: 'rsl',
     name: 'Refrigerative Supply Limited',
     shortName: 'RSL',
     website: 'https://www.rsl.ca',
+    distributorType: 'wholesale',
     description:
-      "BC's largest wholesale HVAC/R distributor. RSL stocks heat pumps, mini-splits, refrigerants, parts, and accessories across 22 BC branches — from the Lower Mainland to the Interior. Primary wholesale source for many of BC's heat pump and refrigeration contractors.",
+      "BC's largest wholesale HVAC/R distributor. RSL stocks heat pumps, ductless mini-splits, VRF systems, refrigerants, parts, and accessories across 22 BC branches — from the Lower Mainland to the Interior. Primary wholesale source for the majority of BC's heat pump and refrigeration contractors.",
     brands: [
-      'Mitsubishi',
       'Daikin',
-      'LG',
       'Samsung',
-      'Bosch',
-      'Carrier',
-      'Lennox',
+      'AirEase',
+      'Ducane',
+      'Allied Commercial',
+      'Rheem',
+      'Hisense',
+      'ClimateMaster',
+      'Friedrich',
+      'Olimpia Splendid',
     ],
     locations: [
       {
@@ -98,9 +123,420 @@ export const supplyHouses: SupplyHouseData[] = [
         phone: '250-763-3114',
         region: 'Interior',
       },
-      // TODO: Add remaining 12 RSL locations (11–22)
+      // TODO: 12 additional RSL locations to be added (22 total BC branches)
     ],
   },
+
+  {
+    slug: 'ecco-supply',
+    name: 'ECCO Supply',
+    website: 'https://www.eccosupply.ca',
+    distributorType: 'wholesale',
+    description:
+      'HVAC/R wholesale distributor with BC branches serving the Interior and Vancouver Island. ECCO carries Armstrong Air, Napoleon, Samsung, Bosch, and LG — making them a strong source for ducted and ductless residential heat pumps in Kelowna and Victoria markets.',
+    brands: [
+      'Armstrong Air',
+      'Napoleon',
+      'Samsung',
+      'Bosch',
+      'LG',
+    ],
+    locations: [
+      {
+        city: 'Kelowna',
+        region: 'Interior',
+      },
+      {
+        city: 'Victoria',
+        region: 'Vancouver Island',
+      },
+    ],
+  },
+
+  {
+    slug: 'wolseley-canada',
+    name: 'Wolseley Canada',
+    website: 'https://www.wolseleyinc.ca',
+    distributorType: 'wholesale',
+    description:
+      'National wholesale distributor of plumbing, HVAC, and industrial products with strong BC Interior and Northern BC presence. Wolseley carries GE, LG, KeepRite, and International Comfort Products for residential and light commercial heat pumps. Good source for Interior and Northern BC contractors.',
+    brands: [
+      'GE',
+      'LG',
+      'KeepRite',
+    ],
+    locations: [
+      {
+        city: 'Vancouver',
+        region: 'Lower Mainland',
+      },
+      {
+        city: 'Kelowna',
+        region: 'Interior',
+      },
+      {
+        city: 'Kamloops',
+        region: 'Interior',
+      },
+      {
+        city: 'Cranbrook',
+        region: 'Interior',
+      },
+      {
+        city: 'Prince George',
+        region: 'Northern BC',
+      },
+    ],
+  },
+
+  {
+    slug: 'johnstone-supply',
+    name: 'Johnstone Supply',
+    website: 'https://www.johnstonesupply.com',
+    distributorType: 'wholesale',
+    description:
+      'Franchise-based HVAC/R wholesale counter with multiple BC locations. Johnstone carries Daikin, Fujitsu, Goodman, Bosch, and Coleman — a strong mix for residential ductless and ducted installs. Franchise model means stock and service levels vary by branch.',
+    brands: [
+      'Daikin',
+      'Fujitsu',
+      'Goodman',
+      'Bosch',
+      'Coleman',
+    ],
+    locations: [
+      // Multiple BC franchise locations — contact johnstonesupply.com to find your nearest branch
+      {
+        city: 'Vancouver',
+        region: 'Lower Mainland',
+      },
+    ],
+  },
+
+  {
+    slug: 'surrey-hvac-supply',
+    name: 'Surrey HVAC Supply',
+    website: 'https://www.surreyhvac.ca',
+    distributorType: 'wholesale',
+    description:
+      'Lower Mainland HVAC supply counter serving Surrey and surrounding communities. Surrey HVAC Supply is the authorized BC distributor for Maytag residential heat pumps. Good local option for contractors working in the Fraser Valley and South Surrey/White Rock.',
+    brands: [
+      'Maytag',
+    ],
+    locations: [
+      {
+        city: 'Surrey',
+        region: 'Lower Mainland',
+      },
+    ],
+  },
+
+  {
+    slug: 'pacaire',
+    name: 'Pacaire HVAC Supply',
+    shortName: 'Pacaire',
+    website: 'https://www.pacaire.ca',
+    distributorType: 'limited',
+    typeNote: 'Primarily sheet metal, ducting, and accessories. Heat pump equipment lines vary by branch — call to confirm availability before sourcing.',
+    description:
+      'BC HVAC supply house primarily serving the sheet metal, ducting, and accessory market. Multiple BC locations. Heat pump equipment stock varies — best used for ductwork, grilles, fittings, and HVAC accessories rather than as a primary HP equipment source.',
+    brands: [],
+    locations: [
+      {
+        city: 'Vancouver',
+        region: 'Lower Mainland',
+      },
+    ],
+  },
+
+  {
+    slug: 'andrew-sheret',
+    name: 'Andrew Sheret',
+    website: 'https://www.sheret.com',
+    distributorType: 'limited',
+    typeNote: 'Primarily a plumbing and hydronics supply house. Heat pump equipment is limited and varies by branch — confirm availability by calling before sourcing HP equipment.',
+    description:
+      'Plumbing and hydronics supply house with BC Interior locations. Andrew Sheret primarily serves the plumbing contractor market and is not a primary source for heat pump equipment. Useful for hydronics-related components (piping, manifolds, controls) for air-to-water HP systems.',
+    brands: [],
+    locations: [
+      {
+        city: 'Kamloops',
+        region: 'Interior',
+      },
+      {
+        city: 'Penticton',
+        region: 'Interior',
+      },
+      {
+        city: 'Castlegar',
+        region: 'Interior',
+      },
+      {
+        city: 'Prince George',
+        region: 'Northern BC',
+      },
+    ],
+  },
+
+  // ── Manufacturer direct-to-contractor ────────────────────────────────
+
+  {
+    slug: 'carrier-enterprise',
+    name: 'Carrier Enterprise Canada',
+    shortName: 'Carrier Enterprise',
+    website: 'https://www.carrierenterprise.ca',
+    distributorType: 'direct',
+    typeNote: 'Carrier Enterprise is the factory-owned distribution arm of Carrier Global — selling Carrier, Bryant, and Payne equipment directly to authorized dealers with no third-party markup.',
+    description:
+      "Carrier Global's factory-owned distribution centers for BC, selling the full Carrier, Bryant, and Payne heat pump lineup directly to authorized contractors. Lower Mainland (Burnaby), Interior (Kelowna), and Langley distribution centre provide province-wide coverage.",
+    brands: [
+      'Carrier',
+      'Bryant',
+      'Payne',
+    ],
+    locations: [
+      {
+        city: 'Burnaby',
+        region: 'Lower Mainland',
+      },
+      {
+        city: 'Langley',
+        label: 'Langley Distribution Centre',
+        region: 'Lower Mainland',
+      },
+      {
+        city: 'Kelowna',
+        region: 'Interior',
+      },
+    ],
+  },
+
+  {
+    slug: 'mitsubishi-electric',
+    name: 'Mitsubishi Electric Sales Canada',
+    shortName: 'MESCA',
+    website: 'https://www.mitsubishielectric.ca',
+    distributorType: 'direct',
+    typeNote: "MESCA is Mitsubishi Electric's Canadian factory sales office — direct to authorized contractor, not a public walk-in counter. Mitsubishi dealers order equipment and parts through their Diamond Dealer account.",
+    description:
+      "Mitsubishi Electric's Canadian factory distribution office for BC, operating from Burnaby. MESCA sells the full Mitsubishi line (Zuba-Central ducted, Mr. Slim ductless, City Multi VRF, P-Series commercial) directly to authorized Diamond Dealers — no third-party distributor markup.",
+    brands: [
+      'Mitsubishi',
+    ],
+    locations: [
+      {
+        city: 'Burnaby',
+        region: 'Lower Mainland',
+      },
+    ],
+  },
+
+  {
+    slug: 'lennox-parts-plus',
+    name: 'Lennox PartsPlus',
+    website: 'https://www.lennoxpros.com',
+    distributorType: 'direct',
+    typeNote: "Lennox's factory-owned dealer stores operate on a direct-to-dealer model — no third-party distributor between Lennox and the installing contractor.",
+    description:
+      "Lennox International's factory-owned dealer store in Burnaby (2962 Lake City Way). Sells the full Lennox residential heat pump lineup (XP25, XP21, XP20, Merit series; ductless mini-splits powered by Samsung) directly to Lennox Premier and Elite dealers. Direct model means lower contractor pricing with no middleman.",
+    brands: [
+      'Lennox',
+    ],
+    locations: [
+      {
+        city: 'Burnaby',
+        address: '2962 Lake City Way, Burnaby, BC',
+        region: 'Lower Mainland',
+      },
+    ],
+  },
+
+  // ── Commercial / applied equipment reps ──────────────────────────────
+
+  {
+    slug: 'olympic-international',
+    name: 'Olympic International',
+    website: 'https://www.olympicinternational.com',
+    distributorType: 'commercial_rep',
+    typeNote: "Olympic operates as a manufacturer's representative for commercial and applied HVAC equipment — not a counter walk-in supply house. Commercial contractors and mechanical engineers contact Olympic directly for project-specific pricing and support.",
+    description:
+      "BC's primary commercial/applied heat pump equipment representative. Olympic International distributes Daikin VRF/applied systems, Aermec air-to-water and water-to-water HP chillers, WaterFurnace commercial water-source HPs, and other applied systems for institutional and commercial projects. HQ in North Vancouver with a Kelowna office.",
+    brands: [
+      'Daikin',
+      'Aermec',
+      'WaterFurnace',
+    ],
+    locations: [
+      {
+        label: 'Head Office',
+        city: 'North Vancouver',
+        region: 'Lower Mainland',
+      },
+      {
+        city: 'Kelowna',
+        region: 'Interior',
+      },
+    ],
+  },
+
+  {
+    slug: 'the-master-group',
+    name: 'The Master Group',
+    shortName: 'Master Group',
+    website: 'https://www.master.ca',
+    distributorType: 'wholesale',
+    description:
+      "Canada's exclusive Western distributor for Fujitsu HVAC. The Master Group distributes the full Fujitsu Halcyon ductless and Airstage commercial VRF lineup across BC, plus Hitachi commercial VRF and York/Johnson Controls applied systems. The single most important distributor for Fujitsu installers in BC.",
+    brands: [
+      'Fujitsu',
+      'Hitachi',
+      'York',
+      'Gree',
+    ],
+    locations: [
+      // BC branch locations — see master.ca for your nearest branch
+      {
+        city: 'Vancouver',
+        region: 'Lower Mainland',
+      },
+    ],
+  },
+
+  // ── Trane distribution channels ──────────────────────────────────────
+
+  {
+    slug: 'nee',
+    name: 'National Energy Equipment',
+    shortName: 'NEE',
+    website: 'https://www.nee.ca',
+    distributorType: 'direct',
+    typeNote: 'NEE has been the exclusive Trane residential and light commercial distributor for BC since 2001 — the only channel for new Trane residential equipment in the province.',
+    description:
+      "BC's exclusive Trane residential and light commercial heat pump distributor since 2001. If you are installing Trane residential equipment in BC, National Energy Equipment is your source — separate from Trane Supply (parts counter) and Trane Canada West (commercial applied). Full Trane XR, XV, and XL heat pump series available.",
+    brands: [
+      'Trane',
+    ],
+    locations: [
+      {
+        city: 'Vancouver',
+        region: 'Lower Mainland',
+      },
+    ],
+  },
+
+  {
+    slug: 'trane-supply',
+    name: 'Trane Supply',
+    website: 'https://www.tranesupply.com',
+    distributorType: 'wholesale',
+    typeNote: 'Trane Supply is the OEM parts counter and replacement equipment channel — separate from NEE (new residential equipment) and Trane Canada West (commercial applied).',
+    description:
+      'Trane contractor wholesale counter in Burnaby stocking Trane OEM replacement parts, national wholesale brands, and light commercial unitary heat pumps. The go-to source for Trane replacement parts and service components across BC.',
+    brands: [
+      'Trane',
+    ],
+    locations: [
+      {
+        city: 'Burnaby',
+        address: '3264 Beta Ave, Burnaby, BC',
+        region: 'Lower Mainland',
+      },
+    ],
+  },
+
+  {
+    slug: 'trane-canada-west',
+    name: 'Trane Canada West',
+    website: 'https://www.tranecanadawest.com',
+    distributorType: 'commercial_rep',
+    typeNote: 'Trane Canada West handles commercial applied projects only — not a counter supply house. Commercial contractors and mechanical engineers contact them for project-specific pricing on chillers, applied rooftop HPs, and water-source systems.',
+    description:
+      'Commercial applied sales offices for Trane in BC, covering chillers, rooftop heat pumps, applied water-source heat pumps, and affiliated product lines for institutional and commercial projects. Separate sales channel from the residential and parts distribution.',
+    brands: [
+      'Trane',
+    ],
+    locations: [
+      {
+        city: 'Burnaby',
+        region: 'Lower Mainland',
+      },
+      {
+        city: 'Victoria',
+        region: 'Vancouver Island',
+      },
+      {
+        city: 'Kelowna',
+        region: 'Interior',
+      },
+    ],
+  },
+
+  // ── Panasonic distribution channels ──────────────────────────────────
+
+  {
+    slug: 'emco-hvac',
+    name: 'Emco HVAC',
+    shortName: 'Emco',
+    website: 'https://www.emco.ca',
+    distributorType: 'wholesale',
+    description:
+      'National plumbing and HVAC wholesaler with 40+ BC locations from Burnaby to Kamloops and throughout the province. Following a national partnership announced March 2025, Emco is now a major Panasonic distribution channel in BC, stocking ductless and ducted Panasonic heat pumps alongside their traditional plumbing and HVAC accessory lines.',
+    brands: [
+      'Panasonic',
+    ],
+    locations: [
+      {
+        city: 'Burnaby',
+        region: 'Lower Mainland',
+      },
+      {
+        city: 'Kamloops',
+        region: 'Interior',
+      },
+      // 40+ BC locations — see emco.ca for your nearest branch
+    ],
+  },
+
+  {
+    slug: 'diamond-ice-systems',
+    name: 'Diamond Ice Systems',
+    website: 'https://www.diamondicesystems.com',
+    distributorType: 'commercial_rep',
+    typeNote: 'Diamond Ice Systems operates as a commercial-focused Panasonic distributor for Western Canada. Commercial contractors and mechanical engineers sourcing Panasonic VRF or cold-climate commercial systems contact them directly.',
+    description:
+      'Western Canada distributor for Panasonic commercial HVAC, specializing in cold-climate ductless mini-splits and VRF systems for commercial applications. The Panasonic EZKU cold-climate series (rated to -30°C) is a specialty. BC coverage with commercial focus.',
+    brands: [
+      'Panasonic',
+    ],
+    locations: [
+      {
+        city: 'Vancouver',
+        region: 'Lower Mainland',
+      },
+    ],
+  },
+
+  // ── LG commercial channel ─────────────────────────────────────────────
+
+  {
+    slug: 'climacool-solutions',
+    name: 'Climacool Solutions',
+    website: 'https://www.climacool.ca',
+    distributorType: 'commercial_rep',
+    typeNote: "Climacool is LG's exclusive VRF and split system rep for BC and Alberta — the commercial/developer channel for LG. Residential LG also flows through Wolseley and ECCO Supply.",
+    description:
+      "LG's exclusive VRF and split system representative for BC and Alberta, based in Coquitlam. The primary commercial and developer channel for LG Multi V VRF, ductless, and residential split systems in BC. Supports mechanical engineers, developers, and commercial contractors specifying LG equipment.",
+    brands: [
+      'LG',
+    ],
+    locations: [
+      {
+        city: 'Coquitlam',
+        address: '9 Burbidge St, Coquitlam, BC',
+        region: 'Lower Mainland',
+      },
+    ],
+  },
+
 ];
 
 export function getSupplyHouseBySlug(slug: string): SupplyHouseData | undefined {
