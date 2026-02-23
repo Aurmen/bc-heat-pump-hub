@@ -4,6 +4,7 @@ import { regions } from '@/data/regions';
 import { getAllListings } from '@/lib/utils';
 import { brands } from '@/data/brands';
 import { supplyHouses } from '@/data/supply-houses';
+import { repairCities } from '@/data/repair-cities';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://canadianheatpumphub.ca';
@@ -45,7 +46,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/bc-heat-pump-installers`, priority: 0.95 },
     { url: `${baseUrl}/heat-pump-cost-bc`, priority: 0.95 },
     { url: `${baseUrl}/cold-climate-heat-pump-bc`, priority: 0.90 },
+    { url: `${baseUrl}/repair`, priority: 0.90 },
   ];
+
+  const repairPages = repairCities.map(city => ({
+    url: `${baseUrl}/repair/${city.slug}`,
+    priority: 0.85,
+  }));
 
   const guidePages = guides.map(slug => ({
     url: `${baseUrl}/guides/${slug}`,
@@ -81,6 +88,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPages,
     ...guidePages,
+    ...repairPages,
     ...regionPages,
     ...cityPages,
     ...brandPages,
