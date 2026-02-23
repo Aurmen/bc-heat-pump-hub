@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next';
 import { cities } from '@/data/cities';
 import { regions } from '@/data/regions';
 import { getAllListings } from '@/lib/utils';
+import { brands } from '@/data/brands';
+import { supplyHouses } from '@/data/supply-houses';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://canadianheatpumphub.ca';
@@ -25,6 +27,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/guides`, priority: 0.9 },
     { url: `${baseUrl}/bc`, priority: 0.9 },
     { url: `${baseUrl}/directory`, priority: 0.8 },
+    { url: `${baseUrl}/brands`, priority: 0.85 },
+    { url: `${baseUrl}/supply-houses`, priority: 0.8 },
     { url: `${baseUrl}/rebates`, priority: 0.9 },
     { url: `${baseUrl}/calculator`, priority: 0.8 },
     { url: `${baseUrl}/faq`, priority: 0.7 },
@@ -50,6 +54,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const brandPages = brands.map(brand => ({
+    url: `${baseUrl}/brands/${brand.slug}`,
+    priority: 0.75,
+  }));
+
+  const supplyHousePages = supplyHouses.map(house => ({
+    url: `${baseUrl}/supply-houses/${house.slug}`,
+    priority: 0.7,
+  }));
+
   const listings = getAllListings();
   const companyPages = listings.map(listing => ({
     url: `${baseUrl}/directory/${listing.slug}`,
@@ -61,6 +75,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...guidePages,
     ...regionPages,
     ...cityPages,
+    ...brandPages,
+    ...supplyHousePages,
     ...companyPages,
   ].map(page => ({
     url: page.url,

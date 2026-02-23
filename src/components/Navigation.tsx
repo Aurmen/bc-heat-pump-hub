@@ -43,6 +43,10 @@ export default function Navigation() {
               BC Cities
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all"></span>
             </Link>
+            <Link href="/supply-houses" className="text-gray-700 hover:text-primary-600 font-medium transition-colors relative group">
+              Supply Houses
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all"></span>
+            </Link>
             <Link href="/directory" className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg font-medium transition-all shadow-md hover:shadow-lg transform hover:scale-105">
               Directory
             </Link>

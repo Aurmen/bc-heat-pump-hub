@@ -18,11 +18,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!listing) return { title: 'Company Not Found' };
 
   return {
-    title: `${listing.company_name} - ${listing.city}, BC`,
-    description: `${listing.company_name} provides ${listing.services.map(s => formatServiceName(s)).join(', ')} services in ${listing.city}, ${listing.region}.`,
-    robots: {
-      index: false,
-      follow: true,
+    title: `${listing.company_name} | Heat Pump Installer ${listing.city}, BC`,
+    description: `${listing.company_name} provides ${listing.services.map(s => formatServiceName(s)).join(', ')} in ${listing.city}, ${listing.region}, BC. View contact details, services, and verified credentials.`,
+    alternates: {
+      canonical: `https://canadianheatpumphub.ca/directory/${listing.slug}`,
     },
   };
 }
