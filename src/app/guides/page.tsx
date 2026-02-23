@@ -49,6 +49,21 @@ const guides = [
     title: 'Boiler Replacement Costs in BC',
     description: 'What to expect when replacing a gas, electric, or oil boiler in British Columbia.',
   },
+  {
+    slug: 'mitsubishi-vs-daikin-bc',
+    title: 'Mitsubishi vs. Daikin Heat Pumps in BC',
+    description: 'BC-specific comparison of the two most-installed heat pump brands. Cold climate performance, pricing, dealer networks, warranties, and rebate eligibility.',
+  },
+  {
+    slug: 'fujitsu-vs-mitsubishi-cold-climate',
+    title: 'Fujitsu vs. Mitsubishi: Cold Climate Heat Pumps',
+    description: 'Detailed comparison for BC Interior and northern homeowners. Performance at -15°C and below, pricing differences, and which brand fits each BC region.',
+  },
+  {
+    slug: 'best-cold-climate-heat-pump-bc-2026',
+    title: 'Best Cold Climate Heat Pumps for BC in 2026',
+    description: 'Ranked guide to the top cold-climate heat pumps available through BC dealers. Covers Mitsubishi, Daikin, Fujitsu, LG, Bosch, and Samsung — by BC region.',
+  },
 ];
 
 export default function GuidesPage() {

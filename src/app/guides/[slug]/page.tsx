@@ -16,6 +16,9 @@ const guides = [
   'heat-pump-sizing-guide-bc',
   'ductless-vs-central-heat-pumps-bc',
   'understanding-heat-pump-ratings',
+  'mitsubishi-vs-daikin-bc',
+  'fujitsu-vs-mitsubishi-cold-climate',
+  'best-cold-climate-heat-pump-bc-2026',
 ];
 
 // Function to import guide content based on slug
@@ -43,6 +46,12 @@ async function importGuideContent(slug: string) {
       return (await import('@/content/guides/ductless-vs-central-heat-pumps-bc.mdx')).default;
     case 'understanding-heat-pump-ratings':
       return (await import('@/content/guides/understanding-heat-pump-ratings.mdx')).default;
+    case 'mitsubishi-vs-daikin-bc':
+      return (await import('@/content/guides/mitsubishi-vs-daikin-bc.mdx')).default;
+    case 'fujitsu-vs-mitsubishi-cold-climate':
+      return (await import('@/content/guides/fujitsu-vs-mitsubishi-cold-climate.mdx')).default;
+    case 'best-cold-climate-heat-pump-bc-2026':
+      return (await import('@/content/guides/best-cold-climate-heat-pump-bc-2026.mdx')).default;
     default:
       return null;
   }
@@ -67,6 +76,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     'heat-pump-sizing-guide-bc': 'Heat Pump Sizing Guide for BC',
     'ductless-vs-central-heat-pumps-bc': 'Ductless vs. Central Heat Pumps',
     'understanding-heat-pump-ratings': 'Understanding SEER, HSPF & COP Ratings',
+    'mitsubishi-vs-daikin-bc': 'Mitsubishi vs. Daikin Heat Pumps in BC',
+    'fujitsu-vs-mitsubishi-cold-climate': 'Fujitsu vs. Mitsubishi: Cold Climate Heat Pumps for BC',
+    'best-cold-climate-heat-pump-bc-2026': 'Best Cold Climate Heat Pumps for BC in 2026',
   };
 
   return {
@@ -108,6 +120,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'heat-pump-sizing-guide-bc': 'Heat Pump Sizing Guide for BC',
     'ductless-vs-central-heat-pumps-bc': 'Ductless vs. Central Heat Pumps',
     'understanding-heat-pump-ratings': 'Understanding SEER, HSPF & COP Ratings',
+    'mitsubishi-vs-daikin-bc': 'Mitsubishi vs. Daikin Heat Pumps in BC',
+    'fujitsu-vs-mitsubishi-cold-climate': 'Fujitsu vs. Mitsubishi: Cold Climate Heat Pumps for BC',
+    'best-cold-climate-heat-pump-bc-2026': 'Best Cold Climate Heat Pumps for BC in 2026',
   };
 
   const readTimes: Record<string, string> = {
@@ -122,6 +137,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'heat-pump-sizing-guide-bc': '16 min read',
     'ductless-vs-central-heat-pumps-bc': '15 min read',
     'understanding-heat-pump-ratings': '13 min read',
+    'mitsubishi-vs-daikin-bc': '14 min read',
+    'fujitsu-vs-mitsubishi-cold-climate': '13 min read',
+    'best-cold-climate-heat-pump-bc-2026': '15 min read',
   };
 
   const descriptions: Record<string, string> = {
@@ -136,6 +154,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'heat-pump-sizing-guide-bc': 'Learn how to properly size a heat pump for BC homes. Manual J calculations, design temperatures, and avoiding over/undersizing.',
     'ductless-vs-central-heat-pumps-bc': 'Compare ductless mini-split and central ducted heat pumps. Costs, efficiency, installation, and which is best for your BC home.',
     'understanding-heat-pump-ratings': 'Understand SEER, HSPF, and COP ratings for heat pumps. Learn what these efficiency metrics mean for BC climate performance.',
+    'mitsubishi-vs-daikin-bc': 'Mitsubishi vs. Daikin heat pumps compared for BC homeowners. Cold climate performance, pricing, dealer networks, and rebate eligibility across Lower Mainland, Okanagan, and Northern BC.',
+    'fujitsu-vs-mitsubishi-cold-climate': 'Fujitsu vs. Mitsubishi cold climate heat pumps compared for BC. Performance at -15°C and below, pricing, BC dealer networks, and which is right for your region.',
+    'best-cold-climate-heat-pump-bc-2026': 'Top cold climate heat pumps available in BC in 2026. Ranked by performance, BC dealer availability, and suitability for coastal, Okanagan, Interior, and Northern BC climates.',
   };
 
   return (

@@ -20,6 +20,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'heat-pump-sizing-guide-bc',
     'ductless-vs-central-heat-pumps-bc',
     'understanding-heat-pump-ratings',
+    'mitsubishi-vs-daikin-bc',
+    'fujitsu-vs-mitsubishi-cold-climate',
+    'best-cold-climate-heat-pump-bc-2026',
   ];
 
   const staticPages = [
