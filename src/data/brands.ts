@@ -411,6 +411,16 @@ export const brands: BrandData[] = [
 
   // ── Budget / emerging / Chinese-manufactured brands ────────────────────
   {
+    slug: 'hisense',
+    name: 'Hisense',
+    type: 'Ductless Mini-Split',
+    origin: 'China',
+    bcNotes: "Hisense is a major Chinese electronics and appliance manufacturer with a growing HVAC division. Their mini-split lineup offers competitive cold-climate specs at budget-friendly price points. Distributed through select Canadian HVAC wholesalers and online channels. Growing contractor interest in BC as supply chain improves.",
+    dealerNetwork: 'limited',
+    coldClimateRated: true,
+    website: 'https://www.hisense.ca',
+  },
+  {
     slug: 'gree',
     name: 'Gree',
     type: 'Ductless Mini-Split',
