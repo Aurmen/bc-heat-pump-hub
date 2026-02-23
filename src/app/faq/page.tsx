@@ -5,6 +5,7 @@ import ArticleMeta from '@/components/ArticleMeta';
 export const metadata: Metadata = {
   title: 'Heat Pump & Boiler FAQ - British Columbia',
   description: 'Frequently asked questions about heat pumps, boilers, costs, rebates, and installation in British Columbia. Get honest answers about ROI and efficiency.',
+  alternates: { canonical: 'https://canadianheatpumphub.ca/faq' },
 };
 
 const faqs = [

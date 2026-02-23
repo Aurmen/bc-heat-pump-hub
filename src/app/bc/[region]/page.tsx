@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ region: s
   return {
     title: `${region.name} Heat Pump Installers`,
     description: `Heat pump and boiler replacement installers in ${region.name}, BC. ${region.description}`,
+    alternates: { canonical: `https://canadianheatpumphub.ca/bc/${regionSlug}` },
   };
 }
 

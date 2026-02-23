@@ -7,6 +7,7 @@ import { getAllListings } from '@/lib/utils';
 export const metadata: Metadata = {
   title: 'Heat Pump Brand Comparison - BC 2026 | Canadian Heat Pump Hub',
   description: 'Compare top heat pump brands available in BC: Mitsubishi, Daikin, Fujitsu, Carrier, Lennox. Pricing, efficiency ratings, warranty, and reliability data for Canadian climate.',
+  alternates: { canonical: 'https://canadianheatpumphub.ca/brands' },
 };
 
 const brands = [

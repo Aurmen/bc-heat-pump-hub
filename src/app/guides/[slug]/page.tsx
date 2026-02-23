@@ -72,6 +72,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: titles[slug] || 'Guide',
     description: `Comprehensive guide on ${titles[slug]?.toLowerCase() || 'heating systems'} for BC homeowners.`,
+    alternates: { canonical: `https://canadianheatpumphub.ca/guides/${slug}` },
   };
 }
 

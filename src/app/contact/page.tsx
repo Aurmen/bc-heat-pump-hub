@@ -4,6 +4,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Contact Us',
   description: 'Get in touch with Canadian Heat Pump Hub. Submit corrections, ask questions, or add your business to our directory.',
+  alternates: { canonical: 'https://canadianheatpumphub.ca/contact' },
 };
 
 export default function ContactPage() {

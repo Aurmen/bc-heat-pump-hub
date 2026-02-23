@@ -7,6 +7,7 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 export const metadata: Metadata = {
   title: 'British Columbia Heat Pump Installers by City',
   description: 'Find heat pump and boiler replacement installers across BC regions: Lower Mainland, Vancouver Island, and Interior.',
+  alternates: { canonical: 'https://canadianheatpumphub.ca/bc' },
 };
 
 export default function BCPage() {

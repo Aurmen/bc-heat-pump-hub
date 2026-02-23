@@ -5,6 +5,7 @@ import ArticleMeta from '@/components/ArticleMeta';
 export const metadata: Metadata = {
   title: 'BC Heat Pump Rebates 2026 - Complete Guide | Canadian Heat Pump Hub',
   description: 'Complete guide to heat pump rebates in British Columbia for 2026. CleanBC, federal grants, income-qualified programs, and utility rebates. Up to $16,000 available.',
+  alternates: { canonical: 'https://canadianheatpumphub.ca/rebates' },
 };
 
 export default function RebatesPage() {

@@ -12,9 +12,6 @@ export const metadata: Metadata = {
     template: '%s | Canadian Heat Pump Hub',
   },
   description: 'Find BC heat pump installers, compare costs, and calculate ROI. Complete guides on air-to-water heat pumps, boiler replacement, hybrid systems, and 2026 rebates. Climate-specific advice for Vancouver, Victoria, Kelowna, and all BC cities.',
-  alternates: {
-    canonical: 'https://canadianheatpumphub.ca',
-  },
   openGraph: {
     type: 'website',
     locale: 'en_CA',

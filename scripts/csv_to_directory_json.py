@@ -131,9 +131,11 @@ def main() -> None:
         city = row["City"].strip()
         region = CITY_TO_REGION.get(city, "Lower Mainland")
 
-        # Website — strip protocol prefix for consistency with existing schema
+        # Website — ensure full URL with https://
         website = row["Website"].strip()
-        website = re.sub(r"^https?://", "", website)
+        website = re.sub(r"^https?://", "", website)  # normalize first
+        if website:
+            website = "https://" + website
 
         notes = build_notes(row)
         services = map_services(row.get("Services", ""))

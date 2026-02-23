@@ -5,6 +5,7 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 export const metadata: Metadata = {
   title: 'Heat Pump Guides',
   description: 'Complete guides on heat pump costs, ROI, efficiency ratings (SEER/HSPF), air-to-water systems, and hybrid heating for BC homes. Compare ductless vs central systems.',
+  alternates: { canonical: 'https://canadianheatpumphub.ca/guides' },
 };
 
 const guides = [

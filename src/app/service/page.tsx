@@ -5,6 +5,7 @@ import ArticleMeta from '@/components/ArticleMeta';
 export const metadata: Metadata = {
   title: 'Heat Pump Service & Repair Guide - BC 2026 | Canadian Heat Pump Hub',
   description: 'Complete guide to heat pump maintenance, repairs, parts, and service costs in BC. DIY maintenance tips, common problems, repair costs, and finding qualified technicians.',
+  alternates: { canonical: 'https://canadianheatpumphub.ca/service' },
 };
 
 const commonRepairs = [
