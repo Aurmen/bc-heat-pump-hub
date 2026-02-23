@@ -19,6 +19,11 @@ const guides = [
   'mitsubishi-vs-daikin-bc',
   'fujitsu-vs-mitsubishi-cold-climate',
   'best-cold-climate-heat-pump-bc-2026',
+  'how-to-claim-heat-pump-rebate-bc',
+  'heat-pump-vs-electric-baseboard-bc',
+  'oil-furnace-heat-pump-conversion-bc',
+  'heat-pump-condo-strata-bc',
+  'heat-pump-home-assessment-checklist-bc',
 ];
 
 // Function to import guide content based on slug
@@ -52,6 +57,16 @@ async function importGuideContent(slug: string) {
       return (await import('@/content/guides/fujitsu-vs-mitsubishi-cold-climate.mdx')).default;
     case 'best-cold-climate-heat-pump-bc-2026':
       return (await import('@/content/guides/best-cold-climate-heat-pump-bc-2026.mdx')).default;
+    case 'how-to-claim-heat-pump-rebate-bc':
+      return (await import('@/content/guides/how-to-claim-heat-pump-rebate-bc.mdx')).default;
+    case 'heat-pump-vs-electric-baseboard-bc':
+      return (await import('@/content/guides/heat-pump-vs-electric-baseboard-bc.mdx')).default;
+    case 'oil-furnace-heat-pump-conversion-bc':
+      return (await import('@/content/guides/oil-furnace-heat-pump-conversion-bc.mdx')).default;
+    case 'heat-pump-condo-strata-bc':
+      return (await import('@/content/guides/heat-pump-condo-strata-bc.mdx')).default;
+    case 'heat-pump-home-assessment-checklist-bc':
+      return (await import('@/content/guides/heat-pump-home-assessment-checklist-bc.mdx')).default;
     default:
       return null;
   }
@@ -79,6 +94,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     'mitsubishi-vs-daikin-bc': 'Mitsubishi vs. Daikin Heat Pumps in BC',
     'fujitsu-vs-mitsubishi-cold-climate': 'Fujitsu vs. Mitsubishi: Cold Climate Heat Pumps for BC',
     'best-cold-climate-heat-pump-bc-2026': 'Best Cold Climate Heat Pumps for BC in 2026',
+    'how-to-claim-heat-pump-rebate-bc': 'How to Claim Heat Pump Rebates in BC (2026)',
+    'heat-pump-vs-electric-baseboard-bc': 'Heat Pump vs. Electric Baseboard Heating in BC',
+    'oil-furnace-heat-pump-conversion-bc': 'Oil Furnace to Heat Pump Conversion in BC',
+    'heat-pump-condo-strata-bc': 'Heat Pumps in BC Condos and Strata Properties',
+    'heat-pump-home-assessment-checklist-bc': 'Heat Pump Home Assessment Checklist for BC Homeowners',
   };
 
   return {
@@ -123,6 +143,11 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'mitsubishi-vs-daikin-bc': 'Mitsubishi vs. Daikin Heat Pumps in BC',
     'fujitsu-vs-mitsubishi-cold-climate': 'Fujitsu vs. Mitsubishi: Cold Climate Heat Pumps for BC',
     'best-cold-climate-heat-pump-bc-2026': 'Best Cold Climate Heat Pumps for BC in 2026',
+    'how-to-claim-heat-pump-rebate-bc': 'How to Claim Heat Pump Rebates in BC (2026)',
+    'heat-pump-vs-electric-baseboard-bc': 'Heat Pump vs. Electric Baseboard Heating in BC',
+    'oil-furnace-heat-pump-conversion-bc': 'Oil Furnace to Heat Pump Conversion in BC',
+    'heat-pump-condo-strata-bc': 'Heat Pumps in BC Condos and Strata Properties',
+    'heat-pump-home-assessment-checklist-bc': 'Heat Pump Home Assessment Checklist for BC Homeowners',
   };
 
   const readTimes: Record<string, string> = {
@@ -140,6 +165,11 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'mitsubishi-vs-daikin-bc': '14 min read',
     'fujitsu-vs-mitsubishi-cold-climate': '13 min read',
     'best-cold-climate-heat-pump-bc-2026': '15 min read',
+    'how-to-claim-heat-pump-rebate-bc': '12 min read',
+    'heat-pump-vs-electric-baseboard-bc': '10 min read',
+    'oil-furnace-heat-pump-conversion-bc': '14 min read',
+    'heat-pump-condo-strata-bc': '13 min read',
+    'heat-pump-home-assessment-checklist-bc': '11 min read',
   };
 
   const descriptions: Record<string, string> = {
@@ -157,6 +187,11 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'mitsubishi-vs-daikin-bc': 'Mitsubishi vs. Daikin heat pumps compared for BC homeowners. Cold climate performance, pricing, dealer networks, and rebate eligibility across Lower Mainland, Okanagan, and Northern BC.',
     'fujitsu-vs-mitsubishi-cold-climate': 'Fujitsu vs. Mitsubishi cold climate heat pumps compared for BC. Performance at -15°C and below, pricing, BC dealer networks, and which is right for your region.',
     'best-cold-climate-heat-pump-bc-2026': 'Top cold climate heat pumps available in BC in 2026. Ranked by performance, BC dealer availability, and suitability for coastal, Okanagan, Interior, and Northern BC climates.',
+    'how-to-claim-heat-pump-rebate-bc': 'Step-by-step guide to claiming heat pump rebates in BC for 2026. CleanBC Better Homes (up to $6,000), Canada Greener Homes Loan ($40,000 interest-free), OHPA for oil-heated homes ($10,000), and BC Hydro rebates — in the right order.',
+    'heat-pump-vs-electric-baseboard-bc': 'Compare heat pumps and electric baseboard heating for BC homes. Annual savings of $1,200-$2,500, payback periods, installation process, and rebates available for baseboard-to-heat-pump conversions.',
+    'oil-furnace-heat-pump-conversion-bc': 'Complete guide to switching from oil heating to a heat pump in BC. Federal OHPA grant ($10,000), system options for oil furnaces and boilers, oil tank disposal, and ROI examples for rural BC homes.',
+    'heat-pump-condo-strata-bc': 'How to get strata approval for a heat pump in BC. System options for condos and stratas, Strata Property Act rights, sample application language, and how to appeal a rejected application.',
+    'heat-pump-home-assessment-checklist-bc': 'Pre-contractor home assessment checklist for BC homeowners considering a heat pump. Check your electrical panel, heating system, insulation, outdoor unit placement, and zone count before calling a contractor.',
   };
 
   return (

@@ -64,6 +64,31 @@ const guides = [
     title: 'Best Cold Climate Heat Pumps for BC in 2026',
     description: 'Ranked guide to the top cold-climate heat pumps available through BC dealers. Covers Mitsubishi, Daikin, Fujitsu, LG, Bosch, and Samsung — by BC region.',
   },
+  {
+    slug: 'how-to-claim-heat-pump-rebate-bc',
+    title: 'How to Claim Heat Pump Rebates in BC (2026)',
+    description: 'Step-by-step guide to stacking CleanBC ($6,000), Canada Greener Homes Loan ($40,000), OHPA for oil-heated homes ($10,000), and BC Hydro rebates — in the right order.',
+  },
+  {
+    slug: 'heat-pump-vs-electric-baseboard-bc',
+    title: 'Heat Pump vs. Electric Baseboard Heating in BC',
+    description: 'Annual savings of $1,200-$2,500 for BC baseboard-heated homes. Compare efficiency, operating costs, rebates, and payback periods for the most common BC heating conversion.',
+  },
+  {
+    slug: 'oil-furnace-heat-pump-conversion-bc',
+    title: 'Oil Furnace to Heat Pump Conversion in BC',
+    description: 'How to switch from oil heating to a heat pump in BC. Federal OHPA grant ($10,000), system options for oil furnaces and boilers, oil tank disposal, and ROI examples.',
+  },
+  {
+    slug: 'heat-pump-condo-strata-bc',
+    title: 'Heat Pumps in BC Condos and Strata Properties',
+    description: 'How to get strata approval for a heat pump in BC. Your rights under the Strata Property Act, system options for condos, and how to appeal a rejected application.',
+  },
+  {
+    slug: 'heat-pump-home-assessment-checklist-bc',
+    title: 'Heat Pump Home Assessment Checklist for BC Homeowners',
+    description: 'Do a 30-minute walk-through before calling any contractor. Check your panel, heating system, insulation, and outdoor unit options to get better quotes and spot red flags.',
+  },
 ];
 
 export default function GuidesPage() {

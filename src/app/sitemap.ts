@@ -23,6 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'mitsubishi-vs-daikin-bc',
     'fujitsu-vs-mitsubishi-cold-climate',
     'best-cold-climate-heat-pump-bc-2026',
+    'how-to-claim-heat-pump-rebate-bc',
+    'heat-pump-vs-electric-baseboard-bc',
+    'oil-furnace-heat-pump-conversion-bc',
+    'heat-pump-condo-strata-bc',
+    'heat-pump-home-assessment-checklist-bc',
   ];
 
   const staticPages = [
