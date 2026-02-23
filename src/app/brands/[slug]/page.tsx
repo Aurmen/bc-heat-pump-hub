@@ -244,6 +244,54 @@ export default async function BrandPage({
           </div>
         )}
 
+        {/* Related comparison guides */}
+        {(() => {
+          const comparisonGuides: Record<string, { slug: string; title: string }[]> = {
+            mitsubishi: [
+              { slug: 'mitsubishi-vs-daikin-bc', title: 'Mitsubishi vs. Daikin in BC' },
+              { slug: 'fujitsu-vs-mitsubishi-cold-climate', title: 'Fujitsu vs. Mitsubishi: Cold Climate' },
+              { slug: 'best-cold-climate-heat-pump-bc-2026', title: 'Best Cold Climate Heat Pumps in BC (2026)' },
+            ],
+            daikin: [
+              { slug: 'mitsubishi-vs-daikin-bc', title: 'Mitsubishi vs. Daikin in BC' },
+              { slug: 'best-cold-climate-heat-pump-bc-2026', title: 'Best Cold Climate Heat Pumps in BC (2026)' },
+            ],
+            fujitsu: [
+              { slug: 'fujitsu-vs-mitsubishi-cold-climate', title: 'Fujitsu vs. Mitsubishi: Cold Climate' },
+              { slug: 'best-cold-climate-heat-pump-bc-2026', title: 'Best Cold Climate Heat Pumps in BC (2026)' },
+            ],
+            lg: [
+              { slug: 'best-cold-climate-heat-pump-bc-2026', title: 'Best Cold Climate Heat Pumps in BC (2026)' },
+            ],
+            bosch: [
+              { slug: 'best-cold-climate-heat-pump-bc-2026', title: 'Best Cold Climate Heat Pumps in BC (2026)' },
+            ],
+            samsung: [
+              { slug: 'best-cold-climate-heat-pump-bc-2026', title: 'Best Cold Climate Heat Pumps in BC (2026)' },
+            ],
+          };
+          const guides = comparisonGuides[brand.slug];
+          if (!guides?.length) return null;
+          return (
+            <div className="bg-primary-50 border border-primary-200 rounded-lg p-5 mb-8">
+              <h3 className="font-semibold text-gray-900 mb-3">
+                Compare {brand.name} with other brands
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {guides.map(g => (
+                  <Link
+                    key={g.slug}
+                    href={`/guides/${g.slug}`}
+                    className="inline-block bg-white border border-primary-200 hover:border-primary-400 text-primary-700 hover:text-primary-800 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    {g.title} →
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Back to brands */}
         <div className="flex flex-wrap gap-4 mt-8">
           <Link
