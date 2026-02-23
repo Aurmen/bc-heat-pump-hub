@@ -2,7 +2,7 @@
   {
     "company_name": "ROMA Heating & Cooling",
     "slug": "roma-heating-cooling",
-    "website": "romaheating.ca",
+    "website": "https://romaheating.ca",
     "phone": "+1-604-924-7273",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -36,7 +36,7 @@
   {
     "company_name": "Eco Pro Heating & Cooling",
     "slug": "eco-pro-heating-cooling",
-    "website": "ecoproheating.ca",
+    "website": "https://ecoproheating.ca",
     "phone": "+1-604-725-4485",
     "city": "North Vancouver",
     "region": "Lower Mainland",
@@ -59,7 +59,7 @@
   {
     "company_name": "Greentech Air Conditioning and Heating",
     "slug": "greentech-air-conditioning-and-heating",
-    "website": "greentechhvacsystems.com",
+    "website": "https://greentechhvacsystems.com",
     "phone": "+1-604-493-2033",
     "city": "North Vancouver",
     "region": "Lower Mainland",
@@ -85,7 +85,7 @@
   {
     "company_name": "TEK Climate Heating & Air Conditioning",
     "slug": "tek-climate-heating-air-conditioning",
-    "website": "tekclimate.ca",
+    "website": "https://tekclimate.ca",
     "phone": "+1-778-245-4822",
     "city": "Maple Ridge",
     "region": "Lower Mainland",
@@ -110,7 +110,7 @@
   {
     "company_name": "Moore & Russell Heating and Air Conditioning",
     "slug": "moore-russell-heating-and-air-conditioning",
-    "website": "mrheating.com",
+    "website": "https://mrheating.com",
     "phone": "+1-604-243-2833",
     "city": "Port Coquitlam",
     "region": "Lower Mainland",
@@ -134,7 +134,7 @@
   {
     "company_name": "Combined Comfort Systems",
     "slug": "combined-comfort-systems",
-    "website": "vancouverheatpumps.ca",
+    "website": "https://vancouverheatpumps.ca",
     "phone": "+1-604-514-1132",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -159,7 +159,7 @@
   {
     "company_name": "Cascadia HVAC",
     "slug": "cascadia-hvac",
-    "website": "cascadiahvac.com",
+    "website": "https://cascadiahvac.com",
     "phone": "+1-604-359-0997",
     "city": "Vancouver",
     "region": "Lower Mainland",
@@ -183,7 +183,7 @@
   {
     "company_name": "Penguin HVAC",
     "slug": "penguin-hvac",
-    "website": "penguinhvac.ca",
+    "website": "https://penguinhvac.ca",
     "phone": "+1-778-653-3044",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -208,7 +208,7 @@
   {
     "company_name": "BCRC Heating and Cooling",
     "slug": "bcrc-heating-and-cooling",
-    "website": "bcrcheating.com",
+    "website": "https://bcrcheating.com",
     "phone": "+1-604-781-7272",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -233,7 +233,7 @@
   {
     "company_name": "VanHeat Services",
     "slug": "vanheat-services",
-    "website": "vanheatservices.com",
+    "website": "https://vanheatservices.com",
     "phone": "+1-604-281-4790",
     "city": "North Vancouver",
     "region": "Lower Mainland",
@@ -258,7 +258,7 @@
   {
     "company_name": "HeatLand Heating & Air Conditioning",
     "slug": "heatland-heating-air-conditioning",
-    "website": "heatland.ca",
+    "website": "https://heatland.ca",
     "phone": "+1-604-330-3812",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -284,7 +284,7 @@
   {
     "company_name": "Nest Heating & Air Conditioning",
     "slug": "nest-heating-air-conditioning",
-    "website": "nestheating.ca",
+    "website": "https://nestheating.ca",
     "phone": "+1-604-210-8817",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -311,7 +311,7 @@
   {
     "company_name": "Greenfoot Energy Solutions",
     "slug": "greenfoot-energy-solutions",
-    "website": "greenfootenergy.ca",
+    "website": "https://greenfootenergy.ca",
     "phone": "+1-778-907-1314",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -338,7 +338,7 @@
   {
     "company_name": "Comfort Plus Heating and Air Conditioning",
     "slug": "comfort-plus-heating-and-air-conditioning",
-    "website": "comfortplus.ca",
+    "website": "https://comfortplus.ca",
     "phone": "+1-604-554-7587",
     "city": "Port Coquitlam",
     "region": "Lower Mainland",
@@ -364,7 +364,7 @@
   {
     "company_name": "Knowledge HVAC & Refrigeration Ltd.",
     "slug": "knowledge-hvac-refrigeration-ltd",
-    "website": "knowledgehvacr.ca",
+    "website": "https://knowledgehvacr.ca",
     "phone": "+1-778-522-5669",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -387,7 +387,7 @@
   {
     "company_name": "Ariana Heating & Air Conditioning Ltd.",
     "slug": "ariana-heating-air-conditioning-ltd",
-    "website": "arianaheating.ca",
+    "website": "https://arianaheating.ca",
     "phone": "+1-778-861-7120",
     "city": "Maple Ridge",
     "region": "Lower Mainland",
@@ -412,7 +412,7 @@
   {
     "company_name": "Ashton Plumbing Heating & Air Conditioning",
     "slug": "ashton-plumbing-heating-air-conditioning",
-    "website": "callashton.com",
+    "website": "https://callashton.com",
     "phone": "+1-604-373-6522",
     "city": "Richmond",
     "region": "Lower Mainland",
@@ -437,7 +437,7 @@
   {
     "company_name": "Northwind Heating Cooling and Fireplace Showroom",
     "slug": "northwind-heating-cooling-and-fireplace-showroom",
-    "website": "northwindheating.com",
+    "website": "https://northwindheating.com",
     "phone": "+1-604-572-7944",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -464,7 +464,7 @@
   {
     "company_name": "Parkinson's Heating Ltd.",
     "slug": "parkinsons-heating-ltd",
-    "website": "parkinsonsheating.com",
+    "website": "https://parkinsonsheating.com",
     "phone": "+1-604-599-8444",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -491,7 +491,7 @@
   {
     "company_name": "John Sadler Plumbing & Heating",
     "slug": "john-sadler-plumbing-heating",
-    "website": "johnsadler.ca",
+    "website": "https://johnsadler.ca",
     "phone": "+1-604-531-4355",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -522,7 +522,7 @@
   {
     "company_name": "Nation Furnace Heating & Air Conditioning HVAC Ltd.",
     "slug": "nation-furnace-heating-air-conditioning-hvac-ltd",
-    "website": "nationheating.ca",
+    "website": "https://nationheating.ca",
     "phone": "+1-604-299-5006",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -547,7 +547,7 @@
   {
     "company_name": "Accolade Heating & Air Conditioning",
     "slug": "accolade-heating-air-conditioning",
-    "website": "accoladeheating.com",
+    "website": "https://accoladeheating.com",
     "phone": "+1-778-689-7287",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -575,7 +575,7 @@
   {
     "company_name": "Veteran HVAC",
     "slug": "veteran-hvac",
-    "website": "veteranhvac.ca",
+    "website": "https://veteranhvac.ca",
     "phone": "+1-604-991-4894",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -600,7 +600,7 @@
   {
     "company_name": "Greenway Mechanical",
     "slug": "greenway-mechanical",
-    "website": "greenwaymechanical.com",
+    "website": "https://greenwaymechanical.com",
     "phone": "+1-604-359-8700",
     "city": "Port Coquitlam",
     "region": "Lower Mainland",
@@ -624,7 +624,7 @@
   {
     "company_name": "Pro Ace Heating and Air Conditioning",
     "slug": "pro-ace-heating-and-air-conditioning",
-    "website": "acecare.ca",
+    "website": "https://acecare.ca",
     "phone": "+1-604-293-3770",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -648,7 +648,7 @@
   {
     "company_name": "Primo Heat",
     "slug": "primo-heat",
-    "website": "primoheat.ca",
+    "website": "https://primoheat.ca",
     "phone": "+1-778-883-8447",
     "city": "Abbotsford",
     "region": "Lower Mainland",
@@ -674,7 +674,7 @@
   {
     "company_name": "Reliance Home Comfort",
     "slug": "reliance-home-comfort",
-    "website": "reliancehomecomfort.com",
+    "website": "https://reliancehomecomfort.com",
     "phone": "+1-888-837-1451",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -698,7 +698,7 @@
   {
     "company_name": "CP Heating (Canadian Pacific Heating & Cooling)",
     "slug": "cp-heating-canadian-pacific-heating-cooling",
-    "website": "cpheating.ca",
+    "website": "https://cpheating.ca",
     "phone": "+1-604-256-7797",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -722,7 +722,7 @@
   {
     "company_name": "Joyce Heating Services Ltd.",
     "slug": "joyce-heating-services-ltd",
-    "website": "joyceheating.com",
+    "website": "https://joyceheating.com",
     "phone": "+1-604-434-7747",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -750,7 +750,7 @@
   {
     "company_name": "Angels Heating Cooling & Plumbing",
     "slug": "angels-heating-cooling-plumbing",
-    "website": "angelsheating.com",
+    "website": "https://angelsheating.com",
     "phone": "+1-604-969-7770",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -775,7 +775,7 @@
   {
     "company_name": "Western Pacific HVAC",
     "slug": "western-pacific-hvac",
-    "website": "westernpacifichvac.com",
+    "website": "https://westernpacifichvac.com",
     "phone": "+1-604-416-2611",
     "city": "Vancouver",
     "region": "Lower Mainland",
@@ -799,7 +799,7 @@
   {
     "company_name": "Harbour Energy",
     "slug": "harbour-energy",
-    "website": "harbourenergy.ca",
+    "website": "https://harbourenergy.ca",
     "phone": "+1-604-272-7272",
     "city": "Richmond",
     "region": "Lower Mainland",
@@ -824,7 +824,7 @@
   {
     "company_name": "Onsite Heating and Cooling Ltd.",
     "slug": "onsite-heating-and-cooling-ltd",
-    "website": "onsiteheatingandcooling.com",
+    "website": "https://onsiteheatingandcooling.com",
     "phone": "+1-604-554-4444",
     "city": "Coquitlam",
     "region": "Lower Mainland",
@@ -848,7 +848,7 @@
   {
     "company_name": "Lower Mainland Refrigeration Systems Ltd.",
     "slug": "lower-mainland-refrigeration-systems-ltd",
-    "website": "refrigerationsystemsltd.com",
+    "website": "https://refrigerationsystemsltd.com",
     "phone": "+1-778-693-2532",
     "city": "Richmond",
     "region": "Lower Mainland",
@@ -874,7 +874,7 @@
   {
     "company_name": "Pioneer Plumbing Heating & Cooling",
     "slug": "pioneer-plumbing-heating-cooling",
-    "website": "pioneerplumbing.com",
+    "website": "https://pioneerplumbing.com",
     "phone": "+1-604-282-3251",
     "city": "Richmond",
     "region": "Lower Mainland",
@@ -898,7 +898,7 @@
   {
     "company_name": "Maple Furnace Heating & Air Conditioning",
     "slug": "maple-furnace-heating-air-conditioning",
-    "website": "maplefurnace.com",
+    "website": "https://maplefurnace.com",
     "phone": "+1-604-324-4328",
     "city": "Vancouver",
     "region": "Lower Mainland",
@@ -926,7 +926,7 @@
   {
     "company_name": "Vanco Heating Cooling & Duct Cleaning",
     "slug": "vanco-heating-cooling-duct-cleaning",
-    "website": "vancoheating.ca",
+    "website": "https://vancoheating.ca",
     "phone": "+1-778-385-6844",
     "city": "Vancouver",
     "region": "Lower Mainland",
@@ -950,7 +950,7 @@
   {
     "company_name": "Jetson Home",
     "slug": "jetson-home",
-    "website": "jetsonhome.com",
+    "website": "https://jetsonhome.com",
     "phone": "+1-888-996-5876",
     "city": "North Vancouver",
     "region": "Lower Mainland",
@@ -975,7 +975,7 @@
   {
     "company_name": "M&T Air Conditioning Ltd.",
     "slug": "m-t-air-conditioning-ltd",
-    "website": "mandtac.com",
+    "website": "https://mandtac.com",
     "phone": "+1-604-531-1934",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -998,7 +998,7 @@
   {
     "company_name": "Best Way Heating Inc.",
     "slug": "best-way-heating-inc",
-    "website": "bestwayheating.ca",
+    "website": "https://bestwayheating.ca",
     "phone": "+1-604-474-3355",
     "city": "Coquitlam",
     "region": "Lower Mainland",
@@ -1025,7 +1025,7 @@
   {
     "company_name": "Westmount Heating",
     "slug": "westmount-heating",
-    "website": "westmountheating.com",
+    "website": "https://westmountheating.com",
     "phone": "+1-604-968-6356",
     "city": "Port Coquitlam",
     "region": "Lower Mainland",
@@ -1050,7 +1050,7 @@
   {
     "company_name": "Rocky Point Heating and Air Conditioning",
     "slug": "rocky-point-heating-and-air-conditioning",
-    "website": "rockypointhvac.com",
+    "website": "https://rockypointhvac.com",
     "phone": "+1-778-994-4724",
     "city": "Coquitlam",
     "region": "Lower Mainland",
@@ -1074,7 +1074,7 @@
   {
     "company_name": "Mountain Ridge Heating and Gas",
     "slug": "mountain-ridge-heating-and-gas",
-    "website": "mountainridgeheating.com",
+    "website": "https://mountainridgeheating.com",
     "phone": "+1-604-808-8311",
     "city": "Maple Ridge",
     "region": "Lower Mainland",
@@ -1098,7 +1098,7 @@
   {
     "company_name": "Aquaflame Heating & Cooling Ltd.",
     "slug": "aquaflame-heating-cooling-ltd",
-    "website": "aquaflame.ca",
+    "website": "https://aquaflame.ca",
     "phone": "+1-778-999-4422",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -1123,7 +1123,7 @@
   {
     "company_name": "Comfortpro Heat & AC",
     "slug": "comfortpro-heat-ac",
-    "website": "comfortprohvac.ca",
+    "website": "https://comfortprohvac.ca",
     "phone": "+1-778-636-6001",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -1147,7 +1147,7 @@
   {
     "company_name": "Gandy Installations",
     "slug": "gandy-installations",
-    "website": "gandyinstallations.net",
+    "website": "https://gandyinstallations.net",
     "phone": "+1-604-534-5555",
     "city": "Langley",
     "region": "Lower Mainland",
@@ -1179,7 +1179,7 @@
   {
     "company_name": "Airco Heating & Cooling Ltd.",
     "slug": "airco-heating-cooling-ltd",
-    "website": "aircoheating.ca",
+    "website": "https://aircoheating.ca",
     "phone": "+1-604-882-9224",
     "city": "Langley",
     "region": "Lower Mainland",
@@ -1206,7 +1206,7 @@
   {
     "company_name": "Valley Pacific Mechanical",
     "slug": "valley-pacific-mechanical",
-    "website": "valleypacific.ca",
+    "website": "https://valleypacific.ca",
     "phone": "+1-236-591-5150",
     "city": "Langley",
     "region": "Lower Mainland",
@@ -1230,7 +1230,7 @@
   {
     "company_name": "Budget Heating & Plumbing",
     "slug": "budget-heating-plumbing",
-    "website": "budgetheating.ca",
+    "website": "https://budgetheating.ca",
     "phone": "+1-604-343-1985",
     "city": "Langley",
     "region": "Lower Mainland",
@@ -1255,7 +1255,7 @@
   {
     "company_name": "Pacific Blue Mechanical",
     "slug": "pacific-blue-mechanical",
-    "website": "pacificbluemechanical.ca",
+    "website": "https://pacificbluemechanical.ca",
     "phone": "+1-604-652-9468",
     "city": "Vancouver",
     "region": "Lower Mainland",
@@ -1279,7 +1279,7 @@
   {
     "company_name": "Alfa Services",
     "slug": "alfa-services",
-    "website": "alfaservices.ca",
+    "website": "https://alfaservices.ca",
     "phone": "+1-778-899-9989",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -1303,7 +1303,7 @@
   {
     "company_name": "Heritage Mountain Heating & Cooling",
     "slug": "heritage-mountain-heating-cooling",
-    "website": "heritagemountainhc.ca",
+    "website": "https://heritagemountainhc.ca",
     "phone": "+1-604-968-0029",
     "city": "Maple Ridge",
     "region": "Lower Mainland",
@@ -1330,7 +1330,7 @@
   {
     "company_name": "Big Valley Heating & Sheet Metal Ltd.",
     "slug": "big-valley-heating-sheet-metal-ltd",
-    "website": "bigvalleyheating.ca",
+    "website": "https://bigvalleyheating.ca",
     "phone": "+1-604-467-6474",
     "city": "Maple Ridge",
     "region": "Lower Mainland",
@@ -1355,7 +1355,7 @@
   {
     "company_name": "Coleman Heating and Air Conditioning",
     "slug": "coleman-heating-and-air-conditioning",
-    "website": "colemanheating.ca",
+    "website": "https://colemanheating.ca",
     "phone": "+1-604-466-5895",
     "city": "Maple Ridge",
     "region": "Lower Mainland",
@@ -1379,7 +1379,7 @@
   {
     "company_name": "Ryan Heating & Air Conditioning",
     "slug": "ryan-heating-air-conditioning",
-    "website": "heatingbyryan.ca",
+    "website": "https://heatingbyryan.ca",
     "phone": "+1-778-228-5330",
     "city": "Maple Ridge",
     "region": "Lower Mainland",
@@ -1403,7 +1403,7 @@
   {
     "company_name": "Hammer's Heating and Cooling",
     "slug": "hammers-heating-and-cooling",
-    "website": "hammersheating.ca",
+    "website": "https://hammersheating.ca",
     "phone": "+1-778-899-5224",
     "city": "Pitt Meadows",
     "region": "Lower Mainland",
@@ -1427,7 +1427,7 @@
   {
     "company_name": "Meadow Ridge Custom Heating",
     "slug": "meadow-ridge-custom-heating",
-    "website": "meadowridgecustomheating.com",
+    "website": "https://meadowridgecustomheating.com",
     "phone": "+1-604-463-0652",
     "city": "Maple Ridge",
     "region": "Lower Mainland",
@@ -1452,7 +1452,7 @@
   {
     "company_name": "Nova Heating & Sheet Metal Ltd.",
     "slug": "nova-heating-sheet-metal-ltd",
-    "website": "novaheating.ca",
+    "website": "https://novaheating.ca",
     "phone": "+1-604-988-3922",
     "city": "North Vancouver",
     "region": "Lower Mainland",
@@ -1483,7 +1483,7 @@
   {
     "company_name": "R&B Plumbing & Heating Ltd.",
     "slug": "r-b-plumbing-heating-ltd",
-    "website": "randbplumbing.ca",
+    "website": "https://randbplumbing.ca",
     "phone": "+1-604-337-2369",
     "city": "North Vancouver",
     "region": "Lower Mainland",
@@ -1509,7 +1509,7 @@
   {
     "company_name": "Paris Service Group",
     "slug": "paris-service-group",
-    "website": "parisservicegroup.com",
+    "website": "https://parisservicegroup.com",
     "phone": "+1-778-803-1582",
     "city": "North Vancouver",
     "region": "Lower Mainland",
@@ -1534,7 +1534,7 @@
   {
     "company_name": "Whyte Mechanical",
     "slug": "whyte-mechanical",
-    "website": "whytemechanical.ca",
+    "website": "https://whytemechanical.ca",
     "phone": "+1-778-628-4826",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -1559,7 +1559,7 @@
   {
     "company_name": "Lambert Plumbing & Heating Ltd.",
     "slug": "lambert-plumbing-heating-ltd",
-    "website": "lambertplumbing.ca",
+    "website": "https://lambertplumbing.ca",
     "phone": "+1-604-734-0890",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -1584,7 +1584,7 @@
   {
     "company_name": "Acorn Service Group",
     "slug": "acorn-service-group",
-    "website": "acornheat.com",
+    "website": "https://acornheat.com",
     "phone": "+1-604-948-9949",
     "city": "Delta",
     "region": "Lower Mainland",
@@ -1609,7 +1609,7 @@
   {
     "company_name": "Neighbourhood Plumbing & Heating",
     "slug": "neighbourhood-plumbing-heating",
-    "website": "neighbourhoodplumber.com",
+    "website": "https://neighbourhoodplumber.com",
     "phone": "+1-604-946-7778",
     "city": "Delta",
     "region": "Lower Mainland",
@@ -1634,7 +1634,7 @@
   {
     "company_name": "PJB Mechanical",
     "slug": "pjb-mechanical",
-    "website": "pjbmechanical.com",
+    "website": "https://pjbmechanical.com",
     "phone": "+1-604-940-2268",
     "city": "Delta",
     "region": "Lower Mainland",
@@ -1659,7 +1659,7 @@
   {
     "company_name": "Sierra Mechanical Limited",
     "slug": "sierra-mechanical-limited",
-    "website": "sierramechanical.ca",
+    "website": "https://sierramechanical.ca",
     "phone": "+1-604-943-1234",
     "city": "Richmond",
     "region": "Lower Mainland",
@@ -1683,7 +1683,7 @@
   {
     "company_name": "Fairy Stone Heating and Air Conditioning Inc.",
     "slug": "fairy-stone-heating-and-air-conditioning-inc",
-    "website": "fairystone.ca",
+    "website": "https://fairystone.ca",
     "phone": "",
     "city": "New Westminster",
     "region": "Lower Mainland",
@@ -1708,7 +1708,7 @@
   {
     "company_name": "Eaton's Heating & Air Conditioning",
     "slug": "eatons-heating-air-conditioning",
-    "website": "eatonshomecare.com",
+    "website": "https://eatonshomecare.com",
     "phone": "+1-604-771-2024",
     "city": "Coquitlam",
     "region": "Lower Mainland",
@@ -1733,7 +1733,7 @@
   {
     "company_name": "Milani Plumbing Heating & Air Conditioning",
     "slug": "milani-plumbing-heating-air-conditioning",
-    "website": "milani.ca",
+    "website": "https://milani.ca",
     "phone": "+1-604-430-2603",
     "city": "Burnaby",
     "region": "Lower Mainland",
@@ -1760,7 +1760,7 @@
   {
     "company_name": "Thomson Industries",
     "slug": "thomson-industries",
-    "website": "thomsonindustries.ca",
+    "website": "https://thomsonindustries.ca",
     "phone": "+1-604-335-2019",
     "city": "Surrey",
     "region": "Lower Mainland",
@@ -1784,7 +1784,7 @@
   {
     "company_name": "Coastal Heat Pumps",
     "slug": "coastal-heat-pumps",
-    "website": "coastalheatpumps.com",
+    "website": "https://coastalheatpumps.com",
     "phone": "+1-250-656-6868",
     "city": "Victoria",
     "region": "Vancouver Island",
@@ -1811,7 +1811,7 @@
   {
     "company_name": "Accutemp Refrigeration Air Conditioning & Heating Ltd.",
     "slug": "accutemp-refrigeration-air-conditioning-heating-ltd",
-    "website": "accutemp.ca",
+    "website": "https://accutemp.ca",
     "phone": "+1-250-475-2665",
     "city": "Victoria",
     "region": "Vancouver Island",
@@ -1841,7 +1841,7 @@
   {
     "company_name": "South Island Mechanical Ltd.",
     "slug": "south-island-mechanical-ltd",
-    "website": "southislandmechanical.ca",
+    "website": "https://southislandmechanical.ca",
     "phone": "+1-250-589-8929",
     "city": "Victoria",
     "region": "Vancouver Island",
@@ -1865,7 +1865,7 @@
   {
     "company_name": "Pacific Heat Pumps",
     "slug": "pacific-heat-pumps",
-    "website": "pacificheatpumps.ca",
+    "website": "https://pacificheatpumps.ca",
     "phone": "+1-250-655-4348",
     "city": "Sidney",
     "region": "Vancouver Island",
@@ -1890,7 +1890,7 @@
   {
     "company_name": "West Bay Mechanical Ltd.",
     "slug": "west-bay-mechanical-ltd",
-    "website": "westbaymechanical.com",
+    "website": "https://westbaymechanical.com",
     "phone": "+1-250-478-8532",
     "city": "Victoria",
     "region": "Vancouver Island",
@@ -1917,7 +1917,7 @@
   {
     "company_name": "Dupuis Energy Inc.",
     "slug": "dupuis-energy-inc",
-    "website": "dupuis.energy",
+    "website": "https://dupuis.energy",
     "phone": "+1-250-858-6743",
     "city": "Victoria",
     "region": "Vancouver Island",
@@ -1941,7 +1941,7 @@
   {
     "company_name": "Victoria Furnace Services",
     "slug": "victoria-furnace-services",
-    "website": "victoriafurnaceservices.com",
+    "website": "https://victoriafurnaceservices.com",
     "phone": "+1-778-400-7148",
     "city": "Victoria",
     "region": "Vancouver Island",
@@ -1967,7 +1967,7 @@
   {
     "company_name": "Sasquatch Heat Pumps Ltd.",
     "slug": "sasquatch-heat-pumps-ltd",
-    "website": "sasquatchheatpumps.com",
+    "website": "https://sasquatchheatpumps.com",
     "phone": "+1-236-361-8293",
     "city": "Sooke",
     "region": "Vancouver Island",
@@ -1992,7 +1992,7 @@
   {
     "company_name": "ServiceXCEL Heating & Cooling",
     "slug": "servicexcel-heating-cooling",
-    "website": "servicexcel.ca",
+    "website": "https://servicexcel.ca",
     "phone": "+1-250-760-0898",
     "city": "Nanaimo",
     "region": "Vancouver Island",
@@ -2018,7 +2018,7 @@
   {
     "company_name": "Bryans Mechanical Ltd.",
     "slug": "bryans-mechanical-ltd",
-    "website": "bryansmechanical.com",
+    "website": "https://bryansmechanical.com",
     "phone": "+1-250-758-0738",
     "city": "Nanaimo",
     "region": "Vancouver Island",
@@ -2048,7 +2048,7 @@
   {
     "company_name": "Lone Wolf HVAC Ltd.",
     "slug": "lone-wolf-hvac-ltd",
-    "website": "lonewolfhvac.ca",
+    "website": "https://lonewolfhvac.ca",
     "phone": "+1-250-739-6030",
     "city": "Ladysmith",
     "region": "Vancouver Island",
@@ -2073,7 +2073,7 @@
   {
     "company_name": "The Comfort Group",
     "slug": "the-comfort-group",
-    "website": "comfortgroup.ca",
+    "website": "https://comfortgroup.ca",
     "phone": "+1-250-756-5554",
     "city": "Nanaimo",
     "region": "Vancouver Island",
@@ -2099,7 +2099,7 @@
   {
     "company_name": "Norm's Plumbing Heating & Air Conditioning",
     "slug": "norms-plumbing-heating-air-conditioning",
-    "website": "normsmobile.ca",
+    "website": "https://normsmobile.ca",
     "phone": "",
     "city": "Nanaimo",
     "region": "Vancouver Island",
@@ -2125,7 +2125,7 @@
   {
     "company_name": "Pope and Sons Heating Cooling & Refrigeration",
     "slug": "pope-and-sons-heating-cooling-refrigeration",
-    "website": "popeandsons.com",
+    "website": "https://popeandsons.com",
     "phone": "",
     "city": "Nanaimo",
     "region": "Vancouver Island",
@@ -2151,7 +2151,7 @@
   {
     "company_name": "Coastal Energy",
     "slug": "coastal-energy",
-    "website": "coastalenergy.ca",
+    "website": "https://coastalenergy.ca",
     "phone": "+1-250-591-0281",
     "city": "Nanaimo",
     "region": "Vancouver Island",
@@ -2180,7 +2180,7 @@
   {
     "company_name": "Comfort Tech Heating & Cooling",
     "slug": "comfort-tech-heating-cooling",
-    "website": "www.comforttech.ca",
+    "website": "https://www.comforttech.ca",
     "phone": "+1-250-258-5713",
     "city": "Kelowna",
     "region": "Interior",
@@ -2205,7 +2205,7 @@
   {
     "company_name": "Blair Mechanical Services Ltd.",
     "slug": "blair-mechanical-services-ltd",
-    "website": "www.blairmechanical.com",
+    "website": "https://www.blairmechanical.com",
     "phone": "+1-250-491-2700",
     "city": "Kelowna",
     "region": "Interior",
@@ -2230,7 +2230,7 @@
   {
     "company_name": "Vision Plumbing Heating Cooling",
     "slug": "vision-plumbing-heating-cooling",
-    "website": "www.visionplumbingandheating.com",
+    "website": "https://www.visionplumbingandheating.com",
     "phone": "+1-778-909-0818",
     "city": "Kelowna",
     "region": "Interior",
@@ -2256,7 +2256,7 @@
   {
     "company_name": "Murray's Heating & Cooling Solutions Ltd.",
     "slug": "murrays-heating-cooling-solutions-ltd",
-    "website": "www.murrayssolutions.com",
+    "website": "https://www.murrayssolutions.com",
     "phone": "+1-250-575-8907",
     "city": "Kelowna",
     "region": "Interior",
@@ -2281,7 +2281,7 @@
   {
     "company_name": "ACE Plumbing & Heating",
     "slug": "ace-plumbing-heating",
-    "website": "www.acekelowna.ca",
+    "website": "https://www.acekelowna.ca",
     "phone": "+1-250-861-6696",
     "city": "Kelowna",
     "region": "Interior",
@@ -2306,7 +2306,7 @@
   {
     "company_name": "Canadian Aerothermal",
     "slug": "canadian-aerothermal",
-    "website": "www.canadianaerothermal.ca",
+    "website": "https://www.canadianaerothermal.ca",
     "phone": "+1-877-663-6472",
     "city": "Penticton",
     "region": "Interior",
@@ -2333,7 +2333,7 @@
   {
     "company_name": "Rapid Cool Mechanical",
     "slug": "rapid-cool-mechanical",
-    "website": "rapidcool.ca",
+    "website": "https://rapidcool.ca",
     "phone": "+1-250-374-6858",
     "city": "Kamloops",
     "region": "Interior",
@@ -2359,7 +2359,7 @@
   {
     "company_name": "KVA Mechanical Ltd.",
     "slug": "kva-mechanical-ltd",
-    "website": "www.kvamechanical.com",
+    "website": "https://www.kvamechanical.com",
     "phone": "+1-250-554-0505",
     "city": "Kamloops",
     "region": "Interior",
@@ -2384,7 +2384,7 @@
   {
     "company_name": "Full Spectrum Heating and Air-Conditioning Ltd.",
     "slug": "full-spectrum-heating-and-air-conditioning-ltd",
-    "website": "fullspectrumheating.ca",
+    "website": "https://fullspectrumheating.ca",
     "phone": "+1-250-319-5938",
     "city": "Kamloops",
     "region": "Interior",
@@ -2409,7 +2409,7 @@
   {
     "company_name": "Kamloops Heating and Air Conditioning",
     "slug": "kamloops-heating-and-air-conditioning",
-    "website": "kamloopsheatingandairconditioning.com",
+    "website": "https://kamloopsheatingandairconditioning.com",
     "phone": "+1-250-879-2777",
     "city": "Kamloops",
     "region": "Interior",
@@ -2434,7 +2434,7 @@
   {
     "company_name": "Hadwin's HVAC & Gas Inc.",
     "slug": "hadwins-hvac-gas-inc",
-    "website": "hadwinshvac.ca",
+    "website": "https://hadwinshvac.ca",
     "phone": "+1-250-574-9333",
     "city": "Kamloops",
     "region": "Interior",
@@ -2459,7 +2459,7 @@
   {
     "company_name": "Halliday Refrigeration Ltd.",
     "slug": "halliday-refrigeration-ltd",
-    "website": "www.hallidayrefrigeration.com",
+    "website": "https://www.hallidayrefrigeration.com",
     "phone": "+1-250-376-1474",
     "city": "Kamloops",
     "region": "Interior",
@@ -2484,7 +2484,7 @@
   {
     "company_name": "KDB HVAC Inc.",
     "slug": "kdb-hvac-inc",
-    "website": "kdbhvac.ca",
+    "website": "https://kdbhvac.ca",
     "phone": "+1-250-572-0209",
     "city": "Kamloops",
     "region": "Interior",
@@ -2509,7 +2509,7 @@
   {
     "company_name": "HVAC Strong Mechanical Ltd.",
     "slug": "hvac-strong-mechanical-ltd",
-    "website": "hvacstrong.ca",
+    "website": "https://hvacstrong.ca",
     "phone": "+1-778-999-5815",
     "city": "Prince George",
     "region": "Interior",
@@ -2537,7 +2537,7 @@
   {
     "company_name": "Heat Tech Heating & Ventilation Ltd.",
     "slug": "heat-tech-heating-ventilation-ltd",
-    "website": "www.heattechheating.ca",
+    "website": "https://www.heattechheating.ca",
     "phone": "+1-250-962-0041",
     "city": "Prince George",
     "region": "Interior",
@@ -2562,7 +2562,7 @@
   {
     "company_name": "Canuck Mechanical Ltd.",
     "slug": "canuck-mechanical-ltd",
-    "website": "www.canuckmechanical.com",
+    "website": "https://www.canuckmechanical.com",
     "phone": "+1-250-564-4567",
     "city": "Prince George",
     "region": "Interior",
@@ -2590,7 +2590,7 @@
   {
     "company_name": "Polar Refrigeration Sales & Service Ltd.",
     "slug": "polar-refrigeration-sales-service-ltd",
-    "website": "www.polarrefrig.ca",
+    "website": "https://www.polarrefrig.ca",
     "phone": "+1-250-563-6444",
     "city": "Prince George",
     "region": "Interior",
@@ -2615,7 +2615,7 @@
   {
     "company_name": "Mainline Plumbing & Heating Ltd.",
     "slug": "mainline-plumbing-heating-ltd",
-    "website": "mainlineplumbingandheating.com",
+    "website": "https://mainlineplumbingandheating.com",
     "phone": "+1-250-564-9808",
     "city": "Prince George",
     "region": "Interior",
@@ -2641,7 +2641,7 @@
   {
     "company_name": "Budget Choice Heating & Cooling",
     "slug": "budget-choice-heating-cooling",
-    "website": "www.budgetchoiceheating.ca",
+    "website": "https://www.budgetchoiceheating.ca",
     "phone": "+1-250-617-9510",
     "city": "Prince George",
     "region": "Interior",
@@ -2668,7 +2668,7 @@
   {
     "company_name": "Prince George Plumbing & Heating Ltd.",
     "slug": "prince-george-plumbing-heating-ltd",
-    "website": "pgplumbingandheating.ca",
+    "website": "https://pgplumbingandheating.ca",
     "phone": "+1-250-614-3767",
     "city": "Prince George",
     "region": "Interior",
@@ -2693,7 +2693,7 @@
   {
     "company_name": "Complete Heating & Air Conditioning",
     "slug": "complete-heating-air-conditioning",
-    "website": "completeheating.ca",
+    "website": "https://completeheating.ca",
     "phone": "+1-604-859-1501",
     "city": "Abbotsford",
     "region": "Lower Mainland",
@@ -2720,7 +2720,7 @@
   {
     "company_name": "AirVantage Heating & Cooling",
     "slug": "airvantage-heating-cooling",
-    "website": "callairvantage.ca",
+    "website": "https://callairvantage.ca",
     "phone": "+1-604-200-0178",
     "city": "Abbotsford",
     "region": "Lower Mainland",
@@ -2745,7 +2745,7 @@
   {
     "company_name": "Wagner Heating & Air Ltd.",
     "slug": "wagner-heating-air-ltd",
-    "website": "wagnerheating.com",
+    "website": "https://wagnerheating.com",
     "phone": "+1-604-855-9516",
     "city": "Abbotsford",
     "region": "Lower Mainland",
@@ -2770,7 +2770,7 @@
   {
     "company_name": "Luxury Climate",
     "slug": "luxury-climate",
-    "website": "www.luxuryclimate.ca",
+    "website": "https://www.luxuryclimate.ca",
     "phone": "+1-604-991-4328",
     "city": "Agassiz",
     "region": "Lower Mainland",
@@ -2799,7 +2799,7 @@
   {
     "company_name": "Rep-Air Heating & Cooling",
     "slug": "rep-air-heating-cooling",
-    "website": "www.repairheatingandcooling.com",
+    "website": "https://www.repairheatingandcooling.com",
     "phone": "+1-778-728-1476",
     "city": "Mission",
     "region": "Lower Mainland",
@@ -2824,7 +2824,7 @@
   {
     "company_name": "John Mulder Heating & Air Conditioning Ltd.",
     "slug": "john-mulder-heating-air-conditioning-ltd",
-    "website": "www.johnmulderheating.ca",
+    "website": "https://www.johnmulderheating.ca",
     "phone": "+1-604-792-1767",
     "city": "Chilliwack",
     "region": "Lower Mainland",
@@ -2849,7 +2849,7 @@
   {
     "company_name": "Chilliwack Heating Ltd. & JC Fireplaces and Spas",
     "slug": "chilliwack-heating-ltd-jc-fireplaces-and-spas",
-    "website": "www.chilliwackheating.ca",
+    "website": "https://www.chilliwackheating.ca",
     "phone": "+1-604-426-0189",
     "city": "Chilliwack",
     "region": "Lower Mainland",
@@ -2874,7 +2874,7 @@
   {
     "company_name": "Neels Heating & Supplies Ltd.",
     "slug": "neels-heating-supplies-ltd",
-    "website": "www.neelsheating.com",
+    "website": "https://www.neelsheating.com",
     "phone": "+1-604-792-1951",
     "city": "Chilliwack",
     "region": "Lower Mainland",
@@ -2899,7 +2899,7 @@
   {
     "company_name": "High Standard Heating & Cooling Corporation",
     "slug": "high-standard-heating-cooling-corporation",
-    "website": "highstandardhvac.ca",
+    "website": "https://highstandardhvac.ca",
     "phone": "+1-604-799-5377",
     "city": "Chilliwack",
     "region": "Lower Mainland",
@@ -2924,7 +2924,7 @@
   {
     "company_name": "Chill-Air Conditioning (2014) Ltd.",
     "slug": "chill-air-conditioning-2014-ltd",
-    "website": "www.chill-air.com",
+    "website": "https://www.chill-air.com",
     "phone": "+1-604-792-6783",
     "city": "Chilliwack",
     "region": "Lower Mainland",
@@ -2949,7 +2949,7 @@
   {
     "company_name": "RPR Heating & Air Conditioning",
     "slug": "rpr-heating-air-conditioning",
-    "website": "www.rprheating.com",
+    "website": "https://www.rprheating.com",
     "phone": "+1-250-492-3677",
     "city": "Penticton",
     "region": "Interior",
@@ -2974,7 +2974,7 @@
   {
     "company_name": "All Valley Heat Pumps & AC",
     "slug": "all-valley-heat-pumps-ac",
-    "website": "www.allvalleyheatpumps.com",
+    "website": "https://www.allvalleyheatpumps.com",
     "phone": "+1-250-493-4822",
     "city": "Penticton",
     "region": "Interior",
@@ -2999,7 +2999,7 @@
   {
     "company_name": "Fehling's Sheet Metal Ltd.",
     "slug": "fehlings-sheet-metal-ltd",
-    "website": "www.fehlingssheetmetal.com",
+    "website": "https://www.fehlingssheetmetal.com",
     "phone": "+1-250-492-8076",
     "city": "Penticton",
     "region": "Interior",
@@ -3024,7 +3024,7 @@
   {
     "company_name": "Valleywide Climate Solutions Ltd.",
     "slug": "valleywide-climate-solutions-ltd",
-    "website": "valleywideltd.ca",
+    "website": "https://valleywideltd.ca",
     "phone": "+1-250-328-2115",
     "city": "Kaleden",
     "region": "Interior",
@@ -3049,7 +3049,7 @@
   {
     "company_name": "Sarsons Mechanical Services Ltd.",
     "slug": "sarsons-mechanical-services-ltd",
-    "website": "www.sarsonsmechanical.com",
+    "website": "https://www.sarsonsmechanical.com",
     "phone": "+1-250-497-8858",
     "city": "Okanagan Falls",
     "region": "Interior",
@@ -3075,7 +3075,7 @@
   {
     "company_name": "Applewood Heating & Air Conditioning Ltd.",
     "slug": "applewood-heating-air-conditioning-ltd",
-    "website": "www.applewoodheating.net",
+    "website": "https://www.applewoodheating.net",
     "phone": "+1-250-549-4777",
     "city": "Vernon",
     "region": "Interior",
@@ -3100,7 +3100,7 @@
   {
     "company_name": "Air Tech Plumbing Heating Cooling & Green Energy",
     "slug": "air-tech-plumbing-heating-cooling-green-energy",
-    "website": "www.airtechmechanical.ca",
+    "website": "https://www.airtechmechanical.ca",
     "phone": "+1-250-542-7255",
     "city": "Vernon",
     "region": "Interior",
@@ -3125,7 +3125,7 @@
   {
     "company_name": "Coldstream Mechanical",
     "slug": "coldstream-mechanical",
-    "website": "www.coldstreammech.com",
+    "website": "https://www.coldstreammech.com",
     "phone": "+1-250-558-9134",
     "city": "Vernon",
     "region": "Interior",
@@ -3151,7 +3151,7 @@
   {
     "company_name": "DBL J HVAC/R",
     "slug": "dbl-j-hvac-r",
-    "website": "www.dbljhvacr.com",
+    "website": "https://www.dbljhvacr.com",
     "phone": "+1-250-503-8154",
     "city": "Vernon",
     "region": "Interior",
@@ -3176,7 +3176,7 @@
   {
     "company_name": "Proair Heating & Cooling",
     "slug": "proair-heating-cooling",
-    "website": "saproair.ca",
+    "website": "https://saproair.ca",
     "phone": "+1-250-832-6911",
     "city": "Salmon Arm",
     "region": "Interior",
@@ -3201,7 +3201,7 @@
   {
     "company_name": "EcoFlow Plumbing and Heating",
     "slug": "ecoflow-plumbing-and-heating",
-    "website": "www.ecoflowbc.ca",
+    "website": "https://www.ecoflowbc.ca",
     "phone": "+1-250-832-5846",
     "city": "Salmon Arm",
     "region": "Interior",
@@ -3226,7 +3226,7 @@
   {
     "company_name": "Home Comfort Centre",
     "slug": "home-comfort-centre",
-    "website": "www.homecomfortcentre.ca",
+    "website": "https://www.homecomfortcentre.ca",
     "phone": "+1-250-804-4328",
     "city": "Salmon Arm",
     "region": "Interior",
@@ -3252,7 +3252,7 @@
   {
     "company_name": "North Broadview Plumbing & Heating Ltd.",
     "slug": "north-broadview-plumbing-heating-ltd",
-    "website": "www.northbroadview.ca",
+    "website": "https://www.northbroadview.ca",
     "phone": "+1-250-832-0255",
     "city": "Salmon Arm",
     "region": "Interior",
@@ -3278,7 +3278,7 @@
   {
     "company_name": "Bee's Knees Plumbing HVAC & Electrical",
     "slug": "bees-knees-plumbing-hvac-electrical",
-    "website": "www.beeskneesplumbingandheating.ca",
+    "website": "https://www.beeskneesplumbingandheating.ca",
     "phone": "+1-778-505-2547",
     "city": "Vernon",
     "region": "Interior",
