@@ -7,6 +7,7 @@ export interface BrandData {
   dealerNetwork: 'strong' | 'moderate' | 'limited' | 'rare';
   coldClimateRated: boolean;
   specialty?: string;    // e.g. "Hydronic", "Geothermal", "Commercial VRF"
+  website?: string;      // Manufacturer's official website
 }
 
 export const brands: BrandData[] = [
@@ -19,6 +20,7 @@ export const brands: BrandData[] = [
     bcNotes: "World's largest HVAC manufacturer. Strong cold-climate lineup and a wide BC dealer network. Daikin acquired Goodman/Amana, so some dealers carry all three lines.",
     dealerNetwork: 'strong',
     coldClimateRated: true,
+    website: 'https://www.daikin.ca',
   },
   {
     slug: 'lennox',
@@ -28,6 +30,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Premium North American brand with a strong ducted lineup. Variable-speed technology and SunSource solar-ready models. Well-represented across BC through Premier and Elite dealer programs.',
     dealerNetwork: 'strong',
     coldClimateRated: true,
+    website: 'https://www.lennox.com',
   },
   {
     slug: 'carrier',
@@ -37,6 +40,7 @@ export const brands: BrandData[] = [
     bcNotes: 'One of the oldest HVAC brands in North America. Strong in ducted retrofit market. Greenspeed Intelligence technology offers variable-capacity performance. Wide dealer network across BC.',
     dealerNetwork: 'strong',
     coldClimateRated: true,
+    website: 'https://www.carrier.com/residential/en/ca/',
   },
   {
     slug: 'mitsubishi',
@@ -47,6 +51,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'strong',
     coldClimateRated: true,
     specialty: 'Cold Climate / VRF',
+    website: 'https://www.mitsubishicomfort.com',
   },
   {
     slug: 'fujitsu',
@@ -56,6 +61,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Compact indoor units and competitive pricing. Halcyon series well-regarded for reliability. Good fit for coastal BC climates. Fujitsu Elite dealers certified for advanced installations.',
     dealerNetwork: 'moderate',
     coldClimateRated: true,
+    website: 'https://www.fujitsugeneral.com/ca/',
   },
   {
     slug: 'trane',
@@ -65,6 +71,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Premium American brand known for durability. Strong in commercial and residential ducted systems. "It\'s Hard to Stop a Trane" reflects reputation for long equipment life. Active dealer network in BC.',
     dealerNetwork: 'moderate',
     coldClimateRated: true,
+    website: 'https://www.trane.com/residential/en/',
   },
   {
     slug: 'york',
@@ -74,6 +81,7 @@ export const brands: BrandData[] = [
     bcNotes: 'York (a Johnson Controls brand) offers a full residential and light commercial lineup. York Certified Comfort Expert (CCE) dealers operate across BC. Good cold-climate options in the TH series.',
     dealerNetwork: 'moderate',
     coldClimateRated: true,
+    website: 'https://www.york.com',
   },
   {
     slug: 'american-standard',
@@ -83,6 +91,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Sister brand to Trane (same parent company, Trane Technologies). Shares engineering with Trane but positioned at a slightly lower price point. Reliable ducted systems with a solid BC dealer base.',
     dealerNetwork: 'moderate',
     coldClimateRated: true,
+    website: 'https://www.americanstandardair.com',
   },
   {
     slug: 'bryant',
@@ -92,6 +101,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Bryant is a sister brand of Carrier (same parent: Carrier Global). Shares core engineering and is positioned for value-focused buyers. Bryant Factory Authorized Dealers active across BC.',
     dealerNetwork: 'moderate',
     coldClimateRated: true,
+    website: 'https://www.bryant.com',
   },
   {
     slug: 'navien',
@@ -102,6 +112,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'moderate',
     coldClimateRated: false,
     specialty: 'Hydronic / Combi Boiler',
+    website: 'https://www.navien.com/ca',
   },
   {
     slug: 'goodman',
@@ -111,6 +122,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Owned by Daikin since 2012. Value-tier brand sharing Daikin manufacturing. Popular for budget-conscious new construction. Many Daikin dealers also carry Goodman.',
     dealerNetwork: 'moderate',
     coldClimateRated: true,
+    website: 'https://www.goodmanmfg.com',
   },
   {
     slug: 'rheem',
@@ -120,6 +132,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Well-known for hot water heaters, Rheem also offers a full residential HVAC lineup. EcoNet smart controls and heat pump water heater lineup gaining traction in BC.',
     dealerNetwork: 'moderate',
     coldClimateRated: true,
+    website: 'https://www.rheem.com/ca/',
   },
   {
     slug: 'samsung',
@@ -130,6 +143,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'limited',
     coldClimateRated: true,
     specialty: 'VRF / Commercial',
+    website: 'https://www.samsung.com/ca/business/climate-solutions/',
   },
 
   // ── Mid-tier / regional brands ─────────────────────────────────────────
@@ -141,6 +155,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Amana is owned by Daikin alongside Goodman. Offers a lifetime compressor warranty on select models — unusual in the industry. Good value for residential ducted installs.',
     dealerNetwork: 'limited',
     coldClimateRated: true,
+    website: 'https://www.amana-hac.com',
   },
   {
     slug: 'continental',
@@ -160,6 +175,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'rare',
     coldClimateRated: true,
     specialty: 'Air-to-Water / Hydronic',
+    website: 'https://www.bosch-thermotechnology.com/ca/en/',
   },
   {
     slug: 'lg',
@@ -169,6 +185,7 @@ export const brands: BrandData[] = [
     bcNotes: 'LG offers a wide residential and commercial lineup. Art Cool premium aesthetic models popular in design-forward BC homes. Multi V VRF system used in light commercial. Growing BC installer network.',
     dealerNetwork: 'limited',
     coldClimateRated: true,
+    website: 'https://www.lg.com/ca_en/air-conditioners',
   },
   {
     slug: 'viessmann',
@@ -179,6 +196,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'rare',
     coldClimateRated: true,
     specialty: 'Air-to-Water / Hydronic',
+    website: 'https://www.viessmann.ca',
   },
   {
     slug: 'hitachi',
@@ -188,6 +206,7 @@ export const brands: BrandData[] = [
     bcNotes: "Hitachi's HVAC division (now part of Johnson Controls-Hitachi) offers a competitive ductless lineup with excellent quiet operation. Less prominent in BC than other Japanese brands but gaining ground.",
     dealerNetwork: 'limited',
     coldClimateRated: true,
+    website: 'https://www.jci-hitachi.com',
   },
   {
     slug: 'napoleon',
@@ -197,6 +216,7 @@ export const brands: BrandData[] = [
     bcNotes: "Canadian-made brand (Barrie, Ontario) with growing market presence in BC. Napoleon's heat pump lineup offers cold-climate performance at competitive price points. Strong Canadian patriot appeal.",
     dealerNetwork: 'limited',
     coldClimateRated: true,
+    website: 'https://www.napoleon.com/en-CA/heat-pumps',
   },
   {
     slug: 'moovair',
@@ -206,6 +226,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Canadian brand (Quebec-based) offering budget-friendly ductless mini-splits. ENERGY STAR certified models available. Growing dealer network in BC through HVAC wholesalers.',
     dealerNetwork: 'limited',
     coldClimateRated: true,
+    website: 'https://www.moovair.com',
   },
   {
     slug: 'tosot',
@@ -215,6 +236,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Tosot is a subsidiary of GREE, the world\'s largest AC manufacturer. Competitive pricing with solid cold-climate specs. A newer entrant to BC market with growing dealer interest.',
     dealerNetwork: 'limited',
     coldClimateRated: true,
+    website: 'https://www.tosot.com',
   },
   {
     slug: 'ge',
@@ -224,6 +246,7 @@ export const brands: BrandData[] = [
     bcNotes: "GE Appliances (now owned by Haier) re-entered the HVAC market with a ductless and ducted lineup. GE Profile heat pumps gaining attention in BC for smart home integration.",
     dealerNetwork: 'limited',
     coldClimateRated: true,
+    website: 'https://www.geappliances.com/ge/heat-pumps/',
   },
   {
     slug: 'buderus',
@@ -234,6 +257,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'rare',
     coldClimateRated: true,
     specialty: 'Hydronic / Boiler',
+    website: 'https://www.buderus.com/en/',
   },
   {
     slug: 'rinnai',
@@ -244,6 +268,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'limited',
     coldClimateRated: false,
     specialty: 'Hydronic / Combi',
+    website: 'https://www.rinnai.ca',
   },
   {
     slug: 'armstrong-air',
@@ -253,6 +278,7 @@ export const brands: BrandData[] = [
     bcNotes: "Armstrong Air is part of the Allied Air Enterprises family (Lennox International). Shares manufacturing with ADP and Concord. Less common in BC but found with select long-standing dealers.",
     dealerNetwork: 'rare',
     coldClimateRated: true,
+    website: 'https://www.armstrongair.com',
   },
   {
     slug: 'tempstar',
@@ -262,6 +288,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Tempstar is a sister brand to Carrier, Bryant, and Heil (all under Carrier Global). Equivalent equipment at varied price points. Rare in BC but available through some Carrier network dealers.',
     dealerNetwork: 'rare',
     coldClimateRated: true,
+    website: 'https://www.tempstar.com',
   },
   {
     slug: 'keeprite',
@@ -271,6 +298,7 @@ export const brands: BrandData[] = [
     bcNotes: 'KeepRite (part of International Comfort Products / Carrier) is a Canadian-market brand often found with contractors serving the Prairie and BC Interior markets.',
     dealerNetwork: 'rare',
     coldClimateRated: true,
+    website: 'https://www.keepriteheating.ca',
   },
   {
     slug: 'nordic',
@@ -281,6 +309,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'rare',
     coldClimateRated: true,
     specialty: 'Geothermal / Ground-Source',
+    website: 'https://www.nordicghp.com',
   },
 
   // ── IBC Technologies (BC-local) ────────────────────────────────────────
@@ -293,6 +322,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'moderate',
     coldClimateRated: false,
     specialty: 'Hydronic / Combi Boiler',
+    website: 'https://www.ibc.ca',
   },
 
   // ── ICP / Carrier Global family ────────────────────────────────────────
@@ -304,6 +334,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Heil is part of International Comfort Products (ICP), owned by Carrier Global. Shares core engineering with KeepRite, Tempstar, and ComfortMaker. Primarily a US brand — less commonly seen in BC than its Canadian sibling KeepRite, but available through ICP network dealers.',
     dealerNetwork: 'rare',
     coldClimateRated: true,
+    website: 'https://www.heil-hvac.com',
   },
   {
     slug: 'comfortmaker',
@@ -313,6 +344,7 @@ export const brands: BrandData[] = [
     bcNotes: 'ComfortMaker is an ICP/Carrier Global brand positioned as a value-tier residential system. Shares components with Heil and KeepRite. Occasionally found in BC through contractors who source from ICP distributors.',
     dealerNetwork: 'rare',
     coldClimateRated: true,
+    website: 'https://www.comfortmaker.com',
   },
   {
     slug: 'day-and-night',
@@ -322,6 +354,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Day & Night is an ICP/Carrier Global brand historically strong in Western North America. Shares engineering with Carrier and Bryant. Rare in BC but may be sourced through Carrier network dealers for customers specifically requesting it.',
     dealerNetwork: 'rare',
     coldClimateRated: true,
+    website: 'https://www.dayandnightair.com',
   },
   {
     slug: 'payne',
@@ -331,6 +364,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Payne is the entry-level brand under Carrier Global, positioned for budget-conscious buyers. Shares core components with Carrier and Bryant at a lower price point. Uncommon in BC but can be sourced through Carrier network distributors.',
     dealerNetwork: 'rare',
     coldClimateRated: true,
+    website: 'https://www.payne.com',
   },
   {
     slug: 'arcoaire',
@@ -340,6 +374,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Arcoaire is an older ICP/Carrier Global regional brand, once common in Eastern and Midwestern US markets. Rarely specified in BC but occasionally encountered in retrofit work where original equipment was Arcoaire.',
     dealerNetwork: 'rare',
     coldClimateRated: false,
+    website: 'https://www.arcoaire.com',
   },
   {
     slug: 'grandaire',
@@ -349,6 +384,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Grandaire is an ICP/Carrier Global value brand distributed through specific wholesale channels. Very uncommon in BC. Shares components with Heil and KeepRite at the budget tier.',
     dealerNetwork: 'rare',
     coldClimateRated: false,
+    website: 'https://www.grandaire.com',
   },
 
   // ── Lennox / Allied Air family ─────────────────────────────────────────
@@ -360,6 +396,7 @@ export const brands: BrandData[] = [
     bcNotes: 'AirEase is an Allied Air Enterprises brand (Lennox International family). Positioned as a value alternative to Lennox for contractors who want Allied supply chain pricing. Rare in BC but available through Lennox network distributors.',
     dealerNetwork: 'rare',
     coldClimateRated: true,
+    website: 'https://www.airease.com',
   },
   {
     slug: 'concord',
@@ -369,6 +406,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Concord is part of Allied Air Enterprises (Lennox International). Shares manufacturing with Armstrong Air and AirEase. Value-tier residential ducted systems. Seldom seen in BC outside of Lennox-affiliated contractors.',
     dealerNetwork: 'rare',
     coldClimateRated: true,
+    website: 'https://www.concordhvac.com',
   },
 
   // ── Budget / emerging / Chinese-manufactured brands ────────────────────
@@ -380,6 +418,7 @@ export const brands: BrandData[] = [
     bcNotes: "Gree is the world's largest air conditioner manufacturer and parent company of Tosot. Gree-branded units are sold directly through select BC HVAC wholesalers. Competitive cold-climate specs and improving build quality. Growing acceptance among budget-focused BC contractors.",
     dealerNetwork: 'limited',
     coldClimateRated: true,
+    website: 'https://www.gree.com',
   },
   {
     slug: 'midea',
@@ -389,6 +428,7 @@ export const brands: BrandData[] = [
     bcNotes: "Midea is one of China's largest appliance and HVAC manufacturers and a major OEM supplier to many North American brands. Midea-branded systems are sold through select Canadian distributors. Competitive pricing with improving cold-climate performance.",
     dealerNetwork: 'limited',
     coldClimateRated: true,
+    website: 'https://www.midea.com/ca',
   },
   {
     slug: 'pioneer',
@@ -398,6 +438,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Pioneer mini-splits (distributed by Parker Davis HVAC) are popular in the Canadian DIY and budget-contractor market. Sold through online retailers and some HVAC wholesalers. Good value for mild-climate zones; cold-climate performance varies by model.',
     dealerNetwork: 'limited',
     coldClimateRated: false,
+    website: 'https://www.pioneerminiairco.com',
   },
   {
     slug: 'mrcool',
@@ -407,6 +448,7 @@ export const brands: BrandData[] = [
     bcNotes: 'MrCool (manufactured in USA/China partnership) popularized the DIY mini-split category with pre-charged line sets. Growing presence in BC through online retail and some HVAC contractors. DIY Universal series allows homeowner installation in some jurisdictions.',
     dealerNetwork: 'limited',
     coldClimateRated: true,
+    website: 'https://www.mrcool.com',
   },
   {
     slug: 'panasonic',
@@ -417,6 +459,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'limited',
     coldClimateRated: true,
     specialty: 'Cold Climate',
+    website: 'https://www.panasonic.com/ca/consumer/air-conditioners.html',
   },
   {
     slug: 'friedrich',
@@ -426,6 +469,7 @@ export const brands: BrandData[] = [
     bcNotes: 'Friedrich is a premium US room air conditioner and ductless mini-split brand. Less common in BC than in the US market. Friedrich Kühl and Ductless Split systems found occasionally with contractors serving high-end residential clients.',
     dealerNetwork: 'rare',
     coldClimateRated: false,
+    website: 'https://www.friedrich.com',
   },
   {
     slug: 'olimpia-splendid',
@@ -436,6 +480,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'rare',
     coldClimateRated: false,
     specialty: 'Monoblock / Portable',
+    website: 'https://www.olimpiasplendid.com',
   },
 
   // ── Geothermal / Ground-Source specialty ──────────────────────────────
@@ -448,6 +493,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'rare',
     coldClimateRated: true,
     specialty: 'Geothermal / Ground-Source',
+    website: 'https://www.waterfurnace.com',
   },
   {
     slug: 'climatemaster',
@@ -458,6 +504,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'rare',
     coldClimateRated: true,
     specialty: 'Geothermal / Ground-Source',
+    website: 'https://www.climatemaster.com',
   },
 
   // ── Commercial / VRF specialty ─────────────────────────────────────────
@@ -470,6 +517,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'limited',
     coldClimateRated: true,
     specialty: 'VRF / Commercial',
+    website: 'https://www.toshibacarrier.com',
   },
   {
     slug: 'panasonic-vrf',
@@ -480,6 +528,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'rare',
     coldClimateRated: true,
     specialty: 'VRF / Commercial',
+    website: 'https://www.panasonic.com/ca/business/hvac.html',
   },
   {
     slug: 'midea-commercial',
@@ -490,6 +539,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'rare',
     coldClimateRated: true,
     specialty: 'VRF / Commercial',
+    website: 'https://www.midea.com/ca',
   },
 
   // ── Heat pump water heaters ────────────────────────────────────────────
@@ -502,6 +552,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'limited',
     coldClimateRated: true,
     specialty: 'Heat Pump Water Heater',
+    website: 'https://www.stiebel-eltron.ca',
   },
   {
     slug: 'nyle',
@@ -512,6 +563,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'rare',
     coldClimateRated: false,
     specialty: 'Commercial Heat Pump Water Heater',
+    website: 'https://www.nyle.com',
   },
 
   // ── Radiant / hydronic specialty ──────────────────────────────────────
@@ -524,6 +576,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'limited',
     coldClimateRated: false,
     specialty: 'Radiant Floor / Hydronic Controls',
+    website: 'https://www.wattsradiant.com',
   },
   {
     slug: 'caleffi',
@@ -534,6 +587,7 @@ export const brands: BrandData[] = [
     dealerNetwork: 'limited',
     coldClimateRated: false,
     specialty: 'Hydronic Components',
+    website: 'https://www.caleffi.com/usa/en',
   },
 ];
 

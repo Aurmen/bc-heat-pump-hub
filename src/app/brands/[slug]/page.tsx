@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { brands, getBrandBySlug, DEALER_NETWORK_LABEL } from '@/data/brands';
+import OutboundLink from '@/components/OutboundLink';
 import { getAllListings } from '@/lib/utils';
 import CompanyCard from '@/components/CompanyCard';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
@@ -96,6 +97,19 @@ export default async function BrandPage({
             )}
           </div>
           <p className="text-lg text-gray-600 max-w-3xl">{brand.bcNotes}</p>
+          {brand.website && (
+            <div className="mt-3">
+              <OutboundLink
+                href={brand.website}
+                company={brand.name}
+                city="manufacturer"
+                eventName="manufacturer_website_click"
+                className="inline-flex items-center gap-1 text-sm text-primary-600 hover:text-primary-700 font-medium"
+              >
+                Visit {brand.name} official website →
+              </OutboundLink>
+            </div>
+          )}
         </div>
 
         {/* Brand stats bar */}
