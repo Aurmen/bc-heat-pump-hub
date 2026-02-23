@@ -4,6 +4,38 @@ export type AudienceType = 'residential' | 'commercial' | 'both' | 'unknown';
 
 export type TSBCLicenseStatus = 'active' | 'expiring_soon' | 'expired' | 'unknown';
 
+export interface ServiceReliability {
+  last_assessed: string | null; // ISO date — null means not yet assessed
+  // Licensing (20 pts)
+  licensing_verified: boolean | null;
+  insurance_verified: boolean | null;
+  // Availability (20 pts)
+  emergency_24_7: boolean | null;
+  same_day_service: boolean | null;
+  weekend_service: boolean | null;
+  service_truck_count: number | null;
+  // HP Experience (15 pts)
+  hp_installs_per_year: '<10' | '10-20' | '20-50' | '50+' | null;
+  brand_certifications: string[];
+  hydronic_experience: boolean | null;
+  // Service Quality (15 pts)
+  written_diagnostics: boolean | null;
+  performance_testing_offered: boolean | null;
+  maintenance_plans: boolean | null;
+  // Customer History (15 pts)
+  google_rating: number | null;
+  google_review_count: number | null;
+  complaint_pattern_flag: boolean | null;
+  // Specialty (10 pts)
+  condo_strata_experience: boolean | null;
+  commercial_capable: boolean | null;
+  hydronic_boiler_service: boolean | null;
+  // Documentation (5 pts)
+  digital_records: boolean | null;
+  photo_documentation: boolean | null;
+  permit_tracking: boolean | null;
+}
+
 export interface DirectoryListing {
   company_name: string;
   slug: string;
@@ -26,6 +58,8 @@ export interface DirectoryListing {
   tsbc_license_expiry?: string; // ISO date string
   tsbc_enforcement_actions?: number; // Number of enforcement actions (0 = clean record)
   tsbc_last_verified?: string; // ISO date string - when we last verified the license
+  // Service Reliability Score — null until a real outreach assessment is completed
+  service_reliability?: ServiceReliability | null;
 }
 
 export interface City {

@@ -5,6 +5,7 @@ import { getAllListings, getListingBySlug, formatServiceName, formatPhoneNumber 
 import { BreadcrumbJsonLd, LocalBusinessJsonLd } from '@/components/JsonLd';
 import TSBCBadge from '@/components/TSBCBadge';
 import OutboundLink from '@/components/OutboundLink';
+import ReliabilityBadge from '@/components/ReliabilityBadge';
 
 export async function generateStaticParams() {
   const listings = getAllListings();
@@ -70,6 +71,13 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
         {listing.tsbc_verified && (
           <div className="mb-8">
             <TSBCBadge listing={listing} variant="full" />
+          </div>
+        )}
+
+        {/* Service Reliability Score — only shown after outreach assessment */}
+        {listing.service_reliability?.last_assessed && (
+          <div className="mb-8">
+            <ReliabilityBadge reliability={listing.service_reliability} variant="full" />
           </div>
         )}
 

@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { DirectoryListing, AudienceType } from '@/types/directory';
 import { formatServiceName, formatPhoneNumber, inferAudience } from '@/lib/utils';
+import { getListingReliability } from '@/lib/reliability';
 import TSBCBadge from './TSBCBadge';
+import ReliabilityBadge from './ReliabilityBadge';
 
 interface CompanyCardProps {
   listing: DirectoryListing;
@@ -10,6 +12,7 @@ interface CompanyCardProps {
 
 export default function CompanyCard({ listing, audienceContext }: CompanyCardProps) {
   const listingAudience = inferAudience(listing);
+  const reliability = getListingReliability(listing);
 
   // Determine what to emphasize based on audience context
   const emphasizeEmergency = audienceContext === 'residential';
@@ -53,6 +56,13 @@ export default function CompanyCard({ listing, audienceContext }: CompanyCardPro
               Professional licenses verified
             </p>
           )}
+        </div>
+      )}
+
+      {/* Reliability Score Badge — only shown after outreach assessment */}
+      {reliability && listing.service_reliability && (
+        <div className="mb-3">
+          <ReliabilityBadge reliability={listing.service_reliability} variant="compact" />
         </div>
       )}
 
