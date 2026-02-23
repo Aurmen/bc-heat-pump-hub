@@ -6,6 +6,7 @@ import OutboundLink from '@/components/OutboundLink';
 import { getAllListings } from '@/lib/utils';
 import CompanyCard from '@/components/CompanyCard';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
+import { getSupplyHousesByBrand } from '@/data/supply-houses';
 
 export async function generateStaticParams() {
   return brands.map(b => ({ slug: b.slug }));
@@ -62,6 +63,8 @@ export default async function BrandPage({
     l.brands_supported.includes('Multiple') &&
     !dealers.find(d => d.slug === l.slug)
   );
+
+  const supplyHousesForBrand = getSupplyHousesByBrand(brand.name);
 
   const breadcrumbItems = [
     { name: 'Home', url: 'https://canadianheatpumphub.ca' },
@@ -194,6 +197,32 @@ export default async function BrandPage({
             <Link href="/directory" className="text-sm text-primary-600 hover:text-primary-700 font-medium">
               View all BC installers →
             </Link>
+          </div>
+        )}
+
+        {/* Where to source this brand in BC */}
+        {supplyHousesForBrand.length > 0 && (
+          <div className="bg-white border border-gray-200 rounded-lg p-5 mb-8">
+            <h3 className="font-semibold text-gray-900 mb-2">
+              Where to source {brand.name} in BC
+            </h3>
+            <p className="text-sm text-gray-600 mb-3">
+              These wholesale distributors carry {brand.name} equipment across British Columbia:
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {supplyHousesForBrand.map(house => (
+                <Link
+                  key={house.slug}
+                  href={`/supply-houses/${house.slug}`}
+                  className="inline-flex items-center gap-1 bg-primary-50 hover:bg-primary-100 text-primary-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  {house.shortName ?? house.name}
+                  <span className="text-xs text-primary-500">
+                    ({house.locations.length} BC locations)
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         )}
 

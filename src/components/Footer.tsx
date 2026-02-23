@@ -30,6 +30,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/brands" className="text-gray-600 hover:text-primary-600">
+                  Brand Comparisons
+                </Link>
+              </li>
+              <li>
+                <Link href="/supply-houses" className="text-gray-600 hover:text-primary-600">
+                  Supply Houses
+                </Link>
+              </li>
+              <li>
                 <Link href="/rebates" className="text-gray-600 hover:text-primary-600">
                   2026 Rebates
                 </Link>

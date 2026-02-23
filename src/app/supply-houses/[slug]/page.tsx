@@ -1,0 +1,212 @@
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import { supplyHouses, getSupplyHouseBySlug, getUniqueCities } from '@/data/supply-houses';
+import { BreadcrumbJsonLd } from '@/components/JsonLd';
+import OutboundLink from '@/components/OutboundLink';
+
+export async function generateStaticParams() {
+  return supplyHouses.map(s => ({ slug: s.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const house = getSupplyHouseBySlug(slug);
+  if (!house) return { title: 'Not Found' };
+
+  const cities = getUniqueCities(house);
+
+  return {
+    title: `${house.name} – HVAC Supply in BC | ${cities.slice(0, 3).join(', ')} & More`,
+    description: `${house.name} (${house.shortName ?? house.name}) operates ${house.locations.length} BC locations stocking ${house.brands.slice(0, 4).join(', ')} and more. Find your nearest branch for wholesale HVAC and heat pump supplies.`,
+    alternates: {
+      canonical: `https://canadianheatpumphub.ca/supply-houses/${house.slug}`,
+    },
+  };
+}
+
+const REGION_ORDER = ['Lower Mainland', 'Vancouver Island', 'Interior', 'Northern BC'] as const;
+
+export default async function SupplyHousePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const house = getSupplyHouseBySlug(slug);
+
+  if (!house) notFound();
+
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
+    { name: 'Supply Houses', url: 'https://canadianheatpumphub.ca/supply-houses' },
+    { name: house.shortName ?? house.name, url: `https://canadianheatpumphub.ca/supply-houses/${house.slug}` },
+  ];
+
+  // Group locations by region
+  const byRegion: Record<string, typeof house.locations> = {};
+  for (const loc of house.locations) {
+    if (!byRegion[loc.region]) byRegion[loc.region] = [];
+    byRegion[loc.region].push(loc);
+  }
+
+  const cities = getUniqueCities(house);
+
+  return (
+    <>
+      <BreadcrumbJsonLd items={breadcrumbItems} />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <nav className="text-sm text-gray-500 mb-6">
+          <Link href="/" className="hover:text-primary-600">Home</Link>
+          <span className="mx-2">/</span>
+          <Link href="/supply-houses" className="hover:text-primary-600">Supply Houses</Link>
+          <span className="mx-2">/</span>
+          <span>{house.shortName ?? house.name}</span>
+        </nav>
+
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-3">
+            {house.name}
+            {house.shortName && house.shortName !== house.name && (
+              <span className="ml-3 text-2xl font-normal text-gray-500">({house.shortName})</span>
+            )}
+          </h1>
+          <p className="text-xl text-gray-600 mb-4">{house.description}</p>
+          <OutboundLink
+            href={house.website}
+            company={house.name}
+            city="supply-house"
+            eventName="supply_house_website_click"
+            className="inline-flex items-center gap-1 text-primary-600 hover:text-primary-700 font-medium"
+          >
+            Visit {house.shortName ?? house.name} website →
+          </OutboundLink>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-4 mb-10">
+          <div className="bg-white border border-gray-200 rounded-lg p-5 text-center">
+            <div className="text-3xl font-bold text-primary-600">{house.locations.length}</div>
+            <div className="text-sm text-gray-500 mt-1">BC locations</div>
+          </div>
+          <div className="bg-white border border-gray-200 rounded-lg p-5 text-center">
+            <div className="text-3xl font-bold text-primary-600">{cities.length}</div>
+            <div className="text-sm text-gray-500 mt-1">Cities served</div>
+          </div>
+          <div className="bg-white border border-gray-200 rounded-lg p-5 text-center">
+            <div className="text-3xl font-bold text-primary-600">{house.brands.length}</div>
+            <div className="text-sm text-gray-500 mt-1">Brands distributed</div>
+          </div>
+        </div>
+
+        {/* Brands carried */}
+        {house.brands.length > 0 && (
+          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">Brands Distributed</h2>
+            <div className="flex flex-wrap gap-2">
+              {house.brands.map(brand => (
+                <Link
+                  key={brand}
+                  href={`/brands/${brand.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="inline-block bg-primary-50 hover:bg-primary-100 text-primary-700 px-4 py-2 rounded-lg font-medium text-sm transition-colors"
+                >
+                  {brand}
+                </Link>
+              ))}
+            </div>
+            <p className="text-xs text-gray-500 mt-3">
+              Click a brand to see certified installers and dealer info in BC.
+            </p>
+          </div>
+        )}
+
+        {/* Locations by region */}
+        <div className="mb-10">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            BC Branch Locations
+          </h2>
+
+          {REGION_ORDER.filter(r => byRegion[r]?.length > 0).map(region => (
+            <div key={region} className="mb-8">
+              <h3 className="text-lg font-semibold text-gray-800 mb-3 pb-2 border-b border-gray-200">
+                {region}
+                <span className="ml-2 text-sm font-normal text-gray-500">
+                  ({byRegion[region].length} {byRegion[region].length === 1 ? 'branch' : 'branches'})
+                </span>
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {byRegion[region].map((loc, i) => (
+                  <div
+                    key={i}
+                    className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow"
+                  >
+                    <div className="font-semibold text-gray-900 mb-1">
+                      {loc.label ?? loc.city}
+                    </div>
+                    {loc.label && loc.label !== loc.city && (
+                      <div className="text-xs text-gray-500 mb-1">{loc.city}</div>
+                    )}
+                    <div className="text-sm text-gray-600 mb-2">{loc.address}</div>
+                    <a
+                      href={`tel:${loc.phone.replace(/\D/g, '')}`}
+                      className="text-sm text-primary-600 hover:text-primary-700 font-medium"
+                    >
+                      {loc.phone}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Cities covered */}
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
+          <h2 className="text-lg font-bold text-gray-900 mb-3">Cities Covered</h2>
+          <div className="flex flex-wrap gap-2">
+            {cities.map(city => (
+              <span
+                key={city}
+                className="inline-block bg-white border border-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full"
+              >
+                {city}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Note for homeowners */}
+        <div className="bg-blue-50 border-l-4 border-primary-500 p-5 mb-8">
+          <p className="text-sm text-gray-700">
+            <strong>Note for homeowners:</strong> Supply houses sell wholesale to licensed
+            contractors only. To purchase and install heat pump equipment, you need a qualified
+            HVAC contractor.{' '}
+            <Link href="/directory" className="text-primary-600 hover:text-primary-700 font-medium">
+              Find a BC installer in our directory →
+            </Link>
+          </p>
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-gray-200 flex flex-wrap gap-4">
+          <Link
+            href="/supply-houses"
+            className="text-primary-600 hover:text-primary-700 font-medium"
+          >
+            ← All supply houses
+          </Link>
+          <Link
+            href="/brands"
+            className="text-primary-600 hover:text-primary-700 font-medium"
+          >
+            Browse heat pump brands →
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+}
