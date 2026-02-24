@@ -27,6 +27,12 @@ const guides = [
   '100-amp-panel-heat-pump-bc',
   '100-amp-panel-heat-pump-vancouver',
   'vancouver-strata-heat-pump-guide',
+  'dual-fuel-vs-all-electric-interior-bc',
+  'heat-pump-onboarding-checklist',
+  'bc-heat-pump-rebate-calculator',
+  'heat-pump-roi-calculator',
+  'bc-step-code-summary',
+  'bc-step-code-city-tracker',
 ];
 
 // Function to import guide content based on slug
@@ -76,6 +82,18 @@ async function importGuideContent(slug: string) {
       return (await import('@/content/guides/100-amp-panel-heat-pump-vancouver.mdx')).default;
     case 'vancouver-strata-heat-pump-guide':
       return (await import('@/content/guides/vancouver-strata-heat-pump-guide.mdx')).default;
+    case 'dual-fuel-vs-all-electric-interior-bc':
+      return (await import('@/content/guides/dual-fuel-vs-all-electric-interior-bc.mdx')).default;
+    case 'heat-pump-onboarding-checklist':
+      return (await import('@/content/guides/heat-pump-onboarding-checklist.mdx')).default;
+    case 'bc-heat-pump-rebate-calculator':
+      return (await import('@/content/guides/bc-heat-pump-rebate-calculator.mdx')).default;
+    case 'heat-pump-roi-calculator':
+      return (await import('@/content/guides/heat-pump-roi-calculator.mdx')).default;
+    case 'bc-step-code-summary':
+      return (await import('@/content/guides/bc-step-code-summary.mdx')).default;
+    case 'bc-step-code-city-tracker':
+      return (await import('@/content/guides/bc-step-code-city-tracker.mdx')).default;
     default:
       return null;
   }
@@ -111,6 +129,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     '100-amp-panel-heat-pump-bc': '100A Panel and Heat Pump Installation in BC',
     '100-amp-panel-heat-pump-vancouver': 'Can I Install a Heat Pump on a 100 Amp Panel? (Surrey & Vancouver Guide)',
     'vancouver-strata-heat-pump-guide': 'Vancouver Condo Heat Pumps: Navigating Strata Approval in 2026',
+    'dual-fuel-vs-all-electric-interior-bc': 'Dual-Fuel vs. All-Electric: Choosing the Right System for the BC Interior',
+    'heat-pump-onboarding-checklist': 'Heat Pump Contractor Onboarding Checklist',
+    'bc-heat-pump-rebate-calculator': '2026 BC Heat Pump Rebate Estimator',
+    'heat-pump-roi-calculator': 'Heat Pump ROI Calculator — BC',
+    'bc-step-code-summary': 'The 2026 BC Step Code: What Homeowners & Builders Need to Know',
+    'bc-step-code-city-tracker': 'BC Step Code City Tracker: Municipal Adoption Levels (2026)',
   };
 
   return {
@@ -163,6 +187,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     '100-amp-panel-heat-pump-bc': '100A Panel and Heat Pump Installation in BC',
     '100-amp-panel-heat-pump-vancouver': 'Can I Install a Heat Pump on a 100 Amp Panel? (Surrey & Vancouver Guide)',
     'vancouver-strata-heat-pump-guide': 'Vancouver Condo Heat Pumps: Navigating Strata Approval in 2026',
+    'dual-fuel-vs-all-electric-interior-bc': 'Dual-Fuel vs. All-Electric: Choosing the Right System for the BC Interior',
+    'heat-pump-onboarding-checklist': 'Heat Pump Contractor Onboarding Checklist',
+    'bc-heat-pump-rebate-calculator': '2026 BC Heat Pump Rebate Estimator',
+    'heat-pump-roi-calculator': 'Heat Pump ROI Calculator — BC',
+    'bc-step-code-summary': 'The 2026 BC Step Code: What Homeowners & Builders Need to Know',
+    'bc-step-code-city-tracker': 'BC Step Code City Tracker: Municipal Adoption Levels (2026)',
   };
 
   const readTimes: Record<string, string> = {
@@ -188,6 +218,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     '100-amp-panel-heat-pump-bc': '12 min read',
     '100-amp-panel-heat-pump-vancouver': '11 min read',
     'vancouver-strata-heat-pump-guide': '13 min read',
+    'dual-fuel-vs-all-electric-interior-bc': '14 min read',
+    'heat-pump-onboarding-checklist': '8 min read',
+    'bc-heat-pump-rebate-calculator': '6 min read',
+    'heat-pump-roi-calculator': '7 min read',
+    'bc-step-code-summary': '11 min read',
+    'bc-step-code-city-tracker': '9 min read',
   };
 
   const descriptions: Record<string, string> = {
@@ -213,6 +249,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     '100-amp-panel-heat-pump-bc': 'Can a 100-amp panel support a heat pump in BC? Load calculation reference, aux heat risks, upgrade roadmap, and EV charger planning for older BC homes on 100A service.',
     '100-amp-panel-heat-pump-vancouver': 'Surrey and Vancouver homeowners on 100A panels: BC Hydro service upgrade costs, Energy Management Systems (EMS), inverter heat pump advantages, and compliant load configurations without a full panel upgrade.',
     'vancouver-strata-heat-pump-guide': 'How to get heat pump approval in a Vancouver or Metro Vancouver strata in 2026. Covers the Dec 31, 2026 EPR deadline, Duty to Accommodate under the BC Human Rights Code, rebate table, and step-by-step strata application process.',
+    'dual-fuel-vs-all-electric-interior-bc': 'Dual-fuel vs. all-electric heat pump systems for BC Interior homes. Balance point physics, 31 kW ghost load math, Kelowna/Kamloops/Vernon system recommendations, and a comparison table for -22°C design temperature conditions.',
+    'heat-pump-onboarding-checklist': '22-point contractor verification checklist for BC homeowners. Covers Manual J load calculations, CEC Section 8 electrical compliance, TSBC permits, CleanBC registration, and AHRI numbers — before you sign any contract.',
+    'bc-heat-pump-rebate-calculator': 'Interactive 2026 BC heat pump rebate estimator. Calculate your OHPA, CleanBC Better Homes, and BC Hydro grant eligibility based on your heating source, property type, and income qualification.',
+    'heat-pump-roi-calculator': 'Interactive heat pump ROI calculator for BC homeowners. Estimate annual savings and payback period based on your current heating source, monthly bills, installation cost, and available rebates.',
+    'bc-step-code-summary': 'How the BC Zero Carbon Step Code (ZCSC) affects heat pump requirements. EL-1 through EL-4 explained, TEDI and envelope performance, and municipal requirements for Vancouver, Saanich, Burnaby, Kelowna, and Kamloops.',
+    'bc-step-code-city-tracker': 'Municipality-by-municipality tracker of BC Energy Step Code and Zero Carbon Step Code adoption levels. Vancouver EL-4, Kelowna EL-2, Surrey EL-1 — and what each level means for mechanical compliance, GHGI, TEDI, and MEUI.',
   };
 
   return (

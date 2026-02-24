@@ -31,7 +31,11 @@
     "tsbc_electrical_license": "",
     "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": ""
+    "tsbc_last_verified": "",
+    "specialties": {
+      "ems_certified": true,
+      "strata_approved": true
+    }
   },
   {
     "company_name": "Eco Pro Heating & Cooling",
@@ -54,7 +58,10 @@
     "tsbc_electrical_license": "",
     "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": ""
+    "tsbc_last_verified": "",
+    "specialties": {
+      "strata_approved": true
+    }
   },
   {
     "company_name": "Greentech Air Conditioning and Heating",
@@ -80,7 +87,10 @@
     "tsbc_electrical_license": "",
     "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": ""
+    "tsbc_last_verified": "",
+    "specialties": {
+      "strata_approved": true
+    }
   },
   {
     "company_name": "TEK Climate Heating & Air Conditioning",
@@ -105,7 +115,10 @@
     "tsbc_electrical_license": "",
     "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": ""
+    "tsbc_last_verified": "",
+    "specialties": {
+      "ems_certified": true
+    }
   },
   {
     "company_name": "Moore & Russell Heating and Air Conditioning",
@@ -129,7 +142,11 @@
     "tsbc_electrical_license": "",
     "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": ""
+    "tsbc_last_verified": "",
+    "specialties": {
+      "ems_certified": true,
+      "strata_approved": true
+    }
   },
   {
     "company_name": "Combined Comfort Systems",

@@ -1,0 +1,224 @@
+import TechnicalDeepDive from '@/components/TechnicalDeepDive';
+
+# Dual-Fuel vs. All-Electric: Choosing the Right System for the BC Interior
+
+*Technical reference for BC Interior homeowners and contractors — February 2026*
+
+---
+
+## The Core Decision
+
+Kelowna, Kamloops, and Vernon homeowners face a choice that Metro Vancouver homeowners do not: their design temperatures drop to **-22°C**, roughly 17°C colder than the coast. That gap changes the engineering of a heating system significantly.
+
+An all-electric air-source heat pump can work in the Interior. The right equipment, sized correctly, with a proper load audit, will function at design temperature. But the margin for error is smaller, the electrical service requirements are higher, and the consequence of a gap in the load calculation is not a tripped breaker — it is a frozen pipe at 3 AM in January.
+
+This guide explains the physics behind that risk and why dual-fuel (hybrid) systems are the technically conservative choice for most Interior BC homes in 2026.
+
+---
+
+## The Physics of the Balance Point
+
+An air-source heat pump moves heat from outdoor air into your home. The colder the outdoor air, the less heat is available to move — and the harder the compressor works to extract it.
+
+**What the data actually shows:**
+
+A cold-climate rated heat pump (Mitsubishi Hyper Heat, Daikin Fit, Bosch IDS) rated to -15°C will typically:
+
+- Deliver **100% of rated capacity** at +8°C
+- Deliver **80–90% of rated capacity** at -5°C (Metro Vancouver design temp)
+- Deliver **60–75% of rated capacity** at -15°C (Interior BC shoulder weather)
+- Deliver **40–60% of rated capacity** at -22°C (Interior BC design temperature)
+
+At the design temperature, the building is losing heat as fast as it can. The heat pump is running at its lowest efficiency and lowest output simultaneously. This is the worst-case scenario, and it is what your system must be designed to handle.
+
+**The balance point** is the outdoor temperature at which the heat pump's output exactly matches the building's heat loss. Below that temperature, output drops faster than the building loses heat — and something has to fill the gap.
+
+For Interior BC homes:
+- Standard ASHP balance point: approximately **-5°C to -10°C**
+- Cold-climate ASHP balance point: approximately **-15°C to -18°C**
+- Interior BC design temperature: **-20°C to -22°C**
+
+The gap between the cold-climate balance point and the design temperature is the problem. Electric resistance backup strips fill that gap electrically. A gas furnace fills it thermally — at roughly 10% of the electrical load.
+
+---
+
+## The Load Problem with All-Electric at Design Temperature
+
+When an all-electric ASHP hits its balance point and the backup strips engage, the electrical demand spike is substantial.
+
+**A typical Interior BC all-electric scenario at design temperature (-22°C):**
+
+| Load | Draw |
+|---|---|
+| ASHP compressor (cold-climate, at design temp) | 22A |
+| Air handler | 5A |
+| Backup electric strip (10 kW, engaged at -22°C) | 42A |
+| Domestic hot water heat pump | 8A |
+| Lighting + misc | 8A |
+| **Total** | **85A** |
+
+On a 200A service (160A continuous limit), this leaves 75A for any other loads — EV charger, range, dryer. Manageable, but the strip heat alone consumes 26% of your continuous service capacity.
+
+**A larger 15 kW strip** (the default in some contractor quotes for Interior BC) draws 63A. Combined with compressor and air handler: 90A for heating alone. You are spending over half your 200A service on heat during the coldest night of the year.
+
+<TechnicalDeepDive
+  label="Ghost Load Warning"
+  summary="The Kettle Valley facility ran a 31 kW Make-Up Air Unit that was invisible in every load calculation for 11 years. At 240V, that ghost load drew 129A — most of a 200A service by itself. For all-electric systems, a single unaccounted load at this scale is not just inefficient: it is catastrophic. This math applies to any building before you spec an all-electric heating system."
+>
+
+### The 31 kW Ghost Load: Kettle Valley Case Study Math
+
+A commercial facility in the BC Interior (design temperature -15°C) had a Make-Up Air Unit (MAU) that ran continuously during heating season. It was not included in any load calculation performed over an 11-year period.
+
+**MAU heat load calculation:**
+
+- Airflow: 1,500 CFM
+- Outdoor design temperature: -15°C
+- Indoor setpoint: 21°C
+- Temperature differential: 36°C = 64.8°F
+
+**Sensible heat formula (imperial):**
+
+```
+Q = 1.08 × CFM × ΔT(°F)
+Q = 1.08 × 1,500 × 64.8
+Q = 104,976 BTU/h
+Q ≈ 31 kW
+```
+
+**Electrical equivalent at 240V:**
+
+```
+31,000 W ÷ 240 V = 129A
+```
+
+**What this means for a 200A all-electric service:**
+
+| Load | Draw |
+|---|---|
+| MAU (ghost load) | 129A |
+| Remaining for all other loads | **31A** |
+| Heat pump compressor | 20A |
+| Domestic hot water | 8A |
+| Lighting + misc | 8A |
+| **Shortfall** | **-5A (over the 160A continuous limit)** |
+
+The facility had a 200A service. The ghost load consumed 80% of it. The heat pump, water heating, and basic electrical loads pushed the total over the continuous limit.
+
+**The residential parallel:**
+
+A ghost load does not have to be a 1,500 CFM MAU to cause problems. Common residential ghost loads that are missed in load calculations:
+
+- An overlooked electric space heater running continuously in a cold utility room
+- An older electric water heater with a failed thermostat cycling more frequently than expected
+- A heated garage or workshop that was not included in the permit scope
+- Radiant electric floor heat in a renovation addition that was not on the original plans
+
+**The lesson for all-electric Interior BC systems:** A full load audit — not just a heat loss calculation — is required before specifying service size. Every load that draws current at design temperature must be in the calculation. A dual-fuel system with a gas furnace backup reduces the electrical load so significantly that ghost loads of 5–10 kW become manageable rather than catastrophic.
+
+</TechnicalDeepDive>
+
+---
+
+## The 2026 Hybrid Recommendation for Interior BC
+
+For homes in Kelowna, Vernon, Kamloops, and surrounding Interior communities, **dual-fuel (heat pump + gas or propane furnace)** is the most resilient configuration available in 2026.
+
+### Why Hybrid Is Not a Compromise
+
+The framing "hybrid is less committed to electrification" is technically inaccurate. In Interior BC:
+
+- The heat pump runs as the primary heat source from approximately +18°C down to **+2°C**. At +2°C, electricity-to-heat efficiency drops to a COP of roughly 2.0 — the economic crossover point where gas becomes competitive
+- The gas furnace handles everything below +2°C — the coldest 10–15% of heating hours in a typical Kelowna winter
+- **Annual electricity consumption for heating is nearly identical to a well-sized all-electric system** because most heating hours occur above the crossover point
+
+The gas furnace is not running most of the winter. It is a precision backup for the coldest operating conditions.
+
+### Electrical Service Advantages
+
+A hybrid system's gas furnace handles the load that would otherwise require large electric resistance strips:
+
+| Scenario | Electrical Draw at -22°C |
+|---|---|
+| All-electric, 15 kW strip backup | 90A (compressor + strip + air handler) |
+| Dual-fuel, gas furnace backup | **27A** (compressor off; furnace draws ~5A for controls) |
+
+The difference is 63A. That is a Level 2 EV charger plus a heat pump water heater worth of electrical headroom — recovered by using gas for backup heat instead of electric strips.
+
+**A dual-fuel system can operate comfortably on a 100A service** in most Interior BC homes. An all-electric system with large aux strips typically cannot.
+
+---
+
+## Comparison: Dual-Fuel vs. All-Electric for Interior BC
+
+| Feature | Dual-Fuel (Hybrid) | All-Electric (ASHP) |
+| :--- | :--- | :--- |
+| Resilience at -22°C | High — gas backup is unaffected by electrical load | Moderate — electric strips engage; high amp draw |
+| Electrical service impact | Low — fits on 100A–200A service in most homes | High — often requires 200A+; large strip backup needed |
+| Operating cost | Optimized — heat pump runs above +2°C; gas below | Lowest in mild weather — degrades as temp drops below balance point |
+| Load calculation risk | Lower — gas handles the design temperature spike | Higher — every unaccounted load affects service adequacy |
+| Rebate eligibility | CleanBC rebate applies to the heat pump component | Full CleanBC rebate applies |
+| Best for | Homes with existing gas/propane; Interior BC design temps | Coastal BC; all-electric new construction; homes leaving gas entirely |
+
+---
+
+## Equipment Sizing for Interior BC
+
+### Cold-Climate ASHP Selection
+
+Any all-electric or dual-fuel installation in Interior BC requires a unit rated for operation at or below -25°C. Units that meet this threshold for BC Interior:
+
+- **Mitsubishi Hyper Heat** (Zuba-Central, -30°C rated)
+- **Daikin Fit** (-25°C rated, side-discharge — space-efficient)
+- **Bosch IDS Ultra** (-20°C rated — confirm for Kelowna/Kamloops design temps)
+- **Fujitsu Halcyon Airstage** (-25°C rated)
+
+**Confirm nameplate heating capacity at -22°C** — not just -15°C or the headline "rated to -X°C." The capacity at your specific design temperature is what the load calculation requires.
+
+### Aux Heat Strip Sizing (All-Electric Only)
+
+If going all-electric, spec the smallest strip that closes the gap:
+
+- Calculate heat loss at design temperature
+- Subtract heat pump output at design temperature
+- Remaining gap is the minimum strip size required
+- Add no more than 20% buffer
+
+Oversizing aux heat costs money twice: higher installation cost, and higher electrical service requirements.
+
+---
+
+## What to Ask Your Interior BC Contractor
+
+1. **What is this system's rated heating capacity at -22°C?** (Not at -15°C or "rated temperature")
+2. **Have you completed a full load audit — not just a heat loss calculation?** (Every electrical load at design temp must be accounted for)
+3. **What size backup heat are you specifying, and why?** (Dual-fuel gas or specific kW electric — not "standard")
+4. **If all-electric: what is the total electrical draw at design temperature including all backup heat?**
+5. **Is the heat pump CleanBC Better Homes registered?** (Required for rebate)
+
+Verify contractor license (TSBC): [Technical Safety BC Licence Search](https://www.technicalsafetybc.ca/licence-search)
+
+---
+
+## Next Steps
+
+- **The case study behind the ghost load math:** [The Kettle Valley Ghost — Full Case Study](/case-studies/kettle-valley-ghost)
+- **Best cold-climate units available through BC dealers:** [Best Cold Climate Heat Pumps for BC in 2026](/guides/best-cold-climate-heat-pump-bc-2026)
+- **Interior BC resource center:** [Thompson-Okanagan & Interior BC Resource Center](/guides/interior-bc)
+- **How hybrid systems work in detail:** [Hybrid Heat Pump + Boiler Systems](/guides/hybrid-heat-pump-boiler-systems)
+
+<div className="mt-8 not-prose">
+  <a
+    href="/directory?specialties=cold_climate_pro"
+    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm"
+  >
+    Find an Interior Contractor Specializing in Cold-Climate Systems
+    <span aria-hidden="true">→</span>
+  </a>
+</div>
+
+---
+
+<div className="disclaimer">
+  <p><strong>Disclaimer:</strong> Load calculations and capacity figures in this guide are reference examples. Actual equipment performance must be confirmed against manufacturer specifications at your specific design temperature. All electrical work requires permits and inspections under Technical Safety BC jurisdiction. This guide does not constitute engineering advice. Consult a licensed mechanical and electrical contractor for system design specific to your home.</p>
+</div>

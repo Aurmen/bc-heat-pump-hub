@@ -89,6 +89,26 @@ const guides = [
     title: 'Heat Pump Home Assessment Checklist for BC Homeowners',
     description: 'Do a 30-minute walk-through before calling any contractor. Check your panel, heating system, insulation, and outdoor unit options to get better quotes and spot red flags.',
   },
+  {
+    slug: 'dual-fuel-vs-all-electric-interior-bc',
+    title: 'Dual-Fuel vs. All-Electric: Choosing the Right System for the BC Interior',
+    description: 'Balance point physics, ghost load math, and a side-by-side comparison for Kelowna, Kamloops, and Vernon homes. Explains why dual-fuel hybrid is the technically conservative choice for -22°C design temperatures.',
+  },
+  {
+    slug: 'heat-pump-onboarding-checklist',
+    title: 'Heat Pump Contractor Onboarding Checklist',
+    description: '22-point contractor verification checklist. Manual J load calcs, CEC Section 8 electrical compliance, TSBC permits, CleanBC registration, and AHRI numbers — everything to confirm before signing any installation contract.',
+  },
+  {
+    slug: 'bc-step-code-summary',
+    title: 'The 2026 BC Step Code: What Homeowners & Builders Need to Know',
+    description: 'Zero Carbon Step Code (ZCSC) explained: EL-1 through EL-4, TEDI and envelope performance, and why Vancouver\'s EL-4 mandate means all-electric heat pumps are now legally required for new construction.',
+  },
+  {
+    slug: 'bc-step-code-city-tracker',
+    title: 'BC Step Code City Tracker: Municipal Adoption Levels (2026)',
+    description: 'Municipality-by-municipality table of BC Energy Step Code and ZCSC adoption. Vancouver (EL-4), Victoria (EL-4), Kelowna (EL-2), Surrey (EL-1) — with GHGI, TEDI, and MEUI explained for builders and homeowners.',
+  },
 ];
 
 export default function GuidesPage() {
@@ -110,8 +130,100 @@ export default function GuidesPage() {
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
           Heat Pump Educational Guides
         </h1>
-        <p className="text-xl text-gray-600 mb-8">
+        <p className="text-xl text-gray-600 mb-10">
           Technically accurate, homeowner-friendly information to help you make informed heating system decisions.
+        </p>
+
+        {/* Regional Resource Centers */}
+        <div className="mb-12">
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
+            Regional Resource Centers
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link
+              href="/guides/lower-mainland"
+              className="block bg-white border border-gray-200 border-t-4 border-t-blue-600 rounded-xl p-6 hover:shadow-md transition-all duration-200 group"
+            >
+              <span className="inline-block text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200 px-2.5 py-0.5 rounded-full mb-3">
+                Metro Vancouver
+              </span>
+              <h2 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
+                Lower Mainland Resource Center
+              </h2>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Strata approvals, 100A panel solutions, EPR 2026 deadline, and rebate stacking for Vancouver, Surrey, Burnaby, and Richmond.
+              </p>
+              <div className="mt-4 flex items-center gap-1 text-blue-600 font-semibold text-sm group-hover:gap-2 transition-all">
+                Explore Metro Vancouver guides <span aria-hidden="true">→</span>
+              </div>
+            </Link>
+
+            <Link
+              href="/guides/interior-bc"
+              className="block bg-white border border-gray-200 border-t-4 border-t-slate-600 rounded-xl p-6 hover:shadow-md transition-all duration-200 group"
+            >
+              <span className="inline-block text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 px-2.5 py-0.5 rounded-full mb-3">
+                Thompson-Okanagan &amp; Interior
+              </span>
+              <h2 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
+                Interior BC Resource Center
+              </h2>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Cold-climate ASHP sizing, dual-fuel hybrid logic, and balance point planning for Kelowna, Kamloops, Vernon, and Penticton.
+              </p>
+              <div className="mt-4 flex items-center gap-1 text-blue-600 font-semibold text-sm group-hover:gap-2 transition-all">
+                Explore Interior BC guides <span aria-hidden="true">→</span>
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        {/* Tools & Calculators */}
+        <div className="mb-12">
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
+            Tools &amp; Calculators
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link
+              href="/guides/bc-heat-pump-rebate-calculator"
+              className="block bg-white border border-gray-200 border-t-4 border-t-green-600 rounded-xl p-6 hover:shadow-md transition-all duration-200 group"
+            >
+              <span className="inline-block text-xs font-semibold bg-green-100 text-green-800 border border-green-200 px-2.5 py-0.5 rounded-full mb-3">
+                Rebate Calculator
+              </span>
+              <h2 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
+                2026 BC Rebate Estimator
+              </h2>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Estimate your OHPA, CleanBC Better Homes, and BC Hydro grant eligibility in under 60 seconds. Up to $16,000 in grants for oil-heated homes.
+              </p>
+              <div className="mt-4 flex items-center gap-1 text-blue-600 font-semibold text-sm group-hover:gap-2 transition-all">
+                Estimate my rebates <span aria-hidden="true">→</span>
+              </div>
+            </Link>
+
+            <Link
+              href="/guides/heat-pump-roi-calculator"
+              className="block bg-white border border-gray-200 border-t-4 border-t-blue-500 rounded-xl p-6 hover:shadow-md transition-all duration-200 group"
+            >
+              <span className="inline-block text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200 px-2.5 py-0.5 rounded-full mb-3">
+                ROI Calculator
+              </span>
+              <h2 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
+                Heat Pump ROI Calculator
+              </h2>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Estimate annual savings and payback period based on your current heating costs, installation cost, and available rebates.
+              </p>
+              <div className="mt-4 flex items-center gap-1 text-blue-600 font-semibold text-sm group-hover:gap-2 transition-all">
+                Calculate my savings <span aria-hidden="true">→</span>
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
+          All Guides
         </p>
 
         <div className="space-y-6">

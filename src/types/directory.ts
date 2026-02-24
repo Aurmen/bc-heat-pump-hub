@@ -36,6 +36,14 @@ export interface ServiceReliability {
   permit_tracking: boolean | null;
 }
 
+export type SpecialtyKey = 'ems_certified' | 'strata_approved' | 'cold_climate_pro';
+
+export interface ContractorSpecialties {
+  ems_certified?: boolean;    // Experienced with DCC-9/DCC-12 and EMS load management
+  strata_approved?: boolean;  // History of strata/condo installations
+  cold_climate_pro?: boolean; // Specializes in sub -15°C Interior installs
+}
+
 export interface DirectoryListing {
   company_name: string;
   slug: string;
@@ -49,6 +57,7 @@ export interface DirectoryListing {
   brands_supported: string[];
   notes: string;
   source_urls: string[];
+  specialties?: ContractorSpecialties;
   // TSBC Verification (Technical Safety BC)
   tsbc_verified?: boolean;
   tsbc_fsr_license?: string; // Field Safety Representative (refrigeration) license number

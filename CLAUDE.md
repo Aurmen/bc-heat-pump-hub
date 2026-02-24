@@ -9,6 +9,40 @@ BC-specific heat pump contractor directory and educational content site.
 
 ---
 
+## Documentation & Tool Standards
+
+- **Checklist Formatting:** Use interactive `<input type="checkbox">` elements in MDX. Import `PrintButton` from `@/components/PrintButton` for print functionality.
+- **Tone:** Objective, technical, and compliance-focused. Empower the homeowner to verify technical claims (load calcs, AHRI numbers, design temps).
+- **Pro-Tip callouts:** Use `<div className="not-prose bg-amber-50 border-l-4 border-amber-400 px-5 py-4 my-6 rounded-r-xl">` pattern.
+- **Print support:** Every checklist guide imports and renders `<PrintButton />` at the top. `PrintButton` calls `window.print()` and is a `'use client'` component.
+
+## Soft-Launch & Metrics Standards
+
+- **Lead Capture:** All inquiries must be routed to a single central inbox (manual review phase).
+- **Data Preservation:** The contact form must attempt to capture the 'context' of the user (e.g., if they just used the Rebate Calculator, pass those estimated values into the message field).
+- **Liability:** Every lead form must include a disclaimer: "This inquiry is a request for information. Final technical verification and site visits are required by a licensed contractor."
+
+---
+
+## Step Code & Compliance Standards
+
+- **ZCSC Integration:** Reference the Zero Carbon Step Code (ZCSC) as the primary driver for all-electric requirements in new BC builds. EL = Emission Level (EL-1 through EL-4).
+- **The TEDI Factor:** Mention that high-efficiency envelopes (BC Energy Step Code Step 3+) allow for smaller, more affordable heat pump tonnages because TEDI (Thermal Energy Demand Intensity) is lower.
+- **Regional Variation:** Vancouver and Saanich mandate EL-4 (no combustion for space heating). Many Interior BC and lower-priority municipalities are still at EL-1 (measure and report only). Always cite "check with your AHJ" for specifics.
+- **Key Acronyms to use correctly:** ZCSC, BCESC (BC Energy Step Code), TEDI, TEUI, GHGI (Greenhouse Gas Intensity in kgCO₂e/m²/year), AHJ (Authority Having Jurisdiction).
+
+---
+
+## Tool & Calculator Standards
+
+- **Mandatory Disclaimer:** Every calculator (ROI & Rebate) must display a bold disclaimer at the top AND bottom: "ESTIMATE ONLY. Actual results may vary based on site conditions, utility rates, and final rebate approval."
+- **Data Integrity:** Rebate calculations must be based on the latest 2026 CleanBC Better Homes and BC Hydro stacking rules. Reference `betterhomesbc.ca` for current program amounts.
+- **Label Discipline:** All output values must use qualified labels — "Estimated Annual Savings", "Estimated Payback Period", "Up to $X,XXX" — never bare dollar figures presented as guarantees.
+- **Tone:** Professional, conservative, and transparent about variables. Never overstate savings or rebate certainty.
+- **Components:** `ROICalculator` and `RebateCalculator` are `'use client'` components in `src/components/`. Import them into MDX guides the same way as `TechnicalDeepDive` or `PrintButton`.
+
+---
+
 ## UI/UX Standards
 
 - **Progressive Disclosure:** Wrap heavy technical tables/math in `<details>`/`<summary>` in MDX

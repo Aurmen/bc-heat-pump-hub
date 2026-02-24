@@ -1,0 +1,263 @@
+import PrintButton from '@/components/PrintButton';
+
+# Heat Pump Contractor Onboarding Checklist
+
+*Use this before signing any heat pump installation contract — February 2026*
+
+<div className="not-prose flex items-center justify-between flex-wrap gap-4 my-6 p-5 bg-gray-50 border border-gray-200 rounded-xl">
+  <div>
+    <p className="text-sm font-bold text-gray-900">Contractor Interview Checklist</p>
+    <p className="text-xs text-gray-500 mt-0.5">4 sections · 22 verification points · Print-ready</p>
+  </div>
+  <PrintButton />
+</div>
+
+---
+
+<div className="not-prose bg-amber-50 border-l-4 border-amber-400 px-5 py-4 my-6 rounded-r-xl">
+  <p className="text-sm font-semibold text-amber-800 mb-1">Pro-Tip</p>
+  <p className="text-sm text-amber-900">If a contractor refuses to provide a written load calculation, they are likely not a technical specialist. A Manual J or CAN/CSA F280 load calculation is a basic professional standard — not an optional extra. Walk away and call the next name on your list.</p>
+</div>
+
+---
+
+## Section 1: Engineering & Load Calculation
+
+These are the technical foundations of a correct installation. A contractor who cannot answer these questions in writing has not done the engineering work.
+
+<div className="not-prose space-y-3 my-6">
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Manual J / CAN/CSA F280 load calculation provided in writing.</strong> The document shows your home's heat loss at design temperature in BTU/h or kW. Ask for a printed or emailed copy before signing.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Design temperature confirmed for your location.</strong> Metro Vancouver / Coast: <strong>-5°C to -7°C</strong>. Interior BC (Kelowna, Kamloops, Vernon): <strong>-15°C to -22°C</strong>. Ask which design temperature was used in the load calculation.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Equipment heating capacity at your design temperature confirmed.</strong> Cold-climate units lose capacity at low temperatures. Ask: "What is the rated heating output of this unit at -7°C (or -22°C for Interior)?" — not just the headline capacity.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Balance point stated explicitly.</strong> The balance point is the outdoor temperature at which the backup/aux heat activates. Ask: "At what outdoor temperature will backup heat engage?" For Interior BC, this should be at or below -15°C for a cold-climate unit.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Backup/aux heat size confirmed in kW and amperage.</strong> Ask specifically: "What size is the backup heat strip in this quote?" A 10 kW strip draws 42A. On a 100A service, this matters enormously. Do not accept "standard" as an answer.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>AHRI reference numbers provided for all major equipment.</strong> The AHRI (Air-Conditioning, Heating, and Refrigeration Institute) certificate number is required for CleanBC rebate applications. Ask your contractor for the outdoor unit, indoor unit, and coil AHRI matched system certificate.
+    </span>
+  </label>
+
+</div>
+
+---
+
+## Section 2: Electrical Infrastructure
+
+Electrical compliance is where installations most commonly fail inspection or create hazards. Verify these before work begins.
+
+<div className="not-prose space-y-3 my-6">
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Electrical load calculation per CEC Section 8 completed.</strong> The Canadian Electrical Code Section 8 calculation accounts for demand factors — it is not the same as adding up appliance nameplates. Ask: "Has a CEC Section 8 calculation been done on my panel?"
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Contractor has physically inspected your panel.</strong> A quote submitted without visiting your panel is a guess, not an engineering assessment. The contractor should know your current service size, available breaker slots, and existing large loads.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Total amperage draw at design temperature calculated.</strong> This is compressor + aux heat + air handler + any other simultaneous loads. It must fit within 80% of your service rating (80A for 100A service; 160A for 200A service).
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Breaker space available — minimum 2 slots for a 240V double-pole circuit.</strong> If your panel is full, a sub-panel or service upgrade is required. Confirm this before receiving a quote — it affects total project cost.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Load management system (EMS) included if on 100A service.</strong> If your home is on a 100A service and you are adding a heat pump, ask: "Is an Energy Management System (DCC-9, DCC-12, or equivalent) included in this quote?" Without it, simultaneous loads may trip your main breaker.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>EV charger load included in calculation if applicable.</strong> A Level 2 EV charger draws 30–32A continuously — 37–40% of a 100A service on its own. If you have or plan to add one, it must be in the simultaneous load calculation.
+    </span>
+  </label>
+
+</div>
+
+---
+
+## Section 3: Compliance & Permits
+
+Every electrical work item requires a permit and inspection in BC. There are no legitimate exceptions.
+
+<div className="not-prose space-y-3 my-6">
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>TSBC electrical permit to be pulled — before work starts.</strong> Ask: "Will you pull an electrical permit for this job?" Ask for the permit number once issued. Unpermitted work is not inspected, not covered by insurance, and can void equipment warranties.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Licensed electrical contractor confirmed.</strong> Verify at <a href="https://www.technicalsafetybc.ca/licence-search" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">technicalsafetybc.ca/licence-search</a>. The contractor or their electrician must hold a valid TSBC electrical licence. Ask for the licence number.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Gas permit required if hybrid/dual-fuel system.</strong> If the quote includes a gas furnace or gas backup, the contractor must hold a BC gas licence. Ask for their TSBC gas fitter licence number separately from the electrical licence.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Anti-vibration pad for outdoor unit included in scope.</strong> BC building code and most manufacturers require a vibration isolation pad under the outdoor unit. Confirm it is in the quote — it is sometimes omitted in lower-cost bids.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>TSBC inspection to be coordinated — not skipped.</strong> Ask: "Who coordinates the inspection, and what happens after the inspector signs off?" The system should not be left permanently energized before the inspection is complete.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>EPR alignment confirmed if Metro Vancouver strata (Dec 31, 2026 deadline).</strong> If your building is a Metro Vancouver strata with 5+ lots, an Electrical Planning Report (EPR) is required by Dec 31, 2026. Confirm the contractor is aware of this and that the installation is compatible with your EPR scope.
+    </span>
+  </label>
+
+</div>
+
+<div className="not-prose bg-amber-50 border-l-4 border-amber-400 px-5 py-4 my-6 rounded-r-xl">
+  <p className="text-sm font-semibold text-amber-800 mb-1">Pro-Tip</p>
+  <p className="text-sm text-amber-900">If a contractor says "we don't need a permit for this" or "the permit takes too long, we'll skip it" — this is a red flag. Unpermitted HVAC work in BC can result in orders to remove equipment, failed home sale inspections, and denied insurance claims. Always require a permit.</p>
+</div>
+
+---
+
+## Section 4: Financials & Rebates
+
+Rebate eligibility is determined before you purchase — not after. Confirm these items before signing any contract or purchasing any equipment.
+
+<div className="not-prose space-y-3 my-6">
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Contractor is CleanBC Better Homes registered.</strong> Ask: "What is your CleanBC Better Homes contractor registration ID?" Without a registered contractor, you cannot claim the CleanBC heat pump rebate (up to $6,000). Verify at <a href="https://betterhomesbc.ca/find-a-contractor/" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">betterhomesbc.ca/find-a-contractor</a>.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>AHRI reference numbers confirmed for the matched system.</strong> The outdoor unit, indoor unit, and coil must be AHRI-matched and listed. Ask the contractor to confirm the AHRI certificate number for the specific equipment being installed. This is the primary eligibility document for CleanBC rebates.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Rebate application process confirmed — who files, who receives, when.</strong> Ask: "Do you handle the rebate application on my behalf, or do I file it myself?" Some contractors file on your behalf; others provide documentation for you to submit. Both are acceptable — but confirm it before the job starts.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Quote is all-in: equipment + labour + permits + commissioning + tax.</strong> Ask: "Is this quote all-inclusive?" Hidden costs — permit fees, refrigerant top-up, electrical sub-contractor, startup commissioning — are common sources of invoice surprises. Get itemized quotes when possible.
+    </span>
+  </label>
+
+  <label className="flex items-start gap-3 cursor-pointer group">
+    <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer flex-shrink-0" />
+    <span className="text-sm text-gray-800">
+      <strong>Canada Greener Homes Loan eligibility confirmed if panel upgrade is included.</strong> If your project includes a panel upgrade, the Canada Greener Homes Loan (up to $40,000 at 0% interest) can cover both the panel and heat pump under one application. Confirm with your contractor before applying for rebates separately.
+    </span>
+  </label>
+
+</div>
+
+---
+
+## How to Use This Checklist
+
+**Before the quote:** Use sections 1 and 2 to screen contractors over the phone. A contractor who cannot answer the load calculation and design temperature questions has not done the engineering work.
+
+**When reviewing the quote:** Use section 4 to verify rebate eligibility before you sign. Equipment purchased from a non-registered contractor is not eligible for CleanBC rebates — and you cannot get this retroactively.
+
+**Before work starts:** Confirm section 3 items — permit number, licence numbers, inspection coordination — before the crew arrives. Do not wait until after installation to ask.
+
+**At completion:** The contractor should provide: a copy of the electrical permit and inspection record, the AHRI certificate for your equipment, and the CleanBC rebate application reference or instructions.
+
+---
+
+## Next Steps
+
+- **100A panel solutions for Metro Vancouver:** [Can I Install a Heat Pump on a 100 Amp Panel? (Surrey & Vancouver)](/guides/100-amp-panel-heat-pump-vancouver)
+- **Interior BC dual-fuel vs. all-electric decision:** [Dual-Fuel vs. All-Electric for the BC Interior](/guides/dual-fuel-vs-all-electric-interior-bc)
+- **Metro Vancouver strata approval:** [Vancouver Condo Heat Pumps: Navigating Strata Approval](/guides/vancouver-strata-heat-pump-guide)
+- **How to claim your BC rebates:** [How to Claim Heat Pump Rebates in BC (2026)](/guides/how-to-claim-heat-pump-rebate-bc)
+
+<div className="mt-8 not-prose">
+  <a
+    href="/directory"
+    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm"
+  >
+    Find a Verified BC Contractor
+    <span aria-hidden="true">→</span>
+  </a>
+</div>
+
+---
+
+<div className="disclaimer">
+  <p><strong>Disclaimer:</strong> This checklist is an educational reference tool. It does not constitute engineering advice or a guarantee of installation quality. Requirements may vary by municipality and project scope. Always consult a licensed HVAC contractor and electrician for assessments specific to your home. All electrical work in BC requires permits and inspections under Technical Safety BC jurisdiction.</p>
+</div>

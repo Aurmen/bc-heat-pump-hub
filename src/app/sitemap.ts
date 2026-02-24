@@ -32,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '100-amp-panel-heat-pump-bc',
     '100-amp-panel-heat-pump-vancouver',
     'vancouver-strata-heat-pump-guide',
+    'dual-fuel-vs-all-electric-interior-bc',
+    'heat-pump-onboarding-checklist',
+    'bc-heat-pump-rebate-calculator',
+    'heat-pump-roi-calculator',
+    'bc-step-code-summary',
+    'bc-step-code-city-tracker',
   ];
 
   const caseStudies = [
@@ -42,6 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: baseUrl, priority: 1.0 },
     { url: `${baseUrl}/guides`, priority: 0.9 },
     { url: `${baseUrl}/guides/lower-mainland`, priority: 0.9 },
+    { url: `${baseUrl}/guides/interior-bc`, priority: 0.9 },
     { url: `${baseUrl}/case-studies`, priority: 0.85 },
     { url: `${baseUrl}/bc`, priority: 0.9 },
     { url: `${baseUrl}/directory`, priority: 0.8 },
@@ -49,6 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/supply-houses`, priority: 0.8 },
     { url: `${baseUrl}/rebates`, priority: 0.9 },
     { url: `${baseUrl}/calculator`, priority: 0.8 },
+    { url: `${baseUrl}/connect`, priority: 0.85 },
     { url: `${baseUrl}/faq`, priority: 0.7 },
     { url: `${baseUrl}/contact`, priority: 0.7 },
     { url: `${baseUrl}/directory/submit`, priority: 0.7 },
