@@ -1,3 +1,5 @@
+import TechnicalDeepDive from '@/components/TechnicalDeepDive';
+
 # 100A Panel and Heat Pump Installation in BC: Load Calculation and Upgrade Roadmap
 
 *Technical reference for BC homeowners and contractors — February 2026*
@@ -6,32 +8,48 @@
 
 ## The Core Problem
 
-A 100-ampere electrical service was the standard for BC residential construction from the 1950s through the mid-1990s. At the time, the typical residential load was a gas furnace, an electric range, a refrigerator, and lighting. A 100A service was adequate.
+A 100-ampere electrical service was the standard for BC residential construction from the 1950s through the mid-1990s. Back then, most homes ran a gas furnace, a fridge, a range, and some lights. A 100A panel was plenty.
 
-Modern all-electric households look nothing like that load profile. A heat pump compressor, a Level 2 EV charger, a domestic hot water heat pump, an electric range, and a dryer can exceed 100A simultaneously. Adding a heat pump to an older home without auditing the existing service is how homeowners end up with tripping breakers at 6 AM in January.
+Modern all-electric homes are different. A heat pump, an EV charger, a hot water heater, a range, and a dryer running at the same time can push past 100A. Adding a heat pump without checking your panel first is how you end up with a tripped breaker at 6 AM on a cold January morning.
 
-This guide gives you the numbers to assess your situation before calling a contractor.
+This guide walks you through the numbers before you call a contractor.
 
 ---
 
-## What CSA C22.1 Says About Service Capacity
+## The 80A Rule: Your Real Limit
 
-The Canadian Electrical Code (CSA C22.1) requires that conductors and panels be sized for **continuous loads at 80% of rated capacity**. A load is "continuous" if it operates for three hours or more — which describes a heat pump in heating season.
+**The bottom line:** A 100A panel only gives you about 80 amps of safe, continuous capacity — not 100. Heat pumps count as continuous loads. If your total running draw goes over 80A for more than a few hours, the main breaker trips.
+
+<TechnicalDeepDive
+  label="CSA C22.1"
+  summary="A 100A panel's real continuous capacity is 80A — not 100A. This is a Canadian Electrical Code requirement, not a suggestion. Everything running in your home at once must fit within that 80A limit."
+>
+
+The Canadian Electrical Code (CSA C22.1) requires conductors and panels to be sized for **continuous loads at 80% of rated capacity**. A load is "continuous" if it operates for three hours or more — which describes a heat pump in heating season.
 
 | Service | Rated Ampacity | Continuous Duty Limit (80%) |
 |---|---|---|
-| 100A | 100A | 80A |
+| 100A | 100A | **80A** |
 | 200A | 200A | 160A |
 | 320A | 320A | 256A |
 | 400A | 400A | 320A |
 
-A 100A residential service has **80A of continuous duty capacity**. Everything in your house — heat pump, water heater, range, dryer, EV charger, lights — must fit within that 80A or the main breaker trips.
+Everything in your house — heat pump, water heater, range, dryer, EV charger, lights — must fit within that 80A or the main breaker trips.
+
+</TechnicalDeepDive>
 
 ---
 
-## Typical Residential Load Audit
+## What's Actually Running When You Need Heat
 
-Use this table to estimate your simultaneous peak load. These are standard draw figures for common residential equipment — your actual equipment will have nameplate ratings that should be confirmed.
+**The bottom line:** With a large backup heater in the system, a 100A panel is at its limit just running the heat pump on a cold night — before you touch anything else. Without large aux heat, the numbers work.
+
+<TechnicalDeepDive
+  label="Load Audit"
+  summary="A heat pump with a 10 kW backup heater + hot water tank + lights = ~82A on a cold night. That's over the 80A limit. Add an EV charger and you're at 100A — the breaker will trip. The fix: choose a cold-climate inverter unit with no large backup strip, or upgrade your panel."
+>
+
+Use this table to estimate your simultaneous peak load. These are standard reference figures — confirm actual draw from your equipment's nameplate.
 
 | Load | Typical Draw (240V) | Notes |
 |---|---|---|
@@ -39,7 +57,7 @@ Use this table to estimate your simultaneous peak load. These are standard draw 
 | Air handler / blower | 3–8A | Depends on motor type |
 | Aux / backup electric heat | 20–60A | If strip heat is installed — largest wildcard |
 | Domestic hot water (tank element) | 20–25A | Element cycling, not continuous |
-| Domestic hot water (heat pump) | 6–12A | Heat pump mode; element mode same as above |
+| Domestic hot water (heat pump) | 6–12A | Heat pump mode |
 | Electric range (one burner) | 15–20A | Not typically simultaneous with peak heating |
 | Clothes dryer | 20–30A | Not typically simultaneous with peak heating |
 | Level 2 EV charger (32A circuit) | 30–32A | Continuous load |
@@ -51,12 +69,12 @@ Use this table to estimate your simultaneous peak load. These are standard draw 
 |---|---|
 | Heat pump compressor | 15A |
 | Air handler | 5A |
-| Aux heat strip (10 kW, activated at design temp) | 42A |
-| Hot water tank (cycling) | 12A (averaged) |
+| Aux heat strip (10 kW, at design temp) | 42A |
+| Hot water tank (cycling) | 12A |
 | Lighting + misc | 8A |
 | **Total** | **82A** |
 
-**Result:** At heating design conditions with the aux heat energized, a 100A service is at or over its 80A continuous limit. The main breaker may trip, particularly if any other load activates simultaneously.
+**Result:** Over the 80A continuous limit. The main breaker may trip if any other load activates simultaneously.
 
 ### Scenario 2: 100A Panel, With Level 2 EV Charger
 
@@ -69,15 +87,22 @@ Use this table to estimate your simultaneous peak load. These are standard draw 
 | Lighting + misc | 8A |
 | **Total** | **100A** |
 
-**Result:** The service is at rated maximum before the first load cycle begins. This configuration is non-compliant under CSA C22.1 for simultaneous operation and will trip the main breaker under real design conditions.
+**Result:** At rated maximum before the first load cycle begins. Non-compliant under CSA C22.1 for simultaneous operation. Will trip the main breaker under real design conditions.
+
+</TechnicalDeepDive>
 
 ---
 
 ## The Aux Heat Problem
 
-The most common failure point is not the heat pump compressor — it's the auxiliary electric resistance backup heat.
+**The bottom line:** The part that overloads most 100A panels isn't the heat pump itself — it's the backup electric strip heater inside the system. Many contractors include a 10 kW strip heater by default. That heater alone uses 42 amps. Ask your contractor what size backup heat is in the quote before you sign anything.
 
-Most ductless and ducted heat pump systems sold in BC include an electric resistance backup strip heater for heating at temperatures below the ASHP balance point, or as a defrost boost. These are sized in kilowatts:
+<TechnicalDeepDive
+  label="Aux Heat Sizing"
+  summary="A 10 kW backup strip heater draws 42A on its own. Combined with the compressor (15A) and air handler (5A), you're already at 62A — leaving only 18A for the rest of the house. If a hot water element cycles on at the same time, the main trips. Smaller strip or none is often the right answer for 100A homes."
+>
+
+Most heat pump systems sold in BC include an electric resistance backup strip heater for use when outdoor temps drop below the heat pump's balance point, or for defrost boost. Strip heaters are sized in kilowatts:
 
 | Strip Heater Size | Amperage (240V) |
 |---|---|
@@ -86,9 +111,14 @@ Most ductless and ducted heat pump systems sold in BC include an electric resist
 | 15 kW | 63A |
 | 20 kW | 83A |
 
-A 10 kW backup strip drawing 42A, combined with compressor (15A) and air handler (5A), is already 62A — leaving only 18A for the rest of the house on a 100A service. If a water heater element cycles on simultaneously, the main trips.
+A 10 kW backup strip drawing 42A, combined with compressor (15A) and air handler (5A), is already 62A — leaving only 18A for the rest of the house on a 100A service.
 
-**Verify before installation:** Ask your contractor explicitly what size aux heat is included in the system quote and whether it's appropriate for your panel capacity. In older 100A homes, the correct choice is often a cold-climate heat pump with a higher balance point (reducing aux activation frequency) and a smaller or no aux strip, combined with a panel upgrade plan.
+**In older 100A homes, the correct choice is often:**
+- A cold-climate heat pump with a higher balance point (reducing how often aux heat activates)
+- A smaller strip (5 kW / 21A) or no strip
+- Combined with a panel upgrade plan if EV charging is also needed
+
+</TechnicalDeepDive>
 
 ---
 
@@ -96,9 +126,9 @@ A 10 kW backup strip drawing 42A, combined with compressor (15A) and air handler
 
 ### Option 1: Cold-Climate ASHP with High Balance Point
 
-Cold-climate rated heat pumps (Mitsubishi Hyper Heat, Daikin Fit, Bosch IDS) maintain full or near-full heating capacity down to -15°C or lower. The higher the balance point, the less frequently aux heat activates. In Metro Vancouver (design temp -5°C to -7°C), a cold-climate system may cover 100% of your heating load without aux heat activation most of the season.
+Cold-climate rated heat pumps (Mitsubishi Hyper Heat, Daikin Fit, Bosch IDS) maintain full or near-full heating capacity down to -15°C or lower. In Metro Vancouver (design temp -5°C to -7°C), a cold-climate system may cover 100% of your heating load without activating aux heat for most of the season.
 
-**Panel impact:** Eliminates or dramatically reduces aux heat draw. Compressor and air handler draw remain — typically 20–28A combined — which is manageable on a 100A service without other simultaneous high-draw loads.
+**Panel impact:** Eliminates or dramatically reduces aux heat draw. Compressor and air handler draw remain — typically 20–28A combined — which fits on a 100A service without other simultaneous high-draw loads.
 
 ### Option 2: Single-Zone Ductless (Lower Amperage)
 
@@ -106,9 +136,9 @@ A smaller single-zone ductless mini-split (9,000–18,000 BTU/h) draws 8–15A a
 
 ### Option 3: 200A Panel Upgrade First
 
-Cost in Metro Vancouver: **$3,000–$6,000** for panel and service upgrade (homeowner side). BC Hydro or FortisBC service lateral upgrade (utility side): **$0–$2,500** depending on existing infrastructure.
+Cost in Metro Vancouver: **$3,000–$6,000** for the homeowner side (panel, wiring, permit, inspection). BC Hydro or FortisBC service lateral upgrade (utility side): **$0–$2,500** depending on existing infrastructure.
 
-A 200A upgrade provides 160A of continuous capacity — sufficient for heat pump + EV charger + standard home loads in most BC configurations.
+A 200A upgrade gives you 160A of continuous capacity — enough for heat pump + EV charger + standard home loads in most BC configurations.
 
 ---
 
@@ -129,7 +159,7 @@ Panel upgrades require utility coordination. The utility must authorize the larg
 Electrical work requires a permit from Technical Safety BC. Your licensed electrician files the permit and coordinates the inspection.
 
 **Step 5 — Install heat pump after panel upgrade**
-The heat pump installation permit and the panel permit can often be coordinated with one contractor, but the panel upgrade should be completed and inspected first if the heat pump system includes large aux heat.
+The panel upgrade should be completed and inspected first if the heat pump system includes large aux heat.
 
 **Typical timeline: 6–10 weeks** from decision to energized heat pump, assuming no utility backlogs.
 
@@ -137,21 +167,21 @@ The heat pump installation permit and the panel permit can often be coordinated 
 
 ## EV Charger + Heat Pump Planning
 
-Adding an EV charger to a 100A service is independent of heat pump installation, but the two decisions should be planned together. BC Hydro's EV charger rebate requires a 40A or 50A dedicated circuit (32A or 40A continuous draw) — this represents 40–50% of a 100A service's continuous capacity before any other load.
+Adding an EV charger to a 100A service is a separate decision from heat pump installation, but plan them together. A Level 2 EV charger draws 30–32A continuously — that's 37–40% of your 80A continuous limit before the heat pump runs at all.
 
-**Recommended approach for 100A homes planning both:**
+**Recommended sequence for 100A homes wanting both:**
 1. Upgrade to 200A service
 2. Install Level 2 EV charger (40A circuit)
 3. Install cold-climate heat pump (no or small aux heat)
-4. Total combined peak: ~60–75A — within 160A continuous limit
+4. Combined peak at design temp: ~60–75A — within the 160A continuous limit
 
-This sequence qualifies for BC Hydro rebates on both the charger and the heat pump, and produces a compliant, future-proof electrical system.
+This sequence qualifies for BC Hydro rebates on both and produces a compliant, future-proof system.
 
 ---
 
 ## What to Ask Your Contractor
 
-Before accepting a heat pump quote, ask:
+Before accepting a heat pump quote:
 
 1. **What is the aux/backup heat size in this system?** (kW and amperage)
 2. **Have you reviewed my electrical panel?** (A legitimate contractor will look)
@@ -159,7 +189,7 @@ Before accepting a heat pump quote, ask:
 4. **If I'm near 100A capacity, what is your recommendation — panel upgrade or a different system configuration?**
 5. **Can you coordinate the panel upgrade and heat pump installation permit together?**
 
-A contractor who doesn't engage with these questions before quoting is not doing a proper load assessment. The right answer to question 3 is never "it should be fine" without showing you the numbers.
+If a contractor answers question 3 with "it should be fine" without showing you numbers, walk away.
 
 ---
 
@@ -167,7 +197,7 @@ A contractor who doesn't engage with these questions before quoting is not doing
 
 In BC, electrical work — including panel upgrades — is regulated by **Technical Safety BC** under the Safety Standards Act. Work must be performed by a licensed electrical contractor and inspected by TSBC before re-energization.
 
-Unlicensed electrical work to support a heat pump installation voids equipment warranties, fails inspections, and creates liability for the homeowner. If a contractor offers to "skip the permit" to save time, that is a compliance failure, not a favour.
+If a contractor offers to "skip the permit" to save time, that is a compliance failure, not a favour.
 
 Verify your electrician's license: [Technical Safety BC Licence Search](https://www.technicalsafetybc.ca/licence-search)
 
