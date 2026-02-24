@@ -24,6 +24,9 @@ const guides = [
   'oil-furnace-heat-pump-conversion-bc',
   'heat-pump-condo-strata-bc',
   'heat-pump-home-assessment-checklist-bc',
+  '100-amp-panel-heat-pump-bc',
+  '100-amp-panel-heat-pump-vancouver',
+  'vancouver-strata-heat-pump-guide',
 ];
 
 // Function to import guide content based on slug
@@ -67,6 +70,12 @@ async function importGuideContent(slug: string) {
       return (await import('@/content/guides/heat-pump-condo-strata-bc.mdx')).default;
     case 'heat-pump-home-assessment-checklist-bc':
       return (await import('@/content/guides/heat-pump-home-assessment-checklist-bc.mdx')).default;
+    case '100-amp-panel-heat-pump-bc':
+      return (await import('@/content/guides/100-amp-panel-heat-pump-bc.mdx')).default;
+    case '100-amp-panel-heat-pump-vancouver':
+      return (await import('@/content/guides/100-amp-panel-heat-pump-vancouver.mdx')).default;
+    case 'vancouver-strata-heat-pump-guide':
+      return (await import('@/content/guides/vancouver-strata-heat-pump-guide.mdx')).default;
     default:
       return null;
   }
@@ -99,6 +108,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     'oil-furnace-heat-pump-conversion-bc': 'Oil Furnace to Heat Pump Conversion in BC',
     'heat-pump-condo-strata-bc': 'Heat Pumps in BC Condos and Strata Properties',
     'heat-pump-home-assessment-checklist-bc': 'Heat Pump Home Assessment Checklist for BC Homeowners',
+    '100-amp-panel-heat-pump-bc': '100A Panel and Heat Pump Installation in BC',
+    '100-amp-panel-heat-pump-vancouver': 'Can I Install a Heat Pump on a 100 Amp Panel? (Surrey & Vancouver Guide)',
+    'vancouver-strata-heat-pump-guide': 'Vancouver Condo Heat Pumps: Navigating Strata Approval in 2026',
   };
 
   return {
@@ -148,6 +160,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'oil-furnace-heat-pump-conversion-bc': 'Oil Furnace to Heat Pump Conversion in BC',
     'heat-pump-condo-strata-bc': 'Heat Pumps in BC Condos and Strata Properties',
     'heat-pump-home-assessment-checklist-bc': 'Heat Pump Home Assessment Checklist for BC Homeowners',
+    '100-amp-panel-heat-pump-bc': '100A Panel and Heat Pump Installation in BC',
+    '100-amp-panel-heat-pump-vancouver': 'Can I Install a Heat Pump on a 100 Amp Panel? (Surrey & Vancouver Guide)',
+    'vancouver-strata-heat-pump-guide': 'Vancouver Condo Heat Pumps: Navigating Strata Approval in 2026',
   };
 
   const readTimes: Record<string, string> = {
@@ -170,6 +185,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'oil-furnace-heat-pump-conversion-bc': '14 min read',
     'heat-pump-condo-strata-bc': '13 min read',
     'heat-pump-home-assessment-checklist-bc': '11 min read',
+    '100-amp-panel-heat-pump-bc': '12 min read',
+    '100-amp-panel-heat-pump-vancouver': '11 min read',
+    'vancouver-strata-heat-pump-guide': '13 min read',
   };
 
   const descriptions: Record<string, string> = {
@@ -192,6 +210,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'oil-furnace-heat-pump-conversion-bc': 'Complete guide to switching from oil heating to a heat pump in BC. Federal OHPA grant ($10,000), system options for oil furnaces and boilers, oil tank disposal, and ROI examples for rural BC homes.',
     'heat-pump-condo-strata-bc': 'How to get strata approval for a heat pump in BC. System options for condos and stratas, Strata Property Act rights, sample application language, and how to appeal a rejected application.',
     'heat-pump-home-assessment-checklist-bc': 'Pre-contractor home assessment checklist for BC homeowners considering a heat pump. Check your electrical panel, heating system, insulation, outdoor unit placement, and zone count before calling a contractor.',
+    '100-amp-panel-heat-pump-bc': 'Can a 100-amp panel support a heat pump in BC? Load calculation reference, aux heat risks, upgrade roadmap, and EV charger planning for older BC homes on 100A service.',
+    '100-amp-panel-heat-pump-vancouver': 'Surrey and Vancouver homeowners on 100A panels: BC Hydro service upgrade costs, Energy Management Systems (EMS), inverter heat pump advantages, and compliant load configurations without a full panel upgrade.',
+    'vancouver-strata-heat-pump-guide': 'How to get heat pump approval in a Vancouver or Metro Vancouver strata in 2026. Covers the Dec 31, 2026 EPR deadline, Duty to Accommodate under the BC Human Rights Code, rebate table, and step-by-step strata application process.',
   };
 
   return (

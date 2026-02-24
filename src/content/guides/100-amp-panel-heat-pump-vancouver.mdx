@@ -1,0 +1,135 @@
+# Can I Install a Heat Pump on a 100 Amp Panel? (Surrey & Vancouver Guide)
+
+*Technical reference for Lower Mainland homeowners — February 2026*
+
+---
+
+## The Problem Is Specific to This Region
+
+Metro Vancouver and Surrey have a concentrated stock of homes built between 1955 and 1990 with 100-ampere electrical services. These are fully detached houses — not condos — with gas furnaces, one car, and no EV charger. They were never designed for an all-electric heating system drawing 15–25A plus a Level 2 charger drawing 30A.
+
+When a homeowner in this situation calls for a heat pump quote, the honest answer is: **you have a panel decision to make before you have a heat pump decision to make.**
+
+There are two paths. One costs more upfront. The other requires a smarter equipment choice. Both are legitimate.
+
+---
+
+## Path 1: BC Hydro Service Upgrade
+
+A 100A to 200A panel and service upgrade in Metro Vancouver costs **$3,000–$6,000** on the homeowner side (panel, wiring, permit, inspection). The BC Hydro side — upgrading the service lateral from the street — is handled by BC Hydro and costs the homeowner **$0 to approximately $2,500** depending on the existing infrastructure at the meter base and transformer.
+
+**The real cost is time, not always money.** BC Hydro service upgrade lead times in Surrey and Vancouver frequently run **8–16 weeks** due to crew scheduling and utility coordination. If you plan to install a heat pump before next winter, you need to start the utility application now.
+
+**Steps for a BC Hydro service upgrade:**
+
+1. Have a licensed electrician confirm the upgrade scope and pull a permit from Technical Safety BC
+2. Submit a BC Hydro Service Extension Application (online) to request the utility-side upgrade
+3. Schedule homeowner-side panel work (can sometimes be done in parallel)
+4. BC Hydro installs new service lateral; inspection is coordinated
+5. Heat pump installation proceeds on new 200A service
+
+A 200A service provides 160A of continuous duty capacity — sufficient for heat pump, EV charger, and standard home loads in the vast majority of Metro Vancouver configurations.
+
+---
+
+## Path 2: Energy Management System (EMS) on an Existing 100A Service
+
+If a service upgrade is not feasible (cost, strata restrictions, rental property constraints), an **Energy Management System** allows a heat pump to share limited service capacity with other high-draw loads by preventing simultaneous peak demand.
+
+### How EMS Works
+
+An EMS monitors real-time current draw at the main panel. When total draw approaches the service limit, the controller signals the heat pump (or another managed load) to reduce output or temporarily pause. The heat pump's thermal mass — the stored heat in the building — buffers the brief reduction without meaningful comfort loss.
+
+This is not load shedding or cycling. Modern inverter heat pumps modulate compressor speed continuously. An EMS that communicates with an inverter unit can reduce compressor speed rather than cycling it on and off — protecting compressor life while staying within service limits.
+
+### DCC-9 / DCC-12 Load Controllers
+
+The **DCC-9 and DCC-12** are examples of dynamic current controllers used in residential EMS applications. These devices monitor panel amperage and send a demand reduction signal to the heat pump or supplementary loads when the service approaches capacity.
+
+Typical application: the EMS prevents the heat pump and an electric dryer or range from drawing simultaneously at peak, shaving the demand spike that would otherwise trip the main breaker. The occupant doesn't notice — the dryer finishes drying, and the heat pump continues conditioning the space.
+
+**Installation:** EMS hardware requires a licensed electrician to install current sensors at the main and sub-panels. The heat pump must be compatible (most modern inverter units support external demand signals). Confirm compatibility with your contractor before purchasing.
+
+---
+
+## Why Inverter Units Are Essential for 100A Installations
+
+This is not marketing language. It is a functional distinction.
+
+**Old single-stage (on/off) heat pump:**
+- Compressor runs at 100% or 0%
+- Start current (inrush) can be 3–5× running current for 1–2 seconds
+- A 2-ton unit may draw 40–50A at startup
+- Startup spikes cause nuisance trips on a loaded 100A service
+- Cannot modulate in response to EMS demand signals
+
+**Modern inverter (variable-speed) heat pump:**
+- Compressor runs at 10–100% of capacity
+- Soft-start: ramp-up over several seconds eliminates inrush spikes
+- Steady-state draw scales with demand: 8–12A at light load, 18–25A at peak
+- Responds to EMS demand reduction signals by modulating, not cycling
+- At Metro Vancouver's mild design temperatures (-5°C to -7°C), an inverter unit often runs at 30–60% capacity, drawing well below nameplate maximum
+
+**Practical implication:** On a constrained 100A service, a 2-ton inverter mini-split drawing 12–18A in shoulder-season operation creates far less panel pressure than nameplate figures suggest. The nameplate is the maximum. The operational draw in Metro Vancouver most of the time is significantly lower.
+
+---
+
+## Load Calculation: Surrey Example
+
+Surrey home, built 1978: 100A service, gas furnace being replaced, one EV (Level 2 charger requested).
+
+| Load | Running Draw |
+|---|---|
+| 1.5-ton inverter mini-split (heating, mild day) | 12A |
+| Domestic hot water heat pump | 8A |
+| Lighting + refrigerator + misc | 8A |
+| EV charger (Level 2, managed by EMS) | 0A (deferred while HP running at peak) |
+| **Total (EMS-managed peak)** | **28A** |
+
+At design temp (-6°C), the compressor ramps higher:
+
+| Load | Running Draw |
+|---|---|
+| 1.5-ton inverter mini-split (heating, design temp) | 20A |
+| Domestic hot water heat pump | 8A |
+| Lighting + misc | 8A |
+| EV charger (EMS-deferred during HP peak) | 0A |
+| **Total** | **36A** |
+
+Well within 80A continuous limit. In this configuration, the EMS defers EV charging to off-peak hours or to periods when the heat pump load drops. EV charging resumes at full rate during overnight off-peak windows when no other major loads are active.
+
+**This configuration works. It requires:** an inverter heat pump, an EMS, and a licensed electrician who understands simultaneous load management.
+
+---
+
+## Rebate Interaction: Does a Panel Upgrade Qualify?
+
+As of 2026, there is no standalone rebate for a panel upgrade in BC. However:
+
+- **CleanBC Better Homes** rebate requires installation by a registered contractor — this does not specify a panel upgrade, but the heat pump must be permitted and inspected, which requires electrical compliance
+- **Canada Greener Homes Loan** (up to $40,000, 0% interest) can be used for the panel upgrade *and* the heat pump as part of an eligible retrofit scope
+- **BC Hydro** does not rebate panel upgrades directly but does offer rebates on the heat pump equipment that may follow
+
+If you are doing both a panel upgrade and a heat pump installation, apply for the Greener Homes Loan first — it can cover both under one application.
+
+---
+
+## Contractor Verification: What to Confirm
+
+Before accepting any quote for a heat pump on a 100A service:
+
+- [ ] Contractor has reviewed your panel and confirmed available capacity
+- [ ] System specified is an **inverter-driven** unit (not single-stage)
+- [ ] Aux heat strip size (if included) is sized appropriately for your service capacity
+- [ ] If EMS is proposed: confirm heat pump model supports external demand signal
+- [ ] Electrical work is permitted under Technical Safety BC — ask for the permit number
+- [ ] Contractor is CleanBC Better Homes registered (required for rebate)
+
+Verify contractor license: [Technical Safety BC](https://www.technicalsafetybc.ca/licence-search)
+Verify CleanBC registration: [CleanBC Better Homes](https://betterhomesbc.ca/find-a-contractor/)
+
+---
+
+<div className="disclaimer">
+  <p><strong>Disclaimer:</strong> Load calculations in this guide are reference examples only. Actual equipment draw must be confirmed against manufacturer nameplates. A formal load calculation per CSA C22.1 Section 8 must be performed by a licensed electrician before any service upgrade or heat pump installation. BC Hydro lead times and costs are approximate and subject to change. This guide does not constitute electrical engineering advice.</p>
+</div>

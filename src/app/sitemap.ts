@@ -29,6 +29,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'oil-furnace-heat-pump-conversion-bc',
     'heat-pump-condo-strata-bc',
     'heat-pump-home-assessment-checklist-bc',
+    '100-amp-panel-heat-pump-bc',
+    '100-amp-panel-heat-pump-vancouver',
+    'vancouver-strata-heat-pump-guide',
   ];
 
   const caseStudies = [
