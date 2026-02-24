@@ -110,6 +110,57 @@ export function LocalBusinessJsonLd({
   return <JsonLd data={data} />;
 }
 
+export function TechnicalArticleJsonLd({
+  title,
+  description,
+  slug,
+  datePublished,
+  dateModified,
+  keywords,
+}: {
+  title: string;
+  description: string;
+  slug: string;
+  datePublished: string;
+  dateModified: string;
+  keywords: string[];
+}) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: title,
+    description: description,
+    keywords: keywords.join(', '),
+    author: {
+      '@type': 'Person',
+      name: 'Canadian Heat Pump Hub — Mechanical Compliance Auditor',
+      description: 'Red Seal Refrigeration Mechanic and Class A Gas Fitter',
+      url: 'https://canadianheatpumphub.ca/about',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Canadian Heat Pump Hub',
+      url: 'https://canadianheatpumphub.ca',
+    },
+    datePublished,
+    dateModified,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://canadianheatpumphub.ca/case-studies/${slug}`,
+    },
+    about: {
+      '@type': 'Thing',
+      name: 'Mechanical Compliance Audit — BC Heat Pump Systems',
+    },
+    audience: {
+      '@type': 'Audience',
+      audienceType: 'Building designers, mechanical contractors, and sophisticated homeowners in British Columbia',
+    },
+  };
+
+  return <JsonLd data={data} />;
+}
+
 export function ArticleJsonLd({
   title,
   description,

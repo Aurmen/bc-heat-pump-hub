@@ -1,0 +1,146 @@
+# The Kettle Valley Ghost: A Post-Mortem of All-Electric Mechanical Failure
+
+*Mechanical Compliance Audit — Okanagan Region, BC | February 2026*
+
+---
+
+## Executive Summary
+
+This audit documents a pattern of interconnected mechanical failures observed in high-performance, all-electric residential builds in the Kettle Valley and South Okanagan sub-regions of BC. The failures are not attributable to a single deficiency. They are the compound result of three mutually reinforcing design errors: inadequate dew-point analysis on cooled slab assemblies, an unaccounted makeup air unit (MAU) thermal load, and air-source heat pump (ASHP) equipment selected against cooling design conditions rather than heating design conditions.
+
+The term "ghost load" refers to the 31 kW MAU demand that does not appear in equipment schedules, is not modelled in Manual J calculations, and is not visible to the homeowner until a breaker trips at 02:00 on a -15°C January night in Vernon.
+
+---
+
+## Audit Observation 1: The Dew-Point Skating Rink
+
+### Assembly Description
+
+The subject assembly: polished and sealed concrete slab, 4-inch thickness over 2-inch rigid EPS, in an open-plan kitchen/dining area. Radiant heating loops embedded. ASHP providing both space cooling and domestic hot water via a desuperheater. A commercial-grade island exhaust hood rated at 1,500 CFM is installed above the cooking surface.
+
+### Failure Mechanism
+
+During Okanagan summer conditions (exterior dry-bulb 34°C, relative humidity 52%), the dew-point of infiltrating exterior air is approximately 23°C. The slab surface temperature, maintained by the cooling cycle, stabilizes between 17°C and 20°C — below the dew-point of the surrounding air mass.
+
+Under normal conditions, this temperature differential would produce minor surface condensation managed by adequate vapour drive and ventilation. The hood fan changes this calculation entirely.
+
+When the 1,500 CFM hood operates, it exhausts conditioned interior air and creates a sustained negative pressure across the building envelope. In the absence of a dedicated, balanced makeup air unit, replacement air is drawn through available infiltration pathways: door sweeps, window frames, penetrations, and unsealed sleeve penetrations for refrigerant lines. This replacement air arrives at exterior conditions: 34°C, 52% RH.
+
+The warm, humid infiltration air contacts the cooled slab surface. Condensation forms continuously across the slab — not as isolated droplets, but as a uniform film. The sealed and polished surface finish, chosen specifically for its reflective quality and low maintenance, provides zero absorption and zero friction under wet conditions.
+
+**Audit observation:** The slab becomes a slip hazard within 15–20 minutes of sustained hood operation during cooling season. This condition recurs every time the hood operates above threshold exhaust rates. Building occupants describe the phenomenon as the floor becoming "like a skating rink." The root cause is a negative-pressure building envelope combined with a cooled radiant slab operating below the ambient dew-point — a condition that persists for 60–90 days annually in the South Okanagan.
+
+### Compliance Requirement
+
+BC Building Code and ASHRAE 62.2 require balanced ventilation when exhaust-only systems exceed infiltration compensation thresholds. A 1,500 CFM exhaust hood in a code-compliant envelope requires a mechanically supplied, tempered makeup air source. This is not optional and is not subject to designer discretion. The makeup air unit is a compliance requirement, not an upgrade.
+
+---
+
+## Audit Observation 2: The 31 kW Ghost Load
+
+### The MAU Thermal Load Calculation
+
+When makeup air is supplied mechanically — as compliance requires — a tempering coil or heat exchanger is required to condition the incoming air from outdoor design temperature to a supply temperature that does not cause occupant discomfort or equipment short-cycling.
+
+The sensible heating load for a makeup air unit is calculated using the standard air-side heat transfer equation:
+
+```
+Q (BTU/h) = 1.08 × CFM × ΔT (°F)
+```
+
+Where:
+- **1.08** = combined factor for air density (0.075 lb/ft³), specific heat (0.24 BTU/lb·°F), and 60 min/hr
+- **CFM** = 1,500 (rated hood exhaust volume)
+- **ΔT** = temperature rise from outdoor design to indoor setpoint
+
+For the Kelowna/Vernon heating design condition of **-15°C** (ASHRAE 99% design temperature) to an indoor setpoint of **21°C**:
+
+```
+ΔT = 21°C − (−15°C) = 36°C = 64.8°F
+
+Q = 1.08 × 1,500 × 64.8
+Q = 104,976 BTU/h
+Q ≈ 105,000 BTU/h
+Q ≈ 30.8 kW
+```
+
+**The MAU imposes a peak thermal demand of approximately 31 kW on the electrical system at outdoor design temperature.**
+
+This load does not appear in the ASHP selection schedule. It does not appear in the Manual J report. It is not modelled in the energy simulation. It exists in the mechanical room, consuming power, every time the exhaust hood operates during a heating design event.
+
+### The 200A Service Constraint
+
+A 31 kW resistive electric load at 240V single-phase draws:
+
+```
+I = P ÷ V = 31,000 W ÷ 240 V = 129 A
+```
+
+A residential 200A service carries a continuous duty rating of 160A (80% of 200A per CSA C22.1). The MAU load alone consumes 129A — 80% of the continuous duty capacity before a single other load is energized.
+
+During a -15°C winter design event, simultaneous operating loads on a typical 200A residential service include:
+
+| Load | Estimated Draw |
+|---|---|
+| MAU tempering coil (1,500 CFM) | 129 A |
+| ASHP compressor and air handler | 18–28 A |
+| Domestic hot water (heat pump or element) | 15–25 A |
+| EV charger (Level 2, if present) | 32 A |
+| Lighting, appliances, miscellaneous | 15–25 A |
+
+Aggregate demand at design conditions routinely exceeds 200A. The main breaker trips. At 02:00 in January, this is not an inconvenience — it is a heating failure.
+
+**Audit observation:** The 31 kW MAU load is the mechanical equivalent of a ghost — invisible at the design stage, present and consuming at design conditions, and identified only after a service call and panel investigation. Electrical service upgrades to 320A or 400A are required in all-electric builds incorporating large exhaust hoods if simultaneous load calculations are not performed at the design stage.
+
+---
+
+## Audit Observation 3: ASHP Balance Point Failure at -15°C Design Temperature
+
+### Equipment Selection Methodology
+
+In the Okanagan region, the cooling design condition (ASHRAE 1% dry-bulb) is approximately 34–36°C. A building with a peak cooling load of 24,000 BTU/h (2 tonnes) will be matched with an ASHP system rated at 24,000 BTU/h cooling.
+
+The heating design condition is -15°C to -18°C (Kelowna/Vernon ASHRAE 99%). At this temperature, an ASHP rated at 24,000 BTU/h cooling will produce approximately 14,000–16,000 BTU/h of heating output — a capacity deration of 35–45% due to reduced refrigerant density, increased compressor work, and reduced heat of vaporization available from the outdoor coil.
+
+The building's heating load at -15°C is independent of the ASHP's cooling tonnage. In a well-insulated 2,500 sq ft Okanagan home, the heating load at design temperature ranges from 40,000 to 60,000 BTU/h before the MAU load is added.
+
+### The Load Deficit
+
+| Condition | Value |
+|---|---|
+| ASHP rated cooling output | 24,000 BTU/h |
+| ASHP heating output at -15°C | ~15,000 BTU/h |
+| Building heat loss at -15°C | ~50,000 BTU/h |
+| MAU peak demand | 105,000 BTU/h |
+| **Total heating requirement at design** | **~155,000 BTU/h** |
+| **Available ASHP output** | **~15,000 BTU/h** |
+| **Load deficit** | **~140,000 BTU/h (82 kW)** |
+
+The installed ASHP meets approximately 10% of the design heating load at the ASHRAE 99% design event. The remainder is served by electric resistance backup — at the electrical service draw rates described in Observation 2.
+
+**Audit observation:** ASHP equipment selected on cooling load alone is chronically undersized for Interior BC heating requirements. The balance point — the outdoor temperature at which ASHP output equals building heat loss — must be calculated explicitly and documented in the mechanical schedule. For Kelowna and Vernon, the balance point of a cooling-selected system commonly falls between -2°C and -5°C, leaving 60–90 annual heating degree-hours uncovered by heat pump operation.
+
+The compliance requirement is not that the ASHP cover 100% of the heating load at design temperature. It is that the system designer has explicitly calculated the balance point, documented the backup heat source, and sized the electrical service to accommodate simultaneous peak loads.
+
+---
+
+## Audit Observations: Summary
+
+| Issue | Root Cause | Compliance Requirement |
+|---|---|---|
+| Dew-point condensation on slab | Exhaust-only ventilation, negative pressure, cooled slab below dew-point | Balanced or positive-pressure makeup air per ASHRAE 62.2 |
+| 31 kW ghost load | MAU not included in load calculations or electrical service sizing | Simultaneous load calculation per CSA C22.1 and BC Electrical Code |
+| ASHP heating failure at -15°C | Equipment selected for cooling, not heating design conditions | Balance point calculation required in mechanical schedule |
+| 200A service trips at design conditions | Aggregate load exceeds 160A continuous duty | Service upgrade or load management required prior to occupancy |
+
+---
+
+## A Note on Scope
+
+This document records audit observations from site reviews of specific mechanical systems. It does not constitute engineering advice, a code compliance report, or a professional assessment for any individual property. Mechanical system design and sizing must be performed by a qualified engineer or designer holding applicable BC registration. Electrical work must be performed by a licensed electrical contractor under Technical Safety BC jurisdiction.
+
+Observations reference ASHRAE standards, BC Building Code, and CSA C22.1 as they apply to the described conditions. Applicable editions and adopted amendments vary by jurisdiction — confirm current requirements with the Authority Having Jurisdiction (AHJ) for any specific project.
+
+---
+
+*Audit observations prepared by a Red Seal Refrigeration Mechanic and Class A Gas Fitter. Contact: [contact@canadianheatpumphub.ca](mailto:contact@canadianheatpumphub.ca)*

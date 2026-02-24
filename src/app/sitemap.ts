@@ -31,9 +31,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'heat-pump-home-assessment-checklist-bc',
   ];
 
+  const caseStudies = [
+    'kettle-valley-ghost',
+  ];
+
   const staticPages = [
     { url: baseUrl, priority: 1.0 },
     { url: `${baseUrl}/guides`, priority: 0.9 },
+    { url: `${baseUrl}/case-studies`, priority: 0.85 },
     { url: `${baseUrl}/bc`, priority: 0.9 },
     { url: `${baseUrl}/directory`, priority: 0.8 },
     { url: `${baseUrl}/brands`, priority: 0.85 },
@@ -79,6 +84,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const caseStudyPages = caseStudies.map(slug => ({
+    url: `${baseUrl}/case-studies/${slug}`,
+    priority: 0.85,
+  }));
+
   const listings = getAllListings();
   const companyPages = listings.map(listing => ({
     url: `${baseUrl}/directory/${listing.slug}`,
@@ -88,6 +98,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPages,
     ...guidePages,
+    ...caseStudyPages,
     ...repairPages,
     ...regionPages,
     ...cityPages,
