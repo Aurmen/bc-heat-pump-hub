@@ -32,6 +32,9 @@ export async function generateMetadata({
   return {
     title: 'BC Heat Pump & Boiler Installer Directory',
     description: 'Browse heat pump and boiler replacement installers across British Columbia. Filter by city and service type.',
+    alternates: {
+      canonical: 'https://canadianheatpumphub.ca/directory',
+    },
   };
 }
 

@@ -17,6 +17,20 @@ export const metadata: Metadata = {
     locale: 'en_CA',
     url: 'https://canadianheatpumphub.ca',
     siteName: 'Canadian Heat Pump Hub',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Canadian Heat Pump Hub — BC Heat Pump Installer Directory',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'BC Heat Pump Installers & Directory | Canadian Heat Pump Hub',
+    description: 'Find BC heat pump installers, compare costs, and calculate ROI. Climate-specific guides for Vancouver, Victoria, Kelowna, and all BC cities.',
+    images: ['/og-image.png'],
   },
 };
 

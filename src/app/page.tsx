@@ -1,6 +1,20 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { regions } from '@/data/regions';
 import { HomepageJsonLd } from '@/components/JsonLd';
+
+export const metadata: Metadata = {
+  title: 'Find BC Heat Pump Installers — TSBC Verified Contractors',
+  description: 'Find TSBC-verified heat pump installers across British Columbia. Compare air-to-water, hybrid, and boiler replacement contractors in Vancouver, Victoria, Kelowna, and every BC city. Free ROI calculator and 2026 rebate guide.',
+  alternates: {
+    canonical: 'https://canadianheatpumphub.ca',
+  },
+  openGraph: {
+    title: 'Find BC Heat Pump Installers — TSBC Verified Contractors',
+    description: 'Find TSBC-verified heat pump installers across British Columbia. Free ROI calculator, 2026 rebate guide, and city-specific climate advice.',
+    url: 'https://canadianheatpumphub.ca',
+  },
+};
 
 export default function HomePage() {
   return (

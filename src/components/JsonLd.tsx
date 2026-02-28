@@ -20,6 +20,23 @@ export function OrganizationJsonLd() {
     name: 'Canadian Heat Pump Hub',
     url: 'https://canadianheatpumphub.ca',
     description: 'Educational resource for heat pump and boiler replacement decisions in Canada',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://canadianheatpumphub.ca/og-image.png',
+      width: 1200,
+      height: 630,
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      url: 'https://canadianheatpumphub.ca/directory/submit',
+    },
+    areaServed: {
+      '@type': 'State',
+      name: 'British Columbia',
+      addressCountry: 'CA',
+    },
+    sameAs: [],
   };
 
   return <JsonLd data={data} />;
