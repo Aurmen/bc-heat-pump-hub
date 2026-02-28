@@ -7,6 +7,10 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://canadianheatpumphub.ca'),
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+  },
   title: {
     default: 'BC Heat Pump Installers & Directory | Canadian Heat Pump Hub',
     template: '%s | Canadian Heat Pump Hub',
