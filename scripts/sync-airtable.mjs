@@ -1,16 +1,17 @@
 /**
  * sync-airtable.mjs
  *
- * Fetches all contractor records from Airtable and writes src/data/directory.json.
+ * Fetches all "Published" records from the "Contractor Submissions" table in
+ * Airtable and writes src/data/directory.json.
+ *
  * Run manually:  node scripts/sync-airtable.mjs
  * Vercel build:  node scripts/sync-airtable.mjs && next build
  *
  * Required env vars (set in .env.local for local dev, Vercel project settings for CI):
  *   AIRTABLE_API_KEY   – Personal access token from airtable.com/create/tokens
- *   AIRTABLE_BASE_ID   – Found in the Airtable API docs URL: airtable.com/appXXXXXX/api/docs
+ *   AIRTABLE_BASE_ID   – Found in the URL: airtable.com/appXXXXXX/...
  *
- * Airtable table name: "Contractors"
- * Field names must exactly match those listed in mapRecord() below.
+ * Only records with Status = "Published" are included in the output.
  */
 
 import { writeFileSync, readFileSync, existsSync } from 'fs';
@@ -36,7 +37,7 @@ if (existsSync(envPath)) {
 
 const API_KEY = process.env.AIRTABLE_API_KEY;
 const BASE_ID = process.env.AIRTABLE_BASE_ID;
-const TABLE_NAME = 'Contractors';
+const TABLE_NAME = 'Contractor Submissions';
 
 if (!API_KEY || !BASE_ID) {
   console.error('❌  Missing AIRTABLE_API_KEY or AIRTABLE_BASE_ID');
@@ -44,8 +45,26 @@ if (!API_KEY || !BASE_ID) {
   process.exit(1);
 }
 
-// ── Fetch all records (paginated) ────────────────────────────────────────────
+// ── Services value mapping ────────────────────────────────────────────────────
+// Maps Airtable multi-select labels → DirectoryListing ServiceType values.
+// Unknown / non-standard values are silently dropped.
+const SERVICE_MAP = {
+  'Heat Pumps':     'heat_pumps',
+  'Air-to-Water':   'air_to_water',
+  'Boilers':        'boilers',
+  'Hybrid Systems': 'hybrid',
+  'Ground Source':  'heat_pumps', // closest equivalent
+};
 
+// ── Slug generation ───────────────────────────────────────────────────────────
+function slugify(name) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+// ── Fetch all records (paginated) ────────────────────────────────────────────
 async function fetchAllRecords() {
   const records = [];
   let offset = null;
@@ -77,53 +96,61 @@ async function fetchAllRecords() {
 
 // ── Map Airtable record → DirectoryListing ───────────────────────────────────
 //
-// Airtable field names used below MUST match your table's field names exactly.
-// Multi-select fields (services, brands_supported) are returned as string[].
-// Checkbox fields are boolean.
-// Single-select fields (region, emergency_service, tsbc_license_status) are strings.
+// Field names match the "Contractor Submissions" table exactly.
+// Status = "Published" filter is applied in main() before calling this.
 
 function mapRecord(record) {
   const f = record.fields;
 
-  // Reassemble specialties object from flat Airtable checkboxes
-  const specialties = {};
-  if (f.ems_certified)    specialties.ems_certified    = true;
-  if (f.strata_approved)  specialties.strata_approved  = true;
-  if (f.cold_climate_pro) specialties.cold_climate_pro = true;
-
-  // source_urls stored as Long text, one URL per line
-  const source_urls = f.source_urls
-    ? f.source_urls.split('\n').map(u => u.trim()).filter(Boolean)
+  // Map services: translate Airtable labels → ServiceType values, deduplicate
+  const rawServices = Array.isArray(f['Heat Pumps, Air-to-Water, Boilers, Hybrid Systems, Ground Source, Pool Heating, Snow Melt'])
+    ? f['Heat Pumps, Air-to-Water, Boilers, Hybrid Systems, Ground Source, Pool Heating, Snow Melt']
     : [];
+  const services = [...new Set(
+    rawServices.map(s => SERVICE_MAP[s]).filter(Boolean)
+  )];
 
-  const listing = {
-    company_name:            f.company_name            ?? '',
-    slug:                    f.slug                    ?? '',
-    website:                 f.website                 ?? '',
-    phone:                   f.phone                   ?? '',
-    city:                    f.city                    ?? '',
-    region:                  f.region                  ?? '',
-    province:                'BC',
-    services:                f.services                ?? [],
-    emergency_service:       f.emergency_service       ?? 'unknown',
-    brands_supported:        f.brands_supported        ?? [],
-    notes:                   f.notes                   ?? '',
-    source_urls,
-    tsbc_verified:           f.tsbc_verified            ?? false,
-    tsbc_fsr_license:        f.tsbc_fsr_license         ?? '',
-    tsbc_gas_license:        f.tsbc_gas_license         ?? '',
-    tsbc_electrical_license: f.tsbc_electrical_license  ?? '',
-    tsbc_license_status:     f.tsbc_license_status      ?? 'unknown',
-    tsbc_enforcement_actions: f.tsbc_enforcement_actions ?? 0,
-    tsbc_last_verified:      f.tsbc_last_verified        ?? '',
-    service_reliability:     null,
+  // Prepend service area to notes if present
+  const serviceArea = f['Service Area'] ?? '';
+  const adminNotes  = f['Admin Notes'] ?? '';
+  const notes = [
+    serviceArea ? `Service area: ${serviceArea}.` : '',
+    adminNotes,
+  ].filter(Boolean).join(' ');
+
+  // TSBC verified: map single-select "Verified" → true
+  const tsbcStatus = f['TSBC Verification Status'] ?? '';
+  const tsbc_verified = tsbcStatus === 'Verified';
+
+  // License status: map to our enum values; default 'unknown'
+  const licenseStatusRaw = (f['License Status'] ?? '').toLowerCase().replace(/\s+/g, '_');
+  const validStatuses = ['active', 'expiring_soon', 'expired', 'unknown'];
+  const tsbc_license_status = validStatuses.includes(licenseStatusRaw)
+    ? licenseStatusRaw
+    : 'unknown';
+
+  return {
+    company_name:             f['Company Name']          ?? '',
+    slug:                     '',                         // generated in main()
+    website:                  f['Website']               ?? '',
+    phone:                    f['Phone']                 ?? '',
+    city:                     f['City']                  ?? '',
+    region:                   f['Lower Mainland, Vancouver Island, Interior, Northern BC'] ?? '',
+    province:                 'BC',
+    services,
+    emergency_service:        f['Emergency Service']     ?? 'unknown',
+    brands_supported:         f['Brand Support']         ?? [],
+    notes,
+    source_urls:              [],
+    tsbc_verified,
+    tsbc_fsr_license:         f['FSR License']           ?? '',
+    tsbc_gas_license:         f['Gas Fitter License']    ?? '',
+    tsbc_electrical_license:  f['Electrical License']    ?? '',
+    tsbc_license_status,
+    tsbc_enforcement_actions: f['Enforcement Actions']   ?? 0,
+    tsbc_last_verified:       '',
+    service_reliability:      null,
   };
-
-  if (Object.keys(specialties).length > 0) {
-    listing.specialties = specialties;
-  }
-
-  return listing;
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
@@ -132,10 +159,30 @@ async function main() {
   console.log(`\nSyncing contractors from Airtable base ${BASE_ID}...`);
 
   const records = await fetchAllRecords();
-  const listings = records
+
+  // Only publish records with Status = "Published"
+  const published = records.filter(r => r.fields['Status'] === 'Published');
+  console.log(`  ${published.length} of ${records.length} records have Status = "Published"`);
+
+  // Map to listings
+  const listings = published
     .map(mapRecord)
-    .filter(l => l.slug) // skip any records with empty slug
-    .sort((a, b) => a.company_name.localeCompare(b.company_name));
+    .filter(l => l.company_name); // skip blank records
+
+  // Generate slugs from company name, deduplicate
+  const seen = {};
+  for (const l of listings) {
+    const base = slugify(l.company_name);
+    if (!seen[base]) {
+      seen[base] = 1;
+      l.slug = base;
+    } else {
+      l.slug = `${base}-${seen[base]}`;
+      seen[base]++;
+    }
+  }
+
+  listings.sort((a, b) => a.company_name.localeCompare(b.company_name));
 
   const outputPath = join(__dirname, '../src/data/directory.json');
   writeFileSync(outputPath, JSON.stringify(listings, null, 2));
