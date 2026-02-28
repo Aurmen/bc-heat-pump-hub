@@ -128,6 +128,35 @@ export const supplyHouses: SupplyHouseData[] = [
   },
 
   {
+    slug: 'andrew-sheret',
+    name: 'Andrew Sheret',
+    website: 'https://www.sheret.com',
+    distributorType: 'wholesale',
+    typeNote: 'Primarily a plumbing and hydronics supply house. Heat pump equipment is limited and varies by branch — confirm availability by calling before sourcing HP equipment.',
+    description:
+      'Plumbing and hydronics supply house with BC Interior locations. Andrew Sheret primarily serves the plumbing contractor market and is not a primary source for heat pump equipment. Useful for hydronics-related components (piping, manifolds, controls) for air-to-water HP systems.',
+    brands: [],
+    locations: [
+      {
+        city: 'Kamloops',
+        region: 'Interior',
+      },
+      {
+        city: 'Penticton',
+        region: 'Interior',
+      },
+      {
+        city: 'Castlegar',
+        region: 'Interior',
+      },
+      {
+        city: 'Prince George',
+        region: 'Northern BC',
+      },
+    ],
+  },
+
+  {
     slug: 'ecco-supply',
     name: 'ECCO Supply',
     website: 'https://www.eccosupply.ca',
@@ -244,35 +273,6 @@ export const supplyHouses: SupplyHouseData[] = [
       {
         city: 'Vancouver',
         region: 'Lower Mainland',
-      },
-    ],
-  },
-
-  {
-    slug: 'andrew-sheret',
-    name: 'Andrew Sheret',
-    website: 'https://www.sheret.com',
-    distributorType: 'limited',
-    typeNote: 'Primarily a plumbing and hydronics supply house. Heat pump equipment is limited and varies by branch — confirm availability by calling before sourcing HP equipment.',
-    description:
-      'Plumbing and hydronics supply house with BC Interior locations. Andrew Sheret primarily serves the plumbing contractor market and is not a primary source for heat pump equipment. Useful for hydronics-related components (piping, manifolds, controls) for air-to-water HP systems.',
-    brands: [],
-    locations: [
-      {
-        city: 'Kamloops',
-        region: 'Interior',
-      },
-      {
-        city: 'Penticton',
-        region: 'Interior',
-      },
-      {
-        city: 'Castlegar',
-        region: 'Interior',
-      },
-      {
-        city: 'Prince George',
-        region: 'Northern BC',
       },
     ],
   },
