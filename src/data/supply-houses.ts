@@ -277,6 +277,61 @@ export const supplyHouses: SupplyHouseData[] = [
     ],
   },
 
+  {
+    slug: 'sinclair-supply',
+    name: 'Sinclair Supply',
+    website: 'https://www.sinclairsupply.ca',
+    distributorType: 'wholesale',
+    description:
+      "Western Canada's exclusive wholesale distributor for ICP brands — KeepRite, Tempstar, and affiliated residential and light commercial heat pump lines. In operation for over 75 years with 7 BC branches from Surrey to Terrace, Sinclair carries one of the largest HVAC/R inventories in Canada: ducted heat pumps, ductless mini-splits, controls, refrigerants, sheet metal, and accessories. Contractor accounts required; not open to the public.",
+    brands: [
+      'KeepRite',
+      'Tempstar',
+    ],
+    locations: [
+      {
+        city: 'Surrey',
+        address: '13155 82A Ave, Surrey, BC V3W 9Y6',
+        phone: '604-543-6310',
+        region: 'Lower Mainland',
+      },
+      {
+        city: 'Nanaimo',
+        address: '2254 McGarrigle Road, Nanaimo, BC V9S 4M6',
+        phone: '250-756-0741',
+        region: 'Vancouver Island',
+      },
+      {
+        city: 'Victoria',
+        address: '585 Bay Street, Victoria, BC V8T 1P5',
+        region: 'Vancouver Island',
+      },
+      {
+        city: 'Kelowna',
+        address: '1820 Kirschner Road, Kelowna, BC V1Y 4N6',
+        phone: '250-862-3577',
+        region: 'Interior',
+      },
+      {
+        city: 'Kamloops',
+        address: '961 Laval Crescent, Kamloops, BC V2C 5P4',
+        phone: '250-372-8898',
+        region: 'Interior',
+      },
+      {
+        city: 'Prince George',
+        address: '749 3rd Avenue, Prince George, BC V2L 3C6',
+        phone: '250-563-2404',
+        region: 'Northern BC',
+      },
+      {
+        city: 'Terrace',
+        address: '4931 Keith Avenue, Terrace, BC V8G 1K7',
+        region: 'Northern BC',
+      },
+    ],
+  },
+
   // ── Manufacturer direct-to-contractor ────────────────────────────────
 
   {
@@ -396,6 +451,63 @@ export const supplyHouses: SupplyHouseData[] = [
       // BC branch locations — see master.ca for your nearest branch
       {
         city: 'Vancouver',
+        region: 'Lower Mainland',
+      },
+    ],
+  },
+
+  {
+    slug: 'riada-sales',
+    name: 'Riada Sales',
+    website: 'https://riada.ca',
+    distributorType: 'commercial_rep',
+    typeNote: "Riada operates as a manufacturer's representative serving engineers, mechanical contractors, and building owners on commercial and institutional projects — not a walk-in counter. Contact them directly for project-specific pricing and commissioning support.",
+    description:
+      "Commercial and institutional manufacturer's rep specializing in electrification-focused HVAC and plumbing equipment for BC, Alberta, and the Yukon. In operation since 1995, Riada represents Galletti cold-climate air-to-water heat pumps (rated to −20°C, up to 65°C output), Lync CO₂/R744 commercial heat pump water heaters, Hubbell air-source and water-source HPWHs, SHARC wastewater heat recovery systems, and OSO Hotwater heat pump DHW units — making them a key channel for all-electric and heat-pump-primary mechanical system design in BC.",
+    brands: [
+      'Galletti',
+      'Lync',
+      'Hubbell',
+      'SHARC',
+      'OSO Hotwater',
+    ],
+    locations: [
+      {
+        label: 'Head Office',
+        city: 'Burnaby',
+        address: '8505 Eastlake Dr, Burnaby, BC V5A 4T7',
+        phone: '604-299-3499',
+        region: 'Lower Mainland',
+      },
+      {
+        label: 'Vancouver Island',
+        city: 'Nanaimo',
+        address: '#116 - 99 Chapel Street, Nanaimo, BC V9R 5H3',
+        region: 'Vancouver Island',
+      },
+    ],
+  },
+
+  {
+    slug: 'climachange-solutions',
+    name: 'ClimaChange Solutions',
+    website: 'https://climachangesolutions.com',
+    distributorType: 'commercial_rep',
+    typeNote: "ClimaChange operates as a manufacturer's representative serving mechanical engineers, contractors, and building owners on commercial, institutional, and industrial projects across BC and Alberta. No walk-in counter; contact them for project specifications and engineering support.",
+    description:
+      "BC and Alberta manufacturer's representative firm led by P.Eng. mechanical engineers (ASHRAE Past Presidents) with deep expertise in high-efficiency and electrification-focused HVAC for commercial and institutional buildings. Represents 28+ manufacturers including Bulldog Heat Pump (hybrid and reversible HPs), Multistack (modular heat recovery chillers), AE Aire (water-source HP fan coils), Haakon Industries (custom AHUs), Desert Aire (DOAS and dehumidification), and VTS Group (modular AHUs and HRVs). Strong specification support for teams targeting ZCSC EL-3/EL-4 compliance on commercial projects.",
+    brands: [
+      'Bulldog Heat Pump',
+      'Multistack',
+      'AE Aire',
+      'Haakon Industries',
+      'Desert Aire',
+    ],
+    locations: [
+      {
+        label: 'BC Region',
+        city: 'Vancouver',
+        phone: '604-365-4044',
         region: 'Lower Mainland',
       },
     ],
