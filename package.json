@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/sync-airtable.mjs && next build",
+    "build:local": "next build",
+    "sync-airtable": "node scripts/sync-airtable.mjs",
+    "export-csv": "node scripts/export-to-airtable-csv.mjs",
     "start": "next start",
     "lint": "next lint",
     "verify-license": "node scripts/verify-tsbc-license.js",
