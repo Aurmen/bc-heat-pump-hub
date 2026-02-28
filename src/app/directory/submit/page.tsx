@@ -59,21 +59,10 @@ export default function DirectorySubmitPage() {
     setErrorMessage('');
 
     try {
-      // Using Web3Forms (free email service for static sites)
-      // Get your access key at: https://web3forms.com
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/submit-contractor', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: 'd1abd195-1ee8-47a8-a5a8-75d0089e4c4a',
-          subject: `New Directory Submission: ${formData.company_name}`,
-          from_name: formData.company_name,
-          ...formData,
-          services: formData.services.join(', '),
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
 
       const result = await response.json();

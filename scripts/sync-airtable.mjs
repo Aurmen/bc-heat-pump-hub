@@ -177,7 +177,9 @@ function mapRecord(record, csvFallback) {
     province:                 'BC',
     services,
     emergency_service:        f['Emergency Service']     ?? 'unknown',
-    brands_supported:         f['Brand Support']         ?? [],
+    brands_supported:         typeof f['Brand Support'] === 'string'
+                                ? f['Brand Support'].split(',').map(s => s.trim()).filter(Boolean)
+                                : (f['Brand Support'] ?? []),
     notes,
     source_urls:              [],
     tsbc_verified,
