@@ -160,9 +160,9 @@ async function main() {
 
   const records = await fetchAllRecords();
 
-  // Exclude only explicitly rejected records; accept Published, Pending Review, or blank
-  const published = records.filter(r => r.fields['Status'] !== 'Rejected');
-  console.log(`  ${published.length} of ${records.length} records included (excluding Rejected)`);
+  // Only sync records with Status = "Published"
+  const published = records.filter(r => (r.fields['Status'] ?? '').includes('Published'));
+  console.log(`  ${published.length} of ${records.length} records have Status = "Published"`);
 
   // Map to listings
   const listings = published
