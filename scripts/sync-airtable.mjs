@@ -37,7 +37,7 @@ if (existsSync(envPath)) {
 
 const API_KEY = process.env.AIRTABLE_API_KEY;
 const BASE_ID = process.env.AIRTABLE_BASE_ID;
-const TABLE_NAME = 'Contractor Submissions';
+const TABLE_NAME = 'Submissions';
 
 if (!API_KEY || !BASE_ID) {
   console.error('❌  Missing AIRTABLE_API_KEY or AIRTABLE_BASE_ID');
@@ -160,9 +160,9 @@ async function main() {
 
   const records = await fetchAllRecords();
 
-  // Only publish records with Status = "Published"
-  const published = records.filter(r => r.fields['Status'] === 'Published');
-  console.log(`  ${published.length} of ${records.length} records have Status = "Published"`);
+  // Exclude only explicitly rejected records; accept Published, Pending Review, or blank
+  const published = records.filter(r => r.fields['Status'] !== 'Rejected');
+  console.log(`  ${published.length} of ${records.length} records included (excluding Rejected)`);
 
   // Map to listings
   const listings = published
