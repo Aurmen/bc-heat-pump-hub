@@ -18,6 +18,38 @@ import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
+// ── Load CSV fallback for services/notes data (lost during Airtable import) ───
+function loadCSVFallback(csvPath) {
+  if (!existsSync(csvPath)) return {};
+  const lines = readFileSync(csvPath, 'utf-8').trim().split('\n');
+  const headers = parseCSVLine(lines[0]);
+  const map = {};
+  for (const line of lines.slice(1)) {
+    const vals = parseCSVLine(line);
+    const row = {};
+    headers.forEach((h, i) => { row[h] = vals[i] ?? ''; });
+    if (row.company_name) map[row.company_name.toLowerCase().trim()] = row;
+  }
+  return map;
+}
+
+function parseCSVLine(line) {
+  const fields = [];
+  let cur = '', inQ = false;
+  for (const ch of line) {
+    if (ch === '"') { inQ = !inQ; }
+    else if (ch === ',' && !inQ) { fields.push(cur); cur = ''; }
+    else { cur += ch; }
+  }
+  fields.push(cur);
+  return fields;
+}
+
+const CSV_SERVICE_MAP = {
+  'heat_pumps': 'heat_pumps', 'hybrid': 'hybrid',
+  'boilers': 'boilers', 'air_to_water': 'air_to_water',
+};
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // ── Load .env.local for local development ─────────────────────────────────────
@@ -99,24 +131,30 @@ async function fetchAllRecords() {
 // Field names match the "Contractor Submissions" table exactly.
 // Status = "Published" filter is applied in main() before calling this.
 
-function mapRecord(record) {
+function mapRecord(record, csvFallback) {
   const f = record.fields;
+  const csvRow = csvFallback[(f['Company Name'] ?? '').toLowerCase().trim()] ?? {};
 
-  // Map services: translate Airtable labels → ServiceType values, deduplicate
-  const rawServices = Array.isArray(f['Heat Pumps, Air-to-Water, Boilers, Hybrid Systems, Ground Source, Pool Heating, Snow Melt'])
+  // Services: Airtable multi-select got scrambled during import ("Multiple") —
+  // fall back to original CSV data if Airtable has no valid values.
+  const rawAirtable = Array.isArray(f['Heat Pumps, Air-to-Water, Boilers, Hybrid Systems, Ground Source, Pool Heating, Snow Melt'])
     ? f['Heat Pumps, Air-to-Water, Boilers, Hybrid Systems, Ground Source, Pool Heating, Snow Melt']
     : [];
-  const services = [...new Set(
-    rawServices.map(s => SERVICE_MAP[s]).filter(Boolean)
-  )];
+  const airtableServices = [...new Set(rawAirtable.map(s => SERVICE_MAP[s]).filter(Boolean))];
+  const csvServices = csvRow.services
+    ? csvRow.services.split(',').map(s => CSV_SERVICE_MAP[s.trim()]).filter(Boolean)
+    : [];
+  const services = airtableServices.length ? airtableServices : [...new Set(csvServices)];
 
-  // Prepend service area to notes if present
-  const serviceArea = f['Service Area'] ?? '';
-  const adminNotes  = f['Admin Notes'] ?? '';
-  const notes = [
-    serviceArea ? `Service area: ${serviceArea}.` : '',
-    adminNotes,
-  ].filter(Boolean).join(' ');
+  // Region: ended up in the Address field after CSV import mapping error.
+  // Fall back to CSV if Address is missing or "unknown".
+  const regionRaw = f['Address'] ?? '';
+  const region = (regionRaw && regionRaw !== 'unknown') ? regionRaw : (csvRow.region ?? '');
+
+  // Notes: ended up in Emergency Service field after CSV import mapping error.
+  const notesFromAirtable = f['Emergency Service'] ?? '';
+  const notesValid = notesFromAirtable && notesFromAirtable !== 'unknown' && notesFromAirtable.length > 5;
+  const notes = notesValid ? notesFromAirtable : (csvRow.notes ?? '');
 
   // TSBC verified: map single-select "Verified" → true
   const tsbcStatus = f['TSBC Verification Status'] ?? '';
@@ -135,7 +173,7 @@ function mapRecord(record) {
     website:                  f['Website']               ?? '',
     phone:                    f['Phone']                 ?? '',
     city:                     f['City']                  ?? '',
-    region:                   f['Lower Mainland, Vancouver Island, Interior, Northern BC'] ?? '',
+    region,
     province:                 'BC',
     services,
     emergency_service:        f['Emergency Service']     ?? 'unknown',
@@ -164,9 +202,15 @@ async function main() {
   const published = records.filter(r => (r.fields['Status'] ?? '').includes('Published'));
   console.log(`  ${published.length} of ${records.length} records have Status = "Published"`);
 
+  // Load CSV fallback for services/region lost during Airtable import
+  const csvFallback = loadCSVFallback(join(__dirname, 'airtable-import.csv'));
+  if (Object.keys(csvFallback).length) {
+    console.log(`  loaded CSV fallback with ${Object.keys(csvFallback).length} entries`);
+  }
+
   // Map to listings
   const listings = published
-    .map(mapRecord)
+    .map(r => mapRecord(r, csvFallback))
     .filter(l => l.company_name); // skip blank records
 
   // Generate slugs from company name, deduplicate
