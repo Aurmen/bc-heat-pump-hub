@@ -96,6 +96,7 @@ function mapRow(row) {
     'Website':      row.website,
     'Phone':        row.phone,
     'City':         row.city,
+    'Status':       '📋 Published',
   };
 
   if (row.region) {

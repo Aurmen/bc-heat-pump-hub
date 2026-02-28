@@ -88,7 +88,7 @@ const outputRows = rows.map(row => {
 
 const headers = Object.keys(outputRows[0]);
 const csvLines = [
-  headers.join(','),
+  headers.map(h => escapeCSV(h)).join(','),
   ...outputRows.map(row => headers.map(h => escapeCSV(row[h])).join(',')),
 ];
 
