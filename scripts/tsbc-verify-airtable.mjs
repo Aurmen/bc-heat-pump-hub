@@ -450,10 +450,19 @@ async function main() {
       await sleep(600);
     }
 
-    // Save all discovered contractors to local file before Airtable (preserves data regardless of plan limits)
+    // Save all discovered contractors to local files before Airtable (preserves data regardless of plan limits)
     const discoveryPath = join(__dirname, 'tsbc-discoveries.json');
     writeFileSync(discoveryPath, JSON.stringify(creates.map(c => c.fields), null, 2));
     console.log(`  💾  Saved ${creates.length} contractors → scripts/tsbc-discoveries.json`);
+
+    const csvHeaders = ['Company Name', 'Phone', 'City', 'FSR License', 'Gas Fitter License', 'Electrical License', 'License Status', 'TSBC Verification Status', 'Status'];
+    const csvRows = creates.map(c => csvHeaders.map(h => {
+      const val = c.fields[h] ?? '';
+      return `"${String(val).replace(/"/g, '""')}"`;
+    }).join(','));
+    const csvPath = join(__dirname, 'tsbc-discoveries.csv');
+    writeFileSync(csvPath, [csvHeaders.join(','), ...csvRows].join('\n'));
+    console.log(`  💾  Saved ${creates.length} contractors → scripts/tsbc-discoveries.csv`);
 
     console.log(`\n📤  ${creates.length} new contractors to add to Airtable`);
     if (!isDryRun && creates.length > 0) {
