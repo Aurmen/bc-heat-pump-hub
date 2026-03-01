@@ -134,6 +134,27 @@ export default function GuidesPage() {
           Technically accurate, homeowner-friendly information to help you make informed heating system decisions.
         </p>
 
+        {/* Featured Master Guide */}
+        <div className="mb-10">
+          <Link
+            href="/guides/heat-pump-bc"
+            className="block bg-gradient-to-br from-primary-600 to-blue-700 rounded-2xl p-7 hover:shadow-xl transition-all duration-200 group"
+          >
+            <span className="inline-block text-xs font-semibold bg-white/20 text-white border border-white/30 px-2.5 py-0.5 rounded-full mb-3">
+              2026 Master Guide
+            </span>
+            <h2 className="text-2xl font-bold text-white mb-2 group-hover:underline">
+              BC Heat Pump Guide 2026: The Complete Homeowner Reference
+            </h2>
+            <p className="text-blue-100 text-sm leading-relaxed mb-4">
+              Mechanical facts, rebate stacking rules (up to $20,000), TSBC verification, HSPF2 thresholds, and balance point sizing — covering all BC climate zones from Victoria to Prince George.
+            </p>
+            <div className="flex items-center gap-1 text-white font-semibold text-sm group-hover:gap-2 transition-all">
+              Read the master guide <span aria-hidden="true">→</span>
+            </div>
+          </Link>
+        </div>
+
         {/* Regional Resource Centers */}
         <div className="mb-12">
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">

@@ -6,6 +6,21 @@ import { getListingsByCity } from '@/lib/utils';
 import CompanyCard from '@/components/CompanyCard';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
+// City-specific anchor links into the 2026 Master Guide.
+// Each entry targets the most relevant section for that city's primary compliance concern.
+const GUIDE_SECTION_MAP: Record<string, { anchor: string; context: string }> = {
+  kelowna:       { anchor: '#fact-2', context: 'balance point and heat load calculations for the Okanagan' },
+  victoria:      { anchor: '#fact-3', context: 'HSPF2 rebate thresholds and CleanBC eligibility' },
+  abbotsford:    { anchor: '#fact-1', context: 'cold-climate performance in high-humidity Fraser Valley conditions' },
+  kamloops:      { anchor: '#fact-2', context: 'balance point physics at a −20°C design temperature' },
+  nanaimo:       { anchor: '#fact-1', context: 'cold-climate equipment selection for Vancouver Island' },
+  'prince-george': { anchor: '#fact-1', context: 'extreme-cold performance requirements at −30°C design temperature' },
+  surrey:        { anchor: '#fact-5', context: 'Manual J sizing requirements — critical for 100A panel homes' },
+  burnaby:       { anchor: '#fact-4', context: 'auxiliary heat and noise compliance for strata properties' },
+  coquitlam:    { anchor: '#fact-2', context: 'balance point planning across varied Tri-Cities topography' },
+  penticton:     { anchor: '#fact-2', context: 'Interior vs. Coastal climate comparison and balance point data' },
+};
+
 export async function generateStaticParams() {
   const { cities } = await import('@/data/cities');
   return cities.map(city => ({
@@ -368,6 +383,25 @@ export default async function CityPage({ params }: { params: Promise<{ region: s
             </p>
           </Link>
         </div>
+
+        {/* Technical Compliance — priority cities only */}
+        {GUIDE_SECTION_MAP[city.slug] && (
+          <div className="mt-12 mb-8 bg-white border border-gray-200 border-l-4 border-l-primary-500 rounded-r-xl p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">
+              Technical Compliance for {city.name}
+            </h2>
+            <p className="text-gray-700 text-sm mb-4">
+              Before installing in {city.name}, verify your project against the 2026 BC Heat Pump Master Guide — specifically the section covering{' '}
+              <strong>{GUIDE_SECTION_MAP[city.slug].context}</strong>.
+            </p>
+            <Link
+              href={`/guides/heat-pump-bc${GUIDE_SECTION_MAP[city.slug].anchor}`}
+              className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+            >
+              View 2026 BC Heat Pump Master Guide →
+            </Link>
+          </div>
+        )}
 
         <div className="disclaimer mt-12">
           <p className="font-semibold mb-2">Disclaimer</p>
