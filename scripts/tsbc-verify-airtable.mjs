@@ -94,7 +94,7 @@ async function flushUpdates(updates) {
     const res = await fetch(url, {
       method: 'PATCH',
       headers: { Authorization: `Bearer ${API_KEY}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ records: batch }),
+      body: JSON.stringify({ typecast: true, records: batch }),
     });
     if (!res.ok) {
       const body = await res.text();
@@ -103,6 +103,28 @@ async function flushUpdates(updates) {
       count += batch.length;
     }
     await sleep(250); // Airtable rate limit
+  }
+  return count;
+}
+
+async function createRecords(newRecords) {
+  const BATCH = 10;
+  let count = 0;
+  for (let i = 0; i < newRecords.length; i += BATCH) {
+    const batch = newRecords.slice(i, i + BATCH);
+    const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE)}`;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${API_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ typecast: true, records: batch }),
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      console.error(`  ⚠️  POST failed: ${body.slice(0, 200)}`);
+    } else {
+      count += batch.length;
+    }
+    await sleep(250);
   }
   return count;
 }
@@ -128,14 +150,17 @@ async function initPage(browser) {
 }
 
 // Search TSBC by city — returns all result cards on all pages
-async function searchByCity(page, city) {
+// chipId: 'boiler' (default) or 'gas'
+async function searchByCity(page, city, chipId = 'boiler') {
   await page.goto(TSBC_URL, { waitUntil: 'networkidle2', timeout: 30000 });
   await sleep(3000);
 
-  // Select Boiler / Pressure Vessel / Refrigeration chip using attribute selector
-  // (avoids CSS comma-escaping issues; Puppeteer's .click() auto-scrolls into view)
-  const chip = await page.$('[id="technical-system-boiler,-pressure-vessel,-refrigeration"]');
-  if (!chip) { console.log(`    ⚠️  chip not found for ${city}`); return []; }
+  // Select technology chip — attribute selector avoids CSS comma-escaping
+  const chipSelector = chipId === 'gas'
+    ? '[id="technical-system-gas"]'
+    : '[id="technical-system-boiler,-pressure-vessel,-refrigeration"]';
+  const chip = await page.$(chipSelector);
+  if (!chip) { console.log(`    ⚠️  chip not found for ${city}/${chipId}`); return []; }
   await chip.click();
   await sleep(800);
 
@@ -244,30 +269,20 @@ async function extractLicenseData(page, detailUrl) {
 }
 
 // Build Airtable fields from TSBC license data.
-// NOTE: 'TSBC Verification Status' and 'License Status' are single-select fields.
-// They require the options to be pre-created in Airtable before the API can set them.
-// Until those options exist, we write only the text/number fields (license numbers,
-// enforcement count) which are always writable.
+// Uses typecast:true in the PATCH so select options are auto-created if missing.
 function buildAirtableFields(data) {
   const fields = {};
 
-  // Text fields — always writable
+  // License numbers (text fields)
   if (data.fsr_license)        fields['FSR License']        = data.fsr_license;
   if (data.gas_license)        fields['Gas Fitter License'] = data.gas_license;
   if (data.electrical_license) fields['Electrical License'] = data.electrical_license;
   fields['Enforcement Actions'] = data.enforcement_actions ?? 0;
 
-  // Single-select fields — only include if options exist in Airtable
-  // Add these after creating the options in Airtable field settings:
-  //   'TSBC Verification Status' options: Verified, Not Found
-  //   'License Status' options: active, expired, suspended, unknown
-  if (process.env.AIRTABLE_SELECTS_READY === '1') {
-    fields['TSBC Verification Status'] = 'Verified';
-    const statusMap = { active: 'active', expired: 'expired', suspended: 'suspended' };
-    if (data.license_status) {
-      fields['License Status'] = statusMap[data.license_status] ?? 'unknown';
-    }
-  }
+  // Single-select fields — typecast:true auto-creates options
+  fields['TSBC Verification Status'] = 'Verified';
+  const statusMap = { active: 'active', expired: 'expired', suspended: 'suspended' };
+  fields['License Status'] = statusMap[data.license_status] ?? 'unknown';
 
   return fields;
 }
@@ -319,25 +334,28 @@ async function main() {
   const page = await initPage(browser);
 
   try {
-    console.log('\n📍  Searching TSBC by city...');
+    console.log('\n📍  Searching TSBC by city (Boiler + Gas chips)...');
     for (let i = 0; i < cities.length; i++) {
       const city = cities[i];
       process.stdout.write(`  [${i + 1}/${cities.length}] ${city}...`);
 
-      try {
-        const cards = await searchByCity(page, city);
-        let newCards = 0;
-        for (const card of cards) {
-          const phone = normalizePhone(card.phone);
-          if (phone && phone.length >= 7 && !phoneToTSBC.has(phone)) {
-            phoneToTSBC.set(phone, card);
-            newCards++;
+      let cityNewCards = 0;
+      for (const chipId of ['boiler', 'gas']) {
+        try {
+          const cards = await searchByCity(page, city, chipId);
+          for (const card of cards) {
+            const phone = normalizePhone(card.phone);
+            if (phone && phone.length >= 7 && !phoneToTSBC.has(phone)) {
+              phoneToTSBC.set(phone, { ...card, city });
+              cityNewCards++;
+            }
           }
+        } catch (err) {
+          process.stdout.write(` [${chipId} err: ${err.message.slice(0, 30)}]`);
         }
-        console.log(` ${cards.length} results, ${newCards} new`);
-      } catch (err) {
-        console.log(` ⚠️  ${err.message.slice(0, 60)}`);
+        await sleep(500);
       }
+      console.log(` ${cityNewCards} new`);
 
       await sleep(1000);
     }
@@ -377,8 +395,8 @@ async function main() {
       await sleep(800);
     }
 
-    // Write to Airtable
-    console.log(`\n📤  ${updates.length} records to update in Airtable`);
+    // Write verified data to existing Airtable records
+    console.log(`\n📤  ${updates.length} existing records to update in Airtable`);
     if (!isDryRun && updates.length > 0) {
       const patched = await flushUpdates(updates);
       console.log(`    ✓ patched ${patched} records`);
@@ -389,12 +407,70 @@ async function main() {
       }
     }
 
+    // Step 3: Discover new TSBC contractors not already in Airtable
+    console.log('\n🆕  Discovering new TSBC contractors not yet in Airtable...');
+    const allAirtablePhones = new Set(
+      allRecords.map(r => normalizePhone(r.fields['Phone'])).filter(p => p.length >= 7)
+    );
+    const newTSBCContractors = [];
+    for (const [phone, card] of phoneToTSBC) {
+      if (!allAirtablePhones.has(phone)) {
+        newTSBCContractors.push({ phone, card });
+      }
+    }
+    console.log(`  ${newTSBCContractors.length} TSBC contractors not in Airtable — fetching license data...`);
+
+    const creates = [];
+    let createErrors = 0;
+    const licenseStatusMap = { active: 'active', expired: 'expired', suspended: 'suspended' };
+
+    for (let i = 0; i < newTSBCContractors.length; i++) {
+      const { card } = newTSBCContractors[i];
+      process.stdout.write(`  [${i + 1}/${newTSBCContractors.length}] ${card.name.slice(0, 45)}...\r`);
+
+      try {
+        const licenseData = await extractLicenseData(page, card.detailUrl);
+        const fields = {
+          'Company Name':            card.name,
+          'Phone':                   card.phone,
+          'City':                    card.city ?? '',
+          'Status':                  '🔎 Needs Review',
+          'TSBC Verification Status': 'Verified',
+          'License Status':          licenseStatusMap[licenseData.license_status] ?? 'unknown',
+          'Enforcement Actions':     licenseData.enforcement_actions ?? 0,
+        };
+        if (licenseData.fsr_license)        fields['FSR License']        = licenseData.fsr_license;
+        if (licenseData.gas_license)        fields['Gas Fitter License'] = licenseData.gas_license;
+        if (licenseData.electrical_license) fields['Electrical License'] = licenseData.electrical_license;
+        creates.push({ fields });
+      } catch (err) {
+        console.error(`  ⚠️  ${card.name.slice(0, 40)}: ${err.message.slice(0, 60)}`);
+        createErrors++;
+      }
+      await sleep(600);
+    }
+
+    console.log(`\n📤  ${creates.length} new contractors to add to Airtable`);
+    if (!isDryRun && creates.length > 0) {
+      const created = await createRecords(creates);
+      console.log(`    ✓ created ${created} new records (Status = "Needs Review")`);
+    } else if (isDryRun && creates.length > 0) {
+      console.log('    (dry run — skipped)');
+      for (const c of creates.slice(0, 5)) {
+        console.log(`    ${c.fields['Company Name']} (${c.fields['City']})`);
+      }
+      if (creates.length > 5) console.log(`    ... and ${creates.length - 5} more`);
+    }
+
     console.log(`
 ✅  Done
-    TSBC city entries found:  ${phoneToTSBC.size}
-    Airtable records matched: ${matched}
-    Not matched:              ${unmatched}
-    Errors:                   ${errors}
+    TSBC city entries found:    ${phoneToTSBC.size}
+    Airtable records matched:   ${matched}
+    Airtable records updated:   ${updates.length}
+    Not matched (existing):     ${unmatched}
+    Errors (existing):          ${errors}
+    New contractors discovered: ${creates.length}
+    New create errors:          ${createErrors}
 `);
 
   } finally {
