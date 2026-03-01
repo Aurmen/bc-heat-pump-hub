@@ -17,6 +17,7 @@
     "verify-tsbc": "node scripts/tsbc-verify-airtable.mjs",
     "verify-tsbc:dry": "node scripts/tsbc-verify-airtable.mjs --dry-run",
     "verify-tsbc:new": "node scripts/tsbc-verify-airtable.mjs --unverified",
+    "setup-schema": "node scripts/setup-airtable-schema.mjs",
     "enrich": "node scripts/enrich-airtable.mjs",
     "enrich:dry": "node scripts/enrich-airtable.mjs --dry-run",
     "enrich:province": "node scripts/enrich-airtable.mjs --step=1",

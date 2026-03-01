@@ -153,40 +153,49 @@ function inferAudience(companyName) {
 
 // ── Website search via Bing (avoids Google CAPTCHA) ──────────────────────────
 const DIRECTORY_DOMAINS = [
-  'yelp.com', 'yp.ca', 'yellowpages', 'homestars.com', 'houzz.com',
+  'yelp.', 'yp.ca', 'yellowpages', 'homestars.com', 'houzz.com',
   'facebook.com', 'linkedin.com', 'google.com', 'maps.google', 'bbb.org',
   'canadianheatpumphub.ca', 'kijiji.ca', 'craigslist.org', 'angieslist.com',
   'thumbtack.com', 'bark.com', 'hipages.com', 'trustatrader.com',
   'porch.com', 'angi.com', 'contractorfinder', 'homeadvisor.com',
-  'wikipedia.org', 'wikidata.org',
+  'wikipedia.org', 'wikidata.org', 'bing.com', 'microsoft.com',
+  'twitter.com', 'instagram.com', 'reddit.com', 'nextdoor.com',
+  'globalhvac.ca', 'hvac-talk.com', 'trustedpros.ca', 'canpages.ca',
 ];
 
 function isDirectorySite(url) {
   return DIRECTORY_DOMAINS.some(d => url.toLowerCase().includes(d));
 }
 
+async function bingSearch(page, query) {
+  const searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+  await page.goto(searchUrl, { waitUntil: 'domcontentloaded', timeout: 15000 });
+  await sleep(1500);
+
+  // Bing wraps hrefs in tracking redirects. Read <cite> for the real domain.
+  return page.evaluate(() => {
+    const items = Array.from(document.querySelectorAll('#b_results .b_algo'));
+    return items.map(item => {
+      const cite = item.querySelector('cite')?.innerText?.trim() ?? '';
+      return cite.split('›')[0].trim().replace(/^https?:\/\//i, '').replace(/\/$/, '');
+    }).filter(d => d && d.includes('.') && !d.startsWith('bing'));
+  });
+}
+
 async function searchWebsite(page, companyName, city) {
-  const query = encodeURIComponent(`"${companyName}" ${city} BC HVAC heat pump`);
-  const searchUrl = `https://www.bing.com/search?q=${query}`;
-
   try {
-    await page.goto(searchUrl, { waitUntil: 'domcontentloaded', timeout: 15000 });
-    await sleep(1000);
+    // Pass 1: quoted name for precision
+    let domains = await bingSearch(page, `"${companyName}" ${city} BC HVAC`);
 
-    const results = await page.evaluate(() =>
-      Array.from(document.querySelectorAll('#b_results .b_algo h2 a'))
-        .map(a => ({ href: a.href, text: a.innerText }))
-        .filter(r => r.href.startsWith('http'))
-    );
+    // Pass 2: unquoted fallback if no non-directory results found
+    if (!domains.some(d => !isDirectorySite(`https://${d}`))) {
+      await sleep(600);
+      domains = await bingSearch(page, `${companyName} ${city} BC heating cooling contractor`);
+    }
 
-    for (const r of results) {
-      if (!isDirectorySite(r.href)) {
-        // Extract base domain
-        try {
-          const url = new URL(r.href);
-          return url.origin; // e.g. https://example.com
-        } catch { continue; }
-      }
+    for (const domain of domains) {
+      const url = `https://${domain}`;
+      if (!isDirectorySite(url)) return url;
     }
   } catch (err) {
     console.error(`    Search error for "${companyName}": ${err.message.slice(0, 60)}`);
