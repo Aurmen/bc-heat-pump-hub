@@ -166,32 +166,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "AirVantage Heating & Cooling",
-    "slug": "airvantage-heating-cooling",
-    "website": "https://callairvantage.ca",
-    "phone": "+1-604-200-0178",
-    "city": "Abbotsford",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Multiple"
-    ],
-    "notes": "Service area: Abbotsford, Mission, Chilliwack, Langley, Maple Ridge. BBB A+; family-owned since 1962; 2000+ Google reviews; 24/7 emergency; 100% satisfaction guarantee; upfront pricing; 6A-3095 McCallum Rd Abbotsford BC V2S 7W4",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "Alfa Services",
     "slug": "alfa-services",
     "website": "https://alfaservices.ca",
@@ -347,32 +321,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "Ashton Plumbing Heating & Air Conditioning",
-    "slug": "ashton-plumbing-heating-air-conditioning",
-    "website": "https://callashton.com",
-    "phone": "+1-604-373-6522",
-    "city": "Richmond",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Mitsubishi"
-    ],
-    "notes": "Service area: Vancouver, Richmond, Burnaby, Surrey, Lower Mainland. Founded 1987; 4.7/5 with 3508 reviews; Mitsubishi Mr. Slim specialist; full plumbing + HVAC + electrical; residential and commercial",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "BCRC Heating and Cooling",
     "slug": "bcrc-heating-and-cooling",
     "website": "https://bcrcheating.com",
@@ -394,32 +342,6 @@
     "tsbc_gas_license": "LGA0206338",
     "tsbc_electrical_license": "",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Bee's Knees Plumbing HVAC & Electrical",
-    "slug": "bee-s-knees-plumbing-hvac-electrical",
-    "website": "https://www.beeskneesplumbingandheating.ca",
-    "phone": "+1-778-505-2547",
-    "city": "Vernon",
-    "region": "Interior",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Multiple"
-    ],
-    "notes": "Service area: Vernon, Kelowna, Salmon Arm, West Kelowna, Enderby, Fintry. BBB accredited; owner Kevin U. 18+ years in trades; Red Seal certified; plumbing + HVAC + electrical + gas fitting; 24/7; 3009 43rd Ave #5 Vernon BC V1T 3L4",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null
@@ -590,34 +512,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "Canadian Aerothermal",
-    "slug": "canadian-aerothermal",
-    "website": "https://www.canadianaerothermal.ca",
-    "phone": "+1-877-663-6472",
-    "city": "Penticton",
-    "region": "Interior",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Mitsubishi",
-      "Fujitsu",
-      "Daikin"
-    ],
-    "notes": "Service area: Kelowna, Penticton, Vernon, Kamloops, Chilliwack, Vancouver, Kootenays, Shuswap. HQ Penticton; listed here due to Okanagan-wide service; since 2006; 5000+ installs; Mitsubishi Elite + Fujitsu + Daikin dealer; province-wide coverage; 742 Eckhardt Ave W Penticton BC V2A 2B7",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "Canuck Mechanical Ltd.",
     "slug": "canuck-mechanical-ltd",
     "website": "https://www.canuckmechanical.com",
@@ -693,90 +587,6 @@
     "tsbc_gas_license": "LGA0200403",
     "tsbc_electrical_license": "",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Chilliwack Heating Ltd. & JC Fireplaces and Spas",
-    "slug": "chilliwack-heating-ltd-jc-fireplaces-and-spas",
-    "website": "https://www.chilliwackheating.ca",
-    "phone": "+1-604-426-0189",
-    "city": "Chilliwack",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Multiple"
-    ],
-    "notes": "Service area: Chilliwack, Abbotsford, Langley, Hope, Agassiz. BBB accredited; since 1992; WETT-certified technicians; showroom (largest fireplace selection in Chilliwack); Chilliwack Chamber member; 24/7 same-day emergency; 8915 Young Rd Chilliwack BC V2P 4P7",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Coastal Energy",
-    "slug": "coastal-energy",
-    "website": "https://coastalenergy.ca",
-    "phone": "+1-250-591-0281",
-    "city": "Nanaimo",
-    "region": "Vancouver Island",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Fujitsu",
-      "Carrier",
-      "Hitachi",
-      "Moovair"
-    ],
-    "notes": "Service area: Nanaimo, Parksville, Courtenay, Campbell River, Central and North Vancouver Island. Multi-brand installer; Fujitsu + Carrier + Hitachi + Moovair; serving Central and North Island; residential + commercial; rebate assistance",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Coastal Heat Pumps",
-    "slug": "coastal-heat-pumps",
-    "website": "https://coastalheatpumps.com",
-    "phone": "+1-250-656-6868",
-    "city": "Victoria",
-    "region": "Vancouver Island",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Samsung",
-      "Fujitsu",
-      "Carrier"
-    ],
-    "notes": "Service area: Victoria, Sidney, Saanich, Langford, Colwood, Ladysmith, Gulf Islands. BBB Accredited since 2014; Samsung HVAC Preferred Plus Dealer; ductless packages from $4500; rebates up to $11000; Greater Victoria to Ladysmith; 21 years in business; Mon-Fri 8AM-4:30PM",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null
@@ -913,84 +723,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "Comfortpro Heat & AC",
-    "slug": "comfortpro-heat-ac",
-    "website": "https://comfortprohvac.ca",
-    "phone": "+1-778-636-6001",
-    "city": "Surrey",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "boilers"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Coquitlam, Surrey, Lower Mainland, Fraser Valley. 10+ years experience; water source heat pump (WSHP) capability; residential + commercial; free quotes; 24/7 emergency; Surrey HQ serving Coquitlam",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Complete Heating & Air Conditioning",
-    "slug": "complete-heating-air-conditioning",
-    "website": "https://completeheating.ca",
-    "phone": "+1-604-859-1501",
-    "city": "Abbotsford",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Bryant",
-      "Lennox",
-      "Carrier"
-    ],
-    "notes": "Service area: Abbotsford, Chilliwack, Mission, Langley. BBB A+; multi-brand: Bryant + Lennox + Carrier; warranty repairs all major brands; annual maintenance programs; 2350 Anora Dr Abbotsford BC V2S 5P8",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "CP Heating (Canadian Pacific Heating & Cooling)",
-    "slug": "cp-heating-canadian-pacific-heating-cooling",
-    "website": "https://cpheating.ca",
-    "phone": "+1-604-256-7797",
-    "city": "Burnaby",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Burnaby, Vancouver, Delta, Langley, White Rock, Abbotsford. 15+ years in Burnaby; same-day appointments; 24/7 emergency; licensed and insured; CleanBC rebate assistance confirmed",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "DBL J HVAC/R",
     "slug": "dbl-j-hvac-r",
     "website": "https://www.dbljhvacr.com",
@@ -1017,81 +749,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "Dupuis Energy Inc.",
-    "slug": "dupuis-energy-inc",
-    "website": "https://dupuis.energy",
-    "phone": "+1-250-858-6743",
-    "city": "Victoria",
-    "region": "Vancouver Island",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Victoria, Sidney, Sooke, Saanich, Langford, South Vancouver Island. Class A Gas Fitter (Technical Safety BC); fully licensed and insured; Sidney to Sooke coverage; heat pump + furnace + ductless AC; 24/7 emergency; BBB listed; owner-operated",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Eaton's Heating & Air Conditioning",
-    "slug": "eaton-s-heating-air-conditioning",
-    "website": "https://eatonshomecare.com",
-    "phone": "+1-604-771-2024",
-    "city": "Coquitlam",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid",
-      "boilers"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: New Westminster, Coquitlam, Vancouver, Burnaby, Richmond, North Vancouver, West Vancouver, Surrey, Langley, Delta, Port Moody, Maple Ridge, Port Coquitlam. 20+ years experience; BCIT-trained technicians; FortisBC Trade Ally; CleanBC Better Homes partner; BBB Accredited; Bradford White dealer; same-day emergency; New Westminster dedicated service page",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Eco Pro Heating & Cooling",
-    "slug": "eco-pro-heating-cooling",
-    "website": "https://ecoproheating.ca",
-    "phone": "+1-604-725-4485",
-    "city": "North Vancouver",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Vancouver, North Vancouver, West Vancouver, Burnaby. 20+ years experience; 300+ 5-star reviews; CleanBC certified; ductless mini-split + central air-source + hybrid dual-fuel",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "EcoFlow Plumbing and Heating",
     "slug": "ecoflow-plumbing-and-heating",
     "website": "https://www.ecoflowbc.ca",
@@ -1113,32 +770,6 @@
     "tsbc_gas_license": "LGA0209457",
     "tsbc_electrical_license": "",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Fairy Stone Heating and Air Conditioning Inc.",
-    "slug": "fairy-stone-heating-and-air-conditioning-inc",
-    "website": "https://fairystone.ca",
-    "phone": "",
-    "city": "New Westminster",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid",
-      "boilers"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: New Westminster, Vancouver, North Vancouver, Burnaby, Lower Mainland. BBB listed; family-run business based in New Westminster since 2023; licensed bonded insured; heat pump + ductless AC + furnace + boiler + hot water; CAUTION: phone not publicly listed — contact via website",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null
@@ -1224,34 +855,6 @@
     "tsbc_gas_license": "LGA0213652",
     "tsbc_electrical_license": "LEL0206479",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Greenfoot Energy Solutions",
-    "slug": "greenfoot-energy-solutions",
-    "website": "https://greenfootenergy.ca",
-    "phone": "+1-778-907-1314",
-    "city": "Surrey",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "air_to_water"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Mitsubishi",
-      "Nordic (Geothermal)"
-    ],
-    "notes": "Service area: Vancouver, Surrey, Burnaby, Coquitlam, North Vancouver, West Vancouver, Richmond, Langley, Delta, Maple Ridge, Squamish. Geothermal/ground-source capability; spray foam insulation; home energy assessments; mini-split + ducted + geothermal systems",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null
@@ -1438,33 +1041,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "HeatLand Heating & Air Conditioning",
-    "slug": "heatland-heating-air-conditioning",
-    "website": "https://heatland.ca",
-    "phone": "+1-604-330-3812",
-    "city": "Burnaby",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Lennox",
-      "Trane"
-    ],
-    "notes": "Service area: Vancouver, Burnaby, Surrey, Richmond, Coquitlam, Langley, Delta. Lennox Premier Dealer; FortisBC Trade Ally; BC Safety Authority member; CAUTION: shares listed address with ROMA Heating and Nest Heating — recommend independent verification",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "Heritage Mountain Heating & Cooling",
     "slug": "heritage-mountain-heating-cooling",
     "website": "https://heritagemountainhc.ca",
@@ -1570,32 +1146,6 @@
     "tsbc_gas_license": "LGA0209214",
     "tsbc_electrical_license": "",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Jetson Home",
-    "slug": "jetson-home",
-    "website": "https://jetsonhome.com",
-    "phone": "+1-888-996-5876",
-    "city": "North Vancouver",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Carrier"
-    ],
-    "notes": "Service area: Richmond, Vancouver, North Vancouver, Lower Mainland, BC-wide. VC-backed startup (US$50M raised 2024); single-day installation model; instant online quotes; all-in pricing 30-50% below traditional installs; handles rebate paperwork; EV charger + heat pump water heater also available",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null
@@ -1842,33 +1392,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "Lower Mainland Refrigeration Systems Ltd.",
-    "slug": "lower-mainland-refrigeration-systems-ltd",
-    "website": "https://refrigerationsystemsltd.com",
-    "phone": "+1-778-693-2532",
-    "city": "Richmond",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Lennox"
-    ],
-    "notes": "Service area: Richmond, Vancouver, Burnaby, Delta, Lower Mainland. Founded Richmond 1998; Lennox Premier Dealer; Lennox Powered by Samsung mini-split specialist; Bryant dealer also confirmed; residential and commercial",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "Luxury Climate",
     "slug": "luxury-climate",
     "website": "https://www.luxuryclimate.ca",
@@ -2058,57 +1581,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "Mountain Ridge Heating and Gas",
-    "slug": "mountain-ridge-heating-and-gas",
-    "website": "https://mountainridgeheating.com",
-    "phone": "+1-604-808-8311",
-    "city": "Maple Ridge",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Port Moody, Coquitlam, Port Coquitlam, Anmore, Pitt Meadows, Maple Ridge, Mission. Locally owned by two Maple Ridge natives; in-house sheet metal fabrication shop; new builds + retrofits; FortisBC Hybrid Heating Pilot Program contractor; full HVAC scope for new construction",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Murray's Heating & Cooling Solutions Ltd.",
-    "slug": "murray-s-heating-cooling-solutions-ltd",
-    "website": "https://www.murrayssolutions.com",
-    "phone": "+1-250-575-8907",
-    "city": "Kelowna",
-    "region": "Interior",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Tempstar"
-    ],
-    "notes": "Service area: Kelowna, West Kelowna, Lake Country. Carrier subsidiary brand (Tempstar); established 2016; residential focus; 3350 Sexsmith Rd #3 Kelowna BC V1X 7S5",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "Nation Furnace Heating & Air Conditioning HVAC Ltd.",
     "slug": "nation-furnace-heating-air-conditioning-hvac-ltd",
     "website": "https://nationheating.ca",
@@ -2182,61 +1654,6 @@
     "tsbc_gas_license": "LGA0202435",
     "tsbc_electrical_license": "",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Nest Heating & Air Conditioning",
-    "slug": "nest-heating-air-conditioning",
-    "website": "https://nestheating.ca",
-    "phone": "+1-604-210-8817",
-    "city": "Burnaby",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "boilers"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Lennox",
-      "Navien"
-    ],
-    "notes": "Service area: Vancouver, Burnaby, Richmond, Surrey, Coquitlam, Langley, North Vancouver, West Vancouver, Delta, Maple Ridge, Abbotsford. Lennox Authorized Dealer; tankless water heater services; 10+ years; CAUTION: shares listed address with ROMA Heating and HeatLand — recommend independent verification",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Norm's Plumbing Heating & Air Conditioning",
-    "slug": "norm-s-plumbing-heating-air-conditioning",
-    "website": "https://normsmobile.ca",
-    "phone": "",
-    "city": "Nanaimo",
-    "region": "Vancouver Island",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Bryant"
-    ],
-    "notes": "Service area: Nanaimo, Parksville, Ladysmith, Central Vancouver Island. 52+ years experience; Bryant Factory Authorized Dealer; up to $1500 off qualifying installs; rebate guidance (FortisBC); local family-owned community-driven; CAUTION: phone not confirmed — verify via website",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null
@@ -2354,31 +1771,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "Pacific Blue Mechanical",
-    "slug": "pacific-blue-mechanical",
-    "website": "https://pacificbluemechanical.ca",
-    "phone": "+1-604-652-9468",
-    "city": "Vancouver",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "boilers"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Langley, Surrey, Vancouver, Lower Mainland. Since 2009; fixed-price repairs; free estimates; 100% satisfaction guarantee; 24/7; plumbing + HVAC combined; CAUTION: registered address is a commercial suite in downtown Vancouver — verify independently",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "Pacific Heat Pumps",
     "slug": "pacific-heat-pumps",
     "website": "https://pacificheatpumps.ca",
@@ -2400,32 +1792,6 @@
     "tsbc_gas_license": "LGA0212884",
     "tsbc_electrical_license": "LEL0213076",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Paris Service Group",
-    "slug": "paris-service-group",
-    "website": "https://parisservicegroup.com",
-    "phone": "+1-778-803-1582",
-    "city": "North Vancouver",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid",
-      "boilers"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: North Vancouver, West Vancouver, Vancouver, Lower Mainland. Subsidiary of Paris Mechanical; North Vancouver Chamber member; plumbing + HVAC + heat pump installation; 24/7 live answering; Mon-Fri 8AM-4:30PM; residential focus",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null
@@ -2485,31 +1851,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "Pioneer Plumbing Heating & Cooling",
-    "slug": "pioneer-plumbing-heating-cooling",
-    "website": "https://pioneerplumbing.com",
-    "phone": "+1-604-282-3251",
-    "city": "Richmond",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "boilers"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Richmond, Vancouver, Burnaby, Surrey, Lower Mainland. Since 1976; BBB Accredited A+; 350+ five-star Google reviews; plumbing + heating + heat pumps + drain; 24/7 emergency; Richmond dedicated office at 10880 No. 5 Rd",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "PJB Mechanical",
     "slug": "pjb-mechanical",
     "website": "https://pjbmechanical.com",
@@ -2557,33 +1898,6 @@
     "tsbc_gas_license": "LGA0001871",
     "tsbc_electrical_license": "",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Pope and Sons Heating Cooling & Refrigeration",
-    "slug": "pope-and-sons-heating-cooling-refrigeration",
-    "website": "https://popeandsons.com",
-    "phone": "",
-    "city": "Nanaimo",
-    "region": "Vancouver Island",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Carrier"
-    ],
-    "notes": "Service area: Nanaimo, Central Vancouver Island. 40+ years experience; Carrier Factory Authorized Dealer; ductless heat pumps with independent temperature zones; residential + commercial refrigeration; CAUTION: phone not confirmed — verify via website",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null
@@ -2642,31 +1956,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "Pro Ace Heating and Air Conditioning",
-    "slug": "pro-ace-heating-and-air-conditioning",
-    "website": "https://acecare.ca",
-    "phone": "+1-604-293-3770",
-    "city": "Burnaby",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Surrey, Burnaby, Vancouver, Lower Mainland. In business since 1995; Class A/B gas fitters; licensed refrigerant handling; covers all Surrey town centres; 24/7; EV charger installation also offered",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "Proair Heating & Cooling",
     "slug": "proair-heating-cooling",
     "website": "https://saproair.ca",
@@ -2688,33 +1977,6 @@
     "tsbc_gas_license": "LGA0098196",
     "tsbc_electrical_license": "",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "R&B Plumbing & Heating Ltd.",
-    "slug": "r-b-plumbing-heating-ltd",
-    "website": "https://randbplumbing.ca",
-    "phone": "+1-604-337-2369",
-    "city": "North Vancouver",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "boilers"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Carrier"
-    ],
-    "notes": "Service area: North Vancouver, West Vancouver, Vancouver, Burnaby. Since 1990; Carrier Authorized Dealer; Carrier Indoor Air Quality Expert; FortisBC Trade Ally; Home Performance Contractor Network; TSBC #LGA0003173; plumbing + HVAC + gas fitting combined",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "LGA0003173",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null
@@ -2747,57 +2009,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "Reliance Home Comfort",
-    "slug": "reliance-home-comfort",
-    "website": "https://reliancehomecomfort.com",
-    "phone": "+1-888-837-1451",
-    "city": "Surrey",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Surrey, Metro Vancouver, BC-wide. Large national company; 24/7 call support; rental and purchase programs available; whole-home and mini-split heat pumps; residential focus",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Rep-Air Heating & Cooling",
-    "slug": "rep-air-heating-cooling",
-    "website": "https://www.repairheatingandcooling.com",
-    "phone": "+1-778-728-1476",
-    "city": "Mission",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Multiple"
-    ],
-    "notes": "Service area: Mission, Abbotsford, Maple Ridge, Surrey. HQ Mission; family-owned since 2017; Mission Chamber of Commerce member; licensed bonded insured; free consultations; 32929 Mission Way #4 Mission BC V2V 6E4",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "Rocky Point Heating and Air Conditioning",
     "slug": "rocky-point-heating-and-air-conditioning",
     "website": "https://rockypointhvac.com",
@@ -2818,41 +2029,6 @@
     "tsbc_gas_license": "LGA0204977",
     "tsbc_electrical_license": "",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "ROMA Heating & Cooling",
-    "slug": "roma-heating-cooling",
-    "website": "https://romaheating.ca",
-    "phone": "+1-604-924-7273",
-    "city": "Burnaby",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid",
-      "boilers"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Mitsubishi",
-      "Daikin",
-      "Lennox",
-      "Trane",
-      "Carrier",
-      "Fujitsu",
-      "Bosch",
-      "LG"
-    ],
-    "notes": "Service area: Vancouver, Burnaby, Surrey, Richmond, Coquitlam, Langley, Delta, North Vancouver, West Vancouver. Serving Metro Vancouver since 1999; 50 staff; Red Seal certified; residential + commercial + government; boiler services; 24/7; CAUTION: shares listed address with HeatLand and Nest Heating",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null
@@ -2931,32 +2107,6 @@
     "tsbc_gas_license": "LGA0005115",
     "tsbc_electrical_license": "",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Sasquatch Heat Pumps Ltd.",
-    "slug": "sasquatch-heat-pumps-ltd",
-    "website": "https://sasquatchheatpumps.com",
-    "phone": "+1-236-361-8293",
-    "city": "Sooke",
-    "region": "Vancouver Island",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Carrier"
-    ],
-    "notes": "Service area: Sooke, Victoria, Langford, Colwood, View Royal, Western Communities, South Vancouver Island. Carrier Authorized Dealer; BBB Accredited; BC Green Business certified; plants 50 trees per HVAC install; ducted + ductless + residential electrical; flat-rate pricing; 24/7",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null
@@ -3065,83 +2215,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "The Comfort Group",
-    "slug": "the-comfort-group",
-    "website": "https://comfortgroup.ca",
-    "phone": "+1-250-756-5554",
-    "city": "Nanaimo",
-    "region": "Vancouver Island",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Lennox"
-    ],
-    "notes": "Service area: Nanaimo, Victoria, Central Vancouver Island. Lennox dealer; Nanaimo + Victoria locations; residential + light commercial; heat pump + furnace + AC; CleanBC rebate assistance",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Thomson Industries",
-    "slug": "thomson-industries",
-    "website": "https://thomsonindustries.ca",
-    "phone": "+1-604-335-2019",
-    "city": "Surrey",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: New Westminster, Surrey, Vancouver, Port Coquitlam, West Vancouver, Mission, Lower Mainland. Since 1996; 4.7/5 Google rating; 24/7 365 days no extra charge; up to $6000 rebates offered; furnace + heat pump + AC + ductless + duct cleaning + plumbing + electrical; two locations Surrey + Port Coquitlam",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Valley Pacific Mechanical",
-    "slug": "valley-pacific-mechanical",
-    "website": "https://valleypacific.ca",
-    "phone": "+1-236-591-5150",
-    "city": "Langley",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Langley, Fort Langley, Lower Mainland, Fraser Valley. Founded 2021; Red Seal project managers; new construction + renovation + commercial; MNBC Business Directory listed (Indigenous supply chain); dual fuel rebate up to $10000; 24/7 emergency",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "Valleywide Climate Solutions Ltd.",
     "slug": "valleywide-climate-solutions-ltd",
     "website": "https://valleywideltd.ca",
@@ -3219,86 +2292,6 @@
     "service_reliability": null
   },
   {
-    "company_name": "Veteran HVAC",
-    "slug": "veteran-hvac",
-    "website": "https://veteranhvac.ca",
-    "phone": "+1-604-991-4894",
-    "city": "Surrey",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid",
-      "boilers"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Surrey, Vancouver, Burnaby, Lower Mainland. BC Hydro and FortisBC registered; CleanBC rebate assistance; boiler + tankless water heater + gas fitting; veteran-owned; no physical address confirmed — verify independently",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Victoria Furnace Services",
-    "slug": "victoria-furnace-services",
-    "website": "https://victoriafurnaceservices.com",
-    "phone": "+1-778-400-7148",
-    "city": "Victoria",
-    "region": "Vancouver Island",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Lennox"
-    ],
-    "notes": "Service area: Victoria, Saanich, Langford, Esquimalt, Capital Regional District. Lennox dealer; heat pump + gas furnace + electric furnace + duct cleaning; CRD coverage; CAUTION: no physical address confirmed in public listings — verify independently",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Vision Plumbing Heating Cooling",
-    "slug": "vision-plumbing-heating-cooling",
-    "website": "https://www.visionplumbingandheating.com",
-    "phone": "+1-778-909-0818",
-    "city": "Kelowna",
-    "region": "Interior",
-    "province": "BC",
-    "services": [
-      "heat_pumps"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [
-      "Multiple",
-      "Daikin"
-    ],
-    "notes": "Service area: Kelowna, Vernon, Penticton, Okanagan Valley. TSBC licence #LGA0003114; family-owned since 1986; Okanagan Valley-wide coverage; 2600 Acland Rd #8 Kelowna BC V1X 7J3",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "LGA0003114",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
     "company_name": "Wagner Heating & Air Ltd.",
     "slug": "wagner-heating-air-ltd",
     "website": "https://wagnerheating.com",
@@ -3348,31 +2341,6 @@
     "tsbc_gas_license": "LGA0002603",
     "tsbc_electrical_license": "",
     "tsbc_license_status": "active",
-    "tsbc_enforcement_actions": 0,
-    "tsbc_last_verified": "",
-    "service_reliability": null
-  },
-  {
-    "company_name": "Western Pacific HVAC",
-    "slug": "western-pacific-hvac",
-    "website": "https://westernpacifichvac.com",
-    "phone": "+1-604-416-2611",
-    "city": "Vancouver",
-    "region": "Lower Mainland",
-    "province": "BC",
-    "services": [
-      "heat_pumps",
-      "hybrid"
-    ],
-    "emergency_service": "unknown",
-    "brands_supported": [],
-    "notes": "Service area: Burnaby, Vancouver, North Vancouver, Lower Mainland. TECA member; founded 2020; 24/7 emergency; 1-hour response time; registered with North Vancouver Chamber; CAUTION: building address shared with other firms at 999 W Broadway — verify independently",
-    "source_urls": [],
-    "tsbc_verified": false,
-    "tsbc_fsr_license": "",
-    "tsbc_gas_license": "",
-    "tsbc_electrical_license": "",
-    "tsbc_license_status": "unknown",
     "tsbc_enforcement_actions": 0,
     "tsbc_last_verified": "",
     "service_reliability": null

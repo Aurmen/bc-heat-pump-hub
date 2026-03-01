@@ -210,10 +210,11 @@ async function main() {
     console.log(`  loaded CSV fallback with ${Object.keys(csvFallback).length} entries`);
   }
 
-  // Map to listings
+  // Map to listings — only include TSBC-verified contractors
   const listings = published
     .map(r => mapRecord(r, csvFallback))
-    .filter(l => l.company_name); // skip blank records
+    .filter(l => l.company_name)
+    .filter(l => l.tsbc_verified);
 
   // Generate slugs from company name, deduplicate
   const seen = {};
@@ -233,7 +234,7 @@ async function main() {
   const outputPath = join(__dirname, '../src/data/directory.json');
   writeFileSync(outputPath, JSON.stringify(listings, null, 2));
 
-  console.log(`✓ Wrote ${listings.length} listings → src/data/directory.json\n`);
+  console.log(`✓ Wrote ${listings.length} TSBC-verified listings → src/data/directory.json\n`);
 }
 
 main().catch(err => {
