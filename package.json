@@ -13,7 +13,10 @@
     "verify-license": "node scripts/verify-tsbc-license.js",
     "verify-directory": "node scripts/verify-tsbc-license.js --directory",
     "discover-contractors": "node scripts/discover-tsbc-contractors.js",
-    "scrape-tsbc": "node scripts/scrape-tsbc.js"
+    "scrape-tsbc": "node scripts/scrape-tsbc.js",
+    "verify-tsbc": "node scripts/tsbc-verify-airtable.mjs",
+    "verify-tsbc:dry": "node scripts/tsbc-verify-airtable.mjs --dry-run",
+    "verify-tsbc:new": "node scripts/tsbc-verify-airtable.mjs --unverified"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
