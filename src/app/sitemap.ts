@@ -46,6 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages = [
     { url: baseUrl, priority: 1.0 },
+    { url: `${baseUrl}/guides/heat-pump-bc`, priority: 0.98 },
     { url: `${baseUrl}/guides`, priority: 0.9 },
     { url: `${baseUrl}/guides/lower-mainland`, priority: 0.9 },
     { url: `${baseUrl}/guides/interior-bc`, priority: 0.9 },
