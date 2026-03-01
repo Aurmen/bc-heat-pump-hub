@@ -450,6 +450,11 @@ async function main() {
       await sleep(600);
     }
 
+    // Save all discovered contractors to local file before Airtable (preserves data regardless of plan limits)
+    const discoveryPath = join(__dirname, 'tsbc-discoveries.json');
+    writeFileSync(discoveryPath, JSON.stringify(creates.map(c => c.fields), null, 2));
+    console.log(`  💾  Saved ${creates.length} contractors → scripts/tsbc-discoveries.json`);
+
     console.log(`\n📤  ${creates.length} new contractors to add to Airtable`);
     if (!isDryRun && creates.length > 0) {
       const created = await createRecords(creates);
