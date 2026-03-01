@@ -25,7 +25,12 @@
     "enrich:audience": "node scripts/enrich-airtable.mjs --step=3",
     "enrich:websites": "node scripts/enrich-airtable.mjs --step=4",
     "scrape-emails": "node scripts/scrape-emails.mjs",
-    "scrape-emails:dry": "node scripts/scrape-emails.mjs --dry-run"
+    "scrape-emails:dry": "node scripts/scrape-emails.mjs --dry-run",
+    "web-enrich": "node scripts/web-enrich.mjs",
+    "web-enrich:dry": "node scripts/web-enrich.mjs --dry-run --limit=10",
+    "web-enrich:resume": "node scripts/web-enrich.mjs --resume",
+    "push-enrichment": "node scripts/push-enrichment.mjs",
+    "push-enrichment:dry": "node scripts/push-enrichment.mjs --dry-run"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
