@@ -215,8 +215,23 @@ const DIRECTORY_DOMAINS = [
   'thumbtack.com', 'bark.com', 'trustedpros.ca', 'canpages.ca', 'porch.com',
   'angi.com', 'homeadvisor.com', 'wikipedia.org', 'bing.com', 'microsoft.com',
   'twitter.com', 'instagram.com', 'reddit.com', 'nextdoor.com', 'wikidata.org',
+  // False-positive traps (wrong-country / big-box results)
+  'baidu.', 'amazon.', 'canadiantire.', 'rona.', 'homedepot.', 'walmart.',
+  'yellowpages.ca', '411.ca', 'cylex.', 'n49.ca', 'databasecanada.',
+  'bizdir.', 'hotfrog.', 'manta.com', 'dandb.com', 'zoominfo.com',
+  'dnb.com', 'opencorporates.', 'corporationwiki.', 'bizapedia.',
 ];
-function isDirectory(url) { return DIRECTORY_DOMAINS.some(d => url.toLowerCase().includes(d)); }
+
+// Also reject domains that contain no .ca or common HVAC-adjacent TLDs
+// and domains that are clearly not a small BC contractor (e.g. .com.br, .cn, .ru)
+const BAD_TLDS = ['.com.br', '.com.cn', '.com.au', '.co.uk', '.cn', '.ru', '.de', '.fr'];
+
+function isDirectory(url) {
+  const lo = url.toLowerCase();
+  if (DIRECTORY_DOMAINS.some(d => lo.includes(d))) return true;
+  if (BAD_TLDS.some(t => lo.includes(t))) return true;
+  return false;
+}
 
 async function bingSearch(page, query) {
   await page.goto(`https://www.bing.com/search?q=${encodeURIComponent(query)}`,
