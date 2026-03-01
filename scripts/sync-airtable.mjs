@@ -200,9 +200,15 @@ async function main() {
 
   const records = await fetchAllRecords();
 
-  // Only sync records with Status = "Published"
-  const published = records.filter(r => (r.fields['Status'] ?? '').includes('Published'));
-  console.log(`  ${published.length} of ${records.length} records have Status = "Published"`);
+  // Include any record that is TSBC-verified (regardless of Published/Needs Review status)
+  // TSBC verification is the source of truth — if they're licensed, they're on the site.
+  // Explicitly excluded: records with Status = "Rejected" or "Spam".
+  const excluded = ['Rejected', 'Spam'];
+  const candidates = records.filter(r => {
+    const status = r.fields['Status'] ?? '';
+    return !excluded.some(s => status.includes(s));
+  });
+  console.log(`  ${candidates.length} of ${records.length} records are eligible (not Rejected/Spam)`);
 
   // Load CSV fallback for services/region lost during Airtable import
   const csvFallback = loadCSVFallback(join(__dirname, 'airtable-import.csv'));
@@ -211,7 +217,7 @@ async function main() {
   }
 
   // Map to listings — only include TSBC-verified contractors
-  const listings = published
+  const listings = candidates
     .map(r => mapRecord(r, csvFallback))
     .filter(l => l.company_name)
     .filter(l => l.tsbc_verified);
