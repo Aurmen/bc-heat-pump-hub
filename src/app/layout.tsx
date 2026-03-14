@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { OrganizationJsonLd } from '@/components/JsonLd';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://canadianheatpumphub.ca'),
@@ -50,6 +51,7 @@ export default function RootLayout({
       </head>
       <body>
         <GoogleAnalytics />
+        <Analytics />
         <Navigation />
         <main className="min-h-screen">
           {children}

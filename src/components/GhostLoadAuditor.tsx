@@ -2,6 +2,13 @@
 
 import { useState, type ChangeEvent } from 'react';
 import Link from 'next/link';
+import { track } from '@vercel/analytics';
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -436,6 +443,33 @@ export default function GhostLoadAuditor() {
     setCalculated(false);
   }
 
+  function handleCalculate() {
+    // Compute results inline for tracking (before state update)
+    const result = runCalc(form, false);
+    const resultManaged = form.loadManagement ? runCalc(form, true) : null;
+
+    const eventProps = {
+      panel_size: form.serviceSize,           // '100' | '150' | '200'
+      has_ev: parseFloat(form.evW) > 0,       // true | false
+      load_management: form.loadManagement,   // DCC-10 checkbox
+      result: result?.status ?? 'invalid',    // PASS | WARN | FAIL
+      managed_result: resultManaged?.status ?? 'n/a',
+      utilization: result ? Math.round(result.utilization) : 0,
+    };
+
+    // Vercel Analytics custom event
+    track('audit_run', eventProps);
+
+    // GA4 custom event (gtag loaded via GoogleAnalytics component)
+    window.gtag?.('event', 'audit_run', {
+      event_category: 'Ghost Load Auditor',
+      ...eventProps,
+    });
+
+    setCalculated(true);
+    setShowBreakdown(false);
+  }
+
   // Recommendation logic
   const showRecs = !!resultA && resultA.status !== 'PASS';
   const heatingIsCulprit = !!resultA?.hvacIsHeating && parseFloat(form.heatingW) > 8000;
@@ -605,7 +639,7 @@ export default function GhostLoadAuditor() {
         {/* Run Audit button */}
         <div className="px-6 pb-6">
           <button
-            onClick={() => { setCalculated(true); setShowBreakdown(false); }}
+            onClick={handleCalculate}
             className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg text-sm transition-colors shadow-md hover:shadow-lg"
           >
             Run Panel Audit →

@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
+    "@vercel/analytics": "^2.0.1",
     "next": "^15.1.6",
     "puppeteer": "^24.37.3",
     "react": "^19.0.0",
