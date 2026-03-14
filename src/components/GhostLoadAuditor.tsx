@@ -3,6 +3,7 @@
 import { useState, type ChangeEvent } from 'react';
 import Link from 'next/link';
 import { track } from '@vercel/analytics';
+import AuditLeadForm, { type AuditLeadData } from '@/components/AuditLeadForm';
 
 declare global {
   interface Window {
@@ -431,6 +432,24 @@ export default function GhostLoadAuditor() {
   const resultA = calculated ? runCalc(form, false) : null;
   const resultB = calculated && form.loadManagement ? runCalc(form, true) : null;
 
+  const leadData: AuditLeadData | null = resultA
+    ? {
+        resultStatus: resultA.status,
+        panelAmps: resultA.service,
+        totalAmps: resultA.totalAmps,
+        hasEV: parseFloat(form.evW) > 0,
+        loadManagement: form.loadManagement,
+        sqft: parseFloat(form.sqft),
+        heatingW: parseFloat(form.heatingW),
+        coolingW: parseFloat(form.coolingW),
+        rangeW: parseFloat(form.rangeW),
+        dryerW: parseFloat(form.dryerW),
+        waterHeaterW: parseFloat(form.waterHeaterW),
+        evW: parseFloat(form.evW),
+        utilization: resultA.utilization,
+      }
+    : null;
+
   function setField(field: keyof Omit<FormState, 'loadManagement'>) {
     return (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
@@ -449,19 +468,18 @@ export default function GhostLoadAuditor() {
     const resultManaged = form.loadManagement ? runCalc(form, true) : null;
 
     const eventProps = {
-      panel_size: form.serviceSize,           // '100' | '150' | '200'
-      has_ev: parseFloat(form.evW) > 0,       // true | false
-      load_management: form.loadManagement,   // DCC-10 checkbox
-      result: result?.status ?? 'invalid',    // PASS | WARN | FAIL
-      managed_result: resultManaged?.status ?? 'n/a',
-      utilization: result ? Math.round(result.utilization) : 0,
+      result_status: result?.status ?? 'invalid',
+      main_breaker_amps: Number(form.serviceSize),
+      total_calculated_amps: result ? Math.round(result.totalAmps * 10) / 10 : 0,
+      has_ev: parseFloat(form.evW) > 0,
+      load_management_active: form.loadManagement,
     };
 
     // Vercel Analytics custom event
-    track('audit_run', eventProps);
+    track('audit_calculated', eventProps);
 
     // GA4 custom event (gtag loaded via GoogleAnalytics component)
-    window.gtag?.('event', 'audit_run', {
+    window.gtag?.('event', 'audit_calculated', {
       event_category: 'Ghost Load Auditor',
       ...eventProps,
     });
@@ -846,6 +864,9 @@ export default function GhostLoadAuditor() {
               </div>
             </div>
           )}
+
+          {/* ── Lead Capture ── */}
+          {leadData && <AuditLeadForm data={leadData} />}
         </div>
       )}
 
