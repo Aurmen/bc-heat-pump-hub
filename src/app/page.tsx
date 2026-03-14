@@ -143,6 +143,27 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* Panel Audit CTA */}
+      <div className="mb-16 bg-gradient-to-r from-primary-900 via-primary-700 to-primary-500 text-white rounded-2xl p-12 shadow-2xl">
+        <div className="text-center max-w-3xl mx-auto">
+          <div className="text-6xl mb-4">⚡</div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Can Your 100A Panel Handle a Heat Pump + EV Charger?
+          </h2>
+          <p className="text-xl text-primary-100 mb-8">
+            Run a free CEC Rule 8-200 load calculation before committing to a $5,000–$10,000
+            panel upgrade. Most homes qualify with the right approach.
+          </p>
+          <Link
+            href="/auditor"
+            className="inline-block bg-white hover:bg-gray-100 text-primary-800 px-10 py-5 rounded-xl font-bold text-xl shadow-lg transition-all transform hover:scale-105"
+          >
+            Run Free Panel Audit →
+          </Link>
+          <p className="text-sm text-primary-200 mt-4">Free · CEC 8-200 · No email required</p>
+        </div>
+      </div>
+
       {/* Regions Overview */}
       <div className="mb-16 bg-gradient-to-br from-primary-50 to-blue-50 rounded-2xl p-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-2">Browse by BC Region</h2>
