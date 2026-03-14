@@ -1,15 +1,48 @@
 import type { Metadata } from 'next';
 import GhostLoadAuditor from '@/components/GhostLoadAuditor';
+import { WebApplicationJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Ghost Load Auditor — CEC 8-200 Panel Check | Canadian Heat Pump Hub',
   description:
-    'Find out if your 100A panel can handle a heat pump and EV charger. Free CEC Rule 8-200 load calculation for BC homeowners.',
+    'Find out if your 100A panel can handle a heat pump and EV charger. Free CEC Rule 8-200 Optional Method load calculation for BC homeowners. Avoid a $5,000–$10,000 panel upgrade surprise.',
+  alternates: { canonical: 'https://canadianheatpumphub.ca/auditor' },
+  keywords: [
+    'CEC 8-200 load calculation',
+    '100 amp panel heat pump BC',
+    'electrical panel feasibility',
+    'heat pump panel upgrade BC',
+    'CEC Rule 8-200 Optional Method',
+    'residential load calculation BC',
+    'EV charger heat pump 100A panel',
+    'CleanBC ESU rebate panel upgrade',
+  ],
 };
 
 export default function AuditorPage() {
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
+    { name: 'Ghost Load Auditor', url: 'https://canadianheatpumphub.ca/auditor' },
+  ];
+
   return (
     <>
+      <WebApplicationJsonLd
+        name="Ghost Load Auditor — CEC 8-200 Panel Feasibility Tool"
+        description="Free CEC Rule 8-200 Optional Method load calculation. Determine if your 100A panel can support a heat pump and EV charger before committing to equipment or permits."
+        url="https://canadianheatpumphub.ca/auditor"
+        keywords={[
+          'CEC 8-200 load calculation',
+          '100 amp panel heat pump',
+          'electrical panel feasibility BC',
+          'heat pump panel upgrade',
+          'EV charger load calculation',
+          'residential electrical load calculation',
+          'CleanBC ESU rebate',
+          'DCC-10 load management',
+        ]}
+      />
+      <BreadcrumbJsonLd items={breadcrumbItems} />
       {/* Hero */}
       <div className="bg-gradient-to-br from-primary-900 via-primary-700 to-primary-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

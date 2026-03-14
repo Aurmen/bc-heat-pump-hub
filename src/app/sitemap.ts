@@ -66,6 +66,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/cold-climate-heat-pump-bc`, priority: 0.90 },
     { url: `${baseUrl}/repair`, priority: 0.90 },
     { url: `${baseUrl}/service`, priority: 0.85 },
+    { url: `${baseUrl}/auditor`, priority: 0.90 },
   ];
 
   const repairPages = repairCities.map(city => ({

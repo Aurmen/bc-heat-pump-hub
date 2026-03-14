@@ -178,6 +178,45 @@ export function TechnicalArticleJsonLd({
   return <JsonLd data={data} />;
 }
 
+export function WebApplicationJsonLd({
+  name,
+  description,
+  url,
+  keywords,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  keywords: string[];
+}) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name,
+    description,
+    url,
+    keywords: keywords.join(', '),
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Any',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'CAD',
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'Canadian Heat Pump Hub',
+      url: 'https://canadianheatpumphub.ca',
+    },
+    audience: {
+      '@type': 'Audience',
+      audienceType: 'BC homeowners evaluating heat pump and EV charger installations',
+    },
+  };
+
+  return <JsonLd data={data} />;
+}
+
 export function ArticleJsonLd({
   title,
   description,
