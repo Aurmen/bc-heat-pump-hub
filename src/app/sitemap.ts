@@ -38,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'heat-pump-roi-calculator',
     'bc-step-code-summary',
     'bc-step-code-city-tracker',
+    'heat-pump-bc-2026',
   ];
 
   const caseStudies = [

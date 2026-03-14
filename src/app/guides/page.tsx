@@ -109,6 +109,11 @@ const guides = [
     title: 'BC Step Code City Tracker: Municipal Adoption Levels (2026)',
     description: 'Municipality-by-municipality table of BC Energy Step Code and ZCSC adoption. Vancouver (EL-4), Victoria (EL-4), Kelowna (EL-2), Surrey (EL-1) — with GHGI, TEDI, and MEUI explained for builders and homeowners.',
   },
+  {
+    slug: 'heat-pump-bc-2026',
+    title: 'BC Heat Pump Guide 2026: What Every Homeowner Should Verify',
+    description: 'The complete 2026 BC reference: Zero Carbon Step Code EL levels, CEC 8-200 panel load math, rebate stacking up to $16,000, HPCN verification, and a free panel feasibility audit — before you sign any contract.',
+  },
 ];
 
 export default function GuidesPage() {

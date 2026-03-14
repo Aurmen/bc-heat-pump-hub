@@ -1,0 +1,206 @@
+# BC Heat Pump Guide 2026: What Every Homeowner Should Verify Before Signing Anything
+
+Three forces converged in 2026 to make heat pump decisions more consequential — and more confusing — than at any point in BC's history: the Zero Carbon Step Code's EL-4 mandate is now active in Vancouver and Saanich, CleanBC's rebate stack has expanded to over $16,000 for oil-heated homes, and a wave of contractors with limited electrical training are quoting unnecessary $5,000–$10,000 panel upgrades to homeowners who don't need them.
+
+This guide gives you the verification framework to separate what's required from what's optional — before you sign any contract.
+
+---
+
+## Why 2026 Is a Pivot Year for BC Heat Pumps
+
+### The Zero Carbon Step Code Is No Longer Optional
+
+Vancouver's EL-4 mandate means every new permit for space heating in the City of Vancouver or Saanich must be all-electric — no combustion. This has driven a surge of ASHP installations across Metro Vancouver, and contractors are stretched.
+
+Municipalities still at **EL-1 (measure and report only)** — including most Interior BC cities — are not legally required to switch, but the trajectory is clear. Check your local AHJ (Authority Having Jurisdiction) for the current requirement at your address.
+
+<details>
+<summary>Understanding EL Levels at a Glance</summary>
+
+| Emission Level | Requirement | Common Examples |
+|---|---|---|
+| EL-1 | Measure and report GHGI only | Most Interior BC municipalities |
+| EL-2 | GHGI ≤ 10 kgCO₂e/m²/yr | Kelowna, Abbotsford |
+| EL-3 | GHGI ≤ 5 kgCO₂e/m²/yr | Burnaby (phasing in) |
+| EL-4 | Near-zero emissions — no combustion for space heating | Vancouver, Saanich |
+
+GHGI = Greenhouse Gas Intensity. Values in kg of CO₂ equivalent per square metre per year. Always verify with your AHJ — adoption is accelerating.
+
+</details>
+
+### Rebates Are at Their Peak
+
+The 2026 CleanBC Better Homes + Canada Greener Homes stack is the most generous it has ever been. Oil-heated homes can access up to $10,000 from the Oil to Heat Pump Affordability (OHPA) program alone, stacked on top of CleanBC equipment grants and the $40,000 interest-free Canada Greener Homes Loan.
+
+These programs have sunset clauses and funding caps. If you are heating with oil, propane, or aging electric baseboards, 2026 is the most cost-effective year on record to make the switch.
+
+---
+
+## Matching Your System to BC Climate Zone
+
+Heat pump selection is a climate-first decision. The coast and the Interior are mechanically different problems.
+
+### Coastal BC (Lower Mainland, Vancouver Island)
+
+Design temperatures of −5°C to −8°C mean that a standard cold-climate ASHP operates at full capacity for virtually every hour of a BC winter. Auxiliary electric heat strips are typically sized at 5–8 kW and rarely run. The dominant constraint here is electrical panel capacity, not low-ambient performance.
+
+**Recommended approach:** Single-stage or modulating ASHP, modest heat strip, sized per Manual J.
+
+### Interior BC (Kelowna, Kamloops, Vernon, Prince George)
+
+Design temperatures of −22°C to −30°C. At these conditions, even the best ASHPs are operating at 50–70% of rated capacity. A heat pump sized to handle −22°C at full electrical demand (compressor + aux strips) can carry a **31 kW equivalent load** — which will fail on a 100A panel regardless of how the load calc is run.
+
+**Recommended approach:** Dual-fuel hybrid (gas furnace as backup below balance point) or properly sized variable-capacity ASHP with reduced aux heat. See the [Dual-Fuel vs. All-Electric Interior BC guide](/guides/dual-fuel-vs-all-electric-interior-bc) for the balance point math.
+
+<div className="not-prose bg-amber-50 border-l-4 border-amber-400 px-5 py-4 my-6 rounded-r-xl">
+  <p className="font-semibold text-amber-800 mb-1">Auditor's Note — Interior BC</p>
+  <p className="text-sm text-amber-700">High-efficiency envelopes (BC Energy Step Code Step 3+) allow for smaller, more affordable heat pump tonnages because <strong>TEDI</strong> (Thermal Energy Demand Intensity) is lower. A well-insulated 2,200 ft² home in Kelowna may need only a 2-ton ASHP where a poorly insulated equivalent needs 3.5 tons — a $4,000 to $6,000 difference in equipment cost alone.</p>
+</div>
+
+---
+
+## Electrical Infrastructure
+
+This is where most homeowners get overcharged.
+
+### How the CEC 8-200 Optional Method Works
+
+The Canadian Electrical Code Rule 8-200 "Optional Method" is a load calculation procedure that applies a **demand factor** to residential loads. Unlike a simple nameplate-summation approach, it recognizes that a home's range, dryer, water heater, and HVAC system are never all at peak load simultaneously.
+
+The method works in four steps:
+
+1. **Basic Load** — 5,000 W for the first 90 m², plus 1,000 W per additional 90 m²
+2. **Major Appliances** — Range, dryer, and water heater added at face value
+3. **Demand Factor** — (Steps 1+2) at 100% up to 10,000 W, then 40% of the remainder
+4. **Add at 100%** — HVAC load and EV charger added in full (CEC 8-106 Interlock: only the larger of heating or cooling is applied)
+
+When performed correctly, this math frequently shows that a 100A or 125A panel **can support** a heat pump, EV charger, and full residential load without any upgrade.
+
+### The CEC 8-106 Interlock Rule
+
+CEC Rule 8-106 states that if your heating and cooling systems are interlocked (i.e., they cannot run simultaneously), only the **larger load** is added to the panel calculation. A heat pump with a 15 kW heat strip adds 15 kW. Its 5 kW cooling draw during summer is **not** additionally counted — because the two modes are mutually exclusive.
+
+Most contractors who default to a "you need a panel upgrade" quote have not applied this rule. They have summed both loads.
+
+<div className="not-prose bg-red-50 border-l-4 border-red-400 px-5 py-4 my-6 rounded-r-xl">
+  <p className="font-semibold text-red-800 mb-2">⚠️ The $5,000 Panel Trap</p>
+  <p className="text-sm text-red-700 mb-3">Many installers default to a service upgrade because they lack the time or training to run an Optional Method load calculation. Most 100A and 125A homes in BC can support a heat pump without an upgrade — but you need the math to prove it.</p>
+  <p className="text-sm text-red-700 mb-3">Run your <strong>Preliminary Feasibility Analysis</strong> using the CEC 8-200 Optional Method — free, results in under 2 minutes:</p>
+  <a
+    href="/auditor"
+    className="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors"
+  >
+    Run Free Panel Feasibility Audit →
+  </a>
+</div>
+
+### The Three Paths When Your Panel Is Over-Capacity
+
+If the load calculation shows your panel is genuinely at or over capacity, you have three options — in order of cost:
+
+1. **Load Management Device (e.g., DCC-10)** — A smart EV load management device throttles the EV charger to 6A standby (1,440 W) when whole-home demand is high. This can reduce the effective EV load from 11,520 W to 1,440 W for calculation purposes, resolving marginal overloads without any electrical work.
+
+2. **Dual-Fuel Hybrid Heat Pump** — If heating load is the primary culprit, switching to a hybrid system (gas furnace as backup) eliminates the high-wattage auxiliary electric heat strips entirely. A 15 kW heat strip reduced to 0 kW removes 62.5A from your panel calculation overnight.
+
+3. **Electrical Service Upgrade (200A)** — If the math still fails after applying the above, a service upgrade is the correct path. **Good news:** If the upgrade is required to support a heat pump, CleanBC Better Homes offers up to **$5,000 toward the cost** through the Electrical Service Upgrade (ESU) rebate. The upgrade must be performed by an HPCN-member contractor. See [betterhomesbc.ca](https://betterhomesbc.ca) for current program terms.
+
+<details>
+<summary>Typical Panel Load Numbers for Reference (100A Service, 2,700 ft² BC Home)</summary>
+
+| Item | Input | Applied Load |
+|---|---|---|
+| Basic load (251 m²) | 5,000 + (2 × 1,000) | 7,000 W |
+| Range | 12,000 W | 12,000 W |
+| Dryer | 5,000 W | 5,000 W |
+| Water heater | 4,500 W | 4,500 W |
+| Demand factor on above | (7,000 + 21,500) = 28,500 W | 10,000 + (18,500 × 0.40) = 17,400 W |
+| ASHP heating (8-106 interlock) | 15,000 W | 15,000 W |
+| EV charger (unmanaged L2) | 11,520 W | 11,520 W |
+| **Total (unmanaged)** | — | **43,920 W → 183A** ❌ FAIL |
+| EV charger (DCC-10 managed) | 1,440 W | 1,440 W |
+| **Total (managed)** | — | **33,840 W → 141A** ⚠️ WARN |
+| ASHP heating (hybrid, no strips) | 5,000 W | 5,000 W |
+| **Total (hybrid + managed)** | — | **23,840 W → 99.3A** ✓ PASS |
+
+This is a **reference example only** — run your actual inputs at [canadianheatpumphub.ca/auditor](/auditor).
+
+</details>
+
+---
+
+## The 2026 Rebate Stack
+
+BC homeowners have access to three separate funding streams that can be stacked. The order of application matters for maximum eligibility.
+
+### Step 1: CleanBC Better Homes (Provincial)
+
+- Cold climate ASHP replacing electric baseboard: up to **$6,000**
+- Cold climate ASHP replacing gas/propane/oil furnace: up to **$3,000–$6,000** depending on equipment and HSPF2 rating
+- Electrical Service Upgrade (if required): up to **$5,000**
+- Must be installed by an **HPCN (Heat Pump Contractor Network)** member
+
+### Step 2: Canada Greener Homes Loan (Federal)
+
+- Up to **$40,000 interest-free** over 10 years for energy efficiency upgrades
+- Requires a pre- and post-retrofit EnerGuide assessment
+- Stacks on top of CleanBC grants
+
+### Step 3: Oil to Heat Pump Affordability (OHPA) — Oil-Heated Homes Only
+
+- Up to **$10,000** for homes switching from oil heat to an electric heat pump
+- Stacks with CleanBC and the Greener Homes Loan
+- Requires licensed contractor installation and fuel decommissioning
+
+<div className="not-prose bg-amber-50 border-l-4 border-amber-400 px-5 py-4 my-6 rounded-r-xl">
+  <p className="font-semibold text-amber-800 mb-1">Pro Tip — Apply for Rebates Before Installation</p>
+  <p className="text-sm text-amber-700">Most CleanBC rebates require <strong>pre-approval or pre-registration</strong> before work begins. An HPCN contractor can file on your behalf, but confirm this is in your installation contract. Retroactive applications are rarely accepted.</p>
+</div>
+
+**ESTIMATE ONLY.** Rebate eligibility depends on equipment specifications, contractor registration, income verification, and program funding availability. Verify current amounts at [betterhomesbc.ca](https://betterhomesbc.ca) before contracting.
+
+---
+
+## Verifying Your Contractor
+
+The single most important credential check before any heat pump contract is whether the contractor is registered with the **Heat Pump Contractor Network (HPCN)**.
+
+HPCN registration is not just a quality signal — it is a **rebate requirement**. CleanBC rebates are not payable on installations performed by non-HPCN contractors regardless of equipment quality.
+
+Beyond HPCN, verify:
+
+- **TSBC License** — Technical Safety BC (TSBC) refrigeration mechanic license for the installer performing the refrigerant work. You can verify this at [tsbc.ca](https://www.tsbc.ca/licence-search/).
+- **Manual J Load Calculation** — Ask for a written load calculation before any quote. A contractor who cannot provide one should not be sizing your equipment.
+- **AHRI Certificate** — Ensure the matched system (indoor + outdoor units + coil) has an AHRI certificate confirming the rated HSPF2 at your design temperature. This is how you verify the system qualifies for CleanBC rebate tiers.
+- **Permit Pull** — In BC, heat pump installations require an HVAC permit and inspection. Confirm the contractor will pull the permit, not ask you to.
+
+Use the [Canadian Heat Pump Hub directory](/directory) to find TSBC-verified HPCN contractors in your area.
+
+---
+
+## The Zero Carbon Step Code: What It Means If You're Renovating or Building
+
+For homeowners doing a major renovation or new build, the BC Energy Step Code (BCESC) now interacts directly with heat pump selection.
+
+**Higher step codes enable smaller, less expensive heat pumps.** By reducing your home's TEDI (Thermal Energy Demand Intensity) through better insulation and air sealing, a lower-capacity unit can meet the same heating demand. A Step 3+ home may need a 1.5-ton ASHP where a code-minimum home needs 3 tons.
+
+**GHGI (Greenhouse Gas Intensity)** thresholds at EL-2 and above effectively prohibit gas-fired backup heat in new construction — not because of the gas itself, but because combined GHGI from any combustion backup pushes the annual figure above the threshold.
+
+**Key calculation:** GHGI is reported in kgCO₂e/m²/year. BC Natural Gas has a carbon intensity of roughly 50 gCO₂e/MJ. A gas backup that runs 800 hours/year in a 200 m² home can contribute 3–5 kgCO₂e/m²/yr to the annual GHGI — enough to cross the EL-2 threshold on its own.
+
+Always check with your AHJ for the specific step code and emission level in effect for your municipality and permit type.
+
+---
+
+## Next Steps
+
+- **Check Your Panel First:** Run the [free CEC 8-200 Panel Feasibility Audit](/auditor) before any contractor visits. Know your numbers.
+- **Understand Your Rebate Stack:** Use the [2026 BC Rebate Calculator](/guides/bc-heat-pump-rebate-calculator) to estimate your total eligible amount.
+- **Verify Your Contractor:** Check TSBC license status and HPCN registration in the [installer directory](/directory).
+- **Get the Onboarding Checklist:** Review the [22-Point Contractor Onboarding Checklist](/guides/heat-pump-onboarding-checklist) before signing any installation contract.
+- **Interior BC?** Read [Dual-Fuel vs. All-Electric for the BC Interior](/guides/dual-fuel-vs-all-electric-interior-bc) before committing to a system type.
+- **Condo or Strata?** Read the [Vancouver Strata Heat Pump Guide](/guides/vancouver-strata-heat-pump-guide) — the Dec 31, 2026 EPR filing deadline applies to your strata council.
+
+<div className="disclaimer">
+  <p className="font-semibold mb-2">Disclaimer</p>
+  <p>This guide is a reference resource for BC homeowners. It reflects publicly available CEC rules, CleanBC program terms, and ZCSC requirements as understood in early 2026. It is not engineering advice, legal advice, or a professional assessment. Rebate amounts, program terms, and regulatory requirements change. Always verify with your AHJ, a licensed HVAC contractor, and <a href="https://betterhomesbc.ca" target="_blank" rel="noopener noreferrer">betterhomesbc.ca</a> before committing to equipment or contracts.</p>
+</div>

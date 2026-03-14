@@ -926,11 +926,21 @@ export default function GhostLoadAuditor() {
       </div>
 
       {/* Footer disclaimer */}
-      <div className="bg-gray-50 border border-gray-200 rounded-xl px-6 py-5">
+      <div className="bg-gray-50 border border-gray-200 rounded-xl px-6 py-5 space-y-3">
         <p className="text-xs text-gray-500 leading-relaxed text-center">
-          Mathematical audit per CEC Rule 8-200 Optional Method. Informational only — does not
-          replace a site assessment by a Licensed Electrical Contractor or FSR. Prepared using
-          Red Seal HVAC/R field methodology.
+          Preliminary Feasibility Analysis per CEC Rule 8-200 Optional Method. Informational only
+          — does not replace a site assessment by a Licensed Electrical Contractor or FSR.
+          Prepared using Red Seal HVAC/R field methodology.
+        </p>
+        <p className="text-xs text-gray-500 text-center">
+          Want the full context?{' '}
+          <Link
+            href="/guides/heat-pump-bc-2026"
+            className="text-primary-600 hover:text-primary-700 underline font-medium"
+          >
+            Read the BC Heat Pump Guide 2026
+          </Link>{' '}
+          — CEC rules, rebate stacking, HPCN verification, and Zero Carbon Step Code explained.
         </p>
       </div>
     </div>

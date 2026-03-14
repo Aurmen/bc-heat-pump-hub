@@ -33,6 +33,7 @@ const guides = [
   'heat-pump-roi-calculator',
   'bc-step-code-summary',
   'bc-step-code-city-tracker',
+  'heat-pump-bc-2026',
 ];
 
 // Function to import guide content based on slug
@@ -94,6 +95,8 @@ async function importGuideContent(slug: string) {
       return (await import('@/content/guides/bc-step-code-summary.mdx')).default;
     case 'bc-step-code-city-tracker':
       return (await import('@/content/guides/bc-step-code-city-tracker.mdx')).default;
+    case 'heat-pump-bc-2026':
+      return (await import('@/content/guides/heat-pump-bc-2026.mdx')).default;
     default:
       return null;
   }
@@ -135,6 +138,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     'heat-pump-roi-calculator': 'Heat Pump ROI Calculator — BC',
     'bc-step-code-summary': 'The 2026 BC Step Code: What Homeowners & Builders Need to Know',
     'bc-step-code-city-tracker': 'BC Step Code City Tracker: Municipal Adoption Levels (2026)',
+    'heat-pump-bc-2026': 'BC Heat Pump Guide 2026: What Every Homeowner Should Verify',
   };
 
   return {
@@ -193,6 +197,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'heat-pump-roi-calculator': 'Heat Pump ROI Calculator — BC',
     'bc-step-code-summary': 'The 2026 BC Step Code: What Homeowners & Builders Need to Know',
     'bc-step-code-city-tracker': 'BC Step Code City Tracker: Municipal Adoption Levels (2026)',
+    'heat-pump-bc-2026': 'BC Heat Pump Guide 2026: What Every Homeowner Should Verify',
   };
 
   const readTimes: Record<string, string> = {
@@ -224,6 +229,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'heat-pump-roi-calculator': '7 min read',
     'bc-step-code-summary': '11 min read',
     'bc-step-code-city-tracker': '9 min read',
+    'heat-pump-bc-2026': '14 min read',
   };
 
   const descriptions: Record<string, string> = {
@@ -255,6 +261,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     'heat-pump-roi-calculator': 'Interactive heat pump ROI calculator for BC homeowners. Estimate annual savings and payback period based on your current heating source, monthly bills, installation cost, and available rebates.',
     'bc-step-code-summary': 'How the BC Zero Carbon Step Code (ZCSC) affects heat pump requirements. EL-1 through EL-4 explained, TEDI and envelope performance, and municipal requirements for Vancouver, Saanich, Burnaby, Kelowna, and Kamloops.',
     'bc-step-code-city-tracker': 'Municipality-by-municipality tracker of BC Energy Step Code and Zero Carbon Step Code adoption levels. Vancouver EL-4, Kelowna EL-2, Surrey EL-1 — and what each level means for mechanical compliance, GHGI, TEDI, and MEUI.',
+    'heat-pump-bc-2026': 'The complete 2026 BC homeowner reference: Zero Carbon Step Code EL levels, CEC 8-200 panel load calculation, rebate stacking (up to $16,000 for oil-heated homes), HPCN contractor verification, and a free panel feasibility audit.',
   };
 
   return (
@@ -289,6 +296,9 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         <div className="mt-12 bg-white border border-gray-200 rounded-xl p-6">
           <h3 className="text-xl font-bold text-gray-900 mb-4">Related Resources</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link href="/auditor" className="text-primary-600 hover:text-primary-700 font-medium flex items-center gap-2">
+              <span>→</span> Free Panel Feasibility Audit (CEC 8-200)
+            </Link>
             <Link href="/calculator" className="text-primary-600 hover:text-primary-700 font-medium flex items-center gap-2">
               <span>→</span> ROI Calculator
             </Link>
