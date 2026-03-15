@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { AuditBriefingEmail } from '@/emails/AuditBriefingEmail';
 
-const BCC_ADDRESS = 'audits@aelrictechnologies.com';
+const BCC_ADDRESS = 'audits@aurmen.com';
 const FROM_ADDRESS = 'Canadian Heat Pump Hub <audits@canadianheatpumphub.ca>';
 
 export async function POST(req: NextRequest) {

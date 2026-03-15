@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Canadian Heat Pump Hub <noreply@canadianheatpumphub.ca>',
+        from: 'Canadian Heat Pump Hub <contact@canadianheatpumphub.ca>',
         to: [toEmail],
         subject: `New Lead — ${projectType} — ${city}`,
         text: emailText,
