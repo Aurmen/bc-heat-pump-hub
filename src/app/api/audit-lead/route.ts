@@ -59,9 +59,13 @@ export async function POST(req: NextRequest) {
     waterHeaterW, evW, utilization,
   } = parsed.data;
 
+  // ── Report ID ────────────────────────────────────────────────────────────
+  const reportId = `GL-${crypto.randomUUID().toUpperCase()}`;
+
   // ── Audit log ────────────────────────────────────────────────────────────
   console.log('[AuditLead]', {
     timestamp: new Date().toISOString(),
+    reportId,
     email,
     postalCode,
     resultStatus,
@@ -91,6 +95,7 @@ export async function POST(req: NextRequest) {
     email,
     postalCode,
     consented: consented as boolean,
+    reportId,
     resultStatus: (resultStatus ?? 'PASS') as 'PASS' | 'WARN' | 'FAIL',
     panelAmps: Number(panelAmps),
     totalAmps: Number(totalAmps ?? 0),

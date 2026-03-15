@@ -32,6 +32,7 @@ export interface AuditBriefingEmailProps {
   dryerW: number;
   waterHeaterW: number;
   evW: number;
+  reportId: string;
 }
 
 // ── Status config ─────────────────────────────────────────────────────────────
@@ -97,9 +98,12 @@ export function AuditBriefingEmail({
   dryerW,
   waterHeaterW,
   evW,
+  reportId,
 }: AuditBriefingEmailProps) {
   const s = STATUS[resultStatus];
   const year = new Date().getFullYear();
+  const revDate = new Date().toISOString().slice(0, 10).replace(/-/g, '.');
+  const revision = `${revDate}.SEC-5`;
 
   const inputRows: [string, string][] = [
     ['Floor Area', `${Number(sqft).toLocaleString()} ft²`],
@@ -183,10 +187,23 @@ export function AuditBriefingEmail({
                 fontFamily: font,
                 color: '#64748b',
                 fontSize: '13px',
-                margin: 0,
+                margin: '0 0 12px 0',
               }}
             >
               CEC Rule 8-200 Optional Method
+            </Text>
+            <Text
+              style={{
+                fontFamily: font,
+                color: '#94a3b8',
+                fontSize: '11px',
+                margin: 0,
+                letterSpacing: '0.3px',
+              }}
+            >
+              Report ID: <strong style={{ color: '#475569' }}>{reportId}</strong>
+              {'  ·  '}Revision: {revision}
+              {'  ·  '}Status: Verified Data
             </Text>
           </Section>
 
@@ -395,28 +412,63 @@ export function AuditBriefingEmail({
             </Text>
           </Section>
 
-          {/* ── Liability footer ── */}
+          {/* ── Audit Compliance Disclaimer ── */}
           <Section
             style={{
               padding: '20px 32px',
-              borderTop: '1px solid #e2e8f0',
+              borderTop: '2px solid #e2e8f0',
+              backgroundColor: '#f8fafc',
             }}
           >
             <Text
               style={{
                 fontFamily: font,
-                color: '#9ca3af',
+                color: '#475569',
                 fontSize: '10px',
-                lineHeight: '1.7',
-                margin: '0 0 8px 0',
+                fontWeight: 700,
+                letterSpacing: '1px',
+                textTransform: 'uppercase',
+                margin: '0 0 10px 0',
               }}
             >
-              This briefing is an automated mathematical model provided by the Canadian Heat Pump
-              Hub. It is intended for preliminary scoping and informational purposes only. This
-              document does not constitute a professional engineering opinion, a Field Safety
-              Representative (FSR) declaration, or a final electrical permit. All calculations must
-              be verified on-site by a licensed electrical contractor prior to equipment procurement
-              or installation.
+              Audit Compliance &amp; Technical Disclaimer
+            </Text>
+
+            {[
+              ['1. Scope of Audit', 'This document provides a load analysis based on the demand factors outlined in the Canadian Electrical Code (CEC) Rule 8-200 Optional Method. This is a technical audit of system impacts, not a design specification.'],
+              ['2. Non-Advisory Status', 'The provider of this report acts strictly as an Objective Auditor. This report does not constitute professional engineering advice, electrical consulting, or a prescription for installation. All findings must be verified by a registered Field Safety Representative (FSR) or a Professional Engineer (P.Eng) prior to equipment procurement or service modifications.'],
+              ['3. Liability Limitation', 'The Ghost Load™ assessment identifies potential electrical service deficiencies. The author assumes no liability for system failures, breaker trips, or property damage resulting from the use of this data in a real-world installation.'],
+              ['4. Regulatory Compliance', 'It is the responsibility of the owner/contractor to ensure all work complies with the BC Building Code, BC Electrical Code, and local municipal bylaws in the Authority Having Jurisdiction (AHJ).'],
+            ].map(([heading, body]) => (
+              <Text
+                key={heading}
+                style={{
+                  fontFamily: font,
+                  color: '#6b7280',
+                  fontSize: '10px',
+                  lineHeight: '1.65',
+                  margin: '0 0 8px 0',
+                }}
+              >
+                <strong style={{ color: '#374151' }}>{heading}:</strong> {body}
+              </Text>
+            ))}
+
+            <Hr style={{ borderColor: '#e2e8f0', margin: '12px 0' }} />
+
+            <Text
+              style={{
+                fontFamily: font,
+                color: '#9ca3af',
+                fontSize: '10px',
+                lineHeight: '1.6',
+                margin: '0 0 6px 0',
+              }}
+            >
+              © {String(year)} Ghost Load™ Technical Audits · Canadian Heat Pump Hub ·{' '}
+              <Link href="https://canadianheatpumphub.ca" style={{ color: '#9ca3af' }}>
+                canadianheatpumphub.ca
+              </Link>
             </Text>
             <Text
               style={{
@@ -426,10 +478,10 @@ export function AuditBriefingEmail({
                 margin: 0,
               }}
             >
-              © {String(year)} Canadian Heat Pump Hub — canadianheatpumphub.ca
-              {' · '}
-              Sent to {email} · Postal code: {postalCode}
+              Report ID: {reportId} · Sent to {email} · Postal: {postalCode}
               {consented ? ' · Contractor referral: Requested' : ''}
+              {' · '}This document was generated by a secured server-side engine.
+              Tampering with this report voids the verification ID.
             </Text>
           </Section>
         </Container>
