@@ -53,10 +53,11 @@ export default function AuditLeadForm({ data }: { data: AuditLeadData }) {
         <div className="flex items-start gap-3">
           <span className="text-green-600 text-xl shrink-0">✅</span>
           <div>
-            <p className="font-semibold text-green-800">Technical briefing sent!</p>
+            <p className="font-semibold text-green-800">Technical Briefing dispatched.</p>
             <p className="text-sm text-green-700 mt-1">
-              Check your inbox for a summary of your audit results. A local specialist will reach
-              out if you requested a contractor referral.
+              Sent to{' '}
+              <span className="font-medium">{email}</span>. Please check your inbox and share
+              this report with your qualified installer.
             </p>
           </div>
         </div>

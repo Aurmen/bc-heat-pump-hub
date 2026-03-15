@@ -19,13 +19,15 @@
     "verify-tsbc:new": "node scripts/tsbc-verify-airtable.mjs --unverified"
   },
   "dependencies": {
+    "@react-email/components": "^1.0.9",
     "@tailwindcss/typography": "^0.5.19",
     "@vercel/analytics": "^2.0.1",
     "next": "^15.1.6",
     "puppeteer": "^24.37.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "resend": "^6.9.3"
   },
   "devDependencies": {
     "@mdx-js/loader": "^3.1.0",
