@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
     'Service Area': body.service_areas,
     'Admin Notes':  body.notes,
     'Year Experience': body.years_experience ? Number(body.years_experience) : undefined,
-    'Status':       'Pending Review',
+    'Status':       'Needs Manual Review',
   };
 
   if (body.region) {
