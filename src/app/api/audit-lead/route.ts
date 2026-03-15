@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 import { AuditBriefingEmail } from '@/emails/AuditBriefingEmail';
 
 const BCC_ADDRESS = 'audits@aelrictechnologies.com';
-const FROM_ADDRESS = 'Canadian Heat Pump Hub <audits@aelrictechnologies.com>';
+const FROM_ADDRESS = 'Canadian Heat Pump Hub <audits@canadianheatpumphub.ca>';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
