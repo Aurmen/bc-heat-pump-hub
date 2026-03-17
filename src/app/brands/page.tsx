@@ -14,113 +14,113 @@ const brands = [
   {
     name: "Mitsubishi Electric",
     logo: "🔴",
-    priceRange: "$4,500 - $7,500",
+    priceRange: "$5,000 - $9,000",
     type: "Ductless Mini-Split",
     seer: "Up to 33.1",
-    hspf: "Up to 14.0",
-    coldClimateCOP: "3.2 at -15°C",
+    hspf: "Up to 13.5",
+    coldClimateCOP: "2.2 at -15°C",
     warranty: "12 years parts, 12 years compressor",
     strengths: ["Industry-leading cold climate performance", "Hyper-Heat models rated to -30°C", "Quiet operation (19-21 dB)", "Excellent build quality"],
     weaknesses: ["Premium pricing", "Proprietary parts can be expensive"],
     availability: "Excellent",
     reliability: "5/5",
-    notes: "Top choice for BC's varied climates. Hyper-Heat series excels in Interior regions.",
+    notes: "Top choice for BC's varied climates. Hyper-Heat series excels in Interior regions. COP based on NEEP ccASHP data for MUZ-FH series at -15°C.",
     recommendedFor: "Cold climates, premium builds, long-term reliability"
   },
   {
     name: "Daikin",
     logo: "🔵",
-    priceRange: "$4,000 - $7,000",
+    priceRange: "$4,500 - $8,000",
     type: "Ductless Mini-Split & Ducted",
     seer: "Up to 30.5",
-    hspf: "Up to 13.5",
-    coldClimateCOP: "2.9 at -15°C",
+    hspf: "Up to 13.0",
+    coldClimateCOP: "2.3 at -15°C",
     warranty: "12 years parts, 12 years compressor",
     strengths: ["World's largest HVAC manufacturer", "Strong cold climate performance", "Wide product range", "Good installer network in BC"],
     weaknesses: ["Slightly noisier than Mitsubishi", "Mid-tier pricing with premium expectations"],
     availability: "Excellent",
     reliability: "4.5/5",
-    notes: "Daikin acquired Goodman/Amana. Excellent value for performance.",
+    notes: "Daikin acquired Goodman/Amana. Aurora series designed for cold climates. Excellent value for performance.",
     recommendedFor: "Coastal and Interior BC, balanced cost-performance"
   },
   {
     name: "Fujitsu",
     logo: "⚪",
-    priceRange: "$3,800 - $6,500",
+    priceRange: "$4,800 - $8,500",
     type: "Ductless Mini-Split",
     seer: "Up to 29.0",
     hspf: "Up to 12.5",
-    coldClimateCOP: "2.7 at -15°C",
-    warranty: "10 years parts, 12 years compressor",
-    strengths: ["Compact indoor units", "Good value pricing", "Reliable performance", "Halcyon series well-regarded"],
-    weaknesses: ["Lower cold climate performance than Mitsubishi", "Shorter parts warranty"],
+    coldClimateCOP: "2.0 at -15°C",
+    warranty: "10 years parts, 10 years compressor (12/12 with registered Elite warranty)",
+    strengths: ["Compact indoor units", "Good value pricing", "Reliable performance", "Halcyon XLTH series well-regarded"],
+    weaknesses: ["Lower cold climate performance than Mitsubishi", "Elite warranty requires registration within 90 days"],
     availability: "Good",
     reliability: "4/5",
-    notes: "Solid mid-range option. Best suited for coastal BC climates.",
+    notes: "Solid mid-range option. XLTH models rated to -25°C. Best suited for coastal BC climates.",
     recommendedFor: "Coastal BC (Vancouver, Victoria), budget-conscious buyers"
   },
   {
     name: "Carrier",
     logo: "🟢",
-    priceRange: "$4,200 - $7,200",
+    priceRange: "$4,500 - $8,000",
     type: "Ductless & Central Ducted",
     seer: "Up to 26.0",
     hspf: "Up to 12.0",
-    coldClimateCOP: "2.5 at -15°C",
+    coldClimateCOP: "1.9 at -15°C",
     warranty: "10 years parts, 10 years compressor",
     strengths: ["Strong ducted central systems", "Good for existing ductwork retrofits", "Established dealer network", "Greenspeed Intelligence tech"],
     weaknesses: ["Ductless lineup less competitive", "Lower SEER/HSPF than Asian brands"],
     availability: "Excellent",
     reliability: "4/5",
-    notes: "Better for central ducted systems than ductless. Strong in retrofit market.",
+    notes: "Better for central ducted systems than ductless. Strong in retrofit market. Price reflects ductless; central ducted systems $8,000–$16,000 installed.",
     recommendedFor: "Homes with existing ductwork, central systems"
   },
   {
     name: "Lennox",
     logo: "🔴",
-    priceRange: "$4,500 - $7,500",
+    priceRange: "$9,000 - $18,000",
     type: "Central Ducted",
-    seer: "Up to 28.0",
-    hspf: "Up to 13.5",
-    coldClimateCOP: "2.6 at -15°C",
+    seer: "Up to 24.0",
+    hspf: "Up to 10.2",
+    coldClimateCOP: "2.0 at -15°C",
     warranty: "10 years parts, 10 years compressor",
-    strengths: ["Premium ducted systems", "Variable-speed technology", "SunSource solar-ready models", "Strong North American presence"],
-    weaknesses: ["Limited ductless options", "Premium pricing", "Fewer cold climate models"],
+    strengths: ["Premium ducted systems", "Variable-speed inverter technology", "SunSource solar-ready models", "Strong North American presence"],
+    weaknesses: ["No ductless lineup", "Premium pricing", "Central ducted install complexity"],
     availability: "Good",
     reliability: "4/5",
-    notes: "Premium brand for central systems. Less focus on cold climate ductless.",
+    notes: "Premium brand for central ducted systems. Price reflects full central ducted installation including air handler and line set.",
     recommendedFor: "Central ducted systems, new construction"
   },
   {
     name: "LG",
     logo: "⚫",
-    priceRange: "$3,500 - $6,000",
+    priceRange: "$4,800 - $8,500",
     type: "Ductless Mini-Split",
     seer: "Up to 24.5",
-    hspf: "Up to 11.5",
-    coldClimateCOP: "2.4 at -15°C",
+    hspf: "Up to 12.0",
+    coldClimateCOP: "1.8 at -15°C",
     warranty: "10 years parts, 10 years compressor",
     strengths: ["Competitive pricing", "Art Cool aesthetic models", "Wi-Fi connectivity standard", "Good warranty coverage"],
     weaknesses: ["Lower efficiency than premium brands", "Smaller installer network in BC", "Less cold climate focus"],
     availability: "Moderate",
     reliability: "3.5/5",
-    notes: "Budget-friendly option with modern features. Best for mild climates.",
+    notes: "Budget-friendly option with modern features. Best for mild coastal climates. Limited NEEP cold-climate data.",
     recommendedFor: "Coastal BC, budget buyers, tech-focused homeowners"
   },
   {
     name: "Bosch",
     logo: "🔵",
-    priceRange: "$5,000 - $8,500",
+    priceRange: "$15,000 - $30,000",
     type: "Air-to-Water (Hydronic)",
     seer: "N/A (hydronic)",
     hspf: "N/A (hydronic)",
-    coldClimateCOP: "3.0 at -7°C",
+    coldClimateCOP: "2.8 at -7°C",
     warranty: "10 years parts, 10 years heat exchanger",
     strengths: ["European hydronic expertise", "Excellent for radiant floor heating", "Modulating technology", "High build quality"],
-    weaknesses: ["Very limited installer network in BC", "Higher upfront cost", "Requires hydronic heating system"],
+    weaknesses: ["Very limited installer network in BC", "Higher upfront cost", "Requires hydronic heating infrastructure"],
     availability: "Poor",
     reliability: "4.5/5",
-    notes: "Specialty product for hydronic (hot water) heating systems. Rare in BC but excellent quality.",
+    notes: "Specialty product for hydronic (hot water) heating systems. Price includes buffer tank, circulation pumps, and hydronic integration. Rare in BC but excellent quality.",
     recommendedFor: "Homes with radiant floors or hydronic radiators"
   }
 ];
@@ -184,7 +184,7 @@ export default function BrandsPage() {
         </p>
 
         <ArticleMeta
-          lastUpdated="2026-02-16"
+          lastUpdated="2026-03-16"
           readTime="18 min read"
         />
 
@@ -256,7 +256,7 @@ export default function BrandsPage() {
                   <div className="bg-purple-50 rounded-lg p-4">
                     <div className="text-xs text-gray-600 mb-1">Cold Climate Performance</div>
                     <div className="text-2xl font-bold text-purple-700">{brand.coldClimateCOP}</div>
-                    <div className="text-xs text-gray-600">COP at -15°C</div>
+                    <div className="text-xs text-gray-600">Rated COP</div>
                   </div>
 
                   <div className="bg-green-50 rounded-lg p-4">
@@ -335,9 +335,9 @@ export default function BrandsPage() {
             <div className="bg-white rounded-lg p-4">
               <h3 className="font-bold text-gray-900 mb-2">2. Match Budget to Performance Needs</h3>
               <p className="text-gray-700 text-sm">
-                <strong>Premium ($6,000+):</strong> Mitsubishi, Daikin, Bosch - Best for cold climates and long-term ROI<br/>
-                <strong>Mid-Range ($4,000-$6,000):</strong> Fujitsu, Carrier, Lennox - Good balance for most BC homes<br/>
-                <strong>Budget ($3,500-$5,000):</strong> LG - Acceptable for mild coastal climates only
+                <strong>Ductless Mini-Split ($4,500–$9,000 installed):</strong> Mitsubishi, Daikin, Fujitsu, LG, Carrier — most common for BC homes<br/>
+                <strong>Central Ducted ($8,000–$18,000 installed):</strong> Lennox, Carrier — for homes with existing ductwork<br/>
+                <strong>Hydronic ($15,000–$30,000 installed):</strong> Bosch — radiant floor and radiator systems
               </p>
             </div>
 
@@ -351,7 +351,7 @@ export default function BrandsPage() {
             <div className="bg-white rounded-lg p-4">
               <h3 className="font-bold text-gray-900 mb-2">4. Prioritize Warranty Coverage</h3>
               <p className="text-gray-700 text-sm">
-                12-year warranties (Mitsubishi, Daikin) provide better long-term value than 10-year warranties, especially for compressor replacement ($2,000-$3,500 cost).
+                12-year warranties (Mitsubishi, Daikin) provide better long-term value than 10-year warranties, especially for compressor replacement ($2,500–$4,000 cost in 2026). Fujitsu offers 12/12 only with registered Elite warranty — ensure your installer submits the registration within 90 days of install.
               </p>
             </div>
           </div>
