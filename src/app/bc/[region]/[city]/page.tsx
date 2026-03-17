@@ -173,8 +173,8 @@ export default async function CityPage({ params }: { params: Promise<{ region: s
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                       {city.installCosts.ductless}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-success-600 font-medium">
-                      As low as $3,000-9,000
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">
+                      Varies by eligibility
                     </td>
                   </tr>
                   <tr>
@@ -184,8 +184,8 @@ export default async function CityPage({ params }: { params: Promise<{ region: s
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                       {city.installCosts.ducted}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-success-600 font-medium">
-                      As low as $5,000-12,000
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">
+                      Varies by eligibility
                     </td>
                   </tr>
                   <tr>
@@ -195,15 +195,15 @@ export default async function CityPage({ params }: { params: Promise<{ region: s
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                       {city.installCosts.airToWater}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-success-600 font-medium">
-                      As low as $8,000-19,000
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">
+                      Varies by eligibility
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <p className="text-sm text-gray-500 mt-3">
-              Rebates: Provincial and federal programs offer up to $11,000 in combined rebates. See our{' '}
+              Rebates: Income-qualified households may receive up to $16,000 via CleanBC. Oil/propane homes may qualify for $10,000 via OHPA. Most standard-income programs have ended. See our{' '}
               <Link href="/rebates" className="text-primary-600 hover:text-primary-700 font-medium">
                 2026 Rebates Guide
               </Link>{' '}
@@ -245,7 +245,7 @@ export default async function CityPage({ params }: { params: Promise<{ region: s
                       {city.operatingCosts.heatPump}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-success-600 font-bold">
-                      Save 60-70%
+                      Est. 40-65% savings
                     </td>
                   </tr>
                   <tr>
@@ -256,7 +256,7 @@ export default async function CityPage({ params }: { params: Promise<{ region: s
                       {city.operatingCosts.gasBoiler}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-success-600">
-                      Save 55-65%
+                      Est. 35-60% savings
                     </td>
                   </tr>
                   <tr>

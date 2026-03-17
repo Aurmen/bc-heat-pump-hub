@@ -4,7 +4,7 @@ import ArticleMeta from '@/components/ArticleMeta';
 
 export const metadata: Metadata = {
   title: 'BC Heat Pump Rebates 2026 - Complete Guide | Canadian Heat Pump Hub',
-  description: 'Complete guide to heat pump rebates in British Columbia for 2026. CleanBC, federal grants, income-qualified programs, and utility rebates. Up to $16,000 available.',
+  description: 'Complete guide to heat pump rebates in British Columbia for 2026. CleanBC income-qualified programs, OHPA for oil/propane, and utility rebates. Federal Greener Homes Grant discontinued.',
   alternates: { canonical: 'https://canadianheatpumphub.ca/rebates' },
 };
 
@@ -25,7 +25,7 @@ export default function RebatesPage() {
       </p>
 
       <ArticleMeta
-        lastUpdated="2026-02-16"
+        lastUpdated="2026-03-17"
         readTime="15 min read"
       />
 
@@ -38,16 +38,21 @@ export default function RebatesPage() {
       {/* Quick Summary */}
       <div className="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Maximum Available Rebates</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <p className="text-sm text-gray-600 mb-1">Standard Household</p>
-            <p className="text-3xl font-bold text-primary-600">Up to $6,000</p>
-            <p className="text-sm text-gray-600 mt-1">Federal + Provincial programs</p>
+            <p className="text-sm text-gray-600 mb-1">Oil/Propane Switch (OHPA)</p>
+            <p className="text-3xl font-bold text-primary-600">Up to $10,000</p>
+            <p className="text-sm text-gray-600 mt-1">Federal grant — oil &amp; propane homes only</p>
           </div>
           <div>
             <p className="text-sm text-gray-600 mb-1">Income-Qualified Household</p>
-            <p className="text-3xl font-bold text-primary-600">Up to $16,000+</p>
-            <p className="text-sm text-gray-600 mt-1">Enhanced rebates + interest-free loan</p>
+            <p className="text-3xl font-bold text-primary-600">Up to $16,000</p>
+            <p className="text-sm text-gray-600 mt-1">CleanBC enhanced rebates (continuing)</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-600 mb-1">Standard Household</p>
+            <p className="text-3xl font-bold text-yellow-600">Limited</p>
+            <p className="text-sm text-gray-600 mt-1">Most standard programs ended — verify at betterhomesbc.ca</p>
           </div>
         </div>
       </div>
@@ -56,30 +61,16 @@ export default function RebatesPage() {
       <section className="mb-12">
         <h2 className="text-3xl font-bold text-gray-900 mb-6">Federal Programs (Canada-Wide)</h2>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+        <div className="bg-white border border-red-200 rounded-lg p-6 mb-6">
           <h3 className="text-2xl font-semibold text-gray-900 mb-3">Canada Greener Homes Grant</h3>
-          <p className="text-gray-700 mb-4">
-            Federal grant for home energy retrofits including heat pumps. Requires pre- and post-retrofit EnerGuide evaluations.
-          </p>
-          <div className="space-y-2">
-            <div className="flex justify-between border-b pb-2">
-              <span className="font-semibold">Air-source heat pump:</span>
-              <span className="text-primary-600 font-bold">Up to $5,000</span>
-            </div>
-            <div className="flex justify-between border-b pb-2">
-              <span className="font-semibold">Cold climate air-source:</span>
-              <span className="text-primary-600 font-bold">Up to $5,000</span>
-            </div>
-            <div className="flex justify-between border-b pb-2">
-              <span className="font-semibold">Ground-source (geothermal):</span>
-              <span className="text-primary-600 font-bold">Up to $5,000</span>
-            </div>
-          </div>
-          <div className="mt-4 bg-gray-50 p-4 rounded">
-            <p className="text-sm text-gray-700">
-              <strong>Requirements:</strong> Must complete EnerGuide evaluation ($600-$800) before and after installation. Rebate covers evaluation costs plus equipment. Apply through NRCan registered service organization.
+          <div className="bg-red-50 border border-red-200 rounded p-4 mb-4">
+            <p className="text-sm text-red-800">
+              <strong>DISCONTINUED (2024):</strong> The Canada Greener Homes Grant is no longer accepting new applications. The grant program closed in 2024 due to funding depletion. The interest-free Loan program (below) remains available.
             </p>
           </div>
+          <p className="text-gray-500 text-sm line-through">
+            Previously offered up to $5,000 for heat pump installations with pre/post EnerGuide evaluations.
+          </p>
         </div>
 
         <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
@@ -103,7 +94,7 @@ export default function RebatesPage() {
           </div>
           <div className="mt-4 bg-gray-50 p-4 rounded">
             <p className="text-sm text-gray-700">
-              <strong>Eligibility:</strong> Must participate in Canada Greener Homes Grant program. Loan can cover costs beyond grant amount. No fees, no interest, flexible repayment.
+              <strong>Eligibility:</strong> Available for eligible energy retrofit projects. No fees, no interest, flexible repayment. Verify current eligibility requirements at CMHC website.
             </p>
           </div>
         </div>
@@ -244,8 +235,8 @@ export default function RebatesPage() {
             <li className="flex">
               <span className="flex-shrink-0 w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold mr-3">2</span>
               <div>
-                <p className="font-semibold text-gray-900">Pre-Retrofit Energy Assessment (Federal Programs)</p>
-                <p className="text-sm text-gray-700">Book EnerGuide evaluation through registered service organization ($600-$800, cost reimbursed through grant).</p>
+                <p className="font-semibold text-gray-900">Pre-Retrofit Energy Assessment (If Required)</p>
+                <p className="text-sm text-gray-700">Some programs require an EnerGuide evaluation ($600-$800). Check program requirements before booking. The Greener Homes Loan may still require this step.</p>
               </div>
             </li>
             <li className="flex">
@@ -298,13 +289,13 @@ export default function RebatesPage() {
             <div className="bg-white p-4 rounded border border-green-200">
               <p className="font-semibold text-gray-900 mb-2">Example: Income-Qualified Household in Vancouver</p>
               <ul className="text-sm text-gray-700 space-y-1 ml-4">
-                <li>• CleanBC Income-Qualified: <strong className="text-green-600">$16,000</strong></li>
-                <li>• Federal Greener Homes Grant: <strong className="text-green-600">$5,000</strong></li>
-                <li>• Federal Greener Homes Loan: <strong className="text-green-600">$40,000 interest-free</strong></li>
+                <li>• CleanBC Income-Qualified: <strong className="text-green-600">Up to $16,000</strong></li>
+                <li>• Federal Greener Homes Loan: <strong className="text-green-600">Up to $40,000 interest-free</strong></li>
                 <li className="pt-2 border-t mt-2">
-                  <strong>Total Support: Up to $21,000 in grants + $40,000 loan (0% interest)</strong>
+                  <strong>Total Support: Up to $16,000 in grants + $40,000 loan (0% interest)</strong>
                 </li>
               </ul>
+              <p className="text-xs text-gray-500 mt-2">Note: The Canada Greener Homes Grant ($5,000) is no longer available. Totals reflect currently active programs only.</p>
             </div>
             <p className="text-sm text-gray-700">
               Note: Total rebates cannot exceed installation cost. Verify program compatibility before applying (some programs have restrictions on stacking).
@@ -330,8 +321,8 @@ export default function RebatesPage() {
             </div>
             <div className="border-b pb-3">
               <p className="font-semibold text-gray-900">Canada Greener Homes Grant</p>
-              <p className="text-sm text-gray-700">Status: <span className="text-green-600 font-bold">ACTIVE (2026)</span></p>
-              <p className="text-xs text-gray-600 mt-1">Federal program continuing through 2026. Funding limits apply.</p>
+              <p className="text-sm text-gray-700">Status: <span className="text-red-600 font-bold">DISCONTINUED (2024)</span></p>
+              <p className="text-xs text-gray-600 mt-1">Grant program closed due to funding depletion. Interest-free Loan program remains available.</p>
             </div>
             <div>
               <p className="font-semibold text-gray-900">FortisBC Dual Fuel Rebate</p>
@@ -357,7 +348,7 @@ export default function RebatesPage() {
               <a href="https://www.nrcan.gc.ca/energy-efficiency/homes/canada-greener-homes-grant/23441" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-semibold">
                 Canada Greener Homes Grant
               </a>
-              <p className="text-sm text-gray-700">Federal grant program, EnerGuide evaluations, application process</p>
+              <p className="text-sm text-gray-700">Federal grant program (discontinued 2024) — reference only</p>
             </li>
             <li>
               <a href="https://www.cmhc-schl.gc.ca/professionals/project-funding-and-mortgage-financing/funding-programs/all-funding-programs/canada-greener-homes-loan" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-semibold">

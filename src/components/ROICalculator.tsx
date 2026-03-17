@@ -18,12 +18,15 @@ const HEATING_TYPE_LABELS: Record<string, string> = {
   electric_forced_air: 'Electric Forced Air / Fan Coil',
 };
 
+// 2026 defaults — Greener Homes Grant ($5,000) discontinued 2024.
+// Oil/propane: OHPA $10,000 federal grant. Gas/electric: most standard rebates ended.
+// Income-qualified households may get up to $16,000 via CleanBC — users should adjust manually.
 const DEFAULT_REBATES: Record<string, number> = {
-  oil: 16000,
-  propane: 16000,
-  gas: 8000,
-  electric_baseboard: 8000,
-  electric_forced_air: 6000,
+  oil: 10000,
+  propane: 10000,
+  gas: 0,
+  electric_baseboard: 0,
+  electric_forced_air: 0,
 };
 
 export default function ROICalculator() {
@@ -124,7 +127,7 @@ export default function ROICalculator() {
               min="0"
               className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <p className="text-xs text-gray-400 mt-1">Auto-filled from heating type</p>
+            <p className="text-xs text-gray-400 mt-1">Auto-filled — adjust if income-qualified (up to $16K via CleanBC)</p>
           </div>
         </div>
 

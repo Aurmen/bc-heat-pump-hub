@@ -11,15 +11,15 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: "How much does a heat pump cost in BC?",
-    answer: "Heat pump costs in BC vary significantly by type and home size. Air-source heat pumps (ductless mini-splits) typically cost $3,000-$7,000 per zone. Central ducted systems range from $8,000-$15,000. Air-to-water heat pumps for hydronic heating are $15,000-$30,000 installed. These costs are BEFORE rebates, which can reduce your out-of-pocket by $3,000-$16,000 depending on your situation."
+    answer: "Heat pump costs in BC vary significantly by type and home size. Ductless mini-splits typically cost $4,500-$9,000 installed per system. Central ducted systems range from $8,000-$18,000 installed. Air-to-water heat pumps for hydronic heating are $15,000-$30,000 installed. These costs are BEFORE rebates. Available rebates depend on your heating source and income level — income-qualified households may receive up to $16,000 via CleanBC, and oil/propane homes may qualify for $10,000 via OHPA. Most standard-income rebate programs have ended as of 2025."
   },
   {
     question: "What rebates are available for heat pumps in BC?",
-    answer: "BC homeowners can access multiple rebate programs. CleanBC offers up to $6,000 for air-source heat pumps (income-qualified households can get up to $16,000). The federal Canada Greener Homes Grant provides up to $5,000. FortisBC customers may qualify for additional utility rebates. However, many rebate programs have ended or reduced funding as of 2025, so verify current availability before planning your budget."
+    answer: "BC rebate programs have changed significantly. The federal Canada Greener Homes Grant ($5,000) was discontinued in 2024. CleanBC standard rebates for gas-to-electric ended April 2025. What remains: CleanBC income-qualified households can get up to $16,000, the OHPA program offers $10,000 for oil/propane-heated homes, and the interest-free Greener Homes Loan ($40,000) is still available. Always verify current program status at betterhomesbc.ca before planning your budget."
   },
   {
     question: "Should I get a heat pump or keep my boiler in BC?",
-    answer: "It depends on your specific situation. Heat pumps offer lower operating costs (COP of 3.0-4.0 means 300-400% efficiency) compared to gas boilers (85-95% efficiency). In mild coastal climates like Vancouver or Victoria, heat pumps often provide better ROI. In colder Interior regions, a hybrid system (heat pump + existing boiler) may be more cost-effective. Calculate your payback period based on your current heating costs and available rebates."
+    answer: "It depends on your specific situation. Heat pumps offer lower operating costs (seasonal COP of 2.0-3.5 depending on climate, meaning 200-350% efficiency) compared to gas boilers (85-95% efficiency). In mild coastal climates like Vancouver or Victoria, heat pumps often provide better ROI. In colder Interior regions, a hybrid system (heat pump + existing boiler) may be more cost-effective. Calculate your payback period based on your current heating costs and available rebates."
   },
   {
     question: "Do heat pumps work in cold BC winters?",
@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     question: "How much can I save on heating costs with a heat pump?",
-    answer: "Savings depend on what you're replacing. Switching from electric baseboard heating can save 50-60% on heating costs. Replacing an oil or propane system can save 30-50%. Replacing a natural gas boiler may save 20-40%, but ROI is longer because gas is relatively cheap in BC. Calculate your specific savings using your current annual heating costs and the heat pump's estimated COP for your climate zone."
+    answer: "Estimated savings depend on what you're replacing and your climate zone. In mild coastal climates, switching from electric baseboard heating may save 50-65% on heating costs. Replacing oil or propane may save 30-50%. Replacing natural gas may save 20-40%, but ROI is longer because gas is relatively cheap in BC. In colder Interior/Northern regions, savings are lower due to reduced heat pump efficiency at extreme temperatures. Calculate your specific savings using your current annual heating costs and the heat pump's estimated seasonal COP for your climate zone."
   },
   {
     question: "What's the payback period for a heat pump in BC?",
@@ -83,7 +83,7 @@ const faqs = [
   },
   {
     question: "What's the difference between SEER, HSPF, and COP?",
-    answer: "SEER (Seasonal Energy Efficiency Ratio) measures cooling efficiency. HSPF (Heating Seasonal Performance Factor) measures heating efficiency in moderate climates. COP (Coefficient of Performance) measures heating efficiency at specific temperatures. For BC, focus on HSPF (higher is better, 8-12 is good) and COP at outdoor temperatures typical for your region (COP 2.5-4.0 at -15°C is excellent for cold climate units)."
+    answer: "SEER (Seasonal Energy Efficiency Ratio) measures cooling efficiency. HSPF (Heating Seasonal Performance Factor) measures heating efficiency in moderate climates. COP (Coefficient of Performance) measures heating efficiency at specific temperatures. For BC, focus on HSPF (higher is better, 10+ is good) and COP at outdoor temperatures typical for your region. At -15°C, the best cold-climate units achieve COP 2.0-2.5 (based on NEEP ccASHP data). Be skeptical of claims above COP 3.0 at -15°C."
   },
   {
     question: "Can I get financing for a heat pump in BC?",
@@ -127,7 +127,7 @@ export default function FAQPage() {
         </p>
 
         <ArticleMeta
-          lastUpdated="2026-02-16"
+          lastUpdated="2026-03-17"
           readTime="12 min read"
         />
 

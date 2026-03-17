@@ -6,7 +6,7 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Heat Pump Cost BC - Installation & Operating Costs 2026 | Complete Guide',
-  description: 'Complete guide to heat pump costs in British Columbia. Installation costs $8,500-24,500, rebates up to $16,000, operating costs 60-70% less than baseboard. ROI calculator included.',
+  description: 'Complete guide to heat pump costs in British Columbia. Installation costs $8,500-24,500. Income-qualified rebates up to $16,000. Estimated operating costs 40-65% less than baseboard depending on climate zone.',
   alternates: {
     canonical: 'https://canadianheatpumphub.ca/heat-pump-cost-bc',
   },
@@ -50,14 +50,14 @@ export default function HeatPumpCostBCPage() {
               <div className="text-sm text-blue-100 mt-1">Before rebates</div>
             </div>
             <div>
-              <div className="text-sm text-blue-100 mb-2">After Rebates</div>
-              <div className="text-3xl font-bold">$3K-19K</div>
-              <div className="text-sm text-blue-100 mt-1">Up to $16K off</div>
+              <div className="text-sm text-blue-100 mb-2">Rebates (if eligible)</div>
+              <div className="text-3xl font-bold">Up to $16K</div>
+              <div className="text-sm text-blue-100 mt-1">Income-qualified via CleanBC</div>
             </div>
             <div>
-              <div className="text-sm text-blue-100 mb-2">Annual Savings</div>
-              <div className="text-3xl font-bold">$1,500-2,500</div>
-              <div className="text-sm text-blue-100 mt-1">vs electric baseboard</div>
+              <div className="text-sm text-blue-100 mb-2">Estimated Annual Savings</div>
+              <div className="text-3xl font-bold">$1,200-2,500</div>
+              <div className="text-sm text-blue-100 mt-1">vs electric baseboard (varies by climate)</div>
             </div>
           </div>
         </div>
@@ -189,14 +189,14 @@ export default function HeatPumpCostBCPage() {
                 <tr className="bg-success-50">
                   <td className="px-6 py-4 font-bold text-gray-900">Heat Pump</td>
                   <td className="px-6 py-4 text-lg font-bold text-success-600">$1,000-$1,300</td>
-                  <td className="px-6 py-4 font-bold text-success-600">Save 60-70%</td>
-                  <td className="px-6 py-4 text-lg font-bold text-success-600">$24,000-$33,000</td>
+                  <td className="px-6 py-4 font-bold text-success-600">Est. 40-65% savings</td>
+                  <td className="px-6 py-4 text-lg font-bold text-success-600">Est. $18,000-$30,000</td>
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-semibold text-gray-900">Gas Boiler (Natural Gas)</td>
                   <td className="px-6 py-4 text-gray-700">$1,200-$1,600</td>
-                  <td className="px-6 py-4 text-success-600">Save 55-65%</td>
-                  <td className="px-6 py-4 text-success-600">$21,000-$28,500</td>
+                  <td className="px-6 py-4 text-success-600">Est. 35-60% savings</td>
+                  <td className="px-6 py-4 text-success-600">Est. $15,000-$25,000</td>
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-semibold text-gray-900">Oil Boiler</td>
@@ -292,14 +292,14 @@ export default function HeatPumpCostBCPage() {
           <h2 className="text-3xl font-bold mb-4">Reduce Costs with BC Heat Pump Rebates</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div className="bg-white/10 backdrop-blur rounded-lg p-5">
-              <div className="text-sm text-green-100 mb-2">Standard Household</div>
-              <div className="text-4xl font-bold mb-2">Up to $6,000</div>
-              <div className="text-sm text-green-100">Federal + Provincial programs</div>
+              <div className="text-sm text-green-100 mb-2">Oil/Propane Homes (OHPA)</div>
+              <div className="text-4xl font-bold mb-2">Up to $10,000</div>
+              <div className="text-sm text-green-100">Federal grant for fuel switching</div>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-lg p-5">
-              <div className="text-sm text-green-100 mb-2">Income-Qualified</div>
+              <div className="text-sm text-green-100 mb-2">Income-Qualified (CleanBC)</div>
               <div className="text-4xl font-bold mb-2">Up to $16,000</div>
-              <div className="text-sm text-green-100">Enhanced rebates + interest-free loan</div>
+              <div className="text-sm text-green-100">Enhanced rebates — verify eligibility</div>
             </div>
           </div>
           <Link
@@ -313,7 +313,7 @@ export default function HeatPumpCostBCPage() {
         {/* ROI Calculator CTA */}
         <div className="mb-12 bg-gradient-primary text-white rounded-2xl p-10 shadow-2xl text-center">
           <div className="text-5xl mb-4">🧮</div>
-          <h2 className="text-3xl font-bold mb-3">Calculate Your Exact ROI</h2>
+          <h2 className="text-3xl font-bold mb-3">Calculate Your Estimated ROI</h2>
           <p className="text-lg text-blue-50 mb-6 max-w-2xl mx-auto">
             Get personalized payback period, annual savings, and 15-year ROI based on your city, home size, and current heating costs.
           </p>

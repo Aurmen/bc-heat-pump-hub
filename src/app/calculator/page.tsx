@@ -42,10 +42,15 @@ export default function CalculatorPage() {
 
     const installCost = heatPumpCosts[inputs.heatPumpType] || 0;
 
-    // Rebate calculations
-    let federalRebate = 5000; // Canada Greener Homes Grant
-    let provincialRebate = inputs.householdIncome === 'income-qualified' ? 6000 : 0;
+    // Rebate calculations (2026 — Greener Homes Grant discontinued 2024)
+    let federalRebate = 0; // Canada Greener Homes Grant ENDED — no federal grant available
+    let provincialRebate = inputs.householdIncome === 'income-qualified' ? 6000 : 0; // CleanBC income-qualified only
     let utilityRebate = inputs.climateZone === 'coastal' ? 1000 : 500;
+
+    // OHPA grant for oil/propane switchers
+    if (inputs.currentHeating === 'oil' || inputs.currentHeating === 'propane') {
+      federalRebate = 10000; // Oil to Heat Pump Affordability program
+    }
 
     const totalRebates = federalRebate + provincialRebate + utilityRebate;
     const netCost = Math.max(0, installCost - totalRebates);
@@ -112,7 +117,7 @@ export default function CalculatorPage() {
       </p>
 
       <ArticleMeta
-        lastUpdated="2026-02-16"
+        lastUpdated="2026-03-17"
         readTime="5 min"
       />
 
@@ -262,7 +267,7 @@ export default function CalculatorPage() {
               <h3 className="font-bold text-gray-900 mb-4">Rebate Breakdown</h3>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span>Federal (Canada Greener Homes):</span>
+                  <span>Federal ({results.federalRebate > 0 ? 'OHPA — Oil/Propane Switch' : 'Greener Homes Grant — Discontinued'}):</span>
                   <span className="font-semibold text-primary-600">${results.federalRebate.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-sm">
