@@ -14,8 +14,17 @@ export interface AuditLeadData {
   rangeW: number;
   dryerW: number;
   waterHeaterW: number;
+  muaW: number;
   evW: number;
   utilization: number;
+  // Dual-fuel & altitude (optional — thermal analysis)
+  elevation?: number;
+  isDualFuel?: boolean;
+  balancePoint?: number;
+  gasNameplateBtu?: number;
+  gasRatePerGj?: number;
+  elecRatePerKwh?: number;
+  furnaceAfue?: number;
 }
 
 export default function AuditLeadForm({ data }: { data: AuditLeadData }) {

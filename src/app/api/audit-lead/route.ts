@@ -4,6 +4,7 @@ import { Resend } from 'resend';
 import { AuditBriefingEmail } from '@/emails/AuditBriefingEmail';
 import { AuditInputSchema } from '@/lib/audit-schema';
 import { checkRateLimit } from '@/lib/rate-limiter';
+import { runAudit } from '@/lib/audit-engine';
 
 const BCC_ADDRESS = 'audits@aurmen.com';
 const FROM_ADDRESS = 'Canadian Heat Pump Hub <audits@canadianheatpumphub.ca>';
@@ -53,11 +54,28 @@ export async function POST(req: NextRequest) {
 
   const {
     email, postalCode, consented,
-    resultStatus, panelAmps, totalAmps,
+    panelAmps,
     hasEV, loadManagement, sqft,
     heatingW, coolingW, rangeW, dryerW,
-    waterHeaterW, evW, utilization,
+    waterHeaterW, muaW, evW,
   } = parsed.data;
+
+  // ── Authoritative server-side audit (CEC Rule 8-200, 26th Ed.) ──────────
+  // Always re-compute from raw inputs. Client-provided totalAmps / utilization
+  // / resultStatus are intentionally ignored — the server is the single source
+  // of truth for the briefing document.
+  const auditResult = runAudit({
+    sqft:         Number(sqft),
+    serviceAmps:  Number(panelAmps),
+    rangeW:       Number(rangeW),
+    dryerW:       Number(dryerW),
+    waterHeaterW: Number(waterHeaterW),
+    muaW:         Number(muaW ?? 0),
+    heatingW:     Number(heatingW),
+    coolingW:     Number(coolingW),
+    evW:          Number(evW),
+    loadManagement: Boolean(loadManagement),
+  });
 
   // ── Report ID ────────────────────────────────────────────────────────────
   const reportId = `GL-${crypto.randomUUID().toUpperCase()}`;
@@ -68,10 +86,10 @@ export async function POST(req: NextRequest) {
     reportId,
     email,
     postalCode,
-    resultStatus,
+    resultStatus: auditResult.status,
     panelAmps,
-    totalAmps: Number(totalAmps ?? 0).toFixed(1),
-    utilization: Number(utilization ?? 0).toFixed(0),
+    totalAmps: auditResult.totalAmps.toFixed(1),
+    utilization: auditResult.utilization.toFixed(0),
     consented,
     ip,
   });
@@ -85,30 +103,32 @@ export async function POST(req: NextRequest) {
 
   const resend = new Resend(resendKey);
 
-  const isAtCapacity = resultStatus === 'FAIL' || resultStatus === 'WARN';
+  const isAtCapacity =
+    auditResult.status === 'FAIL' || auditResult.status === 'WARN';
 
   const subject = isAtCapacity
-    ? `Preliminary Feasibility Briefing — ${resultStatus} — Panel at ${Number(utilization ?? 0).toFixed(0)}% Capacity`
-    : `Preliminary Feasibility Briefing — PASS — ${Number(totalAmps ?? 0).toFixed(1)}A on ${panelAmps}A Service`;
+    ? `Preliminary Feasibility Briefing — ${auditResult.status} — Panel at ${auditResult.utilization.toFixed(0)}% Capacity`
+    : `Preliminary Feasibility Briefing — PASS — ${auditResult.totalAmps.toFixed(1)}A on ${panelAmps}A Service`;
 
   const emailProps = {
     email,
     postalCode,
     consented: consented as boolean,
     reportId,
-    resultStatus: (resultStatus ?? 'PASS') as 'PASS' | 'WARN' | 'FAIL',
-    panelAmps: Number(panelAmps),
-    totalAmps: Number(totalAmps ?? 0),
-    utilization: Number(utilization ?? 0),
-    hasEV: Boolean(hasEV),
+    resultStatus:   auditResult.status,
+    panelAmps:      Number(panelAmps),
+    totalAmps:      auditResult.totalAmps,
+    utilization:    auditResult.utilization,
+    hasEV:          Boolean(hasEV),
     loadManagement: Boolean(loadManagement),
-    sqft: Number(sqft),
-    heatingW: Number(heatingW),
-    coolingW: Number(coolingW),
-    rangeW: Number(rangeW),
-    dryerW: Number(dryerW),
-    waterHeaterW: Number(waterHeaterW),
-    evW: Number(evW),
+    sqft:           Number(sqft),
+    heatingW:       Number(heatingW),
+    coolingW:       Number(coolingW),
+    rangeW:         Number(rangeW),
+    dryerW:         Number(dryerW),
+    waterHeaterW:   Number(waterHeaterW),
+    muaW:           Number(muaW ?? 0),
+    evW:            Number(evW),
   };
 
   const { error } = await resend.emails.send({

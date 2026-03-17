@@ -8,6 +8,8 @@
 import { z } from 'zod';
 
 // ── Allowed service sizes (BC residential panels) ─────────────────────────
+// 125 A  — common in BC older homes (1970s–1990s)
+// 320 A  — typical strata/condo sub-panel feed
 const VALID_SERVICE_SIZES = [60, 100, 125, 150, 200, 320, 400] as const;
 
 // ── Wattage field factory ─────────────────────────────────────────────────
@@ -38,11 +40,22 @@ export const AuditInputSchema = z.object({
   rangeW:       watts('Range', 14400),
   dryerW:       watts('Dryer', 7500),
   waterHeaterW: watts('Water heater', 6000),
+  /** Make-Up Air heater — optional; defaults to 0 W */
+  muaW:         watts('MUA heater', 20000).optional().default(0),
   evW:          watts('EV charger', 19200),
 
   // Flags
   hasEV:          z.boolean(),
   loadManagement: z.boolean(),
+
+  // ── Dual-fuel & altitude inputs (optional — thermal analysis) ──────────
+  elevation:       z.number().min(0).max(3000).finite().optional().default(0),
+  isDualFuel:      z.boolean().optional().default(false),
+  balancePoint:    z.number().min(-20).max(15).finite().optional().default(2),
+  gasNameplateBtu: z.number().min(0).max(200000).finite().optional().default(0),
+  gasRatePerGj:    z.number().min(0).max(100).finite().optional().default(12.50),
+  elecRatePerKwh:  z.number().min(0).max(1).finite().optional().default(0.14),
+  furnaceAfue:     z.number().min(0.5).max(1.0).finite().optional().default(0.96),
 
   // Lead capture
   email:      z.string().email('A valid email address is required').max(254),

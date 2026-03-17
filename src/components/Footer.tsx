@@ -73,7 +73,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} Canadian Heat Pump Hub. For informational purposes only.
+          © 2026 Aelric Technologies. Ghost Load™ is a proprietary calculation engine and trademark of Aelric Technologies. Business Registration Pending (NR 2895893). All Rights Reserved.
         </div>
       </div>
     </footer>

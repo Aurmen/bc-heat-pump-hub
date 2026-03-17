@@ -19,22 +19,54 @@ interface FormState {
   rangeW: string;
   dryerW: string;
   waterHeaterW: string;
+  muaW: string;
   heatingW: string;
   coolingW: string;
   evW: string;
   loadManagement: boolean;
+  // Dual-fuel & altitude
+  elevation: string;
+  isDualFuel: boolean;
+  balancePoint: string;
+  gasNameplateBtu: string;
+  gasRatePerGj: string;
+  elecRatePerKwh: string;
+  furnaceAfue: string;
+}
+
+interface ThermalCalcResult {
+  elevationM: number;
+  bpKpa: number;
+  correctedHeatConstant: number;
+  derateFactor: number;
+  gasNameplateBtu: number;
+  effectiveBtu: number;
+  balancePoint: number;
+  gasRatePerGj: number;
+  elecRatePerKwh: number;
+  furnaceAfue: number;
+  copCrossover: number;
 }
 
 interface CalcResult {
   sqm: number;
-  basicLoadW: number;
   extraBlocks: number;
-  appliancesW: number;
-  subtotal: number;
-  afterDemand: number;
+  basicLoadW: number;
+  // 8-200(1)(a)(iv)
+  rangeApplied: number;
+  // 8-200(1)(a)(vii)(A)
+  dryerApplied: number;
+  waterHeaterApplied: number;
+  muaApplied: number;
+  // 62-118(3) + 8-106(3)
+  heatingDemand: number;
   hvacW: number;
   hvacIsHeating: boolean;
+  // 8-106(11)
   evApplied: number;
+  // totals
+  calculatedW: number;
+  minDemandW: number;
   totalW: number;
   totalAmps: number;
   utilization: number;
@@ -42,7 +74,13 @@ interface CalcResult {
   service: number;
   status: 'PASS' | 'WARN' | 'FAIL';
   overload: number;
+  // thermal (informational — does not affect PASS/WARN/FAIL)
+  thermal?: ThermalCalcResult;
 }
+
+// ── Constants ─────────────────────────────────────────────────────────────────
+/** kWh per gigajoule — converts gas $/GJ to $/kWh for COP crossover */
+const KWH_PER_GJ = 277.78;
 
 // ── Calculation Engine ────────────────────────────────────────────────────────
 
@@ -52,14 +90,23 @@ function toNum(s: string): number | null {
 }
 
 function runCalc(f: FormState, managedEV: boolean): CalcResult | null {
-  const sqft = toNum(f.sqft);
+  const sqft   = toNum(f.sqft);
   const service = toNum(f.serviceSize);
-  const rangeW = toNum(f.rangeW);
-  const dryerW = toNum(f.dryerW);
-  const whW = toNum(f.waterHeaterW);
-  const heatW = toNum(f.heatingW);
-  const coolW = toNum(f.coolingW);
-  const evIn = toNum(f.evW);
+  const rangeW  = toNum(f.rangeW);
+  const dryerW  = toNum(f.dryerW);
+  const whW     = toNum(f.waterHeaterW);
+  const muaIn   = toNum(f.muaW);
+  const heatW   = toNum(f.heatingW);
+  const coolW   = toNum(f.coolingW);
+  const evIn    = toNum(f.evW);
+
+  // Thermal inputs — safe defaults, never null-guard
+  const elevM      = toNum(f.elevation) ?? 0;
+  const gasBtu     = toNum(f.gasNameplateBtu) ?? 0;
+  const balPt      = toNum(f.balancePoint) ?? 2;
+  const gasRate    = toNum(f.gasRatePerGj) ?? 12.50;
+  const elecRate   = toNum(f.elecRatePerKwh) ?? 0.14;
+  const afue       = toNum(f.furnaceAfue) ?? 0.96;
 
   if (
     sqft === null || sqft <= 0 ||
@@ -67,6 +114,7 @@ function runCalc(f: FormState, managedEV: boolean): CalcResult | null {
     rangeW === null || rangeW < 0 ||
     dryerW === null || dryerW < 0 ||
     whW === null || whW < 0 ||
+    muaIn === null || muaIn < 0 ||
     heatW === null || heatW < 0 ||
     coolW === null || coolW < 0 ||
     evIn === null || evIn < 0
@@ -74,27 +122,44 @@ function runCalc(f: FormState, managedEV: boolean): CalcResult | null {
     return null;
   }
 
-  // Step 1 — Basic load (CEC 8-200)
+  // ── 8-200(1)(a)(i)+(ii) Basic load ────────────────────────────────────
   const sqm = sqft * 0.0929;
   const extraBlocks = Math.max(0, Math.ceil((sqm - 90) / 90));
   const basicLoadW = 5000 + extraBlocks * 1000;
 
-  // Step 2 — Major appliances at face value
-  const appliancesW = rangeW + dryerW + whW;
+  // ── 8-200(1)(a)(iv) Range demand factor ───────────────────────────────
+  // 6,000 W base + 40% of amount exceeding 12 kW
+  const rangeApplied = rangeW > 0
+    ? 6000 + Math.max(0, rangeW - 12000) * 0.4
+    : 0;
 
-  // Step 3 — Demand factor (applied to Steps 1+2)
-  const subtotal = basicLoadW + appliancesW;
-  const afterDemand =
-    subtotal <= 10000
-      ? subtotal
-      : 10000 + (subtotal - 10000) * 0.4;
+  // ── 8-200(1)(a)(vii)(A) Other loads > 1,500 W at 25% when range present
+  const hasRange = rangeW > 0;
+  const dryerApplied       = hasRange && dryerW > 1500 ? dryerW * 0.25 : dryerW;
+  const waterHeaterApplied = hasRange && whW   > 1500 ? whW    * 0.25 : whW;
+  // MUA (Make-Up Air) heater — same sub-clause
+  const muaApplied         = hasRange && muaIn > 1500 ? muaIn  * 0.25 : muaIn;
 
-  // Step 4 — HVAC interlock (CEC 8-106) + EV at 100%
-  const hvacIsHeating = heatW >= coolW;
-  const hvacW = Math.max(heatW, coolW);
-  const evApplied = managedEV ? 1440 : evIn;
+  // ── 62-118(3) Space heating demand factor → 8-106(3) HVAC interlock ──
+  const heatingDemand = heatW <= 10000
+    ? heatW
+    : 10000 + (heatW - 10000) * 0.75;
 
-  const totalW = afterDemand + hvacW + evApplied;
+  const hvacIsHeating = heatingDemand >= coolW;
+  const hvacW = Math.max(heatingDemand, coolW);
+
+  // ── 8-200(1)(a)(vi) + 8-106(11) EV supply equipment ──────────────────
+  // EVEMS present → excluded from calculated load per Rule 8-106(11)
+  const evApplied = managedEV ? 0 : evIn;
+
+  // ── Calculated total ──────────────────────────────────────────────────
+  const calculatedW =
+    basicLoadW + rangeApplied + dryerApplied + waterHeaterApplied + muaApplied + hvacW + evApplied;
+
+  // ── 8-200(1)(b) Minimum demand floor ──────────────────────────────────
+  const minDemandW = sqm >= 80 ? 24000 : 14400;
+  const totalW = Math.max(calculatedW, minDemandW);
+
   const totalAmps = totalW / 240;
   const continuousLimit = service * 0.8;
   const utilization = (totalAmps / service) * 100;
@@ -102,14 +167,59 @@ function runCalc(f: FormState, managedEV: boolean): CalcResult | null {
 
   const status: 'PASS' | 'WARN' | 'FAIL' =
     totalAmps <= continuousLimit ? 'PASS' :
-    totalAmps <= service ? 'WARN' :
+    totalAmps <= service         ? 'WARN' :
     'FAIL';
 
+  // ── Thermal analysis (informational — does NOT alter PASS/WARN/FAIL) ──
+  const hasThermal = elevM > 0 || gasBtu > 0;
+
+  const thermal: ThermalCalcResult | undefined = hasThermal ? (() => {
+    // ISA hypsometric formula — barometric pressure at elevation (kPa)
+    const bpKpa = 101.325 * Math.pow(1 - 0.0000225577 * elevM, 5.25588);
+
+    // Air density corrected sensible heat constant (1.08 at sea level)
+    const correctedHeatConstant = 1.08 * (bpKpa / 101.325);
+
+    // CSA B149.1 Clause 8.22.1 — gas appliance altitude derate
+    // 4% derate for every 300 m above the 610 m threshold
+    let derateFactor = 1;
+    if (elevM > 610) {
+      derateFactor = Math.max(0, 1 - (0.04 * ((elevM - 610) / 300)));
+    }
+
+    // Effective gas furnace output after altitude derate
+    const effectiveBtu = Math.round(gasBtu * derateFactor);
+
+    // Economic crossover COP — COP at which electricity cost per unit of
+    // delivered heat equals gas cost per unit of delivered heat
+    const copCrossover = gasRate > 0
+      ? (elecRate * afue * KWH_PER_GJ) / gasRate
+      : 0;
+
+    return {
+      elevationM: elevM,
+      bpKpa: Math.round(bpKpa * 100) / 100,
+      correctedHeatConstant: Math.round(correctedHeatConstant * 1000) / 1000,
+      derateFactor: Math.round(derateFactor * 1000) / 1000,
+      gasNameplateBtu: gasBtu,
+      effectiveBtu,
+      balancePoint: balPt,
+      gasRatePerGj: gasRate,
+      elecRatePerKwh: elecRate,
+      furnaceAfue: afue,
+      copCrossover: Math.round(copCrossover * 100) / 100,
+    };
+  })() : undefined;
+
   return {
-    sqm, basicLoadW, extraBlocks, appliancesW, subtotal,
-    afterDemand, hvacW, hvacIsHeating, evApplied,
-    totalW, totalAmps, utilization, continuousLimit,
+    sqm, extraBlocks, basicLoadW,
+    rangeApplied, dryerApplied, waterHeaterApplied, muaApplied,
+    heatingDemand, hvacW, hvacIsHeating,
+    evApplied,
+    calculatedW, minDemandW, totalW,
+    totalAmps, utilization, continuousLimit,
     service, status, overload,
+    thermal,
   };
 }
 
@@ -210,6 +320,11 @@ function CalcBreakdown({
 }) {
   const heatingW = parseFloat(form.heatingW);
   const coolingW = parseFloat(form.coolingW);
+  const rangeW   = parseFloat(form.rangeW);
+  const dryerW   = parseFloat(form.dryerW);
+  const whW      = parseFloat(form.waterHeaterW);
+  const muaW     = parseFloat(form.muaW);
+  const hasRange = rangeW > 0;
 
   return (
     <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
@@ -219,12 +334,14 @@ function CalcBreakdown({
         </h3>
       </div>
       <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Steps 1–3 (same for both scenarios) */}
+
+        {/* ── Left column — Steps 1–3 (identical for both scenarios) ── */}
         <div className="space-y-6">
-          {/* Step 1 */}
+
+          {/* Step 1 — Basic Load */}
           <div>
             <p className="text-xs font-semibold text-primary-700 uppercase tracking-wide mb-2">
-              Step 1 — Basic Load
+              Step 1 — Basic Load [8-200(1)(a)(i)+(ii)]
             </p>
             <div className="bg-gray-50 rounded-lg px-4 py-3 font-mono text-xs text-gray-700 space-y-1">
               <div className="flex justify-between">
@@ -238,7 +355,7 @@ function CalcBreakdown({
               {resultA.extraBlocks > 0 && (
                 <div className="flex justify-between">
                   <span>+{resultA.extraBlocks} × 90 m² block{resultA.extraBlocks > 1 ? 's' : ''} × 1,000 W</span>
-                  <span>{(resultA.extraBlocks * 1000).toLocaleString()} W</span>
+                  <span>+{(resultA.extraBlocks * 1000).toLocaleString()} W</span>
                 </div>
               )}
               <div className="flex justify-between border-t border-gray-200 pt-1 font-bold">
@@ -248,108 +365,173 @@ function CalcBreakdown({
             </div>
           </div>
 
-          {/* Step 2 */}
+          {/* Step 2 — Range demand factor */}
           <div>
             <p className="text-xs font-semibold text-primary-700 uppercase tracking-wide mb-2">
-              Step 2 — Major Appliances
+              Step 2 — Range / Cooktop [8-200(1)(a)(iv)]
             </p>
             <div className="bg-gray-50 rounded-lg px-4 py-3 font-mono text-xs text-gray-700 space-y-1">
-              <div className="flex justify-between">
-                <span>Range / cooktop</span>
-                <span>{parseFloat(form.rangeW).toLocaleString()} W</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Dryer</span>
-                <span>{parseFloat(form.dryerW).toLocaleString()} W</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Water heater</span>
-                <span>{parseFloat(form.waterHeaterW).toLocaleString()} W</span>
-              </div>
+              {hasRange ? (
+                <>
+                  <div className="flex justify-between">
+                    <span>Range nameplate</span>
+                    <span>{rangeW.toLocaleString()} W</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Base demand (single range)</span>
+                    <span>6,000 W</span>
+                  </div>
+                  {rangeW > 12000 && (
+                    <div className="flex justify-between">
+                      <span>+{(rangeW - 12000).toLocaleString()} W above 12 kW × 40%</span>
+                      <span>+{((rangeW - 12000) * 0.4).toLocaleString()} W</span>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="flex justify-between">
+                  <span>No range — load omitted</span>
+                  <span>0 W</span>
+                </div>
+              )}
               <div className="flex justify-between border-t border-gray-200 pt-1 font-bold">
-                <span>Step 2 subtotal</span>
-                <span>{resultA.appliancesW.toLocaleString()} W</span>
+                <span>Step 2 applied</span>
+                <span>{resultA.rangeApplied.toLocaleString()} W</span>
               </div>
             </div>
           </div>
 
-          {/* Step 3 */}
+          {/* Step 3 — Other appliances with demand factors */}
           <div>
             <p className="text-xs font-semibold text-primary-700 uppercase tracking-wide mb-2">
-              Step 3 — Demand Factor (on Steps 1+2)
+              Step 3 — Other Appliances [8-200(1)(a)(vii)(A)]
             </p>
             <div className="bg-gray-50 rounded-lg px-4 py-3 font-mono text-xs text-gray-700 space-y-1">
-              <div className="flex justify-between">
-                <span>Steps 1+2 combined</span>
-                <span>{resultA.subtotal.toLocaleString()} W</span>
+              <div className="text-gray-500 italic mb-1">
+                {hasRange
+                  ? 'Range present → loads > 1,500 W at 25% each'
+                  : 'No range → loads at 100% nameplate'}
               </div>
-              {resultA.subtotal > 10000 ? (
-                <>
-                  <div className="flex justify-between">
-                    <span>First 10,000 W @ 100%</span>
-                    <span>10,000 W</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Remaining {(resultA.subtotal - 10000).toLocaleString()} W @ 40%</span>
-                    <span>{((resultA.subtotal - 10000) * 0.4).toLocaleString()} W</span>
-                  </div>
-                </>
-              ) : (
+              <div className="flex justify-between">
+                <span>
+                  Dryer{' '}
+                  {hasRange && dryerW > 1500
+                    ? `(${dryerW.toLocaleString()} W × 25%)`
+                    : `(${dryerW.toLocaleString()} W × 100%)`}
+                </span>
+                <span>{resultA.dryerApplied.toLocaleString()} W</span>
+              </div>
+              <div className="flex justify-between">
+                <span>
+                  Water heater{' '}
+                  {hasRange && whW > 1500
+                    ? `(${whW.toLocaleString()} W × 25%)`
+                    : `(${whW.toLocaleString()} W × 100%)`}
+                </span>
+                <span>{resultA.waterHeaterApplied.toLocaleString()} W</span>
+              </div>
+              {muaW > 0 && (
                 <div className="flex justify-between">
-                  <span>≤ 10,000 W → 100% applied</span>
-                  <span>{resultA.subtotal.toLocaleString()} W</span>
+                  <span>
+                    MUA heater{' '}
+                    {hasRange && muaW > 1500
+                      ? `(${muaW.toLocaleString()} W × 25%)`
+                      : `(${muaW.toLocaleString()} W × 100%)`}
+                  </span>
+                  <span>{resultA.muaApplied.toLocaleString()} W</span>
                 </div>
               )}
               <div className="flex justify-between border-t border-gray-200 pt-1 font-bold">
-                <span>Step 3 result</span>
-                <span>{resultA.afterDemand.toLocaleString()} W</span>
+                <span>Step 3 total</span>
+                <span>{(resultA.dryerApplied + resultA.waterHeaterApplied + resultA.muaApplied).toLocaleString()} W</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Step 4 + Totals */}
+        {/* ── Right column — Steps 4–5 + Totals ── */}
         <div className="space-y-6">
-          {/* Step 4 */}
+
+          {/* Step 4 — Space heating demand factor + HVAC interlock */}
           <div>
             <p className="text-xs font-semibold text-primary-700 uppercase tracking-wide mb-2">
-              Step 4 — Add at 100% (HVAC + EV)
+              Step 4 — HVAC [62-118(3) + 8-106(3)]
             </p>
             <div className="bg-gray-50 rounded-lg px-4 py-3 font-mono text-xs text-gray-700 space-y-1">
               <div className="flex justify-between">
-                <span>Step 3 carry-forward</span>
-                <span>{resultA.afterDemand.toLocaleString()} W</span>
+                <span>Heating nameplate</span>
+                <span>{heatingW.toLocaleString()} W</span>
               </div>
-              <div className="flex justify-between text-gray-900 font-medium">
+              {heatingW > 10000 ? (
+                <>
+                  <div className="flex justify-between text-gray-500">
+                    <span>First 10,000 W @ 100%</span>
+                    <span>10,000 W</span>
+                  </div>
+                  <div className="flex justify-between text-gray-500">
+                    <span>+{(heatingW - 10000).toLocaleString()} W balance @ 75%</span>
+                    <span>{Math.round((heatingW - 10000) * 0.75).toLocaleString()} W</span>
+                  </div>
+                </>
+              ) : (
+                <div className="flex justify-between text-gray-500">
+                  <span>≤ 10,000 W → 100% applied</span>
+                  <span></span>
+                </div>
+              )}
+              <div className="flex justify-between">
+                <span>Heating demand [62-118(3)]</span>
+                <span>{resultA.heatingDemand.toLocaleString()} W</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Cooling nameplate [@ 100%]</span>
+                <span>{coolingW.toLocaleString()} W</span>
+              </div>
+              <div className="flex justify-between font-medium text-gray-900">
                 <span>
                   {resultA.hvacIsHeating
-                    ? `Heating ${heatingW.toLocaleString()} W (applied)`
-                    : `Cooling ${coolingW.toLocaleString()} W (applied)`}
+                    ? '→ Heating applied (greater)'
+                    : '→ Cooling applied (greater)'}
                 </span>
                 <span>{resultA.hvacW.toLocaleString()} W</span>
               </div>
               <div className="flex justify-between text-gray-400 line-through">
                 <span>
                   {resultA.hvacIsHeating
-                    ? `Cooling ${coolingW.toLocaleString()} W (CEC 8-106 interlock)`
-                    : `Heating ${heatingW.toLocaleString()} W (CEC 8-106 interlock)`}
+                    ? `Cooling ${coolingW.toLocaleString()} W (8-106 interlock)`
+                    : `Heating demand ${resultA.heatingDemand.toLocaleString()} W (8-106 interlock)`}
                 </span>
                 <span>0 W</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 5 — EV supply equipment */}
+          <div>
+            <p className="text-xs font-semibold text-primary-700 uppercase tracking-wide mb-2">
+              Step 5 — EV Supply Equipment [8-106(11)]
+            </p>
+            <div className="bg-gray-50 rounded-lg px-4 py-3 font-mono text-xs text-gray-700 space-y-1">
+              <div className="flex justify-between">
+                <span>EVSE nameplate</span>
+                <span>{parseFloat(form.evW).toLocaleString()} W</span>
               </div>
               {resultB ? (
                 <>
                   <div className="flex justify-between">
-                    <span>EV — Scenario A (unmanaged)</span>
+                    <span>Scenario A — no EVEMS</span>
                     <span>{resultA.evApplied.toLocaleString()} W</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>EV — Scenario B (DCC-10 standby)</span>
-                    <span>{resultB.evApplied.toLocaleString()} W</span>
+                    <span>Scenario B — EVEMS present [8-106(11)]</span>
+                    <span className="text-green-700 font-semibold">
+                      {resultB.evApplied.toLocaleString()} W (excluded)
+                    </span>
                   </div>
                 </>
               ) : (
                 <div className="flex justify-between">
-                  <span>EV charger</span>
+                  <span>No EVEMS — full nameplate applied</span>
                   <span>{resultA.evApplied.toLocaleString()} W</span>
                 </div>
               )}
@@ -359,18 +541,48 @@ function CalcBreakdown({
           {/* Grand Totals */}
           <div>
             <p className="text-xs font-semibold text-primary-700 uppercase tracking-wide mb-2">
-              Grand Totals
+              Grand Totals [8-200(1)(b)]
             </p>
             <div className="bg-gray-50 rounded-lg px-4 py-3 font-mono text-xs text-gray-700 space-y-1">
+              <div className="flex justify-between text-gray-500">
+                <span>Steps 1+2+3 (basic + range + appliances)</span>
+                <span>
+                  {(resultA.basicLoadW + resultA.rangeApplied + resultA.dryerApplied + resultA.waterHeaterApplied + resultA.muaApplied).toLocaleString()} W
+                </span>
+              </div>
+              <div className="flex justify-between text-gray-500">
+                <span>Step 4 — HVAC</span>
+                <span>+{resultA.hvacW.toLocaleString()} W</span>
+              </div>
+              {resultA.evApplied > 0 && (
+                <div className="flex justify-between text-gray-500">
+                  <span>Step 5 — EV (unmanaged)</span>
+                  <span>+{resultA.evApplied.toLocaleString()} W</span>
+                </div>
+              )}
               <div className="flex justify-between font-bold text-gray-900">
-                <span>{resultB ? 'Scenario A — unmanaged' : 'Total load'}</span>
+                <span>{resultB ? 'Scenario A — calculated' : 'Calculated total'}</span>
+                <span>{resultA.calculatedW.toLocaleString()} W</span>
+              </div>
+              {resultB && (
+                <div className="flex justify-between font-bold text-gray-900">
+                  <span>Scenario B — calculated</span>
+                  <span>{resultB.calculatedW.toLocaleString()} W</span>
+                </div>
+              )}
+              <div className="flex justify-between border-t border-gray-200 pt-1 text-gray-500">
+                <span>Min. demand floor {resultA.sqm >= 80 ? '(≥ 80 m²)' : '(< 80 m²)'}</span>
+                <span>{resultA.minDemandW.toLocaleString()} W</span>
+              </div>
+              <div className="flex justify-between font-bold text-gray-900">
+                <span>{resultB ? 'Scenario A — applied' : 'Total applied'}</span>
                 <span>
                   {resultA.totalW.toLocaleString()} W → {resultA.totalAmps.toFixed(1)} A
                 </span>
               </div>
               {resultB && (
                 <div className="flex justify-between font-bold text-gray-900">
-                  <span>Scenario B — managed</span>
+                  <span>Scenario B — applied</span>
                   <span>
                     {resultB.totalW.toLocaleString()} W → {resultB.totalAmps.toFixed(1)} A
                   </span>
@@ -378,18 +590,18 @@ function CalcBreakdown({
               )}
               <div className="flex justify-between border-t border-gray-200 pt-1">
                 <span>Service rating</span>
-                <span>{resultA.service}A ({(resultA.service * 240).toLocaleString()} W)</span>
+                <span>{resultA.service} A ({(resultA.service * 240).toLocaleString()} W)</span>
               </div>
               <div className="flex justify-between">
                 <span>80% continuous limit</span>
                 <span>
-                  {resultA.continuousLimit.toFixed(0)}A ({(resultA.continuousLimit * 240).toLocaleString()} W)
+                  {resultA.continuousLimit.toFixed(0)} A ({(resultA.continuousLimit * 240).toLocaleString()} W)
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Service tiers legend */}
+          {/* Result thresholds legend */}
           <div className="bg-primary-50 border border-primary-200 rounded-lg px-4 py-3 text-xs text-primary-800 leading-relaxed">
             <p className="font-semibold mb-1">Result thresholds</p>
             <p><span className="font-bold text-green-700">PASS</span> — calculated amps ≤ 80% of service rating (continuous load limit)</p>
@@ -410,10 +622,19 @@ const DEFAULTS: FormState = {
   rangeW: '12000',
   dryerW: '5000',
   waterHeaterW: '4500',
+  muaW: '0',
   heatingW: '15000',
   coolingW: '5000',
   evW: '11520',
   loadManagement: false,
+  // Dual-fuel & altitude defaults
+  elevation: '0',
+  isDualFuel: false,
+  balancePoint: '2',
+  gasNameplateBtu: '0',
+  gasRatePerGj: '12.50',
+  elecRatePerKwh: '0.14',
+  furnaceAfue: '0.96',
 };
 
 // ── Main Component ────────────────────────────────────────────────────────────
@@ -422,6 +643,7 @@ export default function GhostLoadAuditor() {
   const [form, setForm] = useState<FormState>(DEFAULTS);
   const [calculated, setCalculated] = useState(false);
   const [showBreakdown, setShowBreakdown] = useState(false);
+  const [pdfStatus, setPdfStatus] = useState<'idle' | 'loading' | 'error'>('idle');
 
   // Live m² conversion
   const sqm = (() => {
@@ -445,12 +667,21 @@ export default function GhostLoadAuditor() {
         rangeW: parseFloat(form.rangeW),
         dryerW: parseFloat(form.dryerW),
         waterHeaterW: parseFloat(form.waterHeaterW),
+        muaW: parseFloat(form.muaW) || 0,
         evW: parseFloat(form.evW),
         utilization: resultA.utilization,
+        // Thermal analysis inputs
+        elevation: parseFloat(form.elevation) || 0,
+        isDualFuel: form.isDualFuel,
+        balancePoint: parseFloat(form.balancePoint) || 2,
+        gasNameplateBtu: parseFloat(form.gasNameplateBtu) || 0,
+        gasRatePerGj: parseFloat(form.gasRatePerGj) || 12.50,
+        elecRatePerKwh: parseFloat(form.elecRatePerKwh) || 0.14,
+        furnaceAfue: parseFloat(form.furnaceAfue) || 0.96,
       }
     : null;
 
-  function setField(field: keyof Omit<FormState, 'loadManagement'>) {
+  function setField(field: keyof Omit<FormState, 'loadManagement' | 'isDualFuel'>) {
     return (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
       setCalculated(false);
@@ -459,6 +690,11 @@ export default function GhostLoadAuditor() {
 
   function handleCheckbox(e: ChangeEvent<HTMLInputElement>) {
     setForm((prev) => ({ ...prev, loadManagement: e.target.checked }));
+    setCalculated(false);
+  }
+
+  function handleDualFuelToggle(e: ChangeEvent<HTMLInputElement>) {
+    setForm((prev) => ({ ...prev, isDualFuel: e.target.checked }));
     setCalculated(false);
   }
 
@@ -488,6 +724,49 @@ export default function GhostLoadAuditor() {
     setShowBreakdown(false);
   }
 
+  async function handleDownloadPDF() {
+    setPdfStatus('loading');
+    try {
+      const res = await fetch('/api/audit-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sqft:         parseFloat(form.sqft),
+          serviceAmps:  parseFloat(form.serviceSize),
+          rangeW:       parseFloat(form.rangeW),
+          dryerW:       parseFloat(form.dryerW),
+          waterHeaterW: parseFloat(form.waterHeaterW),
+          muaW:         parseFloat(form.muaW) || 0,
+          heatingW:     parseFloat(form.heatingW),
+          coolingW:     parseFloat(form.coolingW),
+          evW:          parseFloat(form.evW),
+          loadManagement: form.loadManagement,
+          // Thermal analysis inputs
+          elevation:       parseFloat(form.elevation) || 0,
+          isDualFuel:      form.isDualFuel,
+          balancePoint:    parseFloat(form.balancePoint) || 2,
+          gasNameplateBtu: parseFloat(form.gasNameplateBtu) || 0,
+          gasRatePerGj:    parseFloat(form.gasRatePerGj) || 12.50,
+          elecRatePerKwh:  parseFloat(form.elecRatePerKwh) || 0.14,
+          furnaceAfue:     parseFloat(form.furnaceAfue) || 0.96,
+        }),
+      });
+      if (!res.ok) throw new Error('PDF generation failed');
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const cd = res.headers.get('Content-Disposition') ?? '';
+      const match = cd.match(/filename="([^"]+)"/);
+      a.download = match ? match[1] : 'AuditReport.pdf';
+      a.click();
+      URL.revokeObjectURL(url);
+      setPdfStatus('idle');
+    } catch {
+      setPdfStatus('error');
+    }
+  }
+
   // Recommendation logic
   const showRecs = !!resultA && resultA.status !== 'PASS';
   const heatingIsCulprit = !!resultA?.hvacIsHeating && parseFloat(form.heatingW) > 8000;
@@ -503,6 +782,18 @@ export default function GhostLoadAuditor() {
 
   return (
     <div className="space-y-8">
+      {/* Technical Beta banner */}
+      <div className="bg-gray-50 border border-gray-300 rounded-xl px-5 py-4">
+        <p className="text-sm font-bold text-gray-700 uppercase tracking-wide mb-1">Technical Beta</p>
+        <p className="text-sm text-gray-600">
+          This audit tool — including CEC Rule 8-200 electrical load analysis and dual-fuel thermal
+          integration — is for demonstration and compliance-check purposes only. All reports must
+          be verified by a licensed Field Safety Representative (FSR) or Professional Engineer
+          (P.Eng) prior to equipment procurement or installation. Aelric Technologies assumes no
+          liability for real-world application of this data.
+        </p>
+      </div>
+
       {/* Top disclaimer */}
       <div className="bg-amber-50 border-l-4 border-amber-400 px-5 py-4 rounded-r-xl">
         <p className="text-sm font-bold text-amber-800">
@@ -543,8 +834,10 @@ export default function GhostLoadAuditor() {
               >
                 <option value="60">60 A</option>
                 <option value="100">100 A</option>
+                <option value="125">125 A</option>
                 <option value="150">150 A</option>
                 <option value="200">200 A</option>
+                <option value="320">320 A</option>
                 <option value="400">400 A</option>
               </select>
             </div>
@@ -583,6 +876,28 @@ export default function GhostLoadAuditor() {
                   onChange={setField('waterHeaterW')}
                   className={inputCls}
                 />
+              </div>
+            </div>
+
+            {/* Ghost Load — MUA heater */}
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-5">
+              <div>
+                <label className={labelCls}>
+                  MUA / Kitchen Makeup Air Heater (W)
+                  <span className="ml-1.5 text-xs font-normal text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">
+                    Ghost Load
+                  </span>
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  value={form.muaW}
+                  onChange={setField('muaW')}
+                  className={inputCls}
+                />
+                <p className={hintCls}>
+                  Electric heater for high-CFM kitchen exhaust makeup air. Enter 0 if not present.
+                </p>
               </div>
             </div>
           </div>
@@ -642,15 +957,134 @@ export default function GhostLoadAuditor() {
                     className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                   />
                   <span className="text-sm text-gray-700">
-                    <span className="font-semibold">Load management enabled (DCC-10)</span>
+                    <span className="font-semibold">Load management enabled (EVEMS)</span>
                     <br />
                     <span className="text-xs text-gray-500">
-                      Shows Scenario B: EV reduced to 1,440 W (6A standby)
+                      Shows Scenario B: EV excluded from calculated load per CEC Rule 8-106(11)
                     </span>
                   </span>
                 </label>
               </div>
             </div>
+          </div>
+
+          {/* Elevation & Dual-Fuel */}
+          <div>
+            <p className={sectionHeadCls}>Site Elevation &amp; Dual-Fuel System</p>
+
+            {/* Elevation — always visible */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label className={labelCls}>Site elevation (metres above sea level)</label>
+                <input
+                  type="number"
+                  min="0"
+                  max="3000"
+                  step="1"
+                  value={form.elevation}
+                  onChange={setField('elevation')}
+                  className={inputCls}
+                />
+                <p className={hintCls}>
+                  Vancouver ~0 m · Kelowna ~344 m · Kamloops ~345 m · Prince George ~575 m
+                </p>
+              </div>
+              <div className="flex items-start pt-7">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={form.isDualFuel}
+                    onChange={handleDualFuelToggle}
+                    className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                  />
+                  <span className="text-sm text-gray-700">
+                    <span className="font-semibold">Residential Dual-Fuel System</span>
+                    <br />
+                    <span className="text-xs text-gray-500">
+                      Heat pump + gas furnace — enables altitude derate &amp; COP crossover analysis
+                    </span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            {/* Dual-fuel inputs — revealed when isDualFuel is ON */}
+            {form.isDualFuel && (
+              <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg space-y-4">
+                <p className="text-xs font-semibold text-blue-700 uppercase tracking-wide">
+                  Dual-Fuel Parameters — Thermal Analysis (Informational Only)
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label className={labelCls}>Gas furnace nameplate (BTU/h)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      max="200000"
+                      step="1000"
+                      value={form.gasNameplateBtu}
+                      onChange={setField('gasNameplateBtu')}
+                      className={inputCls}
+                    />
+                    <p className={hintCls}>e.g. 80,000 BTU/h</p>
+                  </div>
+                  <div>
+                    <label className={labelCls}>Furnace AFUE (decimal)</label>
+                    <input
+                      type="number"
+                      min="0.5"
+                      max="1.0"
+                      step="0.01"
+                      value={form.furnaceAfue}
+                      onChange={setField('furnaceAfue')}
+                      className={inputCls}
+                    />
+                    <p className={hintCls}>0.96 = 96% AFUE</p>
+                  </div>
+                  <div>
+                    <label className={labelCls}>Balance point (°C)</label>
+                    <input
+                      type="number"
+                      min="-20"
+                      max="15"
+                      step="0.5"
+                      value={form.balancePoint}
+                      onChange={setField('balancePoint')}
+                      className={inputCls}
+                    />
+                    <p className={hintCls}>Default 2°C per FortisBC/CleanBC</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={labelCls}>Natural gas rate ($/GJ)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="0.01"
+                      value={form.gasRatePerGj}
+                      onChange={setField('gasRatePerGj')}
+                      className={inputCls}
+                    />
+                    <p className={hintCls}>FortisBC 2026 default: $12.50/GJ</p>
+                  </div>
+                  <div>
+                    <label className={labelCls}>Electricity rate ($/kWh)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      value={form.elecRatePerKwh}
+                      onChange={setField('elecRatePerKwh')}
+                      className={inputCls}
+                    />
+                    <p className={hintCls}>BC Hydro Step 2, 2026 default: $0.14/kWh</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -685,7 +1119,7 @@ export default function GhostLoadAuditor() {
                 />
                 <ResultCard
                   result={resultB}
-                  label="Scenario B — Managed (DCC-10)"
+                  label="Scenario B — EVEMS (e.g. DCC-10)"
                   heatingW={parseFloat(form.heatingW)}
                   coolingW={parseFloat(form.coolingW)}
                 />
@@ -700,14 +1134,32 @@ export default function GhostLoadAuditor() {
             )}
           </div>
 
-          {/* Breakdown toggle */}
-          <button
-            onClick={() => setShowBreakdown((prev) => !prev)}
-            className="flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors"
-          >
-            <span>{showBreakdown ? '▲' : '▼'}</span>
-            {showBreakdown ? 'Hide' : 'Show'} full CEC 8-200 calculation breakdown
-          </button>
+          {/* Action row: breakdown toggle + PDF download */}
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              onClick={() => setShowBreakdown((prev) => !prev)}
+              className="flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors"
+            >
+              <span>{showBreakdown ? '▲' : '▼'}</span>
+              {showBreakdown ? 'Hide' : 'Show'} full CEC 8-200 calculation breakdown
+            </button>
+
+            <button
+              onClick={handleDownloadPDF}
+              disabled={pdfStatus === 'loading'}
+              className="flex items-center gap-2 text-sm font-semibold text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-60 px-4 py-2 rounded-lg shadow-sm transition-colors"
+            >
+              {pdfStatus === 'loading' ? (
+                <>⏳ Generating PDF…</>
+              ) : (
+                <>⬇ Download Ghost Load™ Compliance Report</>
+
+              )}
+            </button>
+            {pdfStatus === 'error' && (
+              <span className="text-xs text-red-600">PDF generation failed — please try again.</span>
+            )}
+          </div>
 
           {showBreakdown && (
             <CalcBreakdown
@@ -715,6 +1167,125 @@ export default function GhostLoadAuditor() {
               resultB={form.loadManagement ? resultB : null}
               form={form}
             />
+          )}
+
+          {/* ── Thermal Analysis Card ── */}
+          {resultA.thermal && (
+            <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <div className="bg-blue-50 border-b border-blue-200 px-6 py-4">
+                <h3 className="text-sm font-semibold text-blue-800 uppercase tracking-wide">
+                  Thermal Integration &amp; Elevation Audit
+                </h3>
+                <p className="text-xs text-blue-600 mt-1">
+                  Informational supplement — does not alter CEC 8-200 electrical compliance result
+                </p>
+              </div>
+              <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Left column — Altitude & Derate */}
+                <div className="space-y-4">
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    Altitude &amp; Gas Appliance Derate
+                  </p>
+                  <dl className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <dt className="text-gray-600">Site elevation</dt>
+                      <dd className="font-semibold text-gray-900">
+                        {resultA.thermal.elevationM.toLocaleString()} m
+                      </dd>
+                    </div>
+                    <div className="flex justify-between">
+                      <dt className="text-gray-600">Atmospheric pressure (ISA)</dt>
+                      <dd className="font-semibold text-gray-900">
+                        {resultA.thermal.bpKpa.toFixed(2)} kPa
+                      </dd>
+                    </div>
+                    <div className="flex justify-between">
+                      <dt className="text-gray-600">Air density heat constant</dt>
+                      <dd className="font-semibold text-gray-900">
+                        {resultA.thermal.correctedHeatConstant.toFixed(3)}
+                      </dd>
+                    </div>
+                    <div className="flex justify-between">
+                      <dt className="text-gray-600">CSA B149.1 derate factor</dt>
+                      <dd className="font-semibold text-gray-900">
+                        {resultA.thermal.derateFactor.toFixed(3)}
+                        {resultA.thermal.elevationM <= 610 && (
+                          <span className="text-xs text-gray-400 ml-1">(below 610 m threshold)</span>
+                        )}
+                      </dd>
+                    </div>
+                    {resultA.thermal.gasNameplateBtu > 0 && (
+                      <>
+                        <div className="flex justify-between border-t border-gray-100 pt-2">
+                          <dt className="text-gray-600">Gas furnace nameplate</dt>
+                          <dd className="font-semibold text-gray-900">
+                            {resultA.thermal.gasNameplateBtu.toLocaleString()} BTU/h
+                          </dd>
+                        </div>
+                        <div className="flex justify-between">
+                          <dt className="text-gray-600">Effective capacity (derated)</dt>
+                          <dd className="font-semibold text-gray-900">
+                            {resultA.thermal.effectiveBtu.toLocaleString()} BTU/h
+                          </dd>
+                        </div>
+                      </>
+                    )}
+                  </dl>
+                </div>
+
+                {/* Right column — COP Crossover & Rates */}
+                <div className="space-y-4">
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    Economic COP Crossover
+                  </p>
+                  <dl className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <dt className="text-gray-600">Electricity rate</dt>
+                      <dd className="font-semibold text-gray-900">
+                        ${resultA.thermal.elecRatePerKwh.toFixed(2)}/kWh
+                      </dd>
+                    </div>
+                    <div className="flex justify-between">
+                      <dt className="text-gray-600">Natural gas rate</dt>
+                      <dd className="font-semibold text-gray-900">
+                        ${resultA.thermal.gasRatePerGj.toFixed(2)}/GJ
+                      </dd>
+                    </div>
+                    <div className="flex justify-between">
+                      <dt className="text-gray-600">Furnace AFUE</dt>
+                      <dd className="font-semibold text-gray-900">
+                        {(resultA.thermal.furnaceAfue * 100).toFixed(0)}%
+                      </dd>
+                    </div>
+                    <div className="flex justify-between border-t border-gray-100 pt-2">
+                      <dt className="text-gray-600 font-semibold">Crossover COP</dt>
+                      <dd className="font-bold text-blue-700 text-base">
+                        {resultA.thermal.copCrossover.toFixed(2)}
+                      </dd>
+                    </div>
+                    <div className="flex justify-between">
+                      <dt className="text-gray-600">Balance point</dt>
+                      <dd className="font-semibold text-gray-900">
+                        {resultA.thermal.balancePoint}°C
+                      </dd>
+                    </div>
+                  </dl>
+                  {resultA.thermal.copCrossover > 0 && (
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-800 leading-relaxed">
+                      <p className="font-semibold mb-1">Crossover Interpretation</p>
+                      <p>
+                        When the heat pump COP drops below{' '}
+                        <span className="font-bold">{resultA.thermal.copCrossover.toFixed(2)}</span>,
+                        the gas furnace delivers cheaper heat per unit of energy. At your utility rates,
+                        the heat pump is more economical above this COP threshold. Below{' '}
+                        {resultA.thermal.balancePoint}°C outdoor temperature, the gas furnace should
+                        engage as the primary heat source.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           )}
 
           {/* ── Recommendations ── */}
@@ -742,18 +1313,19 @@ export default function GhostLoadAuditor() {
                   </div>
                 )}
 
-                {/* DCC-10 recommendation — overload < 40A */}
-                {resultA.overload > 0 && resultA.overload < 40 && !form.loadManagement && (
+                {/* EVEMS recommendation — overload < 40A AND an EV is actually present */}
+                {resultA.overload > 0 && resultA.overload < 40 && !form.loadManagement && parseFloat(form.evW) > 0 && (
                   <div className="flex gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                     <span className="text-blue-500 text-lg shrink-0">⚡</span>
                     <div>
                       <p className="font-semibold text-blue-800 text-sm">
-                        Consider a DCC-10 Load Management Device
+                        Consider an EVEMS Load Management Device (e.g. DCC-10)
                       </p>
                       <p className="text-sm text-blue-700 mt-1">
-                        Your panel overload ({resultA.overload.toFixed(1)} A) is under 40A. A
-                        smart EV load management device such as the DCC-10 throttles the EV
-                        charger to 6A standby (1,440 W) when grid demand is high, which may
+                        Your panel overload ({resultA.overload.toFixed(1)} A) is under 40A. An
+                        Electric Vehicle Energy Management System (EVEMS) that monitors and
+                        controls EVSE loads per CEC Rule 8-500 allows the EV demand to be
+                        excluded entirely from the calculated load under Rule 8-106(11). This may
                         eliminate the need for a panel upgrade. Check &ldquo;Load management
                         enabled&rdquo; above to model Scenario B.
                       </p>
@@ -836,7 +1408,7 @@ export default function GhostLoadAuditor() {
                         BC CleanBC rebates require installation by a Heat Pump Contractor Network
                         (HPCN) member. Use the{' '}
                         <Link href="/directory" className="underline font-medium">
-                          Canadian Heat Pump Hub directory
+                          Aelric Technologies directory
                         </Link>{' '}
                         to find TSBC-verified HPCN contractors in your area.
                       </p>
@@ -850,13 +1422,13 @@ export default function GhostLoadAuditor() {
                     <span className="text-green-600 text-lg shrink-0">✅</span>
                     <div>
                       <p className="font-semibold text-green-800 text-sm">
-                        Load Management Resolves This — No Panel Upgrade Required
+                        EVEMS Resolves This — No Panel Upgrade Required
                       </p>
                       <p className="text-sm text-green-700 mt-1">
-                        Scenario B (DCC-10 load management) reduces your panel load to{' '}
+                        Scenario B (EVEMS per Rule 8-106(11)) reduces your panel load to{' '}
                         {resultB.totalAmps.toFixed(1)} A — a{' '}
                         <span className="font-bold">{resultB.status}</span> result. A panel upgrade
-                        is not required if you install an approved load management device.
+                        is not required if you install a qualifying EVEMS device (e.g. DCC-10).
                       </p>
                     </div>
                   </div>

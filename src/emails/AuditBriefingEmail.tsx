@@ -31,6 +31,7 @@ export interface AuditBriefingEmailProps {
   rangeW: number;
   dryerW: number;
   waterHeaterW: number;
+  muaW?: number;
   evW: number;
   reportId: string;
 }
@@ -97,6 +98,7 @@ export function AuditBriefingEmail({
   rangeW,
   dryerW,
   waterHeaterW,
+  muaW = 0,
   evW,
   reportId,
 }: AuditBriefingEmailProps) {
@@ -112,8 +114,9 @@ export function AuditBriefingEmail({
     ['Range / Cooktop', `${Number(rangeW).toLocaleString()} W`],
     ['Clothes Dryer', `${Number(dryerW).toLocaleString()} W`],
     ['Water Heater', `${Number(waterHeaterW).toLocaleString()} W`],
+    ['MUA / Kitchen Heater (Ghost Load)', muaW > 0 ? `${Number(muaW).toLocaleString()} W` : 'None'],
     ['EV Charger', hasEV ? `${Number(evW).toLocaleString()} W` : 'None'],
-    ['Load Management (DCC-10)', loadManagement ? 'Enabled' : 'Not enabled'],
+    ['Load Management (EVEMS)', loadManagement ? 'Enabled' : 'Not enabled'],
   ];
 
   return (
