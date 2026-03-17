@@ -257,7 +257,7 @@ export default function ColdClimateHeatPumpBCPage() {
               </p>
               <p className="text-sm text-gray-700">
                 Absolutely—for Interior BC climates. Cold climate models maintain 2-3x efficiency even at -20°C, while standard models may barely operate or shut off entirely.
-                The $2,000 premium pays for itself within 2-3 winters through better efficiency and avoiding backup electric heat.
+                The $2,000 premium can typically pay for itself within 2-3 winters through better efficiency and reduced reliance on backup electric heat, depending on home size and local climate conditions.
               </p>
             </div>
           </div>
@@ -322,7 +322,7 @@ export default function ColdClimateHeatPumpBCPage() {
               <h3 className="text-lg font-bold text-gray-900 mb-3">Mitsubishi Hyper-Heat</h3>
               <div className="text-sm text-gray-700 space-y-2 mb-4">
                 <div><strong>Rated to:</strong> -25°C to -30°C</div>
-                <div><strong>Warranty:</strong> 12 years compressor</div>
+                <div><strong>Warranty:</strong> 12 years compressor (Diamond Dealer)</div>
                 <div><strong>Models:</strong> MXZ, PUZ, SVZ series</div>
               </div>
               <div className="text-sm text-success-600 font-semibold">Industry standard for cold climates</div>
@@ -342,7 +342,7 @@ export default function ColdClimateHeatPumpBCPage() {
               <h3 className="text-lg font-bold text-gray-900 mb-3">Fujitsu Halcyon</h3>
               <div className="text-sm text-gray-700 space-y-2 mb-4">
                 <div><strong>Rated to:</strong> -25°C to -30°C</div>
-                <div><strong>Warranty:</strong> 12 years compressor</div>
+                <div><strong>Warranty:</strong> 10 years compressor (12 with Elite registration)</div>
                 <div><strong>Models:</strong> XLTH, XFTH series</div>
               </div>
               <div className="text-sm text-success-600 font-semibold">Proven in Canadian climates</div>

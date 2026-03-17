@@ -186,7 +186,7 @@ export default function RebateCalculator() {
           <div>
             <span className="text-sm font-semibold text-gray-700">Income-qualified household</span>
             <p className="text-xs text-gray-500 mt-0.5">
-              Household income under approximately $84,000 (net). Verify current threshold at betterhomesbc.ca.
+              Varies by household size: $55K (1-2 people), $72K (3-4), $88K (5+). Verify at betterhomesbc.ca.
             </p>
           </div>
         </label>

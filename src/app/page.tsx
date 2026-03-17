@@ -152,7 +152,7 @@ export default function HomePage() {
           </h2>
           <p className="text-xl text-primary-100 mb-8">
             Run a free CEC Rule 8-200 load calculation before committing to a $5,000–$10,000
-            panel upgrade. Most homes qualify with the right approach.
+            panel upgrade. Many homes may qualify depending on existing loads and configuration.
           </p>
           <Link
             href="/auditor"
