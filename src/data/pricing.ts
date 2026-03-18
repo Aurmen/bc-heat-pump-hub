@@ -90,12 +90,20 @@ export const UTILITY_RATES = {
 } as const;
 
 // ─── Income Qualification Thresholds ───────────────────────────────────────────
+// Note: CleanBC Energy Savings Program uses tiered income levels (Level 1, 2, 3)
+// and a property value cap. These thresholds are approximate — verify at betterhomesbc.ca.
 
 export const INCOME_THRESHOLDS = [
   { householdSize: '1-2 people', threshold: 55000 },
-  { householdSize: '3-4 people', threshold: 72000 },
+  { householdSize: '3-4 people', threshold: 87350 },
   { householdSize: '5+ people',  threshold: 88000 },
 ] as const;
+
+/** Property value cap for maximum rebate tiers (BC Assessment) */
+export const PROPERTY_VALUE_CAP = 1230000;
+
+/** Maximum rebate including electrical upgrades (income-qualified) */
+export const MAX_REBATE_WITH_ELECTRICAL = 24500;
 
 /** Format thresholds as compact display string */
 export function formatIncomeThresholds(): string {

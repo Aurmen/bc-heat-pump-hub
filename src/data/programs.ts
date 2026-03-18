@@ -69,11 +69,11 @@ export const OHPA: RebateProgram = {
   level: 'federal',
   type: 'grant',
   status: 'active',
-  statusNote: 'Active 2026',
-  amount: 10000,
+  statusNote: 'Active 2026 — BC residents eligible for enhanced amount',
+  amount: 15000,
   eligibility: { heatingSource: ['oil', 'propane'] },
-  notes: 'Federal grant for oil/propane-heated homes switching to a heat pump.',
-  sourceUrl: 'https://www.nrcan.gc.ca/energy-efficiency/homes/canada-greener-homes-initiative/oil-to-heat-pump-affordability-program-ohpa/24775',
+  notes: 'Up to $15,000 in BC (base $10,000 federal + $5,000 BC co-delivery top-up). For oil/propane-heated homes switching to heat pump. Low-to-median income households.',
+  sourceUrl: 'https://natural-resources.canada.ca/energy-efficiency/home-energy-efficiency/canada-greener-homes-initiative/oil-heat-pump-affordability-program',
   lastVerified: '2026-03-17',
 };
 
@@ -96,16 +96,16 @@ export const CLEANBC_STANDARD: RebateProgram = {
 
 export const CLEANBC_INCOME_QUALIFIED: RebateProgram = {
   id: 'cleanbc-income-qualified',
-  name: 'CleanBC Income-Qualified',
+  name: 'CleanBC Energy Savings Program — Income-Qualified',
   shortName: 'CleanBC IQ',
   level: 'provincial',
   type: 'grant',
   status: 'active',
-  statusNote: 'Active 2026 — funding subject to availability',
+  statusNote: 'Active 2026 — $50M/year budgeted through 2026-27',
   amount: 16000,
   eligibility: { incomeQualified: true },
-  notes: 'Up to 100% of installation costs. Income thresholds vary by household size.',
-  sourceUrl: 'https://betterhomesbc.ca',
+  notes: 'Up to $16,000 heat pump rebate (Level 1). Level 2: up to $12,000. Level 3 (moderate income): up to $10,500. Up to $24,500 total including electrical upgrades. Property value cap: $1,230,000 for max tiers.',
+  sourceUrl: 'https://betterhomesbc.ca/rebates/energy-savings-program-heat-pump-offers/',
   lastVerified: '2026-03-17',
 };
 
@@ -151,8 +151,53 @@ export const FORTISBC_DUAL_FUEL: RebateProgram = {
   statusNote: 'Ended December 18, 2025',
   amount: 5000,
   eligibility: {},
-  notes: 'Check FortisBC website for successor programs in 2026.',
+  notes: 'Dual fuel program ended. See FortisBC heat pump rebate (below) for current options.',
   sourceUrl: 'https://www.fortisbc.com/rebates',
+  lastVerified: '2026-03-17',
+};
+
+export const FORTISBC_HEAT_PUMP: RebateProgram = {
+  id: 'fortisbc-heat-pump',
+  name: 'FortisBC Heat Pump Rebate',
+  shortName: 'FortisBC HP',
+  level: 'utility',
+  type: 'grant',
+  status: 'active',
+  statusNote: 'Active 2026 — FortisBC electricity customers',
+  amount: 4000,
+  eligibility: { heatingSource: ['electric_baseboard', 'electric_forced_air'] },
+  notes: 'Whole home: up to $4,000. Partial home: up to $1,500. For FortisBC/municipal electricity customers upgrading from electric furnace or baseboard to heat pump. Must use HPCN-registered installer.',
+  sourceUrl: 'https://www.fortisbc.com/rebates/detail/air-source-heat-pump-rebate',
+  lastVerified: '2026-03-17',
+};
+
+export const FORTISBC_HEAT_PUMP_IQ: RebateProgram = {
+  id: 'fortisbc-heat-pump-iq',
+  name: 'FortisBC Heat Pump Rebate — Income-Qualified',
+  shortName: 'FortisBC HP IQ',
+  level: 'utility',
+  type: 'grant',
+  status: 'active',
+  statusNote: 'Active 2026 — income-qualified FortisBC customers',
+  amount: 12000,
+  eligibility: { heatingSource: ['electric_baseboard', 'electric_forced_air'], incomeQualified: true },
+  notes: 'Up to $12,000 for income-qualified FortisBC electricity customers upgrading electric space heating to heat pump.',
+  sourceUrl: 'https://www.fortisbc.com/rebates/detail/iqheatpump',
+  lastVerified: '2026-03-17',
+};
+
+export const CLEANBC_MULTI_UNIT: RebateProgram = {
+  id: 'cleanbc-multi-unit',
+  name: 'CleanBC Energy Savings — Multi-Unit Residential',
+  shortName: 'CleanBC Multi-Unit',
+  level: 'provincial',
+  type: 'grant',
+  status: 'active',
+  statusNote: 'Active mid-2025 onward — expanding to individual suites',
+  amount: 5500,
+  eligibility: { propertyType: ['condo'] },
+  notes: 'Up to $5,500 for ductless mini-split in individual suites in multi-unit residential buildings.',
+  sourceUrl: 'https://news.gov.bc.ca/releases/2025ECS0014-000309',
   lastVerified: '2026-03-17',
 };
 
@@ -164,9 +209,12 @@ export const PROGRAMS: RebateProgram[] = [
   OHPA,
   CLEANBC_STANDARD,
   CLEANBC_INCOME_QUALIFIED,
+  CLEANBC_MULTI_UNIT,
   BC_HYDRO_REBATE,
   BC_HYDRO_CONDO,
   FORTISBC_DUAL_FUEL,
+  FORTISBC_HEAT_PUMP,
+  FORTISBC_HEAT_PUMP_IQ,
 ];
 
 // ─── Helper Functions ──────────────────────────────────────────────────────────

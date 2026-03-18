@@ -41,8 +41,8 @@ export default function RebatesPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <p className="text-sm text-gray-600 mb-1">Oil/Propane Switch (OHPA)</p>
-            <p className="text-3xl font-bold text-primary-600">Up to $10,000</p>
-            <p className="text-sm text-gray-600 mt-1">Federal grant — oil &amp; propane homes only</p>
+            <p className="text-3xl font-bold text-primary-600">Up to $15,000</p>
+            <p className="text-sm text-gray-600 mt-1">Federal grant in BC — oil &amp; propane homes only</p>
           </div>
           <div>
             <p className="text-sm text-gray-600 mb-1">Income-Qualified Household</p>
@@ -116,9 +116,9 @@ export default function RebatesPage() {
             </p>
           </div>
 
-          <h4 className="font-bold text-gray-900 mb-2">Income-Qualified Rebates (Continuing)</h4>
+          <h4 className="font-bold text-gray-900 mb-2">Income-Qualified Rebates (Continuing — $50M/year budgeted)</h4>
           <p className="text-sm text-gray-600 mb-3">
-            Households below income thresholds qualify for enhanced rebates up to 100% of installation costs (maximum $16,000).
+            Households below income thresholds qualify for tiered enhanced rebates. Heat pump: up to $16,000. Including electrical upgrades: up to $24,500. Property value cap: $1,230,000 (BC Assessment) for maximum tiers.
           </p>
 
           <div className="space-y-2 mb-4">
@@ -159,20 +159,35 @@ export default function RebatesPage() {
         <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
           <h3 className="text-2xl font-semibold text-gray-900 mb-3">FortisBC Rebates</h3>
           <p className="text-gray-700 mb-4">
-            FortisBC (natural gas and electricity utility) offers rebates for energy-efficient upgrades.
+            FortisBC offers heat pump rebates for electricity customers upgrading from electric baseboard or furnace heating.
           </p>
 
-          <div className="bg-yellow-50 border border-yellow-200 rounded p-4 mb-4">
-            <p className="text-sm text-yellow-800">
-              <strong>Status Update:</strong> FortisBC's Dual Fuel Heating System Rebate ($5,000) ended December 18, 2025. Check FortisBC website for current programs and availability.
+          <div className="space-y-2 mb-4">
+            <div className="flex justify-between border-b pb-2">
+              <span className="font-semibold">Heat pump (whole home):</span>
+              <span className="text-primary-600 font-bold">Up to $4,000</span>
+            </div>
+            <div className="flex justify-between border-b pb-2">
+              <span className="font-semibold">Heat pump (partial home):</span>
+              <span className="text-primary-600 font-bold">Up to $1,500</span>
+            </div>
+            <div className="flex justify-between border-b pb-2">
+              <span className="font-semibold">Income-qualified heat pump:</span>
+              <span className="text-primary-600 font-bold">Up to $12,000</span>
+            </div>
+          </div>
+
+          <div className="bg-red-50 border border-red-200 rounded p-4 mb-4">
+            <p className="text-sm text-red-800">
+              <strong>Note:</strong> FortisBC Dual Fuel Heating System Rebate ($5,000) ended December 18, 2025. The heat pump rebates above remain active for FortisBC electricity customers.
             </p>
           </div>
 
           <p className="text-sm text-gray-700">
-            <strong>Who qualifies:</strong> FortisBC natural gas or electricity customers in BC.
+            <strong>Who qualifies:</strong> FortisBC electricity customers (including Grand Forks, Penticton, Summerland, Nelson Hydro). Must use HPCN-registered installer.
           </p>
           <p className="text-sm text-gray-700 mt-2">
-            <strong>Website:</strong> <a href="https://www.fortisbc.com" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">fortisbc.com</a> (verify current programs)
+            <strong>Website:</strong> <a href="https://www.fortisbc.com/rebates" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">fortisbc.com/rebates</a>
           </p>
         </div>
 
@@ -324,10 +339,15 @@ export default function RebatesPage() {
               <p className="text-sm text-gray-700">Status: <span className="text-red-600 font-bold">DISCONTINUED (2024)</span></p>
               <p className="text-xs text-gray-600 mt-1">Grant program closed due to funding depletion. Interest-free Loan program remains available.</p>
             </div>
+            <div className="border-b pb-3">
+              <p className="font-semibold text-gray-900">FortisBC Heat Pump Rebate</p>
+              <p className="text-sm text-gray-700">Status: <span className="text-green-600 font-bold">ACTIVE (2026)</span></p>
+              <p className="text-xs text-gray-600 mt-1">Up to $4,000 (whole home) or $12,000 (income-qualified) for FortisBC electricity customers.</p>
+            </div>
             <div>
               <p className="font-semibold text-gray-900">FortisBC Dual Fuel Rebate</p>
               <p className="text-sm text-gray-700">Status: <span className="text-red-600 font-bold">ENDED December 18, 2025</span></p>
-              <p className="text-xs text-gray-600 mt-1">Check FortisBC website for new programs in 2026.</p>
+              <p className="text-xs text-gray-600 mt-1">Replaced by the heat pump rebate above for electric-to-heat-pump conversions.</p>
             </div>
           </div>
         </div>
