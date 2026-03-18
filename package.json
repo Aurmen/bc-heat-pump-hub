@@ -10,6 +10,7 @@
     "export-csv": "node scripts/export-airtable-csv.mjs",
     "start": "next start",
     "lint": "next lint",
+    "check-programs": "node scripts/check-programs.mjs",
     "verify-license": "node scripts/verify-tsbc-license.js",
     "verify-directory": "node scripts/verify-tsbc-license.js --directory",
     "discover-contractors": "node scripts/discover-tsbc-contractors.js",

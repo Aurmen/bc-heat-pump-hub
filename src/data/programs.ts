@@ -58,7 +58,7 @@ export const GREENER_HOMES_LOAN: RebateProgram = {
   amount: 40000,
   eligibility: {},
   notes: 'Interest-free, up to 10-year repayment. Not a grant.',
-  sourceUrl: 'https://www.cmhc-schl.gc.ca/professionals/project-funding-and-mortgage-financing/funding-programs/all-funding-programs/canada-greener-homes-loan',
+  sourceUrl: 'https://www.cmhc-schl.gc.ca/consumers/home-buying/canada-greener-homes-loan',
   lastVerified: '2026-03-17',
 };
 
@@ -162,11 +162,11 @@ export const FORTISBC_HEAT_PUMP: RebateProgram = {
   shortName: 'FortisBC HP',
   level: 'utility',
   type: 'grant',
-  status: 'active',
-  statusNote: 'Active 2026 — FortisBC electricity customers',
+  status: 'ended',
+  statusNote: 'Program page shows unavailable — verify directly with FortisBC',
   amount: 4000,
   eligibility: { heatingSource: ['electric_baseboard', 'electric_forced_air'] },
-  notes: 'Whole home: up to $4,000. Partial home: up to $1,500. For FortisBC/municipal electricity customers upgrading from electric furnace or baseboard to heat pump. Must use HPCN-registered installer.',
+  notes: 'Previously up to $4,000 (whole home) or $1,500 (partial). FortisBC rebate page currently returns "unavailable." Contact FortisBC at 1-866-436-7847 to confirm current status.',
   sourceUrl: 'https://www.fortisbc.com/rebates/detail/air-source-heat-pump-rebate',
   lastVerified: '2026-03-17',
 };
@@ -177,11 +177,11 @@ export const FORTISBC_HEAT_PUMP_IQ: RebateProgram = {
   shortName: 'FortisBC HP IQ',
   level: 'utility',
   type: 'grant',
-  status: 'active',
-  statusNote: 'Active 2026 — income-qualified FortisBC customers',
+  status: 'ended',
+  statusNote: 'Program page shows unavailable — verify directly with FortisBC',
   amount: 12000,
   eligibility: { heatingSource: ['electric_baseboard', 'electric_forced_air'], incomeQualified: true },
-  notes: 'Up to $12,000 for income-qualified FortisBC electricity customers upgrading electric space heating to heat pump.',
+  notes: 'Previously up to $12,000 for income-qualified customers. FortisBC rebate page currently returns "unavailable." Contact FortisBC at 1-866-436-7847 to confirm current status.',
   sourceUrl: 'https://www.fortisbc.com/rebates/detail/iqheatpump',
   lastVerified: '2026-03-17',
 };
