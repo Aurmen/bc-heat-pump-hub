@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import ArticleMeta from '@/components/ArticleMeta';
+import { INSTALLATION_COSTS, EFFICIENCY_FACTORS, CLIMATE_ADJUSTMENTS } from '@/data/pricing';
+import { OHPA, CLEANBC_INCOME_QUALIFIED } from '@/data/programs';
 
 interface CalculatorInputs {
   currentHeating: 'gas' | 'electric' | 'oil' | 'propane' | '';
@@ -32,46 +34,34 @@ export default function CalculatorPage() {
   const calculateROI = () => {
     const annualCost = parseFloat(inputs.annualCost) || 0;
 
-    // Heat pump installation costs (before rebates)
+    // Heat pump installation costs (from centralized pricing.ts)
     const heatPumpCosts: Record<string, number> = {
-      'ductless-1zone': 4000,
-      'ductless-3zone': 12000,
-      'central': 14000,
-      'air-to-water': 22000
+      'ductless-1zone': INSTALLATION_COSTS.ductless_1zone.min,
+      'ductless-3zone': Math.round((INSTALLATION_COSTS.ductless_3zone.min + INSTALLATION_COSTS.ductless_3zone.max) / 2),
+      'central': Math.round((INSTALLATION_COSTS.central_ducted.min + INSTALLATION_COSTS.central_ducted.max) / 2),
+      'air-to-water': Math.round((INSTALLATION_COSTS.air_to_water.min + INSTALLATION_COSTS.air_to_water.max) / 2),
     };
 
     const installCost = heatPumpCosts[inputs.heatPumpType] || 0;
 
-    // Rebate calculations (2026 — Greener Homes Grant discontinued 2024)
-    let federalRebate = 0; // Canada Greener Homes Grant ENDED — no federal grant available
-    let provincialRebate = inputs.householdIncome === 'income-qualified' ? 6000 : 0; // CleanBC income-qualified only
+    // Rebate calculations (from centralized programs.ts)
+    let federalRebate = 0;
+    let provincialRebate = inputs.householdIncome === 'income-qualified'
+      ? CLEANBC_INCOME_QUALIFIED.amount  // CleanBC income-qualified
+      : 0;
     let utilityRebate = inputs.climateZone === 'coastal' ? 1000 : 500;
 
     // OHPA grant for oil/propane switchers
-    if (inputs.currentHeating === 'oil' || inputs.currentHeating === 'propane') {
-      federalRebate = 10000; // Oil to Heat Pump Affordability program
+    if (OHPA.status === 'active' && (inputs.currentHeating === 'oil' || inputs.currentHeating === 'propane')) {
+      federalRebate = OHPA.amount;
     }
 
     const totalRebates = federalRebate + provincialRebate + utilityRebate;
     const netCost = Math.max(0, installCost - totalRebates);
 
-    // Efficiency and savings calculations
-    const efficiencyFactors: Record<string, number> = {
-      'gas': 0.30,      // 30% savings (gas is cheap, lower savings)
-      'electric': 0.60, // 60% savings (electric is expensive)
-      'oil': 0.50,      // 50% savings
-      'propane': 0.50   // 50% savings
-    };
-
-    // Climate zone efficiency adjustments
-    const climateAdjustments: Record<string, number> = {
-      'coastal': 1.0,   // Full efficiency
-      'interior': 0.85, // 85% efficiency (colder winters)
-      'northern': 0.70  // 70% efficiency (very cold)
-    };
-
-    const savingsPercent = efficiencyFactors[inputs.currentHeating] || 0;
-    const climateMultiplier = climateAdjustments[inputs.climateZone] || 1;
+    // Efficiency factors (from centralized pricing.ts)
+    const savingsPercent = EFFICIENCY_FACTORS[inputs.currentHeating]?.savingsVsBaseboard || 0;
+    const climateMultiplier = CLIMATE_ADJUSTMENTS[inputs.climateZone] || 1;
 
     const annualSavings = annualCost * savingsPercent * climateMultiplier;
     const paybackYears = netCost / (annualSavings || 1);
@@ -203,10 +193,10 @@ export default function CalculatorPage() {
               className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none"
             >
               <option value="">Select...</option>
-              <option value="ductless-1zone">Ductless Mini-Split (1 zone) - $4,000</option>
-              <option value="ductless-3zone">Ductless Mini-Split (3 zones) - $12,000</option>
-              <option value="central">Central Ducted System - $14,000</option>
-              <option value="air-to-water">Air-to-Water (Hydronic) - $22,000</option>
+              <option value="ductless-1zone">{INSTALLATION_COSTS.ductless_1zone.label} - ${INSTALLATION_COSTS.ductless_1zone.min.toLocaleString()}</option>
+              <option value="ductless-3zone">{INSTALLATION_COSTS.ductless_3zone.label} - ${Math.round((INSTALLATION_COSTS.ductless_3zone.min + INSTALLATION_COSTS.ductless_3zone.max) / 2).toLocaleString()}</option>
+              <option value="central">{INSTALLATION_COSTS.central_ducted.label} - ${Math.round((INSTALLATION_COSTS.central_ducted.min + INSTALLATION_COSTS.central_ducted.max) / 2).toLocaleString()}</option>
+              <option value="air-to-water">{INSTALLATION_COSTS.air_to_water.label} - ${Math.round((INSTALLATION_COSTS.air_to_water.min + INSTALLATION_COSTS.air_to_water.max) / 2).toLocaleString()}</option>
             </select>
           </div>
 

@@ -1,33 +1,20 @@
 'use client';
 
 import { useState } from 'react';
+import { EFFICIENCY_FACTORS } from '@/data/pricing';
+import { getDefaultRebate } from '@/data/programs';
 
-const SAVINGS_RATES: Record<string, number> = {
-  oil: 0.62,
-  propane: 0.60,
-  gas: 0.35,
-  electric_baseboard: 0.55,
-  electric_forced_air: 0.50,
-};
+const SAVINGS_RATES: Record<string, number> = Object.fromEntries(
+  Object.entries(EFFICIENCY_FACTORS)
+    .filter(([key]) => key !== 'electric') // exclude the general 'electric' alias
+    .map(([key, val]) => [key, val.savingsVsBaseboard])
+);
 
-const HEATING_TYPE_LABELS: Record<string, string> = {
-  oil: 'Oil Furnace / Boiler',
-  propane: 'Propane Furnace / Boiler',
-  gas: 'Natural Gas Furnace / Boiler',
-  electric_baseboard: 'Electric Baseboard',
-  electric_forced_air: 'Electric Forced Air / Fan Coil',
-};
-
-// 2026 defaults — Greener Homes Grant ($5,000) discontinued 2024.
-// Oil/propane: OHPA $10,000 federal grant. Gas/electric: most standard rebates ended.
-// Income-qualified households may get up to $16,000 via CleanBC — users should adjust manually.
-const DEFAULT_REBATES: Record<string, number> = {
-  oil: 10000,
-  propane: 10000,
-  gas: 0,
-  electric_baseboard: 0,
-  electric_forced_air: 0,
-};
+const HEATING_TYPE_LABELS: Record<string, string> = Object.fromEntries(
+  Object.entries(EFFICIENCY_FACTORS)
+    .filter(([key]) => key !== 'electric')
+    .map(([key, val]) => [key, val.label])
+);
 
 export default function ROICalculator() {
   const [heatingType, setHeatingType] = useState('');
@@ -38,7 +25,7 @@ export default function ROICalculator() {
 
   const handleHeatingTypeChange = (type: string) => {
     setHeatingType(type);
-    setRebate(String(DEFAULT_REBATES[type] ?? ''));
+    setRebate(String(getDefaultRebate(type)));
     setCalculated(false);
   };
 

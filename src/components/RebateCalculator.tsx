@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { OHPA, GREENER_HOMES_LOAN, BC_HYDRO_REBATE, BC_HYDRO_CONDO, CLEANBC_STANDARD } from '@/data/programs';
+import { formatIncomeThresholds } from '@/data/pricing';
 
 interface RebateLine {
   program: string;
@@ -18,19 +20,19 @@ function calculateRebates(
   const lines: RebateLine[] = [];
 
   // OHPA — Oil to Heat Pump Affordability (federal grant)
-  if (heatingSource === 'oil' || heatingSource === 'propane') {
+  if (OHPA.status === 'active' && (heatingSource === 'oil' || heatingSource === 'propane')) {
     lines.push({
-      program: 'Oil to Heat Pump Affordability (OHPA)',
-      amount: 10000,
-      note: 'Federal grant for oil and propane-heated homes switching to a heat pump',
+      program: OHPA.name,
+      amount: OHPA.amount,
+      note: OHPA.notes,
     });
   }
 
   // CleanBC Better Homes / BC Hydro Condo Program
   if (propertyType === 'condo') {
-    const condoAmount = incomeQualified ? 5000 : 2250;
+    const condoAmount = incomeQualified ? BC_HYDRO_CONDO.amount : 2250;
     lines.push({
-      program: 'BC Hydro Condo Program (CleanBC)',
+      program: BC_HYDRO_CONDO.name,
       amount: condoAmount,
       note: incomeQualified
         ? 'Income-qualified rate — verify current threshold at betterhomesbc.ca'
@@ -38,7 +40,8 @@ function calculateRebates(
     });
   } else {
     // Single family / townhome — CleanBC Better Homes
-    let cleanBCBase = systemType === 'ducted' ? 6000 : 2000;
+    const ductedBase = CLEANBC_STANDARD.amount; // $6,000
+    let cleanBCBase = systemType === 'ducted' ? ductedBase : 2000;
     if (incomeQualified) cleanBCBase = Math.min(cleanBCBase + 2000, 8000);
     lines.push({
       program: 'CleanBC Better Homes',
@@ -49,21 +52,25 @@ function calculateRebates(
     });
 
     // BC Hydro rebate stacks with CleanBC for non-oil/propane conversions
-    const bcHydroAmount = systemType === 'ducted' ? 2000 : 1000;
-    lines.push({
-      program: 'BC Hydro Rebate',
-      amount: bcHydroAmount,
-      note: 'For BC Hydro service area customers — confirm eligibility at bchydro.com/rebates',
-    });
+    if (BC_HYDRO_REBATE.status !== 'ended') {
+      const bcHydroAmount = systemType === 'ducted' ? BC_HYDRO_REBATE.amount : 1000;
+      lines.push({
+        program: BC_HYDRO_REBATE.name,
+        amount: bcHydroAmount,
+        note: 'For BC Hydro service area customers — confirm eligibility at bchydro.com/rebates',
+      });
+    }
   }
 
   // Canada Greener Homes Loan — always available but is a loan not a grant
-  lines.push({
-    program: 'Canada Greener Homes Loan',
-    amount: 40000,
-    note: 'Interest-free loan — must be repaid over up to 10 years. Not a grant.',
-    isLoan: true,
-  });
+  if (GREENER_HOMES_LOAN.status === 'active') {
+    lines.push({
+      program: GREENER_HOMES_LOAN.name,
+      amount: GREENER_HOMES_LOAN.amount,
+      note: GREENER_HOMES_LOAN.notes,
+      isLoan: true,
+    });
+  }
 
   return lines;
 }
@@ -186,7 +193,7 @@ export default function RebateCalculator() {
           <div>
             <span className="text-sm font-semibold text-gray-700">Income-qualified household</span>
             <p className="text-xs text-gray-500 mt-0.5">
-              Varies by household size: $55K (1-2 people), $72K (3-4), $88K (5+). Verify at betterhomesbc.ca.
+              Varies by household size: {formatIncomeThresholds()}. Verify at betterhomesbc.ca.
             </p>
           </div>
         </label>

@@ -33,10 +33,27 @@ BC-specific heat pump contractor directory and educational content site.
 
 ---
 
+## Data Integrity Standards
+
+### Single Source of Truth
+- **Rebate programs:** `src/data/programs.ts` — ALL program names, amounts, statuses, eligibility rules
+- **Installation pricing:** `src/data/pricing.ts` — cost ranges, efficiency factors, utility rates, income thresholds
+- **Brand specs:** `src/data/brands.ts` (dealer data) + `src/app/brands/page.tsx` (detailed specs)
+
+### Rules
+- **NEVER hardcode rebate amounts** in components or pages — import from `programs.ts`
+- **NEVER hardcode installation cost ranges** in calculators — import from `pricing.ts`
+- When a program status changes, update `programs.ts` ONLY — all consumers reflect automatically
+- MDX guides that reference dollar amounts MUST include the `lastVerified` date. Every dollar figure should be traceable to a value in the data files
+- `lastVerified` dates must be updated when program data is confirmed current
+- Use `getDefaultRebate()` and `getMaxGrantForScenario()` helpers for calculator defaults
+
+---
+
 ## Tool & Calculator Standards
 
 - **Mandatory Disclaimer:** Every calculator (ROI & Rebate) must display a bold disclaimer at the top AND bottom: "ESTIMATE ONLY. Actual results may vary based on site conditions, utility rates, and final rebate approval."
-- **Data Integrity:** Rebate calculations must be based on the latest 2026 CleanBC Better Homes and BC Hydro stacking rules. Reference `betterhomesbc.ca` for current program amounts.
+- **Data Integrity:** Rebate calculations must import from `src/data/programs.ts`. Reference `betterhomesbc.ca` for current program amounts.
 - **Label Discipline:** All output values must use qualified labels — "Estimated Annual Savings", "Estimated Payback Period", "Up to $X,XXX" — never bare dollar figures presented as guarantees.
 - **Tone:** Professional, conservative, and transparent about variables. Never overstate savings or rebate certainty.
 - **Components:** `ROICalculator` and `RebateCalculator` are `'use client'` components in `src/components/`. Import them into MDX guides the same way as `TechnicalDeepDive` or `PrintButton`.
