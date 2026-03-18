@@ -48,6 +48,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <OrganizationJsonLd />
+        <link rel="alternate" type="application/rss+xml" title="Canadian Heat Pump Hub" href="/feed.xml" />
       </head>
       <body>
         <GoogleAnalytics />
