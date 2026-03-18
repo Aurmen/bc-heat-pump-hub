@@ -3,51 +3,61 @@ import type { Metadata } from 'next';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Metro Vancouver & Lower Mainland Heat Pump Center | Canadian Heat Pump Hub',
+  title: 'Vancouver Island Heat Pump Resource Center | Canadian Heat Pump Hub',
   description:
-    'Technical guides for Metro Vancouver heat pump installations. Strata approval roadmaps, 100A panel solutions, EPR compliance, and rebate navigation for Vancouver, Surrey, Burnaby, and Richmond homeowners.',
+    'Technical heat pump guidance for Vancouver Island homeowners. Victoria and Saanich EL-4 compliance, air-to-water systems, strata approvals, and rebate navigation for Victoria, Nanaimo, Courtenay, and Campbell River.',
   alternates: {
-    canonical: 'https://canadianheatpumphub.ca/guides/lower-mainland',
+    canonical: 'https://canadianheatpumphub.ca/guides/vancouver-island',
   },
   keywords: [
-    'Lower Mainland heat pump guide',
-    'Vancouver strata heat pump approval',
-    '100 amp panel heat pump Vancouver',
-    'BC Hydro heat pump rebate',
-    'Surrey heat pump installer',
-    'Burnaby heat pump condo',
-    'EPR electrical planning report strata',
+    'Vancouver Island heat pump guide',
+    'Victoria heat pump installation',
+    'Saanich EL-4 heat pump compliance',
+    'Nanaimo heat pump contractor',
+    'air to water heat pump Vancouver Island',
+    'Victoria strata heat pump approval',
+    'Courtenay heat pump installer',
   ],
 };
 
 const featureCards = [
   {
     label: 'Compliance Guide',
-    labelColor: 'bg-blue-100 text-blue-800 border border-blue-200',
-    borderAccent: 'border-t-blue-600',
-    title: 'Strata Approval Roadmap',
+    labelColor: 'bg-teal-100 text-teal-800 border border-teal-200',
+    borderAccent: 'border-t-teal-600',
+    title: 'Victoria & Saanich EL-4 Mandate',
     description:
-      'Metro Vancouver stratas with 5+ lots face a Dec 31, 2026 EPR filing deadline — and most are not started. This guide covers the Electrical Planning Report process, your Duty to Accommodate rights under the BC Human Rights Code, and a strata application template that gets approved.',
-    href: '/guides/vancouver-strata-heat-pump-guide',
-    cta: 'Read the Strata Guide',
+      'Victoria and Saanich adopted EL-4 (Zero Carbon Step Code) for new construction — the same requirement as Vancouver. No combustion for space heating on new permits. This guide explains what EL-4 means for Island homeowners, which permits are affected, and how a heat pump satisfies compliance at the mild Island design temperatures of -3°C to -7°C.',
+    href: '/guides/bc-step-code-summary',
+    cta: 'Read the Step Code Guide',
   },
   {
     label: 'Technical Guide',
-    labelColor: 'bg-slate-100 text-slate-700 border border-slate-200',
-    borderAccent: 'border-t-slate-500',
-    title: '100 Amp Panel Solutions',
+    labelColor: 'bg-blue-100 text-blue-800 border border-blue-200',
+    borderAccent: 'border-t-blue-600',
+    title: 'Air-to-Water Heat Pumps',
     description:
-      'Surrey and Vancouver homes on 100A service have two paths: a BC Hydro service upgrade (8–16 week lead time) or an Energy Management System using DCC-9/DCC-12 load controllers that lets a modern inverter heat pump share your existing capacity. Both paths work — this guide shows the numbers.',
-    href: '/guides/100-amp-panel-heat-pump-vancouver',
-    cta: 'Read the Panel Guide',
+      "Vancouver Island's mild maritime climate — with design temperatures of -3°C to -9°C — is one of BC's most favourable zones for air-to-water (hydronic) heat pump systems. These systems integrate with radiant floors, fan coils, and existing hot water baseboard infrastructure. This guide covers when air-to-water makes sense, what efficiency you can realistically expect, and what the installation involves.",
+    href: '/guides/air-to-water-heat-pumps-bc',
+    cta: 'Read the Air-to-Water Guide',
+  },
+  {
+    label: 'Strata Approval',
+    labelColor: 'bg-blue-50 text-blue-700 border border-blue-200',
+    borderAccent: 'border-t-blue-400',
+    title: 'Strata Approvals in Victoria & Nanaimo',
+    description:
+      "Victoria and Nanaimo have significant condo and townhome strata populations. The same Strata Property Act rights and Duty to Accommodate provisions apply on the Island as in Metro Vancouver. This guide covers the approval process, what your application must include, and how to respond if council refuses.",
+    href: '/guides/heat-pump-condo-strata-bc',
+    cta: 'Read the Strata Guide',
   },
   {
     label: 'Rebates 2026',
-    labelColor: 'bg-blue-50 text-blue-700 border border-blue-200',
-    borderAccent: 'border-t-blue-400',
+    labelColor: 'bg-green-50 text-green-800 border border-green-200',
+    borderAccent: 'border-t-green-600',
     title: 'Rebate Navigator',
     description:
-      'Stack CleanBC Better Homes (up to $6,000), the BC Hydro Condo Program (up to $2,250), and the Canada Greener Homes Loan ($40,000 interest-free) in the correct sequence. Application order matters — do not purchase equipment before reading this.',
+      'Vancouver Island homeowners access the same provincial and federal rebate stack as the rest of BC. CleanBC Better Homes (up to $6,000), the Canada Greener Homes Loan ($40,000 interest-free), and BC Hydro rebates are all available — but application sequence matters. Do not purchase equipment before confirming eligibility.',
     href: '/guides/how-to-claim-heat-pump-rebate-bc',
     cta: 'Read the Rebate Guide',
   },
@@ -57,35 +67,24 @@ const featureCards = [
     borderAccent: 'border-t-gray-500',
     title: 'Contractor Interview Checklist',
     description:
-      'Use this before signing any quote. Covers Manual J load calculations, CEC Section 8 panel compliance, TSBC permits, CleanBC registration ID, and AHRI numbers. Ensures your 100A panel assessment is documented — and holds the contractor accountable.',
+      'Island contractors vary significantly in technical rigour. Before signing any quote, verify: Manual J load calculation completed at your design temperature, TSBC permits included in scope, CleanBC registration active, and AHRI certification numbers provided for the proposed equipment. If a contractor skips the load calc, get a second quote.',
     href: '/guides/heat-pump-onboarding-checklist',
     cta: 'Open the Checklist',
-  },
-  {
-    label: 'Compliance Guide',
-    labelColor: 'bg-emerald-50 text-emerald-800 border border-emerald-200',
-    borderAccent: 'border-t-emerald-600',
-    title: 'BC Step Code & Zero Carbon Requirements',
-    description:
-      'Vancouver and Saanich mandate EL-4 compliance for all new construction — no fossil fuel combustion for space heating. This guide explains the four ZCSC Emission Levels, how TEDI affects heat pump sizing, and what the Zero Carbon mandate means for your strata or new build in 2026.',
-    href: '/guides/bc-step-code-summary',
-    cta: 'Read the Step Code Guide',
   },
 ];
 
 const serviceAreaLinks = [
-  { city: 'Vancouver', slug: 'vancouver', cityPage: '/bc/lower-mainland/vancouver' },
-  { city: 'Surrey', slug: 'surrey', cityPage: '/bc/lower-mainland/surrey' },
-  { city: 'Burnaby', slug: 'burnaby', cityPage: '/bc/lower-mainland/burnaby' },
-  { city: 'Richmond', slug: 'richmond', cityPage: '/bc/lower-mainland/richmond' },
-  { city: 'Coquitlam', slug: 'coquitlam', cityPage: '/bc/lower-mainland/coquitlam' },
+  { city: 'Victoria', slug: 'victoria', cityPage: '/bc/vancouver-island/victoria', hasRepair: true },
+  { city: 'Nanaimo', slug: 'nanaimo', cityPage: '/bc/vancouver-island/nanaimo', hasRepair: true },
+  { city: 'Courtenay', slug: 'courtenay', cityPage: '/bc/vancouver-island/courtenay', hasRepair: false },
+  { city: 'Campbell River', slug: 'campbell-river', cityPage: '/bc/vancouver-island/campbell-river', hasRepair: false },
 ];
 
-export default function LowerMainlandResourceCenter() {
+export default function VancouverIslandResourceCenter() {
   const breadcrumbItems = [
     { name: 'Home', url: 'https://canadianheatpumphub.ca' },
     { name: 'Guides', url: 'https://canadianheatpumphub.ca/guides' },
-    { name: 'Lower Mainland', url: 'https://canadianheatpumphub.ca/guides/lower-mainland' },
+    { name: 'Vancouver Island', url: 'https://canadianheatpumphub.ca/guides/vancouver-island' },
   ];
 
   return (
@@ -100,29 +99,29 @@ export default function LowerMainlandResourceCenter() {
           <span className="mx-2">/</span>
           <Link href="/guides" className="hover:text-blue-600">Guides</Link>
           <span className="mx-2">/</span>
-          <span className="text-gray-700">Lower Mainland</span>
+          <span className="text-gray-700">Vancouver Island</span>
         </nav>
 
         {/* Header */}
         <div className="mb-14">
-          <span className="inline-block text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-full uppercase tracking-wide mb-5">
-            Metro Vancouver
+          <span className="inline-block text-xs font-semibold bg-teal-50 text-teal-700 border border-teal-200 px-3 py-1 rounded-full uppercase tracking-wide mb-5">
+            Vancouver Island
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-5 leading-tight">
-            Metro Vancouver &amp; Lower Mainland<br className="hidden sm:block" /> Heat Pump Center
+            Vancouver Island<br className="hidden sm:block" /> Heat Pump Resource Center
           </h1>
           <p className="text-lg text-gray-500 max-w-2xl">
-            Clean, professional guidance for strata residents and homeowners with electrical capacity constraints.
+            Compliance, rebates, and technical guidance for BC&apos;s mildest heat pump climate — Victoria, Nanaimo, Courtenay, and beyond.
           </p>
         </div>
 
         {/* Main content + sidebar */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-          {/* 3-card grid — takes 2 of 3 columns on desktop */}
+          {/* Feature cards — 2 of 3 columns */}
           <div className="lg:col-span-2 space-y-6">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest">
-              Technical Guides
+              Technical Guides &amp; Compliance
             </p>
 
             {featureCards.map((card) => (
@@ -149,7 +148,7 @@ export default function LowerMainlandResourceCenter() {
 
             {/* Supporting guides strip */}
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-4">More Lower Mainland Guides</h3>
+              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-4">More Vancouver Island Guides</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <Link
                   href="/guides/heat-pump-bc-2026"
@@ -159,25 +158,11 @@ export default function LowerMainlandResourceCenter() {
                   2026 Master Reference (EL levels, panel math, rebates, contractor verification)
                 </Link>
                 <Link
-                  href="/guides/100-amp-panel-heat-pump-bc"
+                  href="/guides/ductless-vs-central-heat-pumps-bc"
                   className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1.5"
                 >
                   <span aria-hidden="true">→</span>
-                  100A Panel Guide (All BC)
-                </Link>
-                <Link
-                  href="/guides/heat-pump-condo-strata-bc"
-                  className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1.5"
-                >
-                  <span aria-hidden="true">→</span>
-                  BC Strata Legal Framework
-                </Link>
-                <Link
-                  href="/guides/heat-pump-home-assessment-checklist-bc"
-                  className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1.5"
-                >
-                  <span aria-hidden="true">→</span>
-                  Pre-Install Assessment Checklist
+                  Ductless vs. Central Heat Pumps
                 </Link>
                 <Link
                   href="/guides/heat-pump-vs-electric-baseboard-bc"
@@ -185,6 +170,20 @@ export default function LowerMainlandResourceCenter() {
                 >
                   <span aria-hidden="true">→</span>
                   Baseboard Replacement Guide
+                </Link>
+                <Link
+                  href="/guides/heat-pump-sizing-guide-bc"
+                  className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1.5"
+                >
+                  <span aria-hidden="true">→</span>
+                  Heat Pump Sizing Guide (BC)
+                </Link>
+                <Link
+                  href="/guides/heat-pump-home-assessment-checklist-bc"
+                  className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1.5"
+                >
+                  <span aria-hidden="true">→</span>
+                  Pre-Install Assessment Checklist
                 </Link>
                 <Link
                   href="/guides/bc-heat-pump-rebate-calculator"
@@ -202,10 +201,17 @@ export default function LowerMainlandResourceCenter() {
                 </Link>
                 <Link
                   href="/guides/bc-step-code-city-tracker"
-                  className="text-sm text-emerald-700 hover:text-emerald-800 font-medium flex items-center gap-1.5"
+                  className="text-sm text-teal-700 hover:text-teal-800 font-medium flex items-center gap-1.5"
                 >
                   <span aria-hidden="true">→</span>
                   Step Code City Tracker
+                </Link>
+                <Link
+                  href="/guides/hybrid-heat-pump-boiler-systems"
+                  className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1.5"
+                >
+                  <span aria-hidden="true">→</span>
+                  Hybrid Heat Pump + Boiler Systems
                 </Link>
               </div>
             </div>
@@ -220,17 +226,19 @@ export default function LowerMainlandResourceCenter() {
                 Service Area
               </h2>
               <ul className="space-y-1">
-                {serviceAreaLinks.map(({ city, slug, cityPage }) => (
+                {serviceAreaLinks.map(({ city, slug, cityPage, hasRepair }) => (
                   <li key={slug}>
                     <div className="py-2.5 border-b border-gray-100 last:border-0">
                       <p className="text-sm font-semibold text-gray-800 mb-1">{city}</p>
                       <div className="flex flex-col gap-0.5">
-                        <Link
-                          href={`/repair/${slug}`}
-                          className="text-xs text-blue-600 hover:text-blue-700"
-                        >
-                          Heat pump repair →
-                        </Link>
+                        {hasRepair && (
+                          <Link
+                            href={`/repair/${slug}`}
+                            className="text-xs text-blue-600 hover:text-blue-700"
+                          >
+                            Heat pump repair →
+                          </Link>
+                        )}
                         <Link
                           href={cityPage}
                           className="text-xs text-gray-400 hover:text-gray-600"
@@ -243,29 +251,48 @@ export default function LowerMainlandResourceCenter() {
                 ))}
               </ul>
               <Link
-                href="/directory?city=Vancouver"
+                href="/directory?city=Victoria"
                 className="mt-5 block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 px-4 rounded-lg transition-colors"
               >
-                Find Metro Vancouver Installers
+                Find Island Installers
               </Link>
             </div>
 
-            {/* EPR deadline callout */}
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
-              <p className="text-xs font-semibold text-amber-700 uppercase tracking-wide mb-2">
-                Compliance Deadline
+            {/* Climate callout */}
+            <div className="bg-teal-50 border border-teal-200 rounded-xl p-6">
+              <p className="text-xs font-semibold text-teal-700 uppercase tracking-wide mb-2">
+                Design Temperature
               </p>
               <p className="text-sm font-bold text-gray-900 mb-2">
-                EPR Filing — Dec 31, 2026
+                -3°C to -9°C
               </p>
               <p className="text-xs text-gray-600 leading-relaxed">
-                Metro Vancouver stratas with 5+ lots must obtain an Electrical Planning Report. Commission yours now — EPR firms have finite capacity and the queue will grow as the deadline approaches.
+                Vancouver Island is one of Canada&apos;s warmest climates for heat pump installations. Standard ASHPs — not cold-climate units — are adequate for most Island locations. This also means smaller equipment sizing and lower installation costs than Interior BC.
               </p>
               <Link
-                href="/guides/vancouver-strata-heat-pump-guide#the-epr-clock"
+                href="/guides/heat-pump-sizing-guide-bc"
+                className="inline-block mt-3 text-xs font-semibold text-teal-700 hover:text-teal-900"
+              >
+                Sizing guide for mild climates →
+              </Link>
+            </div>
+
+            {/* EL-4 callout */}
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
+              <p className="text-xs font-semibold text-amber-700 uppercase tracking-wide mb-2">
+                Compliance — New Builds
+              </p>
+              <p className="text-sm font-bold text-gray-900 mb-2">
+                Victoria &amp; Saanich: EL-4
+              </p>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                New construction in Victoria and Saanich must meet EL-4 of the Zero Carbon Step Code — no combustion for space heating. Other Island municipalities vary. Confirm current requirements with your local AHJ before pulling a permit.
+              </p>
+              <Link
+                href="/guides/bc-step-code-city-tracker"
                 className="inline-block mt-3 text-xs font-semibold text-amber-700 hover:text-amber-900"
               >
-                What is an EPR? →
+                Check your municipality →
               </Link>
             </div>
 

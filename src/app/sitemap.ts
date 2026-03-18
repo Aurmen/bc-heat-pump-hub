@@ -49,6 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: baseUrl, priority: 1.0 },
     { url: `${baseUrl}/guides`, priority: 0.9 },
     { url: `${baseUrl}/guides/lower-mainland`, priority: 0.9 },
+    { url: `${baseUrl}/guides/vancouver-island`, priority: 0.9 },
     { url: `${baseUrl}/guides/interior-bc`, priority: 0.9 },
     { url: `${baseUrl}/case-studies`, priority: 0.85 },
     { url: `${baseUrl}/bc`, priority: 0.9 },
