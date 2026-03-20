@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
           quantity: 1,
         },
       ],
-      automatic_tax: { enabled: true },
+      // automatic_tax: { enabled: true }, // Enable after adding head office address in Stripe Dashboard > Settings > Tax
       success_url: `${baseUrl}/auditor/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/auditor`,
       metadata: {
