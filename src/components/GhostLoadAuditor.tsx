@@ -180,12 +180,10 @@ function runCalc(f: FormState, managedEV: boolean): CalcResult | null {
     // Air density corrected sensible heat constant (1.08 at sea level)
     const correctedHeatConstant = 1.08 * (bpKpa / 101.325);
 
-    // CSA B149.1 Clause 8.22.1 — gas appliance altitude derate
-    // 4% derate for every 300 m above the 610 m threshold
-    let derateFactor = 1;
-    if (elevM > 610) {
-      derateFactor = Math.max(0, 1 - (0.04 * ((elevM - 610) / 300)));
-    }
+    // B149.1 Section 5.3 altitude correction — gas appliance derate
+    // Derate factor = 1 - (0.04 × elevation_m / 300), minimum floor 0.72 (~2100 m).
+    // Validation: 1500 m → 1 - (0.04 × 5) = 0.80; 100,000 BTU/h × 0.80 = 80,000 BTU/h ✓
+    const derateFactor = Math.max(0.72, 1 - (0.04 * (elevM / 300)));
 
     // Effective gas furnace output after altitude derate
     const effectiveBtu = Math.round(gasBtu * derateFactor);
@@ -643,7 +641,8 @@ export default function GhostLoadAuditor() {
   const [form, setForm] = useState<FormState>(DEFAULTS);
   const [calculated, setCalculated] = useState(false);
   const [showBreakdown, setShowBreakdown] = useState(false);
-  const [pdfStatus, setPdfStatus] = useState<'idle' | 'loading' | 'error'>('idle');
+  const [checkoutStatus, setCheckoutStatus] = useState<'idle' | 'loading' | 'error'>('idle');
+  const [bannerDismissed, setBannerDismissed] = useState(false);
 
   // Live m² conversion
   const sqm = (() => {
@@ -724,46 +723,43 @@ export default function GhostLoadAuditor() {
     setShowBreakdown(false);
   }
 
-  async function handleDownloadPDF() {
-    setPdfStatus('loading');
+  async function handlePurchaseReport() {
+    if (!resultA) return;
+    setCheckoutStatus('loading');
     try {
-      const res = await fetch('/api/audit-pdf', {
+      const auditData = {
+        sqft:         parseFloat(form.sqft),
+        serviceAmps:  parseFloat(form.serviceSize),
+        rangeW:       parseFloat(form.rangeW),
+        dryerW:       parseFloat(form.dryerW),
+        waterHeaterW: parseFloat(form.waterHeaterW),
+        muaW:         parseFloat(form.muaW) || 0,
+        heatingW:     parseFloat(form.heatingW),
+        coolingW:     parseFloat(form.coolingW),
+        evW:          parseFloat(form.evW),
+        loadManagement: form.loadManagement,
+        elevation:       parseFloat(form.elevation) || 0,
+        isDualFuel:      form.isDualFuel,
+        balancePoint:    parseFloat(form.balancePoint) || 2,
+        gasNameplateBtu: parseFloat(form.gasNameplateBtu) || 0,
+        gasRatePerGj:    parseFloat(form.gasRatePerGj) || 12.50,
+        elecRatePerKwh:  parseFloat(form.elecRatePerKwh) || 0.14,
+        furnaceAfue:     parseFloat(form.furnaceAfue) || 0.96,
+      };
+      const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sqft:         parseFloat(form.sqft),
-          serviceAmps:  parseFloat(form.serviceSize),
-          rangeW:       parseFloat(form.rangeW),
-          dryerW:       parseFloat(form.dryerW),
-          waterHeaterW: parseFloat(form.waterHeaterW),
-          muaW:         parseFloat(form.muaW) || 0,
-          heatingW:     parseFloat(form.heatingW),
-          coolingW:     parseFloat(form.coolingW),
-          evW:          parseFloat(form.evW),
-          loadManagement: form.loadManagement,
-          // Thermal analysis inputs
-          elevation:       parseFloat(form.elevation) || 0,
-          isDualFuel:      form.isDualFuel,
-          balancePoint:    parseFloat(form.balancePoint) || 2,
-          gasNameplateBtu: parseFloat(form.gasNameplateBtu) || 0,
-          gasRatePerGj:    parseFloat(form.gasRatePerGj) || 12.50,
-          elecRatePerKwh:  parseFloat(form.elecRatePerKwh) || 0.14,
-          furnaceAfue:     parseFloat(form.furnaceAfue) || 0.96,
-        }),
+        body: JSON.stringify({ auditData }),
       });
-      if (!res.ok) throw new Error('PDF generation failed');
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      const cd = res.headers.get('Content-Disposition') ?? '';
-      const match = cd.match(/filename="([^"]+)"/);
-      a.download = match ? match[1] : 'AuditReport.pdf';
-      a.click();
-      URL.revokeObjectURL(url);
-      setPdfStatus('idle');
+      if (!res.ok) throw new Error('Checkout session creation failed');
+      const { url } = await res.json();
+      if (url) {
+        window.location.href = url;
+      } else {
+        throw new Error('No checkout URL returned');
+      }
     } catch {
-      setPdfStatus('error');
+      setCheckoutStatus('error');
     }
   }
 
@@ -782,17 +778,30 @@ export default function GhostLoadAuditor() {
 
   return (
     <div className="space-y-8">
-      {/* Technical Beta banner */}
-      <div className="bg-gray-50 border border-gray-300 rounded-xl px-5 py-4">
-        <p className="text-sm font-bold text-gray-700 uppercase tracking-wide mb-1">Technical Beta</p>
-        <p className="text-sm text-gray-600">
-          This audit tool — including CEC Rule 8-200 electrical load analysis and dual-fuel thermal
-          integration — is for demonstration and compliance-check purposes only. All reports must
-          be verified by a licensed Field Safety Representative (FSR) or Professional Engineer
-          (P.Eng) prior to equipment procurement or installation. Aelric Technologies assumes no
-          liability for real-world application of this data.
-        </p>
-      </div>
+      {/* Technical Beta banner — dismissible */}
+      {!bannerDismissed && (
+        <div className="bg-gray-50 border border-gray-300 rounded-xl px-5 py-4 flex items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-bold text-gray-700 uppercase tracking-wide mb-1">
+              Technical Beta
+            </p>
+            <p className="text-sm text-gray-600">
+              Ghost Load Auditor is currently in Technical Beta. Results are for planning purposes
+              only and do not constitute engineering advice. FSR verification required for permit
+              submissions.
+            </p>
+          </div>
+          <button
+            onClick={() => setBannerDismissed(true)}
+            aria-label="Dismiss Technical Beta notice"
+            className="shrink-0 text-gray-400 hover:text-gray-600 transition-colors mt-0.5"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      )}
 
       {/* Top disclaimer */}
       <div className="bg-amber-50 border-l-4 border-amber-400 px-5 py-4 rounded-r-xl">
@@ -1096,6 +1105,10 @@ export default function GhostLoadAuditor() {
           >
             Run Panel Audit →
           </button>
+          <p className="text-sm text-gray-500 mt-3 leading-relaxed">
+            Planning a heat pump install? The quote looks fine — until your electrician says you
+            need a panel upgrade. Find out before it happens.
+          </p>
         </div>
       </div>
 
@@ -1144,21 +1157,25 @@ export default function GhostLoadAuditor() {
               {showBreakdown ? 'Hide' : 'Show'} full CEC 8-200 calculation breakdown
             </button>
 
-            <button
-              onClick={handleDownloadPDF}
-              disabled={pdfStatus === 'loading'}
-              className="flex items-center gap-2 text-sm font-semibold text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-60 px-4 py-2 rounded-lg shadow-sm transition-colors"
-            >
-              {pdfStatus === 'loading' ? (
-                <>⏳ Generating PDF…</>
-              ) : (
-                <>⬇ Download Ghost Load™ Compliance Report</>
-
+            <div>
+              <button
+                onClick={handlePurchaseReport}
+                disabled={checkoutStatus === 'loading'}
+                className="flex items-center gap-2 text-sm font-semibold text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-60 px-5 py-2.5 rounded-lg shadow-sm transition-colors"
+              >
+                {checkoutStatus === 'loading'
+                  ? 'Processing...'
+                  : 'Get Full Report — $24.99'}
+              </button>
+              <p className="text-xs text-gray-400 mt-1.5">
+                Instant PDF download &middot; GST included
+              </p>
+              {checkoutStatus === 'error' && (
+                <p className="text-xs text-red-600 mt-1">
+                  Checkout failed — please try again or contact support@aelrictechnologies.com
+                </p>
               )}
-            </button>
-            {pdfStatus === 'error' && (
-              <span className="text-xs text-red-600">PDF generation failed — please try again.</span>
-            )}
+            </div>
           </div>
 
           {showBreakdown && (
@@ -1457,8 +1474,8 @@ export default function GhostLoadAuditor() {
                 <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
                   DIY Compliance Audit
                 </span>
-                <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-medium">
-                  Coming Soon
+                <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+                  Available
                 </span>
               </div>
               <p className="text-3xl font-extrabold text-gray-900 mb-4">$24.99</p>
@@ -1481,11 +1498,19 @@ export default function GhostLoadAuditor() {
                 </li>
               </ul>
               <button
-                disabled
-                className="w-full bg-gray-100 text-gray-400 font-semibold py-2.5 px-4 rounded-lg text-sm cursor-not-allowed"
+                onClick={handlePurchaseReport}
+                disabled={!resultA || checkoutStatus === 'loading'}
+                className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors"
               >
-                Coming Soon
+                {checkoutStatus === 'loading'
+                  ? 'Processing...'
+                  : !resultA
+                    ? 'Run audit first'
+                    : 'Get Full Report — $24.99'}
               </button>
+              <p className="text-xs text-gray-400 mt-2 text-center">
+                Instant PDF download &middot; GST included
+              </p>
             </div>
           </div>
         </div>
@@ -1497,6 +1522,11 @@ export default function GhostLoadAuditor() {
           <h2 className="font-semibold text-gray-800">Why Run This Audit First?</h2>
           <p className="text-sm text-gray-600 mt-1">
             Know your options before committing to a service call or upgrade.
+          </p>
+          <p className="text-sm text-gray-600 mt-2">
+            Precision matters. While generic calculators guess, Aelric accounts for BC-specific
+            variables like site elevation and regional design temperatures. Building above 600m?
+            We&rsquo;ve already done the math.
           </p>
         </div>
         <div className="p-6 overflow-x-auto">
@@ -1568,6 +1598,9 @@ export default function GhostLoadAuditor() {
             Read the BC Heat Pump Guide 2026
           </Link>{' '}
           — CEC rules, rebate stacking, HPCN verification, and Zero Carbon Step Code explained.
+        </p>
+        <p className="text-xs text-gray-400 text-center">
+          &copy; Aelric Technologies Inc. NR 2895893. All rights reserved.
         </p>
       </div>
     </div>

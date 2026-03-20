@@ -21,7 +21,7 @@
  *
  * Thermal analysis (appended — does NOT alter CEC 8-200 electrical results):
  *  ISA hypsometric formula   Barometric pressure at elevation
- *  CSA B149.1 Cl. 8.22.1    Gas appliance altitude derate (4% per 300 m above 610 m)
+ *  B149.1 Section 5.3        Gas appliance altitude derate (4% per 300 m, floor 0.72 at ~2100 m)
  *  Dual-fuel COP crossover   Economic switchover point (electricity vs gas per GJ)
  */
 import 'server-only';
@@ -227,12 +227,10 @@ export function runAudit(inputs: AuditInputs): AuditResult {
     // Scales linearly with air density, which is proportional to pressure at constant T.
     const correctedHeatConstant = 1.08 * (bpKpa / 101.325);
 
-    // CSA B149.1 Clause 8.22.1 — gas appliance altitude derate
-    // 4% derate for every 300 m above the 610 m (2,000 ft) threshold.
-    let derateFactor = 1;
-    if (elevation > 610) {
-      derateFactor = Math.max(0, 1 - (0.04 * ((elevation - 610) / 300)));
-    }
+    // B149.1 Section 5.3 altitude correction — gas appliance derate
+    // Derate factor = 1 - (0.04 × elevation_m / 300), minimum floor 0.72 (~2100 m).
+    // Validation: 1500 m → 1 - (0.04 × 5) = 0.80; 100,000 BTU/h × 0.80 = 80,000 BTU/h ✓
+    const derateFactor = Math.max(0.72, 1 - (0.04 * (elevation / 300)));
 
     // Effective gas furnace output after altitude derate
     const effectiveBtu = Math.round(gasNameplateBtu * derateFactor);

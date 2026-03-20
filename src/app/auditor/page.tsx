@@ -3,9 +3,9 @@ import GhostLoadAuditor from '@/components/GhostLoadAuditor';
 import { WebApplicationJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Ghost Load Auditor — CEC 8-200 Panel Check | Canadian Heat Pump Hub',
+  title: 'Heat Pump Replacement Cost BC — Check Panel Capacity First',
   description:
-    'Find out if your 100A panel can handle a heat pump and EV charger. Free CEC Rule 8-200 Optional Method load calculation for BC homeowners. Avoid a $5,000–$10,000 panel upgrade surprise.',
+    'Before you get a heat pump quote, run a CEC 8-200 load calculation. The Ghost Load Auditor tells you what your panel can handle — 10 minutes, $24.99.',
   alternates: { canonical: 'https://canadianheatpumphub.ca/auditor' },
   keywords: [
     'CEC 8-200 load calculation',
