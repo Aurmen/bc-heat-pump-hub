@@ -801,6 +801,33 @@ export const cities: City[] = [
     ],
   },
   {
+    name: 'Cranbrook',
+    slug: 'cranbrook',
+    region: 'Interior',
+    regionSlug: 'interior',
+    province: 'BC',
+    climateNotes: 'Cranbrook sits in the Rocky Mountain Trench at 920 m elevation and sees some of the coldest winters in BC\'s southern interior. Design temperatures reach -29°C (-20°F), making cold-climate heat pumps rated to -35°C essential. Hybrid systems pairing a cold-climate unit with a gas or propane furnace are the most common and cost-effective solution.',
+    population: '~21,000',
+    designTemp: -29,
+    avgWinterLow: -10,
+    heatingDegreeDays: 4600,
+    installCosts: {
+      ductless: '$11,000-$17,000',
+      ducted: '$14,000-$21,000',
+      airToWater: '$17,000-$26,000',
+    },
+    operatingCosts: {
+      heatPump: '$1,600-$2,200',
+      gasBoiler: '$1,800-$2,500',
+      electricBaseboard: '$4,500-$6,000',
+    },
+    recommendedSystems: [
+      'Hybrid system (cold-climate heat pump + gas/propane backup) - STRONGLY RECOMMENDED',
+      'Cold-climate heat pump rated to -35°C (-31°F) with electric backup',
+      'Dual-fuel system with smart controls for cost optimization',
+    ],
+  },
+  {
     name: 'Prince George',
     slug: 'prince-george',
     region: 'Interior',
