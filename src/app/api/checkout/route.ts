@@ -1,16 +1,18 @@
 /**
  * /api/checkout — Create a Stripe Checkout Session for the Ghost Load Auditor PDF report.
  *
- * POST { auditData: { sqft, serviceAmps, rangeW, ... } }
+ * POST { auditData: { sqft, serviceAmps, rangeW, ... }, currency?: 'cad' | 'usd' }
  *
  * Returns { url: string } — the Stripe-hosted checkout page URL.
  * Audit inputs are stored in session metadata for PDF regeneration on success.
  */
 import { NextRequest, NextResponse } from 'next/server';
-import { getStripe } from '@/lib/stripe';
+import { createCheckoutSession, type SupportedCurrency } from '@/lib/stripe';
+
+const VALID_CURRENCIES: SupportedCurrency[] = ['cad', 'usd'];
 
 export async function POST(req: NextRequest) {
-  let body: { auditData?: Record<string, unknown> };
+  let body: { auditData?: Record<string, unknown>; currency?: string };
   try {
     body = await req.json();
   } catch {
@@ -28,44 +30,36 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Compact audit inputs for Stripe metadata (must be < 500 chars per value)
-  const auditJson = JSON.stringify(auditData);
-  if (auditJson.length > 500) {
+  // Currency defaults to CAD (preserves existing CA behaviour)
+  const currency = (body.currency?.toLowerCase() ?? 'cad') as SupportedCurrency;
+  if (!VALID_CURRENCIES.includes(currency)) {
     return NextResponse.json(
-      { error: 'Audit data exceeds metadata size limit' },
+      { error: `Invalid currency: ${body.currency}. Supported: ${VALID_CURRENCIES.join(', ')}` },
       { status: 422 }
     );
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://aelrictechnologies.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  if (!baseUrl) {
+    throw new Error('NEXT_PUBLIC_BASE_URL environment variable is not set — cannot create checkout session without a valid base URL');
+  }
 
   try {
-    const stripe = getStripe();
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      currency: 'cad',
-      line_items: [
-        {
-          price_data: {
-            currency: 'cad',
-            unit_amount: 2499,
-            product_data: {
-              name: 'Ghost Load Auditor — Pre-Quote Panel Capacity Report',
-            },
-          },
-          quantity: 1,
-        },
-      ],
-      // automatic_tax: { enabled: true }, // Enable after adding head office address in Stripe Dashboard > Settings > Tax
-      success_url: `${baseUrl}/auditor/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${baseUrl}/auditor`,
-      metadata: {
-        audit_inputs: auditJson,
-      },
+    const session = await createCheckoutSession({
+      currency,
+      auditData,
+      successUrl: `${baseUrl}/auditor/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancelUrl: `${baseUrl}/auditor`,
     });
 
     return NextResponse.json({ url: session.url });
   } catch (err) {
+    if (err instanceof Error && err.message.includes('metadata size limit')) {
+      return NextResponse.json(
+        { error: 'Audit data exceeds metadata size limit' },
+        { status: 422 }
+      );
+    }
     console.error('[Checkout] Stripe session creation failed:', err);
     return NextResponse.json(
       { error: 'Failed to create checkout session' },

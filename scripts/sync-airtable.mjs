@@ -193,6 +193,112 @@ function mapRecord(record, csvFallback) {
   };
 }
 
+// ── Geographic buckets — city keyword → {region, cap} ────────────────────────
+//
+// City names in Airtable are free-text, so we match by substring (lowercase).
+// Order matters: more specific entries should come before broad ones.
+const CITY_BUCKETS = [
+  // Lower Mainland — 275 total
+  { keywords: ['vancouver'],          region: 'lower-mainland', cap: 80  },
+  { keywords: ['surrey'],             region: 'lower-mainland', cap: 55  },
+  { keywords: ['burnaby'],            region: 'lower-mainland', cap: 35  },
+  { keywords: ['richmond'],           region: 'lower-mainland', cap: 30  },
+  { keywords: ['coquitlam', 'port coquitlam', 'port moody'], region: 'lower-mainland', cap: 20 },
+  { keywords: ['north vancouver', 'west vancouver', 'north van'], region: 'lower-mainland', cap: 20 },
+  { keywords: ['langley'],            region: 'lower-mainland', cap: 15  },
+  { keywords: ['abbotsford'],         region: 'lower-mainland', cap: 8   },
+  { keywords: ['chilliwack'],         region: 'lower-mainland', cap: 4   },
+  { keywords: ['delta', 'maple ridge', 'new westminster', 'white rock', 'mission', 'pitt meadows', 'aldergrove', 'cloverdale'],
+                                      region: 'lower-mainland', cap: 8   },
+  // Vancouver Island — 100 total
+  { keywords: ['victoria', 'saanich', 'oak bay', 'esquimalt', 'langford', 'colwood', 'sidney', 'view royal', 'sooke'],
+                                      region: 'vancouver-island', cap: 45 },
+  { keywords: ['nanaimo'],            region: 'vancouver-island', cap: 25 },
+  { keywords: ['courtenay', 'comox'], region: 'vancouver-island', cap: 10 },
+  { keywords: ['campbell river'],     region: 'vancouver-island', cap: 10 },
+  { keywords: ['duncan', 'parksville', 'qualicum', 'port alberni', 'ladysmith', 'chemainus'],
+                                      region: 'vancouver-island', cap: 10 },
+  // Interior BC — 100 total
+  { keywords: ['kelowna', 'west kelowna', 'lake country', 'rutland'],
+                                      region: 'interior', cap: 35 },
+  { keywords: ['kamloops'],           region: 'interior', cap: 25 },
+  { keywords: ['vernon'],             region: 'interior', cap: 15 },
+  { keywords: ['penticton'],          region: 'interior', cap: 15 },
+  { keywords: ['salmon arm', 'revelstoke', 'merritt', 'trail', 'cranbrook', 'castlegar', 'nelson'],
+                                      region: 'interior', cap: 10 },
+  // Northern BC — 25 total
+  { keywords: ['prince george'],      region: 'northern', cap: 15 },
+  { keywords: ['fort st. john', 'fort st john', 'dawson creek', 'terrace', 'smithers', 'quesnel', 'williams lake', 'prince rupert'],
+                                      region: 'northern', cap: 10 },
+];
+
+/** Score a listing by data completeness (higher = more complete) */
+function scoreListings(listing) {
+  let score = 0;
+  if (listing.phone)                    score += 2;
+  if (listing.website)                  score += 2;
+  if (listing.services?.length)         score += 1;
+  if (listing.notes?.length > 5)        score += 1;
+  return score;
+}
+
+/** Assign a bucket index (priority order) to a listing based on its city */
+function assignBucket(city) {
+  const c = (city ?? '').toLowerCase();
+  for (let i = 0; i < CITY_BUCKETS.length; i++) {
+    if (CITY_BUCKETS[i].keywords.some(k => c.includes(k))) return i;
+  }
+  return -1; // unmatched — goes to overflow pool
+}
+
+/**
+ * Select the top 500 listings using geographic bucketing.
+ * Within each bucket, listings are ranked by data completeness score.
+ * Any remaining slots after all buckets are filled go to best-scored overflow.
+ */
+function selectTop500(listings) {
+  const TOTAL_CAP = 500;
+  const scored = listings.map(l => ({ ...l, _score: scoreListings(l), _bucket: assignBucket(l.city) }));
+
+  // Group by bucket index
+  const buckets = {};
+  const overflow = [];
+  for (const l of scored) {
+    if (l._bucket === -1) { overflow.push(l); continue; }
+    (buckets[l._bucket] ??= []).push(l);
+  }
+
+  const selected = [];
+
+  // Fill each bucket up to its cap (best-scored first)
+  for (let i = 0; i < CITY_BUCKETS.length; i++) {
+    const pool = (buckets[i] ?? []).sort((a, b) => b._score - a._score);
+    const take = Math.min(pool.length, CITY_BUCKETS[i].cap);
+    selected.push(...pool.slice(0, take));
+  }
+
+  // Fill remaining slots from overflow (unmatched cities), best-scored first
+  const remaining = TOTAL_CAP - selected.length;
+  if (remaining > 0) {
+    const pool = overflow.sort((a, b) => b._score - a._score);
+    selected.push(...pool.slice(0, remaining));
+  }
+
+  // Log summary
+  const byRegion = {};
+  for (const l of selected) {
+    const r = l._bucket === -1 ? 'other' : CITY_BUCKETS[l._bucket].region;
+    byRegion[r] = (byRegion[r] ?? 0) + 1;
+  }
+  console.log(`  Geographic distribution (${selected.length} selected):`);
+  for (const [region, count] of Object.entries(byRegion)) {
+    console.log(`    ${region}: ${count}`);
+  }
+
+  // Strip internal scoring fields before writing
+  return selected.map(({ _score, _bucket, ...l }) => l);
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -216,11 +322,12 @@ async function main() {
     console.log(`  loaded CSV fallback with ${Object.keys(csvFallback).length} entries`);
   }
 
-  // Map to listings — only include TSBC-verified contractors
+  // Map to listings — only include TSBC-verified contractors with clean records
   const listings = candidates
     .map(r => mapRecord(r, csvFallback))
     .filter(l => l.company_name)
-    .filter(l => l.tsbc_verified);
+    .filter(l => l.tsbc_verified)
+    .filter(l => (l.tsbc_enforcement_actions ?? 0) === 0);
 
   // Generate slugs from company name, deduplicate
   const seen = {};
@@ -235,12 +342,22 @@ async function main() {
     }
   }
 
-  listings.sort((a, b) => a.company_name.localeCompare(b.company_name));
+  // ── Geographic bucketing — keep top 500 by region/city priority ─────────────
+  const selected = selectTop500(listings);
+  selected.sort((a, b) => a.company_name.localeCompare(b.company_name));
+
+  // ── Merge pinned listings (never overwritten by Airtable sync) ───────────────
+  const pinnedPath = join(__dirname, '../src/data/pinned-listings.json');
+  const pinned = existsSync(pinnedPath) ? JSON.parse(readFileSync(pinnedPath, 'utf-8')) : [];
+  // Remove any Airtable entries whose slug collides with a pinned slug
+  const pinnedSlugs = new Set(pinned.map(p => p.slug));
+  const deduped = selected.filter(l => !pinnedSlugs.has(l.slug));
+  const final = [...pinned, ...deduped];
 
   const outputPath = join(__dirname, '../src/data/directory.json');
-  writeFileSync(outputPath, JSON.stringify(listings, null, 2));
+  writeFileSync(outputPath, JSON.stringify(final, null, 2));
 
-  console.log(`✓ Wrote ${listings.length} TSBC-verified listings → src/data/directory.json\n`);
+  console.log(`✓ Wrote ${final.length} listings (${pinned.length} pinned + ${deduped.length} TSBC-verified) → src/data/directory.json\n`);
 }
 
 main().catch(err => {

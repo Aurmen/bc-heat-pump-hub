@@ -1,38 +1,22 @@
 /**
- * rate-limiter.ts — In-process sliding window rate limiter
+ * rate-limiter.ts — Upstash Redis sliding window rate limiter
  *
- * Protects the audit endpoint from bot-driven scraping of the
- * calculation engine and runaway Vercel function costs.
+ * Protects API endpoints from bot-driven scraping and runaway costs.
  *
- * Strategy: sliding window counter per IP, stored in a server-side Map.
- * Limits: 10 requests / 60 seconds per IP address.
+ * Strategy: sliding window via @upstash/ratelimit backed by Upstash Redis.
+ * Limits: 10 requests per IP per hour (sliding window).
  *
- * Note: This is a single-process limiter suitable for Vercel serverless
- * (each function instance has its own counter). For multi-region
- * enforcement, replace with Upstash Redis + @upstash/ratelimit.
+ * Graceful fallback: if Redis is unavailable, the request is ALLOWED
+ * (fail open, not closed) to avoid blocking legitimate users during
+ * infrastructure issues.
+ *
+ * Preserves the exact same exported function signature as the previous
+ * in-memory implementation — zero callers need changes.
  */
 import 'server-only';
 
-interface WindowEntry {
-  count: number;
-  windowStart: number;
-}
-
-const WINDOW_MS  = 60_000;  // 1 minute
-const MAX_REQUESTS = 10;    // per window per IP
-
-// Map persists across requests within the same function instance
-const store = new Map<string, WindowEntry>();
-
-// Prune stale entries every ~5 minutes to prevent unbounded growth
-setInterval(() => {
-  const now = Date.now();
-  for (const [key, entry] of store.entries()) {
-    if (now - entry.windowStart > WINDOW_MS * 5) {
-      store.delete(key);
-    }
-  }
-}, 300_000);
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
 
 export interface RateLimitResult {
   allowed: boolean;
@@ -40,27 +24,55 @@ export interface RateLimitResult {
   resetInMs: number;
 }
 
+// ── Lazy-init to avoid build-time errors when env vars are absent ────────────
+let _ratelimit: Ratelimit | null = null;
+
+function getRatelimit(): Ratelimit | null {
+  if (_ratelimit) return _ratelimit;
+
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+  if (!url || !token) {
+    console.warn(
+      '[rate-limiter] UPSTASH_REDIS_REST_URL or UPSTASH_REDIS_REST_TOKEN not set — rate limiting disabled'
+    );
+    return null;
+  }
+
+  _ratelimit = new Ratelimit({
+    redis: new Redis({ url, token }),
+    limiter: Ratelimit.slidingWindow(10, '1 h'),
+    prefix: 'rl',
+  });
+
+  return _ratelimit;
+}
+
 /**
  * Check whether the given identifier (IP address) is within the rate limit.
  * Call this at the top of any server-side handler you want to protect.
+ *
+ * Signature preserved from the previous in-memory implementation.
  */
-export function checkRateLimit(identifier: string): RateLimitResult {
-  const now = Date.now();
-  const entry = store.get(identifier);
+export async function checkRateLimit(identifier: string): Promise<RateLimitResult> {
+  const rl = getRatelimit();
 
-  if (!entry || now - entry.windowStart > WINDOW_MS) {
-    // New window
-    store.set(identifier, { count: 1, windowStart: now });
-    return { allowed: true, remaining: MAX_REQUESTS - 1, resetInMs: WINDOW_MS };
+  if (!rl) {
+    // Fail open — allow request if Redis is not configured
+    return { allowed: true, remaining: 10, resetInMs: 0 };
   }
 
-  entry.count += 1;
-  const resetInMs = WINDOW_MS - (now - entry.windowStart);
-  const remaining = Math.max(0, MAX_REQUESTS - entry.count);
-
-  return {
-    allowed: entry.count <= MAX_REQUESTS,
-    remaining,
-    resetInMs,
-  };
+  try {
+    const result = await rl.limit(identifier);
+    return {
+      allowed: result.success,
+      remaining: result.remaining,
+      resetInMs: Math.max(0, result.reset - Date.now()),
+    };
+  } catch (err) {
+    // Fail open — allow request if Redis call fails
+    console.error('[rate-limiter] Redis error, failing open:', err);
+    return { allowed: true, remaining: 10, resetInMs: 0 };
+  }
 }

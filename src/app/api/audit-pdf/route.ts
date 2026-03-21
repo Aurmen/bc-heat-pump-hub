@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     req.headers.get('x-real-ip') ??
     'unknown';
 
-  const limit = checkRateLimit(ip);
+  const limit = await checkRateLimit(ip);
   if (!limit.allowed) {
     return NextResponse.json(
       { success: false, error: 'Too many requests. Please wait before generating another report.' },

@@ -39,6 +39,17 @@ const serverEnvSchema = z.object({
     .email('LEAD_EMAIL must be a valid email address'),
 });
 
+// ── Runtime-only env (validated lazily by consuming modules, not at build time) ──
+// These are optional at build time (SSG doesn't need them) but required at runtime.
+// Each module that uses them handles its own graceful fallback.
+const runtimeEnvSchema = z.object({
+  STRIPE_WEBHOOK_SECRET: z.string().min(10).optional(),
+  KV_REST_API_URL: z.string().url().optional(),
+  KV_REST_API_TOKEN: z.string().min(1).optional(),
+  UPSTASH_REDIS_REST_URL: z.string().url().optional(),
+  UPSTASH_REDIS_REST_TOKEN: z.string().min(1).optional(),
+});
+
 // ── Public env (safe to expose to browser) ────────────────────────────────
 const publicEnvSchema = z.object({
   NEXT_PUBLIC_GA_MEASUREMENT_ID: z
@@ -65,6 +76,15 @@ function validateEnv() {
   const publicResult = publicEnvSchema.safeParse(process.env);
   if (!publicResult.success) {
     console.warn('[env] Public env warnings:', publicResult.error.issues);
+  }
+
+  // Warn about missing runtime env vars (non-fatal — modules handle gracefully)
+  const runtimeResult = runtimeEnvSchema.safeParse(process.env);
+  if (!runtimeResult.success) {
+    const missing = runtimeResult.error.issues
+      .map(i => `  • ${i.path.join('.')}: ${i.message}`)
+      .join('\n');
+    console.warn(`[env] Runtime env vars not configured (features will be degraded):\n${missing}`);
   }
 
   return serverResult.data;

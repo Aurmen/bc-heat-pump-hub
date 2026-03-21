@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getAllListings, getListingBySlug, formatServiceName, formatPhoneNumber } from '@/lib/utils';
@@ -32,7 +32,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
   const listing = getListingBySlug(slug);
 
   if (!listing) {
-    notFound();
+    permanentRedirect('/directory');
   }
 
   const breadcrumbItems = [

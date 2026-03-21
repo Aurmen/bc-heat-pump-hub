@@ -6,6 +6,25 @@ import { getListingsByCity } from '@/lib/utils';
 import CompanyCard from '@/components/CompanyCard';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
+/** Parse "$X,XXX-$Y,YYY" → midpoint as integer, or null */
+function parseMidpoint(range: string): number | null {
+  const nums = range.replace(/\$|,/g, '').split('-').map(Number);
+  if (nums.length !== 2 || nums.some(isNaN)) return null;
+  return Math.round((nums[0] + nums[1]) / 2);
+}
+
+/** Estimated annual savings vs. electric baseboard, formatted as "$X,XXX–$Y,YYY/yr" */
+function estimatedSavings(heatPump: string, baseboard: string): string | null {
+  const hp = parseMidpoint(heatPump);
+  const bb = parseMidpoint(baseboard);
+  if (!hp || !bb) return null;
+  const saving = bb - hp;
+  // Express as a range ±15% around the midpoint
+  const lo = Math.round(saving * 0.85 / 100) * 100;
+  const hi = Math.round(saving * 1.15 / 100) * 100;
+  return `$${lo.toLocaleString()}–$${hi.toLocaleString()}/yr`;
+}
+
 export async function generateStaticParams() {
   const { cities } = await import('@/data/cities');
   return cities.map(city => ({
@@ -71,9 +90,38 @@ export default async function CityPage({ params }: { params: Promise<{ region: s
           {city.name} Heat Pump & Boiler Installers
         </h1>
 
-        <div className="bg-blue-50 border-l-4 border-primary-500 p-6 mb-8">
+        <div className="bg-blue-50 border-l-4 border-primary-500 p-6 mb-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">Climate Notes for {city.name}</h2>
           <p className="text-gray-700">{city.climateNotes}</p>
+        </div>
+
+        {/* City Quick Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          {city.designTemp !== undefined && (
+            <div className="bg-white border border-gray-200 rounded-lg p-4 text-center">
+              <p className="text-2xl font-bold text-primary-600">{city.designTemp}°C</p>
+              <p className="text-xs text-gray-500 mt-1">Design Temperature</p>
+            </div>
+          )}
+          {city.heatingDegreeDays && (
+            <div className="bg-white border border-gray-200 rounded-lg p-4 text-center">
+              <p className="text-2xl font-bold text-primary-600">{city.heatingDegreeDays.toLocaleString()}</p>
+              <p className="text-xs text-gray-500 mt-1">Heating Degree Days</p>
+            </div>
+          )}
+          {city.operatingCosts && (() => {
+            const savings = estimatedSavings(city.operatingCosts.heatPump, city.operatingCosts.electricBaseboard);
+            return savings ? (
+              <div className="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                <p className="text-xl font-bold text-green-600">{savings}</p>
+                <p className="text-xs text-gray-500 mt-1">Est. Savings vs. Baseboard</p>
+              </div>
+            ) : null;
+          })()}
+          <div className="bg-white border border-gray-200 rounded-lg p-4 text-center">
+            <p className="text-2xl font-bold text-primary-600">{listings.length}</p>
+            <p className="text-xs text-gray-500 mt-1">Verified Contractors</p>
+          </div>
         </div>
 
         {/* Climate Data */}

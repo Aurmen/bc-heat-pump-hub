@@ -10,9 +10,18 @@ export function getListingBySlug(slug: string): DirectoryListing | undefined {
 }
 
 export function getListingsByCity(city: string): DirectoryListing[] {
-  return getAllListings().filter(listing =>
-    listing.city.toLowerCase() === city.toLowerCase()
-  );
+  const cityLower = city.toLowerCase();
+  return getAllListings()
+    .filter(listing => {
+      if (listing.city.toLowerCase() === cityLower) return true;
+      if (listing.served_cities?.some(c => c.toLowerCase() === cityLower)) return true;
+      return false;
+    })
+    .sort((a, b) => {
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+      return 0;
+    });
 }
 
 export function getListingsByRegion(region: string): DirectoryListing[] {

@@ -12,16 +12,18 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 
 const CSP = [
-  // Only load scripts from self + Vercel analytics + GA
+  // Only load scripts from self + Vercel analytics + GA + Stripe.js
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://va.vercel-scripts.com`,
+  `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://va.vercel-scripts.com https://js.stripe.com`,
   `style-src 'self' 'unsafe-inline'`,
   // Images: self + data URIs (for inline SVGs) + Google (GA pixel)
   `img-src 'self' data: https://www.google-analytics.com`,
   // Fonts: self only
   `font-src 'self'`,
-  // API calls: self + Vercel analytics + GA
-  `connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://vitals.vercel-insights.com`,
+  // API calls: self + Vercel analytics + GA + Stripe API
+  `connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://vitals.vercel-insights.com https://*.stripe.com https://api.stripe.com`,
+  // Stripe.js iframes for secure payment elements
+  `frame-src https://js.stripe.com https://hooks.stripe.com`,
   // Never render this page inside a frame — clickjacking defence
   `frame-ancestors 'none'`,
   // No plugins (Flash, etc.)

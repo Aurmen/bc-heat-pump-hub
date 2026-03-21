@@ -1,0 +1,32 @@
+[
+  {
+    "company_name": "True Mechanical",
+    "slug": "true-mechanical",
+    "website": "https://truemechanical.com",
+    "phone": "604-225-2460",
+    "city": "Kelowna",
+    "region": "Interior",
+    "province": "BC",
+    "services": ["heat_pumps", "air_to_water", "boilers", "hybrid"],
+    "emergency_service": "yes",
+    "brands_supported": [],
+    "notes": "BC's largest full-service commercial mechanical contractor. Commercial HVAC-R, plumbing, BIM/VDC prefabrication. Serving commercial, institutional, multifamily, and large residential projects across BC. 550+ staff.",
+    "source_urls": ["https://truemechanical.com"],
+    "pinned": true,
+    "served_cities": [
+      "Vancouver", "Surrey", "Burnaby", "Richmond", "Coquitlam",
+      "Port Coquitlam", "North Vancouver", "West Vancouver", "Langley",
+      "Abbotsford", "Chilliwack", "Delta", "Maple Ridge", "New Westminster",
+      "Kelowna", "West Kelowna", "Vernon", "Penticton", "Lake Country",
+      "Cranbrook"
+    ],
+    "tsbc_verified": true,
+    "tsbc_fsr_license": "",
+    "tsbc_gas_license": "",
+    "tsbc_electrical_license": "",
+    "tsbc_license_status": "active",
+    "tsbc_enforcement_actions": 0,
+    "tsbc_last_verified": "2026-03-21",
+    "service_reliability": null
+  }
+]

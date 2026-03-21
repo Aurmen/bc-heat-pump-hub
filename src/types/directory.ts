@@ -53,6 +53,10 @@ export interface DirectoryListing {
   region: 'Lower Mainland' | 'Vancouver Island' | 'Interior';
   province: 'BC';
   services: ServiceType[];
+  /** Pinned listings always sort first on city pages */
+  pinned?: boolean;
+  /** Province-wide or multi-city listings — matched in addition to city field */
+  served_cities?: string[];
   emergency_service: 'yes' | 'no' | 'unknown';
   brands_supported: string[];
   notes: string;
