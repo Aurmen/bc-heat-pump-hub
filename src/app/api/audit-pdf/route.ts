@@ -18,6 +18,11 @@ import { runAudit } from '@/lib/audit-engine';
 import { AuditReportDocument } from '@/lib/AuditReportPDF';
 import { checkRateLimit } from '@/lib/rate-limiter';
 
+// Force Node.js runtime (not Edge) — @react-pdf/renderer needs full Node APIs
+export const runtime = 'nodejs';
+// Extend timeout for PDF generation (default 10s is too short for react-pdf)
+export const maxDuration = 30;
+
 // ── Input validation ───────────────────────────────────────────────────────────
 const VALID_SERVICE = [60, 100, 125, 150, 200, 320, 400] as const;
 
@@ -49,6 +54,14 @@ const PDFInputSchema = z.object({
 
 // ── Handler ────────────────────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
+  console.log('[AuditPDF] Handler invoked');
+  try { return await handlePDF(req); } catch (err) {
+    console.error('[AuditPDF] Top-level crash:', err);
+    return NextResponse.json({ success: false, error: String(err) }, { status: 500 });
+  }
+}
+
+async function handlePDF(req: NextRequest) {
   // ── Rate limiting ────────────────────────────────────────────────────────
   const ip =
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??

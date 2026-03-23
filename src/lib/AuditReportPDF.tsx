@@ -9,7 +9,6 @@
  * /api/audit-pdf route.
  */
 
-import 'server-only';
 import React from 'react';
 import {
   Document,
