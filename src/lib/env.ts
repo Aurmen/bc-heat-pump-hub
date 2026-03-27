@@ -43,6 +43,7 @@ const serverEnvSchema = z.object({
 // These are optional at build time (SSG doesn't need them) but required at runtime.
 // Each module that uses them handles its own graceful fallback.
 const runtimeEnvSchema = z.object({
+  ADMIN_SECRET: z.string().min(16).optional(),
   STRIPE_WEBHOOK_SECRET: z.string().min(10).optional(),
   KV_REST_API_URL: z.string().url().optional(),
   KV_REST_API_TOKEN: z.string().min(1).optional(),

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type ChangeEvent } from 'react';
+import { useState, useEffect, type ChangeEvent } from 'react';
 import Link from 'next/link';
 import { track } from '@vercel/analytics';
 import AuditLeadForm, { type AuditLeadData } from '@/components/AuditLeadForm';
@@ -644,6 +644,14 @@ export default function GhostLoadAuditor() {
   const [checkoutStatus, setCheckoutStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [bannerDismissed, setBannerDismissed] = useState(false);
 
+  // Promo code state
+  const [promoInput, setPromoInput] = useState('');
+  const [promoStatus, setPromoStatus] = useState<'idle' | 'checking' | 'valid' | 'invalid'>('idle');
+  const [promoError, setPromoError] = useState('');
+  const [promoRemaining, setPromoRemaining] = useState(0);
+  const [promoDownloadToken, setPromoDownloadToken] = useState('');
+  const [launchPromoRemaining, setLaunchPromoRemaining] = useState<number | null>(null);
+
   // Live m² conversion
   const sqm = (() => {
     const v = parseFloat(form.sqft);
@@ -723,29 +731,107 @@ export default function GhostLoadAuditor() {
     setShowBreakdown(false);
   }
 
+  // Fetch LAUNCH2026 remaining count when results are shown
+  useEffect(() => {
+    if (!calculated) return;
+    fetch('/api/promo?code=LAUNCH2026')
+      .then(r => r.json())
+      .then((data: { valid: boolean; remaining: number }) => {
+        if (data.valid) setLaunchPromoRemaining(data.remaining);
+        else setLaunchPromoRemaining(0);
+      })
+      .catch(() => {});
+  }, [calculated]);
+
+  async function handleApplyPromo() {
+    if (!promoInput.trim()) return;
+    setPromoStatus('checking');
+    setPromoError('');
+    try {
+      const res = await fetch(`/api/promo?code=${encodeURIComponent(promoInput.trim())}`);
+      const data: { valid: boolean; discount: number; remaining: number; reason?: string } = await res.json();
+      if (data.valid) {
+        setPromoStatus('valid');
+        setPromoRemaining(data.remaining);
+      } else {
+        setPromoStatus('invalid');
+        setPromoError(data.reason ?? 'Invalid promo code');
+      }
+    } catch {
+      setPromoStatus('invalid');
+      setPromoError('Could not verify code — please try again');
+    }
+  }
+
+  async function handlePromoDownload() {
+    if (!resultA) return;
+    setCheckoutStatus('loading');
+    try {
+      const auditData = buildAuditData();
+      // Step 1: redeem promo code at checkout (increments counter, returns token)
+      const checkoutRes = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ auditData, promoCode: promoInput.trim() }),
+      });
+      if (!checkoutRes.ok) {
+        const { error } = await checkoutRes.json();
+        throw new Error(error ?? 'Promo checkout failed');
+      }
+      const { downloadToken } = await checkoutRes.json();
+
+      // Step 2: download PDF with token (marks paid: true in audit log)
+      const pdfRes = await fetch('/api/audit-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...auditData, downloadToken }),
+      });
+      if (!pdfRes.ok) throw new Error('PDF generation failed');
+      const blob = await pdfRes.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ghost-load-audit.pdf';
+      a.click();
+      URL.revokeObjectURL(url);
+
+      setPromoDownloadToken(downloadToken);
+      setCheckoutStatus('idle');
+      // Refresh remaining count in banner
+      setLaunchPromoRemaining(prev => (prev !== null && prev > 0 ? prev - 1 : prev));
+    } catch (err) {
+      setCheckoutStatus('error');
+      setPromoError(err instanceof Error ? err.message : 'Download failed');
+    }
+  }
+
+  function buildAuditData() {
+    return {
+      sqft:         parseFloat(form.sqft),
+      serviceAmps:  parseFloat(form.serviceSize),
+      rangeW:       parseFloat(form.rangeW),
+      dryerW:       parseFloat(form.dryerW),
+      waterHeaterW: parseFloat(form.waterHeaterW),
+      muaW:         parseFloat(form.muaW) || 0,
+      heatingW:     parseFloat(form.heatingW),
+      coolingW:     parseFloat(form.coolingW),
+      evW:          parseFloat(form.evW),
+      loadManagement: form.loadManagement,
+      elevation:       parseFloat(form.elevation) || 0,
+      isDualFuel:      form.isDualFuel,
+      balancePoint:    parseFloat(form.balancePoint) || 2,
+      gasNameplateBtu: parseFloat(form.gasNameplateBtu) || 0,
+      gasRatePerGj:    parseFloat(form.gasRatePerGj) || 12.50,
+      elecRatePerKwh:  parseFloat(form.elecRatePerKwh) || 0.14,
+      furnaceAfue:     parseFloat(form.furnaceAfue) || 0.96,
+    };
+  }
+
   async function handlePurchaseReport() {
     if (!resultA) return;
     setCheckoutStatus('loading');
     try {
-      const auditData = {
-        sqft:         parseFloat(form.sqft),
-        serviceAmps:  parseFloat(form.serviceSize),
-        rangeW:       parseFloat(form.rangeW),
-        dryerW:       parseFloat(form.dryerW),
-        waterHeaterW: parseFloat(form.waterHeaterW),
-        muaW:         parseFloat(form.muaW) || 0,
-        heatingW:     parseFloat(form.heatingW),
-        coolingW:     parseFloat(form.coolingW),
-        evW:          parseFloat(form.evW),
-        loadManagement: form.loadManagement,
-        elevation:       parseFloat(form.elevation) || 0,
-        isDualFuel:      form.isDualFuel,
-        balancePoint:    parseFloat(form.balancePoint) || 2,
-        gasNameplateBtu: parseFloat(form.gasNameplateBtu) || 0,
-        gasRatePerGj:    parseFloat(form.gasRatePerGj) || 12.50,
-        elecRatePerKwh:  parseFloat(form.elecRatePerKwh) || 0.14,
-        furnaceAfue:     parseFloat(form.furnaceAfue) || 0.96,
-      };
+      const auditData = buildAuditData();
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1115,6 +1201,18 @@ export default function GhostLoadAuditor() {
       {/* ── Results ── */}
       {calculated && resultA && (
         <div className="space-y-6">
+          {/* Launch promo banner */}
+          {launchPromoRemaining !== null && launchPromoRemaining > 0 && promoStatus !== 'valid' && (
+            <div className="bg-primary-50 border border-primary-300 rounded-xl px-5 py-3 flex items-center gap-3">
+              <span className="text-primary-700 font-semibold text-sm">Launch special</span>
+              <span className="text-primary-600 text-sm">
+                Free report with code{' '}
+                <span className="font-mono font-bold text-primary-800">LAUNCH2026</span>
+                {' '}({launchPromoRemaining} of 100 remaining)
+              </span>
+            </div>
+          )}
+
           <div>
             <h2 className="text-lg font-bold text-gray-800 mb-4">
               {form.loadManagement && resultB
@@ -1157,26 +1255,84 @@ export default function GhostLoadAuditor() {
               {showBreakdown ? 'Hide' : 'Show'} full CEC 8-200 calculation breakdown
             </button>
 
-            <div>
-              <button
-                onClick={handlePurchaseReport}
-                disabled={checkoutStatus === 'loading'}
-                className="flex items-center gap-2 text-sm font-semibold text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-60 px-5 py-2.5 rounded-lg shadow-sm transition-colors"
-              >
-                {checkoutStatus === 'loading'
-                  ? 'Processing...'
-                  : 'Get Full Report — $24.99'}
-              </button>
-              <p className="text-xs text-gray-400 mt-1.5">
-                Instant PDF download &middot; GST included
-              </p>
-              {checkoutStatus === 'error' && (
-                <p className="text-xs text-red-600 mt-1">
-                  Checkout failed — please try again or contact support@aelrictechnologies.com
+            {promoStatus !== 'valid' && (
+              <div>
+                <button
+                  onClick={handlePurchaseReport}
+                  disabled={checkoutStatus === 'loading'}
+                  className="flex items-center gap-2 text-sm font-semibold text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-60 px-5 py-2.5 rounded-lg shadow-sm transition-colors"
+                >
+                  {checkoutStatus === 'loading'
+                    ? 'Processing...'
+                    : 'Get Full Report — $24.99'}
+                </button>
+                <p className="text-xs text-gray-400 mt-1.5">
+                  Instant PDF download &middot; GST included
                 </p>
-              )}
-            </div>
+                {checkoutStatus === 'error' && (
+                  <p className="text-xs text-red-600 mt-1">
+                    Checkout failed — please try again or contact support@aelrictechnologies.com
+                  </p>
+                )}
+              </div>
+            )}
+
+            {promoStatus === 'valid' && (
+              <div>
+                <button
+                  onClick={handlePromoDownload}
+                  disabled={checkoutStatus === 'loading' || !!promoDownloadToken}
+                  className="flex items-center gap-2 text-sm font-semibold text-white bg-green-600 hover:bg-green-700 disabled:opacity-60 px-5 py-2.5 rounded-lg shadow-sm transition-colors"
+                >
+                  {checkoutStatus === 'loading'
+                    ? 'Downloading...'
+                    : promoDownloadToken
+                    ? 'Downloaded'
+                    : 'Download Free Report'}
+                </button>
+                <p className="text-xs text-gray-400 mt-1.5">
+                  Code <span className="font-mono font-semibold">{promoInput.trim().toUpperCase()}</span> applied &middot; {promoRemaining - 1 >= 0 ? promoRemaining - 1 : promoRemaining} remaining after this use
+                </p>
+                {checkoutStatus === 'error' && (
+                  <p className="text-xs text-red-600 mt-1">
+                    {promoError || 'Download failed — please try again'}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
+
+          {/* Promo code input */}
+          {promoStatus !== 'valid' && (
+            <div className="flex items-start gap-3 mt-2">
+              <div className="flex-1 max-w-xs">
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Have a promo code?"
+                    value={promoInput}
+                    onChange={e => {
+                      setPromoInput(e.target.value);
+                      setPromoStatus('idle');
+                      setPromoError('');
+                    }}
+                    onKeyDown={e => { if (e.key === 'Enter') handleApplyPromo(); }}
+                    className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  />
+                  <button
+                    onClick={handleApplyPromo}
+                    disabled={promoStatus === 'checking' || !promoInput.trim()}
+                    className="text-sm font-medium text-primary-600 hover:text-primary-700 disabled:opacity-40 px-3 py-2 border border-primary-300 rounded-lg"
+                  >
+                    {promoStatus === 'checking' ? '...' : 'Apply'}
+                  </button>
+                </div>
+                {promoStatus === 'invalid' && (
+                  <p className="text-xs text-red-600 mt-1">{promoError}</p>
+                )}
+              </div>
+            </div>
+          )}
 
           {showBreakdown && (
             <CalcBreakdown

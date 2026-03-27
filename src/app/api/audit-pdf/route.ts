@@ -17,6 +17,8 @@ import { renderToBuffer } from '@react-pdf/renderer';
 import { runAudit } from '@/lib/audit-engine';
 import { AuditReportDocument } from '@/lib/AuditReportPDF';
 import { checkRateLimit } from '@/lib/rate-limiter';
+import { writeAuditLog, type AuditLogEntry } from '@/lib/audit-log';
+import { redeemPromoDownloadToken } from '@/lib/promo';
 
 // Force Node.js runtime (not Edge) — @react-pdf/renderer needs full Node APIs
 export const runtime = 'nodejs';
@@ -50,6 +52,9 @@ const PDFInputSchema = z.object({
   gasRatePerGj:    z.number().min(0).max(100).finite().optional().default(12.50),
   elecRatePerKwh:  z.number().min(0).max(1).finite().optional().default(0.14),
   furnaceAfue:     z.number().min(0.5).max(1.0).finite().optional().default(0.96),
+
+  // Promo code download token (one-use, 15 min TTL) — marks audit as paid
+  downloadToken:   z.string().optional(),
 });
 
 // ── Handler ────────────────────────────────────────────────────────────────────
@@ -121,6 +126,40 @@ async function handlePDF(req: NextRequest) {
     elevation: inputs.elevation ?? 0,
     hasThermal: !!result.thermal,
   });
+
+  // ── Promo token redemption ───────────────────────────────────────────
+  let redeemedPromoCode: string | null = null;
+  if (inputs.downloadToken) {
+    redeemedPromoCode = await redeemPromoDownloadToken(inputs.downloadToken).catch(() => null);
+  }
+
+  // ── Persistent audit log (no PII, no TTL) ───────────────────────────
+  const appliances: string[] = [];
+  if (inputs.rangeW > 0) appliances.push('range');
+  if (inputs.dryerW > 0) appliances.push('dryer');
+  if (inputs.waterHeaterW > 0) appliances.push('water_heater');
+  if (inputs.muaW && inputs.muaW > 0) appliances.push('mua');
+  if (inputs.heatingW > 0) appliances.push('heating');
+  if (inputs.coolingW > 0) appliances.push('cooling');
+  if (inputs.evW > 0) appliances.push('ev');
+
+  const logEntry: AuditLogEntry = {
+    uuid: reportId,
+    timestamp: generatedAt,
+    country: 'ca',
+    standard: 'CEC 8-200',
+    zip: '',
+    panelAmps: inputs.serviceAmps,
+    sqft: inputs.sqft,
+    calculatedAmps: Math.round(result.totalAmps * 10) / 10,
+    status: result.status,
+    utilization: Math.round(result.utilization * 10) / 10,
+    paid: redeemedPromoCode !== null,
+    promoCode: redeemedPromoCode,
+    appliances,
+    hpReplacesAc: inputs.heatingW > 0 && inputs.coolingW > 0,
+  };
+  writeAuditLog(logEntry).catch(() => {});   // fire-and-forget
 
   // ── Generate PDF ─────────────────────────────────────────────────────────
   let pdfBuffer: Buffer;

@@ -4,7 +4,7 @@
  * Protects API endpoints from bot-driven scraping and runaway costs.
  *
  * Strategy: sliding window via @upstash/ratelimit backed by Upstash Redis.
- * Limits: 10 requests per IP per hour (sliding window).
+ * Limits: 6 requests per IP per hour (sliding window).
  *
  * Graceful fallback: if Redis is unavailable, the request is ALLOWED
  * (fail open, not closed) to avoid blocking legitimate users during
@@ -42,7 +42,7 @@ function getRatelimit(): Ratelimit | null {
 
   _ratelimit = new Ratelimit({
     redis: new Redis({ url, token }),
-    limiter: Ratelimit.slidingWindow(10, '1 h'),
+    limiter: Ratelimit.slidingWindow(6, '1 h'),
     prefix: 'rl',
   });
 
@@ -60,7 +60,7 @@ export async function checkRateLimit(identifier: string): Promise<RateLimitResul
 
   if (!rl) {
     // Fail open — allow request if Redis is not configured
-    return { allowed: true, remaining: 10, resetInMs: 0 };
+    return { allowed: true, remaining: 6, resetInMs: 0 };
   }
 
   try {
@@ -73,6 +73,6 @@ export async function checkRateLimit(identifier: string): Promise<RateLimitResul
   } catch (err) {
     // Fail open — allow request if Redis call fails
     console.error('[rate-limiter] Redis error, failing open:', err);
-    return { allowed: true, remaining: 10, resetInMs: 0 };
+    return { allowed: true, remaining: 6, resetInMs: 0 };
   }
 }

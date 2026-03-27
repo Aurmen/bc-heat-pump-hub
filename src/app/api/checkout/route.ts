@@ -1,18 +1,22 @@
 /**
  * /api/checkout — Create a Stripe Checkout Session for the Ghost Load Auditor PDF report.
  *
- * POST { auditData: { sqft, serviceAmps, rangeW, ... }, currency?: 'cad' | 'usd' }
+ * POST { auditData: { sqft, serviceAmps, rangeW, ... }, currency?: 'cad' | 'usd', promoCode?: string }
  *
- * Returns { url: string } — the Stripe-hosted checkout page URL.
- * Audit inputs are stored in session metadata for PDF regeneration on success.
+ * Without promoCode (or invalid): Returns { url: string } — Stripe-hosted checkout URL.
+ * With valid 100% promo code:     Returns { success: true, free: true, downloadToken: string }
+ *   — caller should then POST /api/audit-pdf with the downloadToken to get the PDF.
+ *
+ * Audit inputs are stored in Stripe session metadata for PDF regeneration on paid success.
  */
 import { NextRequest, NextResponse } from 'next/server';
 import { createCheckoutSession, type SupportedCurrency } from '@/lib/stripe';
+import { validatePromoCode, usePromoCode, createPromoDownloadToken } from '@/lib/promo';
 
 const VALID_CURRENCIES: SupportedCurrency[] = ['cad', 'usd'];
 
 export async function POST(req: NextRequest) {
-  let body: { auditData?: Record<string, unknown>; currency?: string };
+  let body: { auditData?: Record<string, unknown>; currency?: string; promoCode?: string };
   try {
     body = await req.json();
   } catch {
@@ -22,7 +26,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { auditData } = body;
+  const { auditData, promoCode } = body;
   if (!auditData || typeof auditData !== 'object') {
     return NextResponse.json(
       { error: 'Missing auditData in request body' },
@@ -30,7 +34,29 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Currency defaults to CAD (preserves existing CA behaviour)
+  // ── Promo code path ──────────────────────────────────────────────────────
+  if (promoCode && promoCode.trim()) {
+    const validation = await validatePromoCode(promoCode);
+
+    if (!validation.valid) {
+      return NextResponse.json(
+        { error: validation.reason ?? 'Invalid promo code' },
+        { status: 400 }
+      );
+    }
+
+    if (validation.discount !== 100) {
+      // Partial discounts not yet implemented — fall through to Stripe
+      // (future: apply coupon to Stripe session)
+    } else {
+      // 100% discount: skip Stripe entirely
+      await usePromoCode(promoCode);
+      const downloadToken = await createPromoDownloadToken(promoCode);
+      return NextResponse.json({ success: true, free: true, downloadToken });
+    }
+  }
+
+  // ── Normal Stripe path ───────────────────────────────────────────────────
   const currency = (body.currency?.toLowerCase() ?? 'cad') as SupportedCurrency;
   if (!VALID_CURRENCIES.includes(currency)) {
     return NextResponse.json(

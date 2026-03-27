@@ -18,6 +18,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getStripe } from '@/lib/stripe';
 import { runAudit, type AuditInputs } from '@/lib/audit-engine';
+import { writeAuditLog, type AuditLogEntry } from '@/lib/audit-log';
 import type Stripe from 'stripe';
 
 export const runtime = 'nodejs';
@@ -295,7 +296,35 @@ export async function POST(req: NextRequest) {
         }
       }
 
-      // 2. Send admin notification email
+      // 2. Persistent audit log (no PII, no TTL)
+      const paidAppliances: string[] = [];
+      if (inputs.rangeW > 0) paidAppliances.push('range');
+      if (inputs.dryerW > 0) paidAppliances.push('dryer');
+      if (inputs.waterHeaterW > 0) paidAppliances.push('water_heater');
+      if (inputs.muaW > 0) paidAppliances.push('mua');
+      if (inputs.heatingW > 0) paidAppliances.push('heating');
+      if (inputs.coolingW > 0) paidAppliances.push('cooling');
+      if (inputs.evW > 0) paidAppliances.push('ev');
+
+      const auditLogEntry: AuditLogEntry = {
+        uuid,
+        timestamp,
+        country: (session.currency === 'usd' ? 'us' : 'ca') as 'us' | 'ca',
+        standard: session.currency === 'usd' ? 'NEC 220.82' : 'CEC 8-200',
+        zip: '',
+        panelAmps: inputs.serviceAmps,
+        sqft: inputs.sqft,
+        calculatedAmps: Math.round(result.totalAmps * 10) / 10,
+        status: result.status,
+        utilization: Math.round(result.utilization * 10) / 10,
+        paid: true,
+        promoCode: session.metadata?.promo_code ?? null,
+        appliances: paidAppliances,
+        hpReplacesAc: inputs.heatingW > 0 && inputs.coolingW > 0,
+      };
+      writeAuditLog(auditLogEntry).catch(() => {});
+
+      // 3. Send admin notification email (renumbered from original step 2)
       const leadEmail = process.env.LEAD_EMAIL;
       if (leadEmail) {
         await sendEmail(

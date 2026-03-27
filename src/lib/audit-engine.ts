@@ -30,6 +30,11 @@ import 'server-only';
 /** kWh per gigajoule — used to convert gas $/GJ to $/kWh for COP crossover */
 const KWH_PER_GJ = 277.78;
 
+/** Format wattage for inline text (e.g. "5,000 W") */
+function fmtW(w: number): string {
+  return `${w.toLocaleString()} W`;
+}
+
 export interface AuditInputs {
   sqft: number;
   serviceAmps: number;
@@ -85,6 +90,16 @@ export interface ThermalResult {
   copCrossover: number;
 }
 
+/** One of the 4 HVAC load scenarios evaluated under CEC Rule 8-106(3) */
+export interface HvacOption {
+  id: 'heating_only' | 'cooling_only' | 'hp_and_ac' | 'no_hvac';
+  label: string;
+  demandW: number;
+  selected: boolean;
+  rule: string;
+  explanation: string;
+}
+
 export interface AuditResult {
   // ── Intermediate steps (for briefing transparency) ───────────────────────
   sqm: number;
@@ -105,6 +120,8 @@ export interface AuditResult {
   heatingDemand: number;    // heating load after 62-118(3) demand factor
   hvacW: number;            // applied (greater of heatingDemand vs coolingW)
   hvacIsHeating: boolean;
+  /** All 4 HVAC scenarios with the applied one marked selected */
+  hvacOptions: HvacOption[];
 
   // 8-200(1)(a)(vi) + 8-106(11) EV
   evApplied: number;        // 0 if EVEMS present, else full nameplate
@@ -184,6 +201,64 @@ export function runAudit(inputs: AuditInputs): AuditResult {
   const hvacIsHeating = heatingDemand >= coolingW;
   const hvacW = Math.max(heatingDemand, coolingW);
 
+  // ── HVAC options breakdown (all 4 scenarios for PDF transparency) ────────
+  const hasHeating = heatingW > 0;
+  const hasCooling = coolingW > 0;
+
+  // Determine which scenario the user's inputs represent
+  const selectedId: HvacOption['id'] =
+    hasHeating && hasCooling ? 'hp_and_ac' :
+    hasHeating               ? 'heating_only' :
+    hasCooling               ? 'cooling_only' :
+                               'no_hvac';
+
+  const hvacOptions: HvacOption[] = [
+    {
+      id: 'heating_only',
+      label: 'Heat Pump — Heating Only',
+      demandW: heatingDemand,
+      selected: selectedId === 'heating_only',
+      rule: 'Rule 62-118(3): 100% first 10 kW + 75% balance',
+      explanation: 'Electric heat pump for space heating with no central AC. ' +
+        'Demand factored per Rule 62-118(3) for residential occupancy with ' +
+        'per-room thermostatic control.',
+    },
+    {
+      id: 'cooling_only',
+      label: 'Central AC — Cooling Only',
+      demandW: coolingW,
+      selected: selectedId === 'cooling_only',
+      rule: 'Rule 8-200(1)(a)(iii): 100% of nameplate',
+      explanation: 'Central air conditioning at 100% of nameplate rating. ' +
+        'No space heating load is declared — cooling is the sole HVAC demand.',
+    },
+    {
+      id: 'hp_and_ac',
+      label: 'Heat Pump + AC (Interlocked)',
+      demandW: hvacW,
+      selected: selectedId === 'hp_and_ac',
+      rule: `Rule 8-106(3): use greater of heating (${fmtW(heatingDemand)}) or cooling (${fmtW(coolingW)})`,
+      explanation: hvacIsHeating
+        ? `Both heating and cooling loads are present. Per Rule 8-106(3), ` +
+          `heating and cooling cannot operate simultaneously — the greater load ` +
+          `governs. Heating demand (${fmtW(heatingDemand)}) exceeds cooling ` +
+          `(${fmtW(coolingW)}), so heating is applied and cooling is excluded.`
+        : `Both heating and cooling loads are present. Per Rule 8-106(3), ` +
+          `heating and cooling cannot operate simultaneously — the greater load ` +
+          `governs. Cooling (${fmtW(coolingW)}) exceeds heating demand ` +
+          `(${fmtW(heatingDemand)}), so cooling is applied and heating is excluded.`,
+    },
+    {
+      id: 'no_hvac',
+      label: 'No HVAC Change',
+      demandW: 0,
+      selected: selectedId === 'no_hvac',
+      rule: 'N/A — no heating or cooling load declared',
+      explanation: 'Neither space heating nor cooling loads are included in the ' +
+        'calculation. This represents the base electrical load without any HVAC equipment.',
+    },
+  ];
+
   // ── 8-200(1)(a)(vi) + 8-106(11) EV supply equipment ─────────────────────
   // If an Electric Vehicle Energy Management System (EVEMS) per Rule 8-500 is
   // present and performs both monitoring (service/feeders/branch circuits) and
@@ -261,7 +336,7 @@ export function runAudit(inputs: AuditInputs): AuditResult {
   return {
     sqm, extraBlocks, basicLoadW,
     rangeApplied, dryerApplied, waterHeaterApplied, muaApplied,
-    heatingDemand, hvacW, hvacIsHeating,
+    heatingDemand, hvacW, hvacIsHeating, hvacOptions,
     evApplied,
     calculatedW, minDemandW, totalW,
     totalAmps, utilization, continuousLimit,
