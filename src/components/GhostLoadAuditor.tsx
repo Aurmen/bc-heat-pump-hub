@@ -1201,17 +1201,6 @@ export default function GhostLoadAuditor() {
       {/* ── Results ── */}
       {calculated && resultA && (
         <div className="space-y-6">
-          {/* Launch promo banner */}
-          {launchPromoRemaining !== null && launchPromoRemaining > 0 && promoStatus !== 'valid' && (
-            <div className="bg-primary-50 border border-primary-300 rounded-xl px-5 py-3 flex items-center gap-3">
-              <span className="text-primary-700 font-semibold text-sm">Launch special</span>
-              <span className="text-primary-600 text-sm">
-                Free report with code{' '}
-                <span className="font-mono font-bold text-primary-800">LAUNCH2026</span>
-                {' '}({launchPromoRemaining} of 100 remaining)
-              </span>
-            </div>
-          )}
 
           <div>
             <h2 className="text-lg font-bold text-gray-800 mb-4">
@@ -1245,8 +1234,8 @@ export default function GhostLoadAuditor() {
             )}
           </div>
 
-          {/* Action row: breakdown toggle + PDF download */}
-          <div className="flex flex-wrap items-center gap-4">
+          {/* Breakdown toggle */}
+          <div>
             <button
               onClick={() => setShowBreakdown((prev) => !prev)}
               className="flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors"
@@ -1254,7 +1243,55 @@ export default function GhostLoadAuditor() {
               <span>{showBreakdown ? '▲' : '▼'}</span>
               {showBreakdown ? 'Hide' : 'Show'} full CEC 8-200 calculation breakdown
             </button>
+          </div>
 
+          {/* Purchase section: banner → promo input → buy button */}
+          <div className="space-y-3">
+            {/* Launch promo banner */}
+            {launchPromoRemaining !== null && launchPromoRemaining > 0 && promoStatus !== 'valid' && (
+              <div className="bg-primary-50 border border-primary-300 rounded-xl px-5 py-3 flex items-center gap-3">
+                <span className="text-primary-700 font-semibold text-sm">Launch special</span>
+                <span className="text-primary-600 text-sm">
+                  Free report with code{' '}
+                  <span className="font-mono font-bold text-primary-800">LAUNCH2026</span>
+                  {' '}({launchPromoRemaining} of 100 remaining)
+                </span>
+              </div>
+            )}
+
+            {/* Promo code input — always visible until a valid code is applied */}
+            {promoStatus !== 'valid' && (
+              <div className="flex items-start gap-3">
+                <div className="flex-1 max-w-xs">
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      placeholder="Have a promo code?"
+                      value={promoInput}
+                      onChange={e => {
+                        setPromoInput(e.target.value);
+                        setPromoStatus('idle');
+                        setPromoError('');
+                      }}
+                      onKeyDown={e => { if (e.key === 'Enter') handleApplyPromo(); }}
+                      className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    />
+                    <button
+                      onClick={handleApplyPromo}
+                      disabled={promoStatus === 'checking' || !promoInput.trim()}
+                      className="text-sm font-medium text-primary-600 hover:text-primary-700 disabled:opacity-40 px-3 py-2 border border-primary-300 rounded-lg"
+                    >
+                      {promoStatus === 'checking' ? '...' : 'Apply'}
+                    </button>
+                  </div>
+                  {promoStatus === 'invalid' && (
+                    <p className="text-xs text-red-600 mt-1">{promoError}</p>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Purchase / free download button */}
             {promoStatus !== 'valid' && (
               <div>
                 <button
@@ -1301,38 +1338,6 @@ export default function GhostLoadAuditor() {
               </div>
             )}
           </div>
-
-          {/* Promo code input */}
-          {promoStatus !== 'valid' && (
-            <div className="flex items-start gap-3 mt-2">
-              <div className="flex-1 max-w-xs">
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    placeholder="Have a promo code?"
-                    value={promoInput}
-                    onChange={e => {
-                      setPromoInput(e.target.value);
-                      setPromoStatus('idle');
-                      setPromoError('');
-                    }}
-                    onKeyDown={e => { if (e.key === 'Enter') handleApplyPromo(); }}
-                    className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  />
-                  <button
-                    onClick={handleApplyPromo}
-                    disabled={promoStatus === 'checking' || !promoInput.trim()}
-                    className="text-sm font-medium text-primary-600 hover:text-primary-700 disabled:opacity-40 px-3 py-2 border border-primary-300 rounded-lg"
-                  >
-                    {promoStatus === 'checking' ? '...' : 'Apply'}
-                  </button>
-                </div>
-                {promoStatus === 'invalid' && (
-                  <p className="text-xs text-red-600 mt-1">{promoError}</p>
-                )}
-              </div>
-            </div>
-          )}
 
           {showBreakdown && (
             <CalcBreakdown
