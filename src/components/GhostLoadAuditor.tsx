@@ -731,17 +731,24 @@ export default function GhostLoadAuditor() {
     setShowBreakdown(false);
   }
 
-  // Fetch LAUNCH2026 remaining count when results are shown
+  // Fetch LAUNCH2026 remaining count on mount (also powers the pricing card banner)
   useEffect(() => {
-    if (!calculated) return;
     fetch('/api/promo?code=LAUNCH2026')
       .then(r => r.json())
       .then((data: { valid: boolean; remaining: number }) => {
-        if (data.valid) setLaunchPromoRemaining(data.remaining);
-        else setLaunchPromoRemaining(0);
+        const remaining = data.valid ? data.remaining : 0;
+        setLaunchPromoRemaining(remaining);
+        console.log('PROMO DEBUG:', {
+          promoActive: data.valid,
+          promoRemaining: remaining,
+          promoApplied: false,
+        });
       })
-      .catch(() => {});
-  }, [calculated]);
+      .catch(() => {
+        // Fail open — show promo input even if fetch fails
+        setLaunchPromoRemaining(0);
+      });
+  }, []);
 
   async function handleApplyPromo() {
     if (!promoInput.trim()) return;
@@ -1248,13 +1255,13 @@ export default function GhostLoadAuditor() {
           {/* Purchase section: banner → promo input → buy button */}
           <div className="space-y-3">
             {/* Launch promo banner */}
-            {launchPromoRemaining !== null && launchPromoRemaining > 0 && promoStatus !== 'valid' && (
+            {(launchPromoRemaining === null || launchPromoRemaining > 0) && promoStatus !== 'valid' && (
               <div className="bg-primary-50 border border-primary-300 rounded-xl px-5 py-3 flex items-center gap-3">
                 <span className="text-primary-700 font-semibold text-sm">Launch special</span>
                 <span className="text-primary-600 text-sm">
                   Free report with code{' '}
                   <span className="font-mono font-bold text-primary-800">LAUNCH2026</span>
-                  {' '}({launchPromoRemaining} of 100 remaining)
+                  {launchPromoRemaining !== null ? ` (${launchPromoRemaining} of 100 remaining)` : ''}
                 </span>
               </div>
             )}
@@ -1660,13 +1667,13 @@ export default function GhostLoadAuditor() {
               </ul>
 
               {/* Launch promo banner */}
-              {launchPromoRemaining !== null && launchPromoRemaining > 0 && promoStatus !== 'valid' && (
+              {(launchPromoRemaining === null || launchPromoRemaining > 0) && promoStatus !== 'valid' && (
                 <div className="bg-primary-50 border border-primary-200 rounded-lg px-3 py-2 mb-3 flex items-center gap-2">
                   <span className="text-primary-700 font-semibold text-xs">Launch special</span>
                   <span className="text-primary-600 text-xs">
                     Free with code{' '}
                     <span className="font-mono font-bold text-primary-800">LAUNCH2026</span>
-                    {' '}({launchPromoRemaining} of 100 remaining)
+                    {launchPromoRemaining !== null ? ` (${launchPromoRemaining} of 100 remaining)` : ''}
                   </span>
                 </div>
               )}
