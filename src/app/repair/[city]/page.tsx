@@ -29,7 +29,7 @@ export async function generateMetadata({
     title: `Heat Pump Repair ${city.name} BC | Emergency Service Guide 2026`,
     description: `Emergency heat pump repair in ${city.name}, BC. Pre-call checklist, symptom guide, local repair costs, and licensed technicians. ${city.climateHeadline}`,
     alternates: {
-      canonical: `https://canadianheatpumphub.ca/repair/${city.slug}`,
+      canonical: `https://heatpumplocator.com/repair/${city.slug}`,
     },
   };
 }
@@ -68,9 +68,9 @@ export default async function CityRepairPage({
   const listings = getListingsByCity(city.name);
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Heat Pump Repair', url: 'https://canadianheatpumphub.ca/repair' },
-    { name: city.name, url: `https://canadianheatpumphub.ca/repair/${city.slug}` },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Heat Pump Repair', url: 'https://heatpumplocator.com/repair' },
+    { name: city.name, url: `https://heatpumplocator.com/repair/${city.slug}` },
   ];
 
   const costCol =

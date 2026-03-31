@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   title: 'Connect with a Technical Specialist | Canadian Heat Pump Hub',
   description:
     'Submit your heat pump inquiry to our technical curator. We review your project details and connect you with a verified local contractor in BC.',
-  alternates: { canonical: 'https://canadianheatpumphub.ca/connect' },
+  alternates: { canonical: 'https://heatpumplocator.com/connect' },
 };
 
 export default function ConnectPage() {
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Connect', url: 'https://canadianheatpumphub.ca/connect' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Connect', url: 'https://heatpumplocator.com/connect' },
   ];
 
   return (

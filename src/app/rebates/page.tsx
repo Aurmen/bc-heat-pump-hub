@@ -5,7 +5,7 @@ import ArticleMeta from '@/components/ArticleMeta';
 export const metadata: Metadata = {
   title: 'BC Heat Pump Rebates 2026 - Complete Guide | Canadian Heat Pump Hub',
   description: 'Complete guide to heat pump rebates in British Columbia for 2026. CleanBC income-qualified programs, OHPA for oil/propane, and utility rebates. Federal Greener Homes Grant discontinued.',
-  alternates: { canonical: 'https://canadianheatpumphub.ca/rebates' },
+  alternates: { canonical: 'https://heatpumplocator.com/rebates' },
 };
 
 export default function RebatesPage() {
@@ -427,8 +427,8 @@ export default function RebatesPage() {
       <div className="mt-12 bg-blue-50 border-l-4 border-primary-500 p-6">
         <p className="text-sm text-gray-700">
           <strong>Questions about rebates?</strong> Email us at{' '}
-          <a href="mailto:contact@canadianheatpumphub.ca" className="text-primary-600 hover:text-primary-700">
-            contact@canadianheatpumphub.ca
+          <a href="mailto:contact@heatpumplocator.com" className="text-primary-600 hover:text-primary-700">
+            contact@heatpumplocator.com
           </a>
         </p>
       </div>

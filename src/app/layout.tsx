@@ -7,7 +7,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://canadianheatpumphub.ca'),
+  metadataBase: new URL('https://heatpumplocator.com'),
   icons: {
     icon: '/favicon.png',
     apple: '/favicon.png',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_CA',
-    url: 'https://canadianheatpumphub.ca',
+    url: 'https://heatpumplocator.com',
     siteName: 'Canadian Heat Pump Hub',
     images: [
       {

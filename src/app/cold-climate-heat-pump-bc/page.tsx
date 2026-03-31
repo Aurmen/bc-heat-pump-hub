@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Cold Climate Heat Pumps in BC - Kelowna, Kamloops, Prince George | 2026 Guide',
   description: 'Complete guide to cold climate heat pumps for BC Interior winters. Performance to -25°C, costs, efficiency ratings, and recommended models for Kelowna, Kamloops, Prince George, Vernon.',
   alternates: {
-    canonical: 'https://canadianheatpumphub.ca/cold-climate-heat-pump-bc',
+    canonical: 'https://heatpumplocator.com/cold-climate-heat-pump-bc',
   },
   openGraph: {
     title: 'Cold Climate Heat Pumps in BC - Interior Winters Guide',
     description: 'How cold climate heat pumps perform in Kelowna, Kamloops, and Interior BC. Technical specs, costs, and installer recommendations.',
-    url: 'https://canadianheatpumphub.ca/cold-climate-heat-pump-bc',
+    url: 'https://heatpumplocator.com/cold-climate-heat-pump-bc',
   },
 };
 
@@ -22,8 +22,8 @@ export default function ColdClimateHeatPumpBCPage() {
   );
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Cold Climate Heat Pumps BC', url: 'https://canadianheatpumphub.ca/cold-climate-heat-pump-bc' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Cold Climate Heat Pumps BC', url: 'https://heatpumplocator.com/cold-climate-heat-pump-bc' },
   ];
 
   return (

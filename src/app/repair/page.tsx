@@ -7,7 +7,7 @@ import { getAllListings } from '@/lib/utils';
 export const metadata: Metadata = {
   title: 'Heat Pump Repair & Emergency Service in BC | Canadian Heat Pump Hub',
   description: 'Find heat pump repair and emergency HVAC service across British Columbia. Pre-call checklists, repair cost tables, and local contractor listings for Vancouver, Surrey, Burnaby, Kelowna, and more.',
-  alternates: { canonical: 'https://canadianheatpumphub.ca/repair' },
+  alternates: { canonical: 'https://heatpumplocator.com/repair' },
 };
 
 const lowerMainlandCities = repairCities.filter(c => c.region === 'Lower Mainland');
@@ -22,8 +22,8 @@ export default function RepairHubPage() {
   }
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Heat Pump Repair', url: 'https://canadianheatpumphub.ca/repair' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Heat Pump Repair', url: 'https://heatpumplocator.com/repair' },
   ];
 
   const regionGroups = [

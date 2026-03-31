@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'BC Heat Pump Case Studies & Technical Audits',
   description: 'In-depth technical case studies on heat pump installations, mechanical failures, and system audits in British Columbia. Written by a Red Seal Refrigeration Mechanic and Class A Gas Fitter.',
   alternates: {
-    canonical: 'https://canadianheatpumphub.ca/case-studies',
+    canonical: 'https://heatpumplocator.com/case-studies',
   },
 };
 
@@ -22,8 +22,8 @@ const caseStudies = [
 ];
 
 const breadcrumbItems = [
-  { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-  { name: 'Case Studies', url: 'https://canadianheatpumphub.ca/case-studies' },
+  { name: 'Home', url: 'https://heatpumplocator.com' },
+  { name: 'Case Studies', url: 'https://heatpumplocator.com/case-studies' },
 ];
 
 export default function CaseStudiesPage() {

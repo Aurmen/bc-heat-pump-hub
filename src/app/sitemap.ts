@@ -7,7 +7,7 @@ import { supplyHouses } from '@/data/supply-houses';
 import { repairCities } from '@/data/repair-cities';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://canadianheatpumphub.ca';
+  const baseUrl = 'https://heatpumplocator.com';
 
   const guides = [
     'types-of-heat-pumps-bc',

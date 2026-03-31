@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title: 'BC Heat Pump Installers - Find TSBC Verified Contractors | 2026',
   description: 'Find licensed heat pump installers across British Columbia. TSBC-verified contractors for ductless, ducted, and air-to-water heat pump installation. Compare costs, read reviews, get quotes.',
   alternates: {
-    canonical: 'https://canadianheatpumphub.ca/bc-heat-pump-installers',
+    canonical: 'https://heatpumplocator.com/bc-heat-pump-installers',
   },
   openGraph: {
     title: 'BC Heat Pump Installers - Find TSBC Verified Contractors',
     description: 'Find licensed heat pump installers across British Columbia. TSBC-verified contractors for residential and commercial projects.',
-    url: 'https://canadianheatpumphub.ca/bc-heat-pump-installers',
+    url: 'https://heatpumplocator.com/bc-heat-pump-installers',
   },
 };
 
@@ -24,8 +24,8 @@ export default function BCHeatPumpInstallersPage() {
   const totalCities = cities.length;
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'BC Heat Pump Installers', url: 'https://canadianheatpumphub.ca/bc-heat-pump-installers' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'BC Heat Pump Installers', url: 'https://heatpumplocator.com/bc-heat-pump-installers' },
   ];
 
   return (

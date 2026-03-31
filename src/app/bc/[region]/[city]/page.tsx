@@ -43,12 +43,12 @@ export async function generateMetadata({ params }: { params: Promise<{ region: s
     title: `${city.name} Heat Pump Installers`,
     description: `Find heat pump and boiler replacement installers in ${city.name}, ${city.region}, BC. ${city.climateNotes}`,
     alternates: {
-      canonical: `https://canadianheatpumphub.ca/bc/${city.regionSlug}/${city.slug}`,
+      canonical: `https://heatpumplocator.com/bc/${city.regionSlug}/${city.slug}`,
     },
     openGraph: {
       title: `${city.name} Heat Pump Installers`,
       description: `Find heat pump and boiler replacement installers in ${city.name}, ${city.region}, BC.`,
-      url: `https://canadianheatpumphub.ca/bc/${city.regionSlug}/${city.slug}`,
+      url: `https://heatpumplocator.com/bc/${city.regionSlug}/${city.slug}`,
     },
   };
 }
@@ -64,10 +64,10 @@ export default async function CityPage({ params }: { params: Promise<{ region: s
   const listings = getListingsByCity(city.name);
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'BC', url: 'https://canadianheatpumphub.ca/bc' },
-    { name: city.region, url: `https://canadianheatpumphub.ca/bc/${city.regionSlug}` },
-    { name: city.name, url: `https://canadianheatpumphub.ca/bc/${city.regionSlug}/${city.slug}` },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'BC', url: 'https://heatpumplocator.com/bc' },
+    { name: city.region, url: `https://heatpumplocator.com/bc/${city.regionSlug}` },
+    { name: city.name, url: `https://heatpumplocator.com/bc/${city.regionSlug}/${city.slug}` },
   ];
 
   return (

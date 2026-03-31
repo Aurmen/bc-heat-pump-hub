@@ -30,7 +30,7 @@ export async function generateMetadata({
     title: `${house.name} – HVAC Supply in BC | ${cities.slice(0, 3).join(', ')}`,
     description: `${house.name} operates ${house.locations.length} BC location${house.locations.length !== 1 ? 's' : ''} stocking ${house.brands.slice(0, 4).join(', ')}${house.brands.length > 4 ? ' and more' : ''}. Find branch locations and contact details for wholesale HVAC and heat pump supplies.`,
     alternates: {
-      canonical: `https://canadianheatpumphub.ca/supply-houses/${house.slug}`,
+      canonical: `https://heatpumplocator.com/supply-houses/${house.slug}`,
     },
   };
 }
@@ -71,11 +71,11 @@ export default async function SupplyHousePage({
   if (!house) notFound();
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Supply Houses', url: 'https://canadianheatpumphub.ca/supply-houses' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Supply Houses', url: 'https://heatpumplocator.com/supply-houses' },
     {
       name: house.shortName ?? house.name,
-      url: `https://canadianheatpumphub.ca/supply-houses/${house.slug}`,
+      url: `https://heatpumplocator.com/supply-houses/${house.slug}`,
     },
   ];
 

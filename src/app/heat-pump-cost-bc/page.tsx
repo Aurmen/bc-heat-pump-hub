@@ -8,19 +8,19 @@ export const metadata: Metadata = {
   title: 'Heat Pump Cost BC - Installation & Operating Costs 2026 | Complete Guide',
   description: 'Complete guide to heat pump costs in British Columbia. Installation costs $8,500-24,500. Income-qualified rebates up to $16,000. Estimated operating costs 40-65% less than baseboard depending on climate zone.',
   alternates: {
-    canonical: 'https://canadianheatpumphub.ca/heat-pump-cost-bc',
+    canonical: 'https://heatpumplocator.com/heat-pump-cost-bc',
   },
   openGraph: {
     title: 'Heat Pump Cost BC - Installation & Operating Costs 2026',
     description: 'Complete breakdown of heat pump installation costs, operating costs, rebates, and payback periods across British Columbia.',
-    url: 'https://canadianheatpumphub.ca/heat-pump-cost-bc',
+    url: 'https://heatpumplocator.com/heat-pump-cost-bc',
   },
 };
 
 export default function HeatPumpCostBCPage() {
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Heat Pump Cost BC', url: 'https://canadianheatpumphub.ca/heat-pump-cost-bc' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Heat Pump Cost BC', url: 'https://heatpumplocator.com/heat-pump-cost-bc' },
   ];
 
   return (

@@ -7,13 +7,13 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 export const metadata: Metadata = {
   title: 'British Columbia Heat Pump Installers by City',
   description: 'Find heat pump and boiler replacement installers across BC regions: Lower Mainland, Vancouver Island, and Interior.',
-  alternates: { canonical: 'https://canadianheatpumphub.ca/bc' },
+  alternates: { canonical: 'https://heatpumplocator.com/bc' },
 };
 
 export default function BCPage() {
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'BC', url: 'https://canadianheatpumphub.ca/bc' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'BC', url: 'https://heatpumplocator.com/bc' },
   ];
 
   return (

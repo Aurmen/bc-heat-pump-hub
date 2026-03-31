@@ -7,7 +7,7 @@ import { checkRateLimit } from '@/lib/rate-limiter';
 import { runAudit } from '@/lib/audit-engine';
 
 const BCC_ADDRESS = 'audits@aurmen.com';
-const FROM_ADDRESS = 'Canadian Heat Pump Hub <audits@canadianheatpumphub.ca>';
+const FROM_ADDRESS = 'Canadian Heat Pump Hub <audits@heatpumplocator.com>';
 
 export async function POST(req: NextRequest) {
   // ── Rate limiting ────────────────────────────────────────────────────────

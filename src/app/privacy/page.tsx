@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Privacy Policy & Terms of Service',
   description: 'Privacy policy and terms of service for Canadian Heat Pump Hub. How we collect, use, and protect your information.',
-  alternates: { canonical: 'https://canadianheatpumphub.ca/privacy' },
+  alternates: { canonical: 'https://heatpumplocator.com/privacy' },
 };
 
 export default function PrivacyPage() {
@@ -51,15 +51,15 @@ export default function PrivacyPage() {
         <p className="text-gray-700 mb-4">
           Audit submissions are retained in our secure inbox for up to 24 months to support any
           follow-up questions about your report. You may request deletion at any time by emailing{' '}
-          <a href="mailto:contact@canadianheatpumphub.ca" className="text-primary-600 underline">
-            contact@canadianheatpumphub.ca
+          <a href="mailto:contact@heatpumplocator.com" className="text-primary-600 underline">
+            contact@heatpumplocator.com
           </a>.
         </p>
 
         <h3 className="text-lg font-semibold text-gray-900 mt-6 mb-2">Cookies</h3>
         <p className="text-gray-700 mb-4">
           We use cookies for Google Analytics (analytics) and Stripe (payment processing). No
-          tracking or advertising cookies are set by canadianheatpumphub.ca itself. You can disable
+          tracking or advertising cookies are set by heatpumplocator.com itself. You can disable
           cookies in your browser settings; this will not affect your ability to use the site.
         </p>
 
@@ -68,8 +68,8 @@ export default function PrivacyPage() {
           Under Canadian federal PIPEDA and BC&apos;s Personal Information Protection Act, you have
           the right to access, correct, or request deletion of your personal information. Contact us
           at{' '}
-          <a href="mailto:contact@canadianheatpumphub.ca" className="text-primary-600 underline">
-            contact@canadianheatpumphub.ca
+          <a href="mailto:contact@heatpumplocator.com" className="text-primary-600 underline">
+            contact@heatpumplocator.com
           </a>{' '}
           with any privacy requests.
         </p>
@@ -130,8 +130,8 @@ export default function PrivacyPage() {
             Contact us
           </Link>{' '}
           or email{' '}
-          <a href="mailto:contact@canadianheatpumphub.ca" className="text-primary-600 underline">
-            contact@canadianheatpumphub.ca
+          <a href="mailto:contact@heatpumplocator.com" className="text-primary-600 underline">
+            contact@heatpumplocator.com
           </a>.
         </p>
       </div>

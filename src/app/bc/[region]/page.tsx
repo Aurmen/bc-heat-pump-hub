@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ region: s
   return {
     title: `${region.name} Heat Pump Installers`,
     description: `Heat pump and boiler replacement installers in ${region.name}, BC. ${region.description}`,
-    alternates: { canonical: `https://canadianheatpumphub.ca/bc/${regionSlug}` },
+    alternates: { canonical: `https://heatpumplocator.com/bc/${regionSlug}` },
   };
 }
 
@@ -34,9 +34,9 @@ export default async function RegionPage({ params }: { params: Promise<{ region:
   const regionCities = getCitiesByRegion(region.slug);
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'BC', url: 'https://canadianheatpumphub.ca/bc' },
-    { name: region.name, url: `https://canadianheatpumphub.ca/bc/${region.slug}` },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'BC', url: 'https://heatpumplocator.com/bc' },
+    { name: region.name, url: `https://heatpumplocator.com/bc/${region.slug}` },
   ];
 
   return (

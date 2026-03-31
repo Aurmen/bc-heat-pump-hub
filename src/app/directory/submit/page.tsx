@@ -493,7 +493,7 @@ export default function DirectorySubmitPage() {
           {status === 'error' && (
             <div className="bg-red-50 border-2 border-red-500 rounded-lg p-4">
               <p className="text-red-800 font-semibold">Submission Error</p>
-              <p className="text-red-700 text-sm">{errorMessage || 'Please try again or email us directly at contact@canadianheatpumphub.ca'}</p>
+              <p className="text-red-700 text-sm">{errorMessage || 'Please try again or email us directly at contact@heatpumplocator.com'}</p>
             </div>
           )}
 
@@ -534,8 +534,8 @@ export default function DirectorySubmitPage() {
         </ol>
         <p className="text-sm text-gray-700 mt-4">
           <strong>Questions?</strong> Email us at{' '}
-          <a href="mailto:contact@canadianheatpumphub.ca" className="text-primary-600 underline">
-            contact@canadianheatpumphub.ca
+          <a href="mailto:contact@heatpumplocator.com" className="text-primary-600 underline">
+            contact@heatpumplocator.com
           </a>
         </p>
       </div>

@@ -51,11 +51,11 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="mailto:contact@canadianheatpumphub.ca"
+                  href="mailto:contact@heatpumplocator.com"
                   className="text-gray-600 hover:text-primary-600 flex items-center gap-2"
                 >
                   <span>✉️</span>
-                  <span>contact@canadianheatpumphub.ca</span>
+                  <span>contact@heatpumplocator.com</span>
                 </a>
               </li>
               <li>

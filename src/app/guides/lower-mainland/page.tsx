@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     'Technical guides for Metro Vancouver heat pump installations. Strata approval roadmaps, 100A panel solutions, EPR compliance, and rebate navigation for Vancouver, Surrey, Burnaby, and Richmond homeowners.',
   alternates: {
-    canonical: 'https://canadianheatpumphub.ca/guides/lower-mainland',
+    canonical: 'https://heatpumplocator.com/guides/lower-mainland',
   },
   keywords: [
     'Lower Mainland heat pump guide',
@@ -83,9 +83,9 @@ const serviceAreaLinks = [
 
 export default function LowerMainlandResourceCenter() {
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Guides', url: 'https://canadianheatpumphub.ca/guides' },
-    { name: 'Lower Mainland', url: 'https://canadianheatpumphub.ca/guides/lower-mainland' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Guides', url: 'https://heatpumplocator.com/guides' },
+    { name: 'Lower Mainland', url: 'https://heatpumplocator.com/guides/lower-mainland' },
   ];
 
   return (

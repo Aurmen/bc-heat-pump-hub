@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Heat Pump Replacement Cost BC — Check Panel Capacity First',
   description:
     'Before you get a heat pump quote, run a CEC 8-200 load calculation. The Ghost Load Auditor tells you what your panel can handle — 10 minutes, $24.99.',
-  alternates: { canonical: 'https://canadianheatpumphub.ca/auditor' },
+  alternates: { canonical: 'https://heatpumplocator.com/auditor' },
   keywords: [
     'CEC 8-200 load calculation',
     '100 amp panel heat pump BC',
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
 
 export default function AuditorPage() {
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Ghost Load Auditor', url: 'https://canadianheatpumphub.ca/auditor' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Ghost Load Auditor', url: 'https://heatpumplocator.com/auditor' },
   ];
 
   return (
@@ -30,7 +30,7 @@ export default function AuditorPage() {
       <WebApplicationJsonLd
         name="Ghost Load Auditor — CEC 8-200 Panel Feasibility Tool"
         description="Free CEC Rule 8-200 Optional Method load calculation. Determine if your 100A panel can support a heat pump and EV charger before committing to equipment or permits."
-        url="https://canadianheatpumphub.ca/auditor"
+        url="https://heatpumplocator.com/auditor"
         keywords={[
           'CEC 8-200 load calculation',
           '100 amp panel heat pump',

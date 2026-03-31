@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     'Find wholesale HVAC and heat pump supply houses in British Columbia. Compare distributors by brand, location, and region — Lower Mainland, Vancouver Island, and BC Interior.',
   alternates: {
-    canonical: 'https://canadianheatpumphub.ca/supply-houses',
+    canonical: 'https://heatpumplocator.com/supply-houses',
   },
 };
 
 const breadcrumbItems = [
-  { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-  { name: 'Supply Houses', url: 'https://canadianheatpumphub.ca/supply-houses' },
+  { name: 'Home', url: 'https://heatpumplocator.com' },
+  { name: 'Supply Houses', url: 'https://heatpumplocator.com/supply-houses' },
 ];
 
 const REGION_ORDER = ['Lower Mainland', 'Vancouver Island', 'Interior', 'Northern BC'] as const;

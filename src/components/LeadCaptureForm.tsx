@@ -54,7 +54,7 @@ export default function LeadCaptureForm() {
       if (!res.ok) throw new Error('Submission failed');
       setSubmitted(true);
     } catch {
-      setError('Something went wrong. Please try again or email us directly at contact@canadianheatpumphub.ca');
+      setError('Something went wrong. Please try again or email us directly at contact@heatpumplocator.com');
     } finally {
       setLoading(false);
     }

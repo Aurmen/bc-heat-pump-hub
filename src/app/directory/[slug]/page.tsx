@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${listing.company_name} | Heat Pump Installer ${listing.city}, BC`,
     description: `${listing.company_name} provides ${listing.services.map(s => formatServiceName(s)).join(', ')} in ${listing.city}, ${listing.region}, BC. View contact details, services, and verified credentials.`,
     alternates: {
-      canonical: `https://canadianheatpumphub.ca/directory/${listing.slug}`,
+      canonical: `https://heatpumplocator.com/directory/${listing.slug}`,
     },
   };
 }
@@ -36,9 +36,9 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
   }
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Directory', url: 'https://canadianheatpumphub.ca/directory' },
-    { name: listing.company_name, url: `https://canadianheatpumphub.ca/directory/${listing.slug}` },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Directory', url: 'https://heatpumplocator.com/directory' },
+    { name: listing.company_name, url: `https://heatpumplocator.com/directory/${listing.slug}` },
   ];
 
   return (
@@ -172,8 +172,8 @@ export default async function CompanyPage({ params }: { params: Promise<{ slug: 
         <div className="bg-blue-50 border-l-4 border-primary-500 p-6 mb-8">
           <p className="text-sm text-gray-700">
             <strong>Suggest an update?</strong> Email us at{' '}
-            <a href="mailto:contact@canadianheatpumphub.ca" className="text-primary-600 hover:text-primary-700">
-              contact@canadianheatpumphub.ca
+            <a href="mailto:contact@heatpumplocator.com" className="text-primary-600 hover:text-primary-700">
+              contact@heatpumplocator.com
             </a>
           </p>
         </div>

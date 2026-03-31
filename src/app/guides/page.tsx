@@ -5,7 +5,7 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 export const metadata: Metadata = {
   title: 'Heat Pump Guides',
   description: 'Complete guides on heat pump costs, ROI, efficiency ratings (SEER/HSPF), air-to-water systems, and hybrid heating for BC homes. Compare ductless vs central systems.',
-  alternates: { canonical: 'https://canadianheatpumphub.ca/guides' },
+  alternates: { canonical: 'https://heatpumplocator.com/guides' },
 };
 
 const guides = [
@@ -118,8 +118,8 @@ const guides = [
 
 export default function GuidesPage() {
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Guides', url: 'https://canadianheatpumphub.ca/guides' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Guides', url: 'https://heatpumplocator.com/guides' },
   ];
 
   return (

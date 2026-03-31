@@ -6,7 +6,7 @@
  * automation pipelines (Zapier, Mailchimp, social posting).
  */
 
-const SITE_URL = 'https://canadianheatpumphub.ca';
+const SITE_URL = 'https://heatpumplocator.com';
 const SITE_TITLE = 'Canadian Heat Pump Hub';
 const SITE_DESCRIPTION = 'BC heat pump guides, rebate updates, brand comparisons, and installation cost data. Honest, verified information for homeowners.';
 

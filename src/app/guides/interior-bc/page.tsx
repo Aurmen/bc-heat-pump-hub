@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     'Technical heat pump guidance for BC Interior homeowners. Cold-climate ASHP sizing, dual-fuel hybrid systems, and balance point planning for Kelowna, Kamloops, Vernon, and Penticton.',
   alternates: {
-    canonical: 'https://canadianheatpumphub.ca/guides/interior-bc',
+    canonical: 'https://heatpumplocator.com/guides/interior-bc',
   },
   keywords: [
     'Interior BC heat pump guide',
@@ -82,9 +82,9 @@ const serviceAreaLinks = [
 
 export default function InteriorBCResourceCenter() {
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Guides', url: 'https://canadianheatpumphub.ca/guides' },
-    { name: 'Interior BC', url: 'https://canadianheatpumphub.ca/guides/interior-bc' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Guides', url: 'https://heatpumplocator.com/guides' },
+    { name: 'Interior BC', url: 'https://heatpumplocator.com/guides/interior-bc' },
   ];
 
   return (

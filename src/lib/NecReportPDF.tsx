@@ -274,7 +274,7 @@ export function NecReportDocument({ reportId, generatedAt, inputs, result }: Nec
       title={`Ghost Load Audit (NEC) - ${reportId}`}
       author="Aelric Technologies"
       subject="NEC 220.82 Optional Calculation Report"
-      creator="canadianheatpumphub.ca"
+      creator="heatpumplocator.com"
       producer="Ghost Load Auditor v2026"
       keywords="NEC 220.82, heat pump, electrical service, panel audit"
     >

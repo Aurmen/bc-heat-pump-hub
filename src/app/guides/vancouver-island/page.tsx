@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     'Technical heat pump guidance for Vancouver Island homeowners. Victoria and Saanich EL-4 compliance, air-to-water systems, strata approvals, and rebate navigation for Victoria, Nanaimo, Courtenay, and Campbell River.',
   alternates: {
-    canonical: 'https://canadianheatpumphub.ca/guides/vancouver-island',
+    canonical: 'https://heatpumplocator.com/guides/vancouver-island',
   },
   keywords: [
     'Vancouver Island heat pump guide',
@@ -82,9 +82,9 @@ const serviceAreaLinks = [
 
 export default function VancouverIslandResourceCenter() {
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Guides', url: 'https://canadianheatpumphub.ca/guides' },
-    { name: 'Vancouver Island', url: 'https://canadianheatpumphub.ca/guides/vancouver-island' },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Guides', url: 'https://heatpumplocator.com/guides' },
+    { name: 'Vancouver Island', url: 'https://heatpumplocator.com/guides/vancouver-island' },
   ];
 
   return (

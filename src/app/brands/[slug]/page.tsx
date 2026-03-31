@@ -25,7 +25,7 @@ export async function generateMetadata({
     title: `${brand.name} Heat Pump Dealers in BC | Canadian Heat Pump Hub`,
     description: `Find certified ${brand.name} heat pump installers and dealers in British Columbia. ${brand.bcNotes}`,
     alternates: {
-      canonical: `https://canadianheatpumphub.ca/brands/${brand.slug}`,
+      canonical: `https://heatpumplocator.com/brands/${brand.slug}`,
     },
   };
 }
@@ -67,9 +67,9 @@ export default async function BrandPage({
   const supplyHousesForBrand = getSupplyHousesByBrand(brand.name);
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Brands', url: 'https://canadianheatpumphub.ca/brands' },
-    { name: brand.name, url: `https://canadianheatpumphub.ca/brands/${brand.slug}` },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Brands', url: 'https://heatpumplocator.com/brands' },
+    { name: brand.name, url: `https://heatpumplocator.com/brands/${brand.slug}` },
   ];
 
   return (

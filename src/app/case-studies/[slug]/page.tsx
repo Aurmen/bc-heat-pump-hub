@@ -57,7 +57,7 @@ export async function generateMetadata({
     description: meta.description,
     keywords: meta.keywords,
     alternates: {
-      canonical: `https://canadianheatpumphub.ca/case-studies/${slug}`,
+      canonical: `https://heatpumplocator.com/case-studies/${slug}`,
     },
   };
 }
@@ -76,9 +76,9 @@ export default async function CaseStudyPage({
   if (!Content) notFound();
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://canadianheatpumphub.ca' },
-    { name: 'Case Studies', url: 'https://canadianheatpumphub.ca/case-studies' },
-    { name: meta.title, url: `https://canadianheatpumphub.ca/case-studies/${slug}` },
+    { name: 'Home', url: 'https://heatpumplocator.com' },
+    { name: 'Case Studies', url: 'https://heatpumplocator.com/case-studies' },
+    { name: meta.title, url: `https://heatpumplocator.com/case-studies/${slug}` },
   ];
 
   return (

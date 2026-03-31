@@ -538,7 +538,7 @@ export function AuditReportDocument({ reportId, generatedAt, inputs, result }: A
       title={`Ghost Load Audit -- ${reportId}`}
       author="Aelric Technologies"
       subject="CEC Rule 8-200 Mechanical & Thermal Compliance Report"
-      creator="canadianheatpumphub.ca"
+      creator="heatpumplocator.com"
       producer="Ghost Load Auditor v2026"
       keywords="CEC 8-200, heat pump, electrical service, BC, panel audit"
     >
@@ -547,7 +547,7 @@ export function AuditReportDocument({ reportId, generatedAt, inputs, result }: A
         {/* ── Header ── */}
         <View style={s.header}>
           <View>
-            <Text style={s.brand}>Aelric Technologies -- canadianheatpumphub.ca</Text>
+            <Text style={s.brand}>Aelric Technologies -- heatpumplocator.com</Text>
             <Text style={s.reportTitle}>Mechanical &amp; Thermal Compliance Report</Text>
           </View>
           <View style={[s.statusBadge, { backgroundColor: pal.bg }]}>

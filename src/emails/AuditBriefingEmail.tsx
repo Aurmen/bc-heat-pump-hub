@@ -166,7 +166,7 @@ export function AuditBriefingEmail({
                 letterSpacing: '0.3px',
               }}
             >
-              canadianheatpumphub.ca
+              heatpumplocator.com
             </Text>
           </Section>
 
@@ -406,7 +406,7 @@ export function AuditBriefingEmail({
               Share this briefing with your licensed heat pump installer or electrical contractor
               before committing to equipment. For HPCN-certified contractors in your area, visit the{' '}
               <Link
-                href="https://canadianheatpumphub.ca/directory"
+                href="https://heatpumplocator.com/directory"
                 style={{ color: '#2563eb', textDecoration: 'underline' }}
               >
                 Canadian Heat Pump Hub directory
@@ -469,8 +469,8 @@ export function AuditBriefingEmail({
               }}
             >
               © {String(year)} Ghost Load™ Technical Audits · Canadian Heat Pump Hub ·{' '}
-              <Link href="https://canadianheatpumphub.ca" style={{ color: '#9ca3af' }}>
-                canadianheatpumphub.ca
+              <Link href="https://heatpumplocator.com" style={{ color: '#9ca3af' }}>
+                heatpumplocator.com
               </Link>
             </Text>
             <Text

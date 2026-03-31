@@ -12,7 +12,7 @@
  *   - Log failure details
  *
  * Register in Stripe Dashboard:
- *   URL: https://canadianheatpumphub.ca/api/stripe/webhook
+ *   URL: https://heatpumplocator.com/api/stripe/webhook
  *   Events: checkout.session.completed, payment_intent.payment_failed
  */
 import { NextRequest, NextResponse } from 'next/server';
@@ -25,9 +25,9 @@ export const runtime = 'nodejs';
 export const maxDuration = 30;
 
 const TTL_SECONDS = 259200; // 72 hours
-const SITE_URL = 'https://canadianheatpumphub.ca';
+const SITE_URL = 'https://heatpumplocator.com';
 const SITE_NAME = 'Canadian Heat Pump Hub';
-const FROM_EMAIL = 'Canadian Heat Pump Hub <audits@canadianheatpumphub.ca>';
+const FROM_EMAIL = 'Canadian Heat Pump Hub <audits@heatpumplocator.com>';
 const CONTACT_EMAIL = 'contact@canadianheatpump.ca';
 const CURRENCY_LABEL = 'CAD $24.99';
 

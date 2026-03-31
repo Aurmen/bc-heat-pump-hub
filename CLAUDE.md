@@ -2,7 +2,7 @@
 
 ## Project
 BC-specific heat pump contractor directory and educational content site.
-- **Live:** https://canadianheatpumphub.ca
+- **Live:** https://heatpumplocator.com
 - **Stack:** Next.js 15 App Router (SSG), TypeScript, Tailwind CSS, MDX, Vercel
 - **Build:** `npm run build` — must pass with 0 errors before any push
 - **Deploy:** auto on push to `main`

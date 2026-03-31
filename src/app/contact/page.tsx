@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Contact Us',
   description: 'Get in touch with Canadian Heat Pump Hub. Submit corrections, ask questions, or add your business to our directory.',
-  alternates: { canonical: 'https://canadianheatpumphub.ca/contact' },
+  alternates: { canonical: 'https://heatpumplocator.com/contact' },
 };
 
 export default function ContactPage() {
@@ -27,10 +27,10 @@ export default function ContactPage() {
             Questions about our guides, rebate information, or general heat pump inquiries.
           </p>
           <a
-            href="mailto:contact@canadianheatpumphub.ca"
+            href="mailto:contact@heatpumplocator.com"
             className="text-primary-600 hover:text-primary-700 font-semibold"
           >
-            contact@canadianheatpumphub.ca →
+            contact@heatpumplocator.com →
           </a>
         </div>
 
