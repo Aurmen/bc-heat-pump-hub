@@ -23,6 +23,14 @@ interface FormState {
   heatingW: string;
   coolingW: string;
   evW: string;
+  // Quantity multipliers (default 1)
+  rangeQty: string;
+  dryerQty: string;
+  waterHeaterQty: string;
+  muaQty: string;
+  heatingQty: string;
+  coolingQty: string;
+  evQty: string;
   loadManagement: boolean;
   // Dual-fuel & altitude
   elevation: string;
@@ -92,13 +100,31 @@ function toNum(s: string): number | null {
 function runCalc(f: FormState, managedEV: boolean): CalcResult | null {
   const sqft   = toNum(f.sqft);
   const service = toNum(f.serviceSize);
-  const rangeW  = toNum(f.rangeW);
-  const dryerW  = toNum(f.dryerW);
-  const whW     = toNum(f.waterHeaterW);
-  const muaIn   = toNum(f.muaW);
-  const heatW   = toNum(f.heatingW);
-  const coolW   = toNum(f.coolingW);
-  const evIn    = toNum(f.evW);
+  const rangeWPer  = toNum(f.rangeW);
+  const dryerWPer  = toNum(f.dryerW);
+  const whWPer     = toNum(f.waterHeaterW);
+  const muaInPer   = toNum(f.muaW);
+  const heatWPer   = toNum(f.heatingW);
+  const coolWPer   = toNum(f.coolingW);
+  const evInPer    = toNum(f.evW);
+
+  // Quantity multipliers (default to 1)
+  const rangeQty = Math.max(1, Math.round(toNum(f.rangeQty) ?? 1));
+  const dryerQty = Math.max(1, Math.round(toNum(f.dryerQty) ?? 1));
+  const whQty    = Math.max(1, Math.round(toNum(f.waterHeaterQty) ?? 1));
+  const muaQty   = Math.max(1, Math.round(toNum(f.muaQty) ?? 1));
+  const heatQty  = Math.max(1, Math.round(toNum(f.heatingQty) ?? 1));
+  const coolQty  = Math.max(1, Math.round(toNum(f.coolingQty) ?? 1));
+  const evQty    = Math.max(1, Math.round(toNum(f.evQty) ?? 1));
+
+  // Total wattage = per-unit × quantity
+  const rangeW = rangeWPer !== null ? rangeWPer * rangeQty : null;
+  const dryerW = dryerWPer !== null ? dryerWPer * dryerQty : null;
+  const whW    = whWPer !== null    ? whWPer * whQty       : null;
+  const muaIn  = muaInPer !== null  ? muaInPer * muaQty    : null;
+  const heatW  = heatWPer !== null  ? heatWPer * heatQty   : null;
+  const coolW  = coolWPer !== null  ? coolWPer * coolQty   : null;
+  const evIn   = evInPer !== null   ? evInPer * evQty      : null;
 
   // Thermal inputs — safe defaults, never null-guard
   const elevM      = toNum(f.elevation) ?? 0;
@@ -624,6 +650,14 @@ const DEFAULTS: FormState = {
   heatingW: '15000',
   coolingW: '5000',
   evW: '11520',
+  // Quantity multipliers
+  rangeQty: '1',
+  dryerQty: '1',
+  waterHeaterQty: '1',
+  muaQty: '1',
+  heatingQty: '1',
+  coolingQty: '1',
+  evQty: '1',
   loadManagement: false,
   // Dual-fuel & altitude defaults
   elevation: '0',
@@ -657,6 +691,8 @@ export default function GhostLoadAuditor() {
   const resultA = calculated ? runCalc(form, false) : null;
   const resultB = calculated && form.loadManagement ? runCalc(form, true) : null;
 
+  const qtyOf = (field: string) => Math.max(1, Math.round(parseFloat(field) || 1));
+
   const leadData: AuditLeadData | null = resultA
     ? {
         resultStatus: resultA.status,
@@ -665,13 +701,13 @@ export default function GhostLoadAuditor() {
         hasEV: parseFloat(form.evW) > 0,
         loadManagement: form.loadManagement,
         sqft: parseFloat(form.sqft),
-        heatingW: parseFloat(form.heatingW),
-        coolingW: parseFloat(form.coolingW),
-        rangeW: parseFloat(form.rangeW),
-        dryerW: parseFloat(form.dryerW),
-        waterHeaterW: parseFloat(form.waterHeaterW),
-        muaW: parseFloat(form.muaW) || 0,
-        evW: parseFloat(form.evW),
+        heatingW: parseFloat(form.heatingW) * qtyOf(form.heatingQty),
+        coolingW: parseFloat(form.coolingW) * qtyOf(form.coolingQty),
+        rangeW: parseFloat(form.rangeW) * qtyOf(form.rangeQty),
+        dryerW: parseFloat(form.dryerW) * qtyOf(form.dryerQty),
+        waterHeaterW: parseFloat(form.waterHeaterW) * qtyOf(form.waterHeaterQty),
+        muaW: (parseFloat(form.muaW) || 0) * qtyOf(form.muaQty),
+        evW: parseFloat(form.evW) * qtyOf(form.evQty),
         utilization: resultA.utilization,
         // Thermal analysis inputs
         elevation: parseFloat(form.elevation) || 0,
@@ -728,16 +764,17 @@ export default function GhostLoadAuditor() {
   }
 
   function buildAuditData() {
+    const qty = (field: string) => Math.max(1, Math.round(parseFloat(field) || 1));
     return {
       sqft:         parseFloat(form.sqft),
       serviceAmps:  parseFloat(form.serviceSize),
-      rangeW:       parseFloat(form.rangeW),
-      dryerW:       parseFloat(form.dryerW),
-      waterHeaterW: parseFloat(form.waterHeaterW),
-      muaW:         parseFloat(form.muaW) || 0,
-      heatingW:     parseFloat(form.heatingW),
-      coolingW:     parseFloat(form.coolingW),
-      evW:          parseFloat(form.evW),
+      rangeW:       parseFloat(form.rangeW) * qty(form.rangeQty),
+      dryerW:       parseFloat(form.dryerW) * qty(form.dryerQty),
+      waterHeaterW: parseFloat(form.waterHeaterW) * qty(form.waterHeaterQty),
+      muaW:         (parseFloat(form.muaW) || 0) * qty(form.muaQty),
+      heatingW:     parseFloat(form.heatingW) * qty(form.heatingQty),
+      coolingW:     parseFloat(form.coolingW) * qty(form.coolingQty),
+      evW:          parseFloat(form.evW) * qty(form.evQty),
       loadManagement: form.loadManagement,
       elevation:       parseFloat(form.elevation) || 0,
       isDualFuel:      form.isDualFuel,
@@ -869,33 +906,75 @@ export default function GhostLoadAuditor() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               <div>
                 <label className={labelCls}>Range / Cooktop (W)</label>
-                <input
-                  type="number"
-                  min="0"
-                  value={form.rangeW}
-                  onChange={setField('rangeW')}
-                  className={inputCls}
-                />
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    value={form.rangeW}
+                    onChange={setField('rangeW')}
+                    className={inputCls}
+                  />
+                  <div className="w-20 shrink-0">
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      value={form.rangeQty}
+                      onChange={setField('rangeQty')}
+                      className={inputCls + ' text-center'}
+                      title="Quantity"
+                    />
+                    <p className="text-[10px] text-gray-400 text-center mt-0.5">qty</p>
+                  </div>
+                </div>
               </div>
               <div>
                 <label className={labelCls}>Dryer (W)</label>
-                <input
-                  type="number"
-                  min="0"
-                  value={form.dryerW}
-                  onChange={setField('dryerW')}
-                  className={inputCls}
-                />
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    value={form.dryerW}
+                    onChange={setField('dryerW')}
+                    className={inputCls}
+                  />
+                  <div className="w-20 shrink-0">
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      value={form.dryerQty}
+                      onChange={setField('dryerQty')}
+                      className={inputCls + ' text-center'}
+                      title="Quantity"
+                    />
+                    <p className="text-[10px] text-gray-400 text-center mt-0.5">qty</p>
+                  </div>
+                </div>
               </div>
               <div>
                 <label className={labelCls}>Water heater (W)</label>
-                <input
-                  type="number"
-                  min="0"
-                  value={form.waterHeaterW}
-                  onChange={setField('waterHeaterW')}
-                  className={inputCls}
-                />
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    value={form.waterHeaterW}
+                    onChange={setField('waterHeaterW')}
+                    className={inputCls}
+                  />
+                  <div className="w-20 shrink-0">
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      value={form.waterHeaterQty}
+                      onChange={setField('waterHeaterQty')}
+                      className={inputCls + ' text-center'}
+                      title="Quantity"
+                    />
+                    <p className="text-[10px] text-gray-400 text-center mt-0.5">qty</p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -908,13 +987,27 @@ export default function GhostLoadAuditor() {
                     Ghost Load
                   </span>
                 </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={form.muaW}
-                  onChange={setField('muaW')}
-                  className={inputCls}
-                />
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    value={form.muaW}
+                    onChange={setField('muaW')}
+                    className={inputCls}
+                  />
+                  <div className="w-20 shrink-0">
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      value={form.muaQty}
+                      onChange={setField('muaQty')}
+                      className={inputCls + ' text-center'}
+                      title="Quantity"
+                    />
+                    <p className="text-[10px] text-gray-400 text-center mt-0.5">qty</p>
+                  </div>
+                </div>
                 <p className={hintCls}>
                   Electric heater for high-CFM kitchen exhaust makeup air. Enter 0 if not present.
                 </p>
@@ -930,25 +1023,56 @@ export default function GhostLoadAuditor() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label className={labelCls}>Heating load — ASHP heat strip / MUA (W)</label>
-                <input
-                  type="number"
-                  min="0"
-                  value={form.heatingW}
-                  onChange={setField('heatingW')}
-                  className={inputCls}
-                />
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    value={form.heatingW}
+                    onChange={setField('heatingW')}
+                    className={inputCls}
+                  />
+                  <div className="w-20 shrink-0">
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      value={form.heatingQty}
+                      onChange={setField('heatingQty')}
+                      className={inputCls + ' text-center'}
+                      title="Quantity"
+                    />
+                    <p className="text-[10px] text-gray-400 text-center mt-0.5">qty</p>
+                  </div>
+                </div>
                 <p className={hintCls}>e.g. 15,000 W = 62.5A auxiliary heat strip</p>
               </div>
               <div>
                 <label className={labelCls}>Cooling load — AC / ASHP cooling (W)</label>
-                <input
-                  type="number"
-                  min="0"
-                  value={form.coolingW}
-                  onChange={setField('coolingW')}
-                  className={inputCls}
-                />
-                <p className={hintCls}>e.g. 5,000 W = 1.5–2 ton condenser draw</p>
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    value={form.coolingW}
+                    onChange={setField('coolingW')}
+                    className={inputCls}
+                  />
+                  <div className="w-20 shrink-0">
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      value={form.coolingQty}
+                      onChange={setField('coolingQty')}
+                      className={inputCls + ' text-center'}
+                      title="Quantity"
+                    />
+                    <p className="text-[10px] text-gray-400 text-center mt-0.5">qty</p>
+                  </div>
+                </div>
+                <p className={hintCls}>
+                  Most central AC units don&apos;t list wattage. Use: <strong>Tons x 1,200W</strong> (e.g. 3-ton = 3,600W).
+                  Or find MCA on the nameplate and multiply by voltage.
+                </p>
               </div>
             </div>
           </div>
@@ -959,13 +1083,27 @@ export default function GhostLoadAuditor() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label className={labelCls}>EV charger (W)</label>
-                <input
-                  type="number"
-                  min="0"
-                  value={form.evW}
-                  onChange={setField('evW')}
-                  className={inputCls}
-                />
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    value={form.evW}
+                    onChange={setField('evW')}
+                    className={inputCls}
+                  />
+                  <div className="w-20 shrink-0">
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      value={form.evQty}
+                      onChange={setField('evQty')}
+                      className={inputCls + ' text-center'}
+                      title="Quantity"
+                    />
+                    <p className="text-[10px] text-gray-400 text-center mt-0.5">qty</p>
+                  </div>
+                </div>
                 <p className={hintCls}>11,520 W = 48A Level 2 EVSE (typical dual-head)</p>
               </div>
               <div className="flex items-start pt-7">
