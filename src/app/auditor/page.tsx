@@ -5,7 +5,7 @@ import { WebApplicationJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd';
 export const metadata: Metadata = {
   title: 'Heat Pump Replacement Cost BC — Check Panel Capacity First',
   description:
-    'Before you get a heat pump quote, run a CEC 8-200 load calculation. The Ghost Load Auditor tells you what your panel can handle — 10 minutes, $24.99.',
+    'Before you get a heat pump quote, run a free CEC 8-200 load calculation. The Ghost Load Auditor tells you what your panel can handle — 10 minutes, no cost.',
   alternates: { canonical: 'https://heatpumplocator.com/auditor' },
   keywords: [
     'CEC 8-200 load calculation',

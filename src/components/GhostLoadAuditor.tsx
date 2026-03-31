@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, type ChangeEvent } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import Link from 'next/link';
 import { track } from '@vercel/analytics';
 import AuditLeadForm, { type AuditLeadData } from '@/components/AuditLeadForm';
@@ -644,13 +644,9 @@ export default function GhostLoadAuditor() {
   const [checkoutStatus, setCheckoutStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [bannerDismissed, setBannerDismissed] = useState(false);
 
-  // Promo code state
-  const [promoInput, setPromoInput] = useState('');
-  const [promoStatus, setPromoStatus] = useState<'idle' | 'checking' | 'valid' | 'invalid'>('idle');
-  const [promoError, setPromoError] = useState('');
-  const [promoRemaining, setPromoRemaining] = useState(0);
-  const [promoDownloadToken, setPromoDownloadToken] = useState('');
-  const [launchPromoRemaining, setLaunchPromoRemaining] = useState<number | null>(null);
+  // Email capture (optional, for lead tracking)
+  const [emailCapture, setEmailCapture] = useState('');
+  const [downloaded, setDownloaded] = useState(false);
 
   // Live m² conversion
   const sqm = (() => {
@@ -731,87 +727,6 @@ export default function GhostLoadAuditor() {
     setShowBreakdown(false);
   }
 
-  // Fetch LAUNCH2026 remaining count on mount (also powers the pricing card banner)
-  useEffect(() => {
-    fetch('/api/promo?code=LAUNCH2026')
-      .then(r => r.json())
-      .then((data: { valid: boolean; remaining: number }) => {
-        const remaining = data.valid ? data.remaining : 0;
-        setLaunchPromoRemaining(remaining);
-        console.log('PROMO DEBUG:', {
-          promoActive: data.valid,
-          promoRemaining: remaining,
-          promoApplied: false,
-        });
-      })
-      .catch(() => {
-        // Fail open — show promo input even if fetch fails
-        setLaunchPromoRemaining(0);
-      });
-  }, []);
-
-  async function handleApplyPromo() {
-    if (!promoInput.trim()) return;
-    setPromoStatus('checking');
-    setPromoError('');
-    try {
-      const res = await fetch(`/api/promo?code=${encodeURIComponent(promoInput.trim())}`);
-      const data: { valid: boolean; discount: number; remaining: number; reason?: string } = await res.json();
-      if (data.valid) {
-        setPromoStatus('valid');
-        setPromoRemaining(data.remaining);
-      } else {
-        setPromoStatus('invalid');
-        setPromoError(data.reason ?? 'Invalid promo code');
-      }
-    } catch {
-      setPromoStatus('invalid');
-      setPromoError('Could not verify code — please try again');
-    }
-  }
-
-  async function handlePromoDownload() {
-    if (!resultA) return;
-    setCheckoutStatus('loading');
-    try {
-      const auditData = buildAuditData();
-      // Step 1: redeem promo code at checkout (increments counter, returns token)
-      const checkoutRes = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ auditData, promoCode: promoInput.trim() }),
-      });
-      if (!checkoutRes.ok) {
-        const { error } = await checkoutRes.json();
-        throw new Error(error ?? 'Promo checkout failed');
-      }
-      const { downloadToken } = await checkoutRes.json();
-
-      // Step 2: download PDF with token (marks paid: true in audit log)
-      const pdfRes = await fetch('/api/audit-pdf', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...auditData, downloadToken }),
-      });
-      if (!pdfRes.ok) throw new Error('PDF generation failed');
-      const blob = await pdfRes.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'ghost-load-audit.pdf';
-      a.click();
-      URL.revokeObjectURL(url);
-
-      setPromoDownloadToken(downloadToken);
-      setCheckoutStatus('idle');
-      // Refresh remaining count in banner
-      setLaunchPromoRemaining(prev => (prev !== null && prev > 0 ? prev - 1 : prev));
-    } catch (err) {
-      setCheckoutStatus('error');
-      setPromoError(err instanceof Error ? err.message : 'Download failed');
-    }
-  }
-
   function buildAuditData() {
     return {
       sqft:         parseFloat(form.sqft),
@@ -834,23 +749,26 @@ export default function GhostLoadAuditor() {
     };
   }
 
-  async function handlePurchaseReport() {
+  async function handleFreeDownload() {
     if (!resultA) return;
     setCheckoutStatus('loading');
     try {
       const auditData = buildAuditData();
-      const res = await fetch('/api/checkout', {
+      const pdfRes = await fetch('/api/audit-pdf', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ auditData }),
+        body: JSON.stringify({ ...auditData, email: emailCapture.trim() || undefined }),
       });
-      if (!res.ok) throw new Error('Checkout session creation failed');
-      const { url } = await res.json();
-      if (url) {
-        window.location.href = url;
-      } else {
-        throw new Error('No checkout URL returned');
-      }
+      if (!pdfRes.ok) throw new Error('PDF generation failed');
+      const blob = await pdfRes.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ghost-load-audit.pdf';
+      a.click();
+      URL.revokeObjectURL(url);
+      setDownloaded(true);
+      setCheckoutStatus('idle');
     } catch {
       setCheckoutStatus('error');
     }
@@ -1252,98 +1170,40 @@ export default function GhostLoadAuditor() {
             </button>
           </div>
 
-          {/* Purchase section: banner → promo input → buy button */}
+          {/* Free download section */}
           <div className="space-y-3">
-            {/* Launch promo banner */}
-            {(launchPromoRemaining === null || launchPromoRemaining > 0) && promoStatus !== 'valid' && (
-              <div className="bg-primary-50 border border-primary-300 rounded-xl px-5 py-3 flex items-center gap-3">
-                <span className="text-primary-700 font-semibold text-sm">Launch special</span>
-                <span className="text-primary-600 text-sm">
-                  Free report with code{' '}
-                  <span className="font-mono font-bold text-primary-800">LAUNCH2026</span>
-                  {launchPromoRemaining !== null ? ` (${launchPromoRemaining} of 100 remaining)` : ''}
-                </span>
+            <div className="flex items-start gap-3">
+              <div className="flex-1 max-w-sm">
+                <input
+                  type="email"
+                  placeholder="Email (optional — get a copy + rebate updates)"
+                  value={emailCapture}
+                  onChange={e => setEmailCapture(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                />
               </div>
-            )}
-
-            {/* Promo code input — always visible until a valid code is applied */}
-            {promoStatus !== 'valid' && (
-              <div className="flex items-start gap-3">
-                <div className="flex-1 max-w-xs">
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="Have a promo code?"
-                      value={promoInput}
-                      onChange={e => {
-                        setPromoInput(e.target.value);
-                        setPromoStatus('idle');
-                        setPromoError('');
-                      }}
-                      onKeyDown={e => { if (e.key === 'Enter') handleApplyPromo(); }}
-                      className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
-                    />
-                    <button
-                      onClick={handleApplyPromo}
-                      disabled={promoStatus === 'checking' || !promoInput.trim()}
-                      className="text-sm font-medium text-primary-600 hover:text-primary-700 disabled:opacity-40 px-3 py-2 border border-primary-300 rounded-lg"
-                    >
-                      {promoStatus === 'checking' ? '...' : 'Apply'}
-                    </button>
-                  </div>
-                  {promoStatus === 'invalid' && (
-                    <p className="text-xs text-red-600 mt-1">{promoError}</p>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* Purchase / free download button */}
-            {promoStatus !== 'valid' && (
-              <div>
-                <button
-                  onClick={handlePurchaseReport}
-                  disabled={checkoutStatus === 'loading'}
-                  className="flex items-center gap-2 text-sm font-semibold text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-60 px-5 py-2.5 rounded-lg shadow-sm transition-colors"
-                >
-                  {checkoutStatus === 'loading'
-                    ? 'Processing...'
-                    : 'Get Full Report — $24.99'}
-                </button>
-                <p className="text-xs text-gray-400 mt-1.5">
-                  Instant PDF download &middot; GST included
+            </div>
+            <div>
+              <button
+                onClick={handleFreeDownload}
+                disabled={checkoutStatus === 'loading' || downloaded}
+                className="flex items-center gap-2 text-sm font-semibold text-white bg-green-600 hover:bg-green-700 disabled:opacity-60 px-5 py-2.5 rounded-lg shadow-sm transition-colors"
+              >
+                {checkoutStatus === 'loading'
+                  ? 'Generating...'
+                  : downloaded
+                  ? 'Downloaded'
+                  : 'Download Free Report'}
+              </button>
+              <p className="text-xs text-gray-400 mt-1.5">
+                UUID-stamped &middot; Instant download &middot; Shareable with contractors
+              </p>
+              {checkoutStatus === 'error' && (
+                <p className="text-xs text-red-600 mt-1">
+                  Download failed — please try again or contact support@aelrictechnologies.com
                 </p>
-                {checkoutStatus === 'error' && (
-                  <p className="text-xs text-red-600 mt-1">
-                    Checkout failed — please try again or contact support@aelrictechnologies.com
-                  </p>
-                )}
-              </div>
-            )}
-
-            {promoStatus === 'valid' && (
-              <div>
-                <button
-                  onClick={handlePromoDownload}
-                  disabled={checkoutStatus === 'loading' || !!promoDownloadToken}
-                  className="flex items-center gap-2 text-sm font-semibold text-white bg-green-600 hover:bg-green-700 disabled:opacity-60 px-5 py-2.5 rounded-lg shadow-sm transition-colors"
-                >
-                  {checkoutStatus === 'loading'
-                    ? 'Downloading...'
-                    : promoDownloadToken
-                    ? 'Downloaded'
-                    : 'Download Free Report'}
-                </button>
-                <p className="text-xs text-gray-400 mt-1.5">
-                  Code <span className="font-mono font-semibold">{promoInput.trim().toUpperCase()}</span> applied &middot; {promoRemaining - 1 >= 0 ? promoRemaining - 1 : promoRemaining} remaining after this use
-                </p>
-                {checkoutStatus === 'error' && (
-                  <p className="text-xs text-red-600 mt-1">
-                    {promoError || 'Download failed — please try again'}
-                  </p>
-                )}
-              </div>
-            )}
+              )}
+            </div>
           </div>
 
           {showBreakdown && (
@@ -1646,7 +1506,7 @@ export default function GhostLoadAuditor() {
                   Available
                 </span>
               </div>
-              <p className="text-3xl font-extrabold text-gray-900 mb-4">$24.99</p>
+              <p className="text-3xl font-extrabold text-green-700 mb-4">Free</p>
               <ul className="text-sm text-gray-600 space-y-2 mb-5">
                 <li className="flex items-start gap-2">
                   <span className="text-primary-500 mt-0.5 shrink-0">✓</span>
@@ -1666,82 +1526,35 @@ export default function GhostLoadAuditor() {
                 </li>
               </ul>
 
-              {/* Launch promo banner */}
-              {(launchPromoRemaining === null || launchPromoRemaining > 0) && promoStatus !== 'valid' && (
-                <div className="bg-primary-50 border border-primary-200 rounded-lg px-3 py-2 mb-3 flex items-center gap-2">
-                  <span className="text-primary-700 font-semibold text-xs">Launch special</span>
-                  <span className="text-primary-600 text-xs">
-                    Free with code{' '}
-                    <span className="font-mono font-bold text-primary-800">LAUNCH2026</span>
-                    {launchPromoRemaining !== null ? ` (${launchPromoRemaining} of 100 remaining)` : ''}
-                  </span>
-                </div>
-              )}
+              <div className="mb-3">
+                <input
+                  type="email"
+                  placeholder="Email (optional — get a copy + rebate updates)"
+                  value={emailCapture}
+                  onChange={e => setEmailCapture(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                />
+              </div>
 
-              {/* Promo code input */}
-              {promoStatus !== 'valid' && (
-                <div className="mb-3">
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="Have a promo code?"
-                      value={promoInput}
-                      onChange={e => {
-                        setPromoInput(e.target.value);
-                        setPromoStatus('idle');
-                        setPromoError('');
-                      }}
-                      onKeyDown={e => { if (e.key === 'Enter') handleApplyPromo(); }}
-                      className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
-                    />
-                    <button
-                      onClick={handleApplyPromo}
-                      disabled={promoStatus === 'checking' || !promoInput.trim()}
-                      className="text-sm font-medium text-primary-600 hover:text-primary-700 disabled:opacity-40 px-3 py-2 border border-primary-300 rounded-lg whitespace-nowrap"
-                    >
-                      {promoStatus === 'checking' ? '...' : 'Apply'}
-                    </button>
-                  </div>
-                  {promoStatus === 'invalid' && (
-                    <p className="text-xs text-red-600 mt-1">{promoError}</p>
-                  )}
-                </div>
-              )}
-
-              {/* Purchase button — switches to free download when promo applied */}
-              {promoStatus !== 'valid' ? (
-                <button
-                  onClick={handlePurchaseReport}
-                  disabled={!resultA || checkoutStatus === 'loading'}
-                  className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors"
-                >
-                  {checkoutStatus === 'loading'
-                    ? 'Processing...'
+              <button
+                onClick={handleFreeDownload}
+                disabled={!resultA || checkoutStatus === 'loading' || downloaded}
+                className="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors"
+              >
+                {checkoutStatus === 'loading'
+                  ? 'Generating...'
+                  : downloaded
+                    ? 'Downloaded'
                     : !resultA
                       ? 'Run audit first'
-                      : 'Get Full Report — $24.99'}
-                </button>
-              ) : (
-                <button
-                  onClick={handlePromoDownload}
-                  disabled={checkoutStatus === 'loading' || !!promoDownloadToken}
-                  className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors"
-                >
-                  {checkoutStatus === 'loading'
-                    ? 'Downloading...'
-                    : promoDownloadToken
-                      ? 'Downloaded'
                       : 'Download Free Report'}
-                </button>
-              )}
+              </button>
               <p className="text-xs text-gray-400 mt-2 text-center">
-                {promoStatus === 'valid'
-                  ? <>Code <span className="font-mono font-semibold">{promoInput.trim().toUpperCase()}</span> applied &middot; {promoRemaining - 1 >= 0 ? promoRemaining - 1 : promoRemaining} remaining</>
-                  : <>Instant PDF download &middot; GST included</>}
+                UUID-stamped &middot; Instant download &middot; Shareable with contractors
               </p>
               {checkoutStatus === 'error' && (
                 <p className="text-xs text-red-600 mt-1 text-center">
-                  {promoError || 'Checkout failed — please try again or contact support@aelrictechnologies.com'}
+                  Download failed — please try again or contact support@aelrictechnologies.com
                 </p>
               )}
             </div>
@@ -1785,7 +1598,7 @@ export default function GhostLoadAuditor() {
                 <td className="py-3 pr-4 font-semibold text-gray-800 whitespace-nowrap">
                   PDF Technical Briefing
                 </td>
-                <td className="py-3 px-4 text-right font-bold text-gray-900">$24.99</td>
+                <td className="py-3 px-4 text-right font-bold text-green-700">Free</td>
                 <td className="py-3 pl-4 text-gray-600">
                   Stamped calculation report to share with your contractor or permit office.
                 </td>
