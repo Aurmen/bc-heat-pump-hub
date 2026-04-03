@@ -25,6 +25,11 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# reddit scanner secrets
+scripts/reddit-scanner/config.json
+scripts/reddit-scanner/seen_posts.json
+scripts/reddit-scanner/latest_report.html
+
 # vercel
 .vercel
 

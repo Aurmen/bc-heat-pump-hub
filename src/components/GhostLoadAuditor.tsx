@@ -1590,7 +1590,7 @@ export default function GhostLoadAuditor() {
                       <p className="text-sm text-primary-700 mt-1">
                         BC CleanBC rebates require installation by a Heat Pump Contractor Network
                         (HPCN) member. Use the{' '}
-                        <Link href="/directory" className="underline font-medium">
+                        <Link href="/canada/directory" className="underline font-medium">
                           Aelric Technologies directory
                         </Link>{' '}
                         to find TSBC-verified HPCN contractors in your area.
@@ -1776,7 +1776,7 @@ export default function GhostLoadAuditor() {
         <p className="text-xs text-gray-500 text-center">
           Want the full context?{' '}
           <Link
-            href="/guides/heat-pump-bc-2026"
+            href="/canada/guides/heat-pump-bc-2026"
             className="text-primary-600 hover:text-primary-700 underline font-medium"
           >
             Read the BC Heat Pump Guide 2026

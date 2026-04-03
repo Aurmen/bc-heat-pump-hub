@@ -8,6 +8,7 @@ import { repairCities } from '@/data/repair-cities';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://heatpumplocator.com';
+  const canadaBase = `${baseUrl}/canada`;
 
   const guides = [
     'types-of-heat-pumps-bc',
@@ -45,75 +46,73 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'kettle-valley-ghost',
   ];
 
+  // Pages that are NOT redirected — served directly at root
   const staticPages = [
     { url: baseUrl, priority: 1.0 },
-    { url: `${baseUrl}/guides`, priority: 0.9 },
-    { url: `${baseUrl}/guides/lower-mainland`, priority: 0.9 },
-    { url: `${baseUrl}/guides/vancouver-island`, priority: 0.9 },
-    { url: `${baseUrl}/guides/interior-bc`, priority: 0.9 },
-    { url: `${baseUrl}/case-studies`, priority: 0.85 },
-    { url: `${baseUrl}/bc`, priority: 0.9 },
-    { url: `${baseUrl}/directory`, priority: 0.8 },
-    { url: `${baseUrl}/brands`, priority: 0.85 },
-    { url: `${baseUrl}/supply-houses`, priority: 0.8 },
-    { url: `${baseUrl}/rebates`, priority: 0.9 },
-    { url: `${baseUrl}/calculator`, priority: 0.8 },
-    { url: `${baseUrl}/connect`, priority: 0.85 },
-    { url: `${baseUrl}/faq`, priority: 0.7 },
-    { url: `${baseUrl}/contact`, priority: 0.7 },
-    { url: `${baseUrl}/directory/submit`, priority: 0.7 },
-    { url: `${baseUrl}/bc-heat-pump-installers`, priority: 0.95 },
-    { url: `${baseUrl}/heat-pump-cost-bc`, priority: 0.95 },
-    { url: `${baseUrl}/cold-climate-heat-pump-bc`, priority: 0.90 },
-    { url: `${baseUrl}/repair`, priority: 0.90 },
-    { url: `${baseUrl}/service`, priority: 0.85 },
     { url: `${baseUrl}/auditor`, priority: 0.90 },
     { url: `${baseUrl}/privacy`, priority: 0.3 },
+    { url: `${baseUrl}/directory/submit`, priority: 0.7 },
+  ];
+
+  // Pages that live under /canada/ on the live site
+  const canadaStaticPages = [
+    { url: `${canadaBase}/guides`, priority: 0.9 },
+    { url: `${canadaBase}/case-studies`, priority: 0.85 },
+    { url: `${canadaBase}/bc`, priority: 0.9 },
+    { url: `${canadaBase}/directory`, priority: 0.8 },
+    { url: `${canadaBase}/brands`, priority: 0.85 },
+    { url: `${canadaBase}/supply-houses`, priority: 0.8 },
+    { url: `${canadaBase}/rebates`, priority: 0.9 },
+    { url: `${canadaBase}/calculator`, priority: 0.8 },
+    { url: `${canadaBase}/faq`, priority: 0.7 },
+    { url: `${canadaBase}/repair`, priority: 0.90 },
+    { url: `${canadaBase}/service`, priority: 0.85 },
   ];
 
   const repairPages = repairCities.map(city => ({
-    url: `${baseUrl}/repair/${city.slug}`,
+    url: `${canadaBase}/repair/${city.slug}`,
     priority: 0.85,
   }));
 
   const guidePages = guides.map(slug => ({
-    url: `${baseUrl}/guides/${slug}`,
+    url: `${canadaBase}/guides/${slug}`,
     priority: 0.8,
   }));
 
   const regionPages = regions.map(region => ({
-    url: `${baseUrl}/bc/${region.slug}`,
+    url: `${canadaBase}/bc/${region.slug}`,
     priority: 0.7,
   }));
 
   const cityPages = cities.map(city => ({
-    url: `${baseUrl}/bc/${city.regionSlug}/${city.slug}`,
+    url: `${canadaBase}/bc/${city.regionSlug}/${city.slug}`,
     priority: 0.7,
   }));
 
   const brandPages = brands.map(brand => ({
-    url: `${baseUrl}/brands/${brand.slug}`,
+    url: `${canadaBase}/brands/${brand.slug}`,
     priority: 0.75,
   }));
 
   const supplyHousePages = supplyHouses.map(house => ({
-    url: `${baseUrl}/supply-houses/${house.slug}`,
+    url: `${canadaBase}/supply-houses/${house.slug}`,
     priority: 0.7,
   }));
 
   const caseStudyPages = caseStudies.map(slug => ({
-    url: `${baseUrl}/case-studies/${slug}`,
+    url: `${canadaBase}/case-studies/${slug}`,
     priority: 0.85,
   }));
 
   const listings = getAllListings();
   const companyPages = listings.map(listing => ({
-    url: `${baseUrl}/directory/${listing.slug}`,
+    url: `${canadaBase}/directory/${listing.slug}`,
     priority: 0.6,
   }));
 
   return [
     ...staticPages,
+    ...canadaStaticPages,
     ...guidePages,
     ...caseStudyPages,
     ...repairPages,

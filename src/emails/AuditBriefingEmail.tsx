@@ -406,7 +406,7 @@ export function AuditBriefingEmail({
               Share this briefing with your licensed heat pump installer or electrical contractor
               before committing to equipment. For HPCN-certified contractors in your area, visit the{' '}
               <Link
-                href="https://heatpumplocator.com/directory"
+                href="https://heatpumplocator.com/canada/directory"
                 style={{ color: '#2563eb', textDecoration: 'underline' }}
               >
                 Canadian Heat Pump Hub directory

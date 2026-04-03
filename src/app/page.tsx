@@ -58,13 +58,13 @@ export default function HomePage() {
             {/* Secondary CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/rebates"
+                href="/canada/rebates"
                 className="bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all transform hover:scale-105"
               >
                 2026 Rebates Guide →
               </Link>
               <Link
-                href="/directory"
+                href="/canada/directory"
                 className="bg-transparent hover:bg-white/10 text-white border-2 border-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all"
               >
                 View All Installers
@@ -87,7 +87,7 @@ export default function HomePage() {
             Technically accurate, homeowner-friendly explanations of heat pump and boiler systems,
             costs, and climate considerations.
           </p>
-          <Link href="/guides" className="text-primary-600 hover:text-primary-700 font-semibold inline-flex items-center group">
+          <Link href="/canada/guides" className="text-primary-600 hover:text-primary-700 font-semibold inline-flex items-center group">
             Explore Guides
             <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
           </Link>
@@ -102,7 +102,7 @@ export default function HomePage() {
             Climate notes and installer listings tailored to your BC region—from coastal Vancouver Island
             to the Interior.
           </p>
-          <Link href="/bc" className="text-accent-600 hover:text-accent-700 font-semibold inline-flex items-center group">
+          <Link href="/canada/bc" className="text-accent-600 hover:text-accent-700 font-semibold inline-flex items-center group">
             Browse Cities
             <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
           </Link>
@@ -116,7 +116,7 @@ export default function HomePage() {
           <p className="text-gray-600 mb-4 leading-relaxed">
             Find heat pump and boiler installers serving your area. Filter by city and service type.
           </p>
-          <Link href="/directory" className="text-success-600 hover:text-success-700 font-semibold inline-flex items-center group">
+          <Link href="/canada/directory" className="text-success-600 hover:text-success-700 font-semibold inline-flex items-center group">
             View Directory
             <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
           </Link>
@@ -134,7 +134,7 @@ export default function HomePage() {
             Get personalized payback period, annual savings, and 15-year ROI analysis based on your home, climate zone, and current heating costs.
           </p>
           <Link
-            href="/calculator"
+            href="/canada/calculator"
             className="inline-block bg-white hover:bg-gray-100 text-success-700 px-10 py-5 rounded-xl font-bold text-xl shadow-lg transition-all transform hover:scale-105"
           >
             Try the Calculator →
@@ -192,7 +192,7 @@ export default function HomePage() {
         <p className="text-gray-600 mb-8 text-lg">Deep dives into heat pump technology and costs</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Link
-            href="/guides/heat-pump-vs-boiler-bc"
+            href="/canada/guides/heat-pump-vs-boiler-bc"
             className="bg-white border-l-4 border-primary-500 rounded-lg p-6 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1"
           >
             <div className="flex items-start gap-4">
@@ -211,7 +211,7 @@ export default function HomePage() {
           </Link>
 
           <Link
-            href="/guides/air-to-water-heat-pumps-bc"
+            href="/canada/guides/air-to-water-heat-pumps-bc"
             className="bg-white border-l-4 border-accent-500 rounded-lg p-6 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1"
           >
             <div className="flex items-start gap-4">
@@ -230,7 +230,7 @@ export default function HomePage() {
           </Link>
 
           <Link
-            href="/guides/hybrid-heat-pump-boiler-systems"
+            href="/canada/guides/hybrid-heat-pump-boiler-systems"
             className="bg-white border-l-4 border-success-500 rounded-lg p-6 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1"
           >
             <div className="flex items-start gap-4">
@@ -249,7 +249,7 @@ export default function HomePage() {
           </Link>
 
           <Link
-            href="/guides/cost-heat-pump-installation-bc"
+            href="/canada/guides/cost-heat-pump-installation-bc"
             className="bg-white border-l-4 border-yellow-500 rounded-lg p-6 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1"
           >
             <div className="flex items-start gap-4">

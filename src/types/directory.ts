@@ -101,6 +101,8 @@ export interface City {
   };
   // Recommended systems
   recommendedSystems?: string[];
+  // Neighborhoods / service areas (for geo signals)
+  neighborhoods?: string[];
 }
 
 export interface Region {

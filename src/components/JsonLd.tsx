@@ -17,7 +17,7 @@ export function OrganizationJsonLd() {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Canadian Heat Pump Hub',
+    name: 'HeatPumpLocator',
     url: 'https://heatpumplocator.com',
     description: 'Educational resource for heat pump and boiler replacement decisions in Canada',
     logo: {
@@ -32,7 +32,7 @@ export function OrganizationJsonLd() {
       url: 'https://heatpumplocator.com/directory/submit',
     },
     areaServed: {
-      '@type': 'State',
+      '@type': 'AdministrativeArea',
       name: 'British Columbia',
       addressCountry: 'CA',
     },
@@ -47,7 +47,7 @@ export function HomepageJsonLd() {
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: 'Canadian Heat Pump Hub',
+      name: 'HeatPumpLocator',
       url: 'https://heatpumplocator.com',
       potentialAction: {
         '@type': 'SearchAction',
@@ -60,15 +60,14 @@ export function HomepageJsonLd() {
     },
     {
       '@context': 'https://schema.org',
-      '@type': 'LocalBusiness',
-      name: 'Canadian Heat Pump Hub',
-      description: 'BC heat pump installer directory and educational resource',
+      '@type': 'Organization',
+      name: 'HeatPumpLocator',
+      description: 'Heat pump installer directory, rebate finder, and educational resource',
       url: 'https://heatpumplocator.com',
-      areaServed: {
-        '@type': 'State',
-        name: 'British Columbia',
-      },
-      serviceType: 'Heat Pump Installer Directory',
+      areaServed: [
+        { '@type': 'Country', name: 'Canada' },
+        { '@type': 'Country', name: 'United States' },
+      ],
     },
   ];
 
@@ -150,20 +149,20 @@ export function TechnicalArticleJsonLd({
     keywords: keywords.join(', '),
     author: {
       '@type': 'Person',
-      name: 'Canadian Heat Pump Hub — Mechanical Compliance Auditor',
+      name: 'HeatPumpLocator — Mechanical Compliance Auditor',
       description: 'Red Seal Refrigeration Mechanic and Class A Gas Fitter',
       url: 'https://heatpumplocator.com/about',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Canadian Heat Pump Hub',
+      name: 'HeatPumpLocator',
       url: 'https://heatpumplocator.com',
     },
     datePublished,
     dateModified,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://heatpumplocator.com/case-studies/${slug}`,
+      '@id': `https://heatpumplocator.com/canada/case-studies/${slug}`,
     },
     about: {
       '@type': 'Thing',
@@ -205,7 +204,7 @@ export function WebApplicationJsonLd({
     },
     provider: {
       '@type': 'Organization',
-      name: 'Canadian Heat Pump Hub',
+      name: 'HeatPumpLocator',
       url: 'https://heatpumplocator.com',
     },
     audience: {
@@ -237,19 +236,19 @@ export function ArticleJsonLd({
     description: description,
     author: {
       '@type': 'Organization',
-      name: 'Canadian Heat Pump Hub',
+      name: 'HeatPumpLocator',
       url: 'https://heatpumplocator.com',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Canadian Heat Pump Hub',
+      name: 'HeatPumpLocator',
       url: 'https://heatpumplocator.com',
     },
     datePublished: datePublished,
     dateModified: dateModified,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://heatpumplocator.com/guides/${slug}`,
+      '@id': `https://heatpumplocator.com/canada/guides/${slug}`,
     },
   };
 

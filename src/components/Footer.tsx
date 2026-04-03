@@ -15,32 +15,32 @@ export default function Footer() {
             <h4 className="font-semibold text-gray-900 mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/guides" className="text-gray-600 hover:text-primary-600">
+                <Link href="/canada/guides" className="text-gray-600 hover:text-primary-600">
                   Educational Guides
                 </Link>
               </li>
               <li>
-                <Link href="/bc" className="text-gray-600 hover:text-primary-600">
+                <Link href="/canada/bc" className="text-gray-600 hover:text-primary-600">
                   BC Regions
                 </Link>
               </li>
               <li>
-                <Link href="/directory" className="text-gray-600 hover:text-primary-600">
+                <Link href="/canada/directory" className="text-gray-600 hover:text-primary-600">
                   Installer Directory
                 </Link>
               </li>
               <li>
-                <Link href="/brands" className="text-gray-600 hover:text-primary-600">
+                <Link href="/canada/brands" className="text-gray-600 hover:text-primary-600">
                   Brand Comparisons
                 </Link>
               </li>
               <li>
-                <Link href="/supply-houses" className="text-gray-600 hover:text-primary-600">
+                <Link href="/canada/supply-houses" className="text-gray-600 hover:text-primary-600">
                   Supply Houses
                 </Link>
               </li>
               <li>
-                <Link href="/rebates" className="text-gray-600 hover:text-primary-600">
+                <Link href="/canada/rebates" className="text-gray-600 hover:text-primary-600">
                   2026 Rebates
                 </Link>
               </li>

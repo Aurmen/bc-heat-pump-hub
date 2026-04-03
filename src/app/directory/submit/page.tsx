@@ -107,7 +107,7 @@ export default function DirectorySubmitPage() {
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-primary-600">Home</Link>
         <span className="mx-2">/</span>
-        <Link href="/directory" className="hover:text-primary-600">Directory</Link>
+        <Link href="/canada/directory" className="hover:text-primary-600">Directory</Link>
         <span className="mx-2">/</span>
         <span>Submit Your Company</span>
       </nav>

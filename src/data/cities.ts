@@ -28,6 +28,12 @@ export const cities: City[] = [
       'Air-to-water heat pump for hydronic systems',
       'Ductless mini-split (2-4 zones for whole-home coverage)',
     ],
+    neighborhoods: [
+      'Downtown Vancouver', 'Kitsilano', 'Mount Pleasant', 'East Vancouver',
+      'Kerrisdale', 'West End', 'Grandview-Woodland', 'South Vancouver',
+      'Marpole', 'Hastings-Sunrise', 'North Vancouver', 'Burnaby',
+      'Richmond', 'Coquitlam',
+    ],
   },
   {
     name: 'Surrey',
