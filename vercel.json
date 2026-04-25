@@ -36,6 +36,46 @@
       "permanent": true
     },
     {
+      "source": "/canada/supply-houses/nee",
+      "destination": "https://heatpumplocator.com/canada/british-columbia",
+      "permanent": true
+    },
+    {
+      "source": "/canada/repair/surrey",
+      "destination": "https://heatpumplocator.com/canada/british-columbia/surrey",
+      "permanent": true
+    },
+    {
+      "source": "/canada/directory/air-tech-plumbing-heating-cooling-green-energy",
+      "destination": "https://heatpumplocator.com/directory/air-tech-plumbing-heating-cooling-green-energy",
+      "permanent": true
+    },
+    {
+      "source": "/canada/directory/btu-installation-group-ltd",
+      "destination": "https://heatpumplocator.com/directory/btu-installation-group-ltd",
+      "permanent": true
+    },
+    {
+      "source": "/canada/directory/verta-mechanical-plumbing-and-heating-inc",
+      "destination": "https://heatpumplocator.com/directory/verta-mechanical-plumbing-and-heating-inc",
+      "permanent": true
+    },
+    {
+      "source": "/canada/directory/express-lane-plumbing-heating-ltd",
+      "destination": "https://heatpumplocator.com/directory/express-lane-plumbing-heating-ltd",
+      "permanent": true
+    },
+    {
+      "source": "/canada/directory/kj-plumbing-heating-ltd",
+      "destination": "https://heatpumplocator.com/directory/kj-plumbing-heating-ltd",
+      "permanent": true
+    },
+    {
+      "source": "/canada",
+      "destination": "https://heatpumplocator.com/canada/british-columbia",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "destination": "https://heatpumplocator.com/$1",
       "permanent": true
