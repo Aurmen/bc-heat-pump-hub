@@ -1,6 +1,41 @@
 {
   "redirects": [
     {
+      "source": "/canada/bc/interior/salmon-arm",
+      "destination": "https://heatpumplocator.com/canada/british-columbia/heat-pumps-salmon-arm",
+      "permanent": true
+    },
+    {
+      "source": "/canada/bc/interior/vernon",
+      "destination": "https://heatpumplocator.com/canada/british-columbia/heat-pumps-vernon",
+      "permanent": true
+    },
+    {
+      "source": "/canada/bc/interior/kelowna",
+      "destination": "https://heatpumplocator.com/canada/british-columbia/heat-pumps-kelowna",
+      "permanent": true
+    },
+    {
+      "source": "/canada/bc/interior/kamloops",
+      "destination": "https://heatpumplocator.com/canada/british-columbia/heat-pumps-kamloops",
+      "permanent": true
+    },
+    {
+      "source": "/canada/bc/interior/penticton",
+      "destination": "https://heatpumplocator.com/canada/british-columbia/heat-pumps-penticton",
+      "permanent": true
+    },
+    {
+      "source": "/canada/bc/vancouver-island",
+      "destination": "https://heatpumplocator.com/canada/british-columbia/vancouver-island",
+      "permanent": true
+    },
+    {
+      "source": "/canada/bc/lower-mainland",
+      "destination": "https://heatpumplocator.com/canada/british-columbia",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "destination": "https://heatpumplocator.com/$1",
       "permanent": true
